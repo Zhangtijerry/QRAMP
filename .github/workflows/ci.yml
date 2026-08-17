@@ -1,0 +1,140 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: ${{ matrix.os }} / Python ${{ matrix.python }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        python: ["3.10", "3.11", "3.12"]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+          cache: pip
+
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e ".[source,validate,versions]"
+          pip install pytest
+
+      - name: Run tests
+        run: pytest -q
+
+  quickstart:
+    name: Quickstart example
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e ".[source,validate,versions]"
+
+      - name: Lint the policy data
+        run: |
+          qramp lint-rules src/qramp/rules/transition-2024.yaml --strict
+          qramp lint-provider-map
+          qramp lint-aliases
+          qramp lint-vex testbed/vex/exceptions.yaml
+
+      - name: Authorise the TLS scope
+        run: qramp sign-scope testbed/testbed.scope.yaml --key testbed/scope.key
+
+      - name: Scan
+        run: |
+          qramp scan --source testbed/sample-app \
+                     --sbom   testbed/sample-app/sbom.cdx.json \
+                     --certs  testbed/certs \
+                     --config testbed/etc \
+                     --owners testbed/policy/owners.yaml \
+                     -o cbom.json
+
+      - name: Assess
+        run: |
+          qramp assess cbom.json \
+                --rules src/qramp/rules/transition-2024.yaml \
+                --lifetimes testbed/policy/data-lifetimes.yaml \
+                -o assessment.json
+
+      - name: Plan
+        run: |
+          qramp plan assessment.json \
+                --capacity testbed/policy/teams.yaml \
+                --horizon 24m -o plan.yaml
+
+      # The shipped testbed is deliberately UNREMEDIATED: phase 1 contains
+      # hard-coded MD5/DES literals, an RSA-1024 cert and a secp192r1 cert that
+      # nobody has fixed. `verify` therefore exits 2 by design. We assert that
+      # exact code — a 0 here would mean the acceptance predicates stopped
+      # detecting the planted weaknesses, which is the regression worth catching.
+      - name: Verify (expects failures — the testbed is unremediated)
+        run: |
+          set +e
+          qramp verify plan.yaml --against cbom.json --phase 1 --evidence-out evidence.json
+          code=$?
+          set -e
+          if [ "$code" -ne 2 ]; then
+            echo "::error::expected exit 2 (unremediated testbed), got $code"
+            exit 1
+          fi
+          echo "verify reported failures as expected"
+
+      - name: Analysis commands
+        run: |
+          qramp readiness assessment.json
+          qramp simulate assessment.json --upgrade openssl=3.5
+          qramp chain assessment.json --weak-only
+          qramp impact assessment.json --component openssl
+          qramp provenance --cbom assessment.json --require-references
+
+      - name: Exports
+        run: |
+          qramp export assessment.json --format cyclonedx -o cbom.cdx.json
+          qramp export assessment.json --format sarif \
+                --rules src/qramp/rules/transition-2024.yaml -o qramp.sarif
+          qramp export plan.yaml --format issues -o issues.json
+          qramp report assessment.json -o dashboard.html
+          qramp graph assessment.json --which dependency --format dot -o deps.dot
+          qramp bundle assessment.json -o report-bundle \
+                --rules src/qramp/rules/transition-2024.yaml \
+                --vex testbed/vex/exceptions.yaml \
+                --title "QRAMP testbed"
+
+      - name: Upload artefacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: qramp-quickstart
+          path: |
+            cbom.json
+            assessment.json
+            plan.yaml
+            evidence.json
+            cbom.cdx.json
+            qramp.sarif
+            dashboard.html
+            report-bundle/
+          if-no-files-found: warn
