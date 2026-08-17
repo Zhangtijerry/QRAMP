@@ -12,7 +12,7 @@ version: 0.1.0
 date-released: "2026-08-17"
 license: MIT
 repository-code: "https://github.com/Zhangtijerry/QRAMP"
-# doi: "10.5281/zenodo.XXXXXXX"  # TODO: replace after Zenodo release
+doi: "10.5281/zenodo.21974850"
 abstract: "QRAMP collects cryptographic evidence from source code, SBOMs, X.509 certificates, configurations and TLS endpoints; resolves it into a CycloneDX cryptographic bill of materials (CBOM); classifies each asset with Mosca-inequality urgency; compiles a phased migration plan; and verifies execution by re-scanning."
 keywords:
   - post-quantum

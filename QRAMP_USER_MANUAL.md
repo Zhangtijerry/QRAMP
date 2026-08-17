@@ -731,6 +731,7 @@ MIT. Copyright (c) 2026 Ti Zhang.
   year    = {2026},
   version = {0.1.0},
   license = {MIT},
+  doi     = {10.5281/zenodo.21974850},
   url     = {https://github.com/Zhangtijerry/QRAMP}
 }
 ```

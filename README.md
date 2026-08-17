@@ -1,5 +1,9 @@
 # QRAMP
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21974850.svg)](https://doi.org/10.5281/zenodo.21974850)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![CI](https://github.com/Zhangtijerry/QRAMP/actions/workflows/ci.yml/badge.svg)](https://github.com/Zhangtijerry/QRAMP/actions/workflows/ci.yml)
+
 **Cryptographic asset inventory and quantum-resistant migration planning.**
 
 QRAMP collects cryptographic evidence from source code, software bills of
