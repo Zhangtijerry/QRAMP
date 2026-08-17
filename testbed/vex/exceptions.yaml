@@ -1,0 +1,19 @@
+# QRAMP VEX — accepted exceptions for the sample-app deployment.
+# Each statement suppresses a finding that has been triaged as not exploitable
+# or already mitigated. Versioned, auditable data — lint with `qramp lint-vex`.
+statements:
+  - asset: A-441acf289995        # MD5 [hash]
+    status: not_affected
+    justification: vulnerable_code_not_in_execute_path
+    detail: >
+      MD5 here is only used for a non-security content-addressing cache key,
+      never for integrity or signatures. Not a collision-sensitive use.
+  - asset: A-9c224777a4e9        # HMAC-MD5 [mac]
+    status: not_affected
+    justification: inline_mitigations_already_exist
+    detail: >
+      HMAC-MD5 remains cryptographically sound for MAC use (no practical
+      forgery); migration to HMAC-SHA256 is scheduled Q3 but not urgent.
+  - asset: A-295658508ba4        # AES-128-CBC
+    status: affected
+    detail: Confirmed in scope; migration to AES-256-GCM tracked in TICKET-1234.

@@ -1,0 +1,6 @@
+# Testbed SSH server config — deliberately mixed
+Port 22
+HostKeyAlgorithms ssh-rsa,ssh-ed25519
+KexAlgorithms curve25519-sha256,ecdh-sha2-nistp256,diffie-hellman-group14-sha1,diffie-hellman-group1-sha1
+Ciphers aes256-gcm@openssh.com,aes128-cbc,3des-cbc
+MACs hmac-sha2-256,hmac-sha1,hmac-md5

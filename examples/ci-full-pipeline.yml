@@ -1,0 +1,544 @@
+# QRAMP end-to-end CI pipeline — a complete post-quantum crypto security gate.
+#
+# This workflow chains every QRAMP gate into one pipeline so a pull request is
+# checked for weak cryptography, policy mistakes, and migration regressions, and
+# the findings land in GitHub's Security tab annotated on the exact source lines.
+#
+# It is organised as three jobs:
+#   1. policy-lint   — the policy-as-code files are self-consistent (fast, always).
+#   2. crypto-scan   — scan the repo, gate on quantum-broken findings, upload
+#                      SARIF, and publish a shareable report bundle as an artifact.
+#   3. policy-audit  — on a PR that edits a policy file, show what the change does
+#                      to the real inventory and fail if it makes the posture worse.
+#   4. gate-summary  — tabulate every gate's pass/fail into the run Summary and
+#                      fail the pipeline once if any gate failed.
+#
+# Every step below exits non-zero when its gate trips, so the job fails and the
+# PR is blocked. Drop this file in .github/workflows/qramp.yml.
+#
+# Layout assumed (adjust paths to your repo):
+#   .qramp/rules.yaml            your rule pack (or omit to use the built-in one)
+#   .qramp/provider-map.yaml     your provider map (optional)
+#   .qramp/vex.yaml              accepted exceptions (optional)
+#   .qramp/manifest-aliases.yaml custom SBOM package-name aliases (optional)
+#   .qramp/alias-snapshot.json   frozen package->component resolutions (regression guard)
+#   .qramp/data-lifetimes.yaml   data retention windows for Mosca tiering
+#   .qramp/rule-snapshot.json    frozen rule classifications (regression guard)
+#   .qramp/provider-snapshot.json frozen version resolutions (regression guard)
+#   .qramp/history/*.json        past assessed CBOMs (optional; drives the report
+#                                bundle's migration-progress page)
+
+name: qramp
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+  security-events: write        # required to upload SARIF to code scanning
+  pull-requests: write          # required to post/update the PR-summary comment
+
+env:
+  # use the repo's rule pack if present, else fall back to the packaged default
+  RULES: .qramp/rules.yaml
+  MAP: .qramp/provider-map.yaml
+  VEX: .qramp/vex.yaml
+  LIFETIMES: .qramp/data-lifetimes.yaml
+  ALIASES: .qramp/manifest-aliases.yaml
+  # optional wrapper-coverage gate: set the repo/org variable MAX_WRAPPER_PCT
+  # (e.g. "40") to fail when too much of the dependency surface is wrappers;
+  # leave it unset to report only.
+  MAX_WRAPPER_PCT: ${{ vars.MAX_WRAPPER_PCT }}
+  # optional PR-comment branding: set repo/org variables to a company/service
+  # name, a custom heading, and "true" to fold the informational sections.
+  PR_COMMENT_TITLE: ${{ vars.PR_COMMENT_TITLE }}
+  PR_COMMENT_SUBTITLE: ${{ vars.PR_COMMENT_SUBTITLE }}
+  PR_COMMENT_COMPACT: ${{ vars.PR_COMMENT_COMPACT }}
+
+jobs:
+  # ---------------------------------------------------------------------------
+  # 1. Policy is internally consistent. Fast, no scan needed. Runs on every push.
+  # ---------------------------------------------------------------------------
+  policy-lint:
+    runs-on: ubuntu-latest
+    outputs:
+      rule_lint: ${{ steps.rule_lint.outcome }}
+      provider_lint: ${{ steps.provider_lint.outcome }}
+      vex_lint: ${{ steps.vex_lint.outcome }}
+      alias_lint: ${{ steps.alias_lint.outcome }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - run: pip install "qramp[versions,validate]"
+
+      # --strict makes warnings (e.g. an unreachable rule) fail, not just errors.
+      # Each gate uses continue-on-error so all gates run and the gate-summary
+      # job can report every one; the summary job fails the pipeline if any did.
+      - name: Lint the rule pack (+ snapshot regression)
+        id: rule_lint
+        continue-on-error: true
+        run: |
+          qramp lint-rules "$RULES" \
+            --snapshot .qramp/rule-snapshot.json --strict
+
+      - name: Lint the provider map (+ resolution snapshot)
+        id: provider_lint
+        continue-on-error: true
+        run: |
+          qramp lint-provider-map "$MAP" \
+            --snapshot .qramp/provider-snapshot.json --strict
+
+      # --cbom is added in the scan job; here we only static-check the VEX doc.
+      - name: Lint the VEX document
+        id: vex_lint
+        continue-on-error: true
+        if: hashFiles('.qramp/vex.yaml') != ''
+        run: qramp lint-vex "$VEX" --strict
+
+      # If the repo ships a custom manifest-alias map (for SBOM auto-discovery),
+      # static-check it too. The linter cross-references alias targets against
+      # the provider map, so an alias pointing at a component the map does not
+      # define — which could never resolve to a capability — fails the build.
+      # The resolution snapshot additionally freezes each package -> component
+      # mapping, so a typo or a wrapper flag flipped the wrong way is caught.
+      - name: Lint the manifest alias map (+ resolution snapshot)
+        id: alias_lint
+        continue-on-error: true
+        if: hashFiles('.qramp/manifest-aliases.yaml') != ''
+        run: |
+          snap_arg=""
+          [ -f .qramp/alias-snapshot.json ] && snap_arg="--snapshot .qramp/alias-snapshot.json"
+          qramp lint-aliases "$ALIASES" --map "$MAP" $snap_arg --strict
+
+  # ---------------------------------------------------------------------------
+  # 2. Scan the repository, gate on quantum-broken crypto, upload annotations.
+  # ---------------------------------------------------------------------------
+  crypto-scan:
+    runs-on: ubuntu-latest
+    needs: policy-lint
+    # surface each gate's outcome so the gate-summary job can tabulate them
+    outputs:
+      sarif_gate: ${{ steps.sarif_gate.outcome }}
+      provenance_gate: ${{ steps.provenance_gate.outcome }}
+      vex_check: ${{ steps.vex_check.outcome }}
+      wrapper_gate: ${{ steps.wrapper_gate.outcome }}
+      baseline_gate: ${{ steps.baseline_gate.outcome }}
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}          # full history so the PR comment can diff the base
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - run: pip install "qramp[source,versions,validate]"
+
+      - name: Scan for cryptographic assets
+        run: |
+          # auto-discover components from package manifests in addition to any
+          # SBOM; pass the repo's alias map if it ships one so custom ecosystem
+          # package names resolve.
+          alias_arg=""
+          [ -f "$ALIASES" ] && alias_arg="--alias-map $ALIASES"
+          qramp scan --source . --config . --certs . \
+            --sbom sbom.cdx.json --manifests . $alias_arg \
+            -o cbom.json
+
+      - name: Assess post-quantum exposure
+        run: |
+          qramp assess cbom.json --rules "$RULES" \
+            --lifetimes "$LIFETIMES" -o assessment.json
+
+      # Provenance coverage gate: every rule that actually classified an asset in
+      # this scan must cite a governing standard (FIPS/NIST SP/RFC). An
+      # un-sourced classification cannot ship — the finding would be unauditable.
+      # Scoped to --cbom, so a rule with no references only fails the build when
+      # it fired; unused rules do not block.
+      - name: Gate on un-sourced classifications
+        id: provenance_gate
+        continue-on-error: true       # collected by the gate-summary job below
+        run: |
+          qramp provenance "$RULES" --cbom assessment.json --require-references
+
+      # Verify the VEX exceptions still point at assets that exist in this scan;
+      # a stale exception (asset removed/renamed) fails the build so exceptions
+      # do not silently rot.
+      - name: Check VEX exceptions are still valid
+        id: vex_check
+        continue-on-error: true
+        if: hashFiles('.qramp/vex.yaml') != ''
+        run: qramp lint-vex "$VEX" --cbom assessment.json
+
+      # Full SARIF (all levels) for the Security tab, with accepted exceptions
+      # applied as native suppressions so triaged findings show as dismissed.
+      - name: Export SARIF
+        if: always()
+        run: |
+          qramp export assessment.json --format sarif --rules "$RULES" \
+            ${VEX:+--vex "$VEX"} -o qramp.sarif
+
+      - name: Upload to code scanning
+        if: always()
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: qramp.sarif
+          category: qramp
+
+      # Hard gate: fail the build if any un-suppressed quantum-broken finding
+      # remains. `--min-level error` keeps only error-severity results; VEX
+      # suppressions drop the accepted ones; the count of the rest is the gate.
+      - name: Gate on un-suppressed quantum-broken crypto
+        id: sarif_gate
+        continue-on-error: true
+        run: |
+          qramp export assessment.json --format sarif --rules "$RULES" \
+            --min-level error ${VEX:+--vex "$VEX"} -o gate.sarif
+          count=$(python - <<'PY'
+          import json
+          d = json.load(open("gate.sarif"))
+          results = d["runs"][0]["results"]
+          active = [r for r in results if "suppressions" not in r]
+          print(len(active))
+          PY
+          )
+          echo "active error-level findings: $count"
+          test "$count" -eq 0
+
+      # Soft signal: report migration readiness. Turn the threshold up over time
+      # as the migration progresses; here it only warns (|| true) so it never
+      # blocks, but drop the `|| true` to make readiness a hard gate.
+      - name: Migration readiness (informational)
+        run: |
+          qramp readiness assessment.json --map "$MAP" || true
+
+      # Wrapper coverage: how much of the discovered dependency surface resolves
+      # through wrapper packages (whose version does not drive capability gates).
+      # A high share means PQC attribution is conservative. Report-only by
+      # default; set MAX_WRAPPER_PCT (repo/org variable) to make it a gate.
+      - name: Wrapper coverage of discovered packages
+        id: wrapper_gate
+        continue-on-error: true
+        run: |
+          if [ -n "${MAX_WRAPPER_PCT:-}" ]; then
+            qramp lint-aliases --cbom cbom.json --max-wrapper-pct "$MAX_WRAPPER_PCT"
+          else
+            qramp lint-aliases --cbom cbom.json    # report only, never fails
+          fi
+
+      # Baseline gate: if the repo commits .qramp/baseline.json (a frozen backlog
+      # of already-exposed crypto), fail only when a NEW exposed asset appears
+      # that is not in the baseline — so a team can turn the gate on mid-migration
+      # without the existing backlog blocking every PR. Generate it once with
+      # `qramp baseline assessment.json -o .qramp/baseline.json` and shrink it as
+      # you migrate. Skipped (neutral) when no baseline file is present.
+      - name: Baseline — no new exposed crypto
+        id: baseline_gate
+        continue-on-error: true
+        run: |
+          if [ -f .qramp/baseline.json ]; then
+            qramp baseline-check assessment.json --baseline .qramp/baseline.json
+          else
+            echo "no .qramp/baseline.json — baseline gate not configured"
+          fi
+
+      # Assemble the shareable static report site (dashboard, provenance page,
+      # graphs, machine-readable data + an index) so every run produces a report
+      # a stakeholder can open. `--history` picks up committed historical CBOMs
+      # if the repo keeps them (see the note below); otherwise the progress page
+      # is simply omitted.
+      - name: Build shareable report bundle
+        if: always()
+        run: |
+          history_arg=""
+          [ -d .qramp/history ] && history_arg="--history .qramp/history"
+          short_sha=$(echo "${GITHUB_SHA:-local}" | cut -c1-7)
+          qramp bundle assessment.json -o qramp-report \
+            ${VEX:+--vex "$VEX"} --rules "$RULES" $history_arg \
+            --title "${GITHUB_REPOSITORY:-QRAMP} — PQC report ($short_sha)"
+
+      - name: Upload the report bundle
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: qramp-report
+          path: qramp-report/          # download and open index.html
+
+      # On a pull request, post the headline metrics (urgent count, readiness,
+      # trend) as a comment so the PQC posture shows up in review without anyone
+      # opening the full report. The comment carries a hidden marker so the same
+      # comment is updated on each push instead of piling up new ones.
+      # On a pull request, assess the base branch's code (holding the *current*
+      # policy constant, so only the code differs) so the comment can show the
+      # net change this PR introduces — which quantum-broken assets it adds or
+      # removes. Best-effort: if the base cannot be checked out, the diff is
+      # simply omitted from the comment.
+      # On a pull request, assess the base branch's code (holding the *current*
+      # policy constant, so only the code differs) so the PR comment — built in
+      # the gate-summary job — can show the net change this PR introduces. Best
+      # effort: if the base cannot be checked out, the diff is simply omitted.
+      - name: Assess the base branch
+        if: always() && github.event_name == 'pull_request'
+        run: |
+          base="${{ github.event.pull_request.base.sha }}"
+          git worktree add /tmp/base "$base" 2>/dev/null || exit 0
+          alias_arg=""
+          [ -f "$ALIASES" ] && alias_arg="--alias-map $PWD/$ALIASES"
+          ( cd /tmp/base && \
+            qramp scan --source . --config . --certs . --sbom sbom.cdx.json \
+              --manifests . $alias_arg -o /tmp/base-cbom.json ) || exit 0
+          qramp assess /tmp/base-cbom.json --rules "$RULES" \
+            --lifetimes "$LIFETIMES" -o base-assessment.json || true
+
+      # Upload the assessment (and the base assessment, if built) so the
+      # gate-summary job can build the PR comment once every gate's outcome is
+      # known — the comment then carries both the metrics and the gate matrix.
+      - name: Upload the CBOM and assessment as artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: qramp-cbom
+          path: |
+            cbom.json
+            assessment.json
+            base-assessment.json
+            qramp.sarif
+          if-no-files-found: warn
+
+  # ---------------------------------------------------------------------------
+  # 3. On a PR that edits a policy file, audit the change against the REAL
+  #    inventory: does it reclassify assets, flip blocked status, or change
+  #    suppressions? Fail if it makes the posture worse.
+  # ---------------------------------------------------------------------------
+  policy-audit:
+    runs-on: ubuntu-latest
+    needs: crypto-scan
+    if: github.event_name == 'pull_request'
+    outputs:
+      rules_audit: ${{ steps.rules_audit.outcome }}
+      provider_audit: ${{ steps.provider_audit.outcome }}
+      vex_audit: ${{ steps.vex_audit.outcome }}
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}          # need the base branch to diff against
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - run: pip install "qramp[source,versions,validate]"
+
+      # Re-scan HEAD so the diff runs against the current tree's real assets.
+      - name: Scan + assess (HEAD)
+        run: |
+          alias_arg=""
+          [ -f "$ALIASES" ] && alias_arg="--alias-map $ALIASES"
+          qramp scan --source . --config . --certs . --sbom sbom.cdx.json \
+            --manifests . $alias_arg -o cbom.json
+          qramp assess cbom.json --rules "$RULES" --lifetimes "$LIFETIMES" -o assessment.json
+
+      # Pull the base-branch versions of each policy file for comparison.
+      - name: Fetch base-branch policy files
+        run: |
+          base="${{ github.event.pull_request.base.sha }}"
+          mkdir -p .base
+          for f in "$RULES" "$MAP" "$VEX"; do
+            [ -f "$f" ] || continue
+            git show "$base:$f" > ".base/$(basename "$f")" 2>/dev/null || true
+          done
+
+      # For each policy file that changed in this PR, show the concrete impact
+      # on the real inventory and fail if any asset is promoted to a more urgent
+      # tier, newly blocked, or has an exception removed.
+      - name: Audit rule-pack change
+        id: rules_audit
+        continue-on-error: true
+        if: hashFiles('.base/rules.yaml') != ''
+        run: |
+          qramp policy-diff assessment.json --kind rules \
+            --old .base/rules.yaml --new "$RULES" \
+            --lifetimes "$LIFETIMES" --fail-on-worse
+
+      - name: Audit provider-map change
+        id: provider_audit
+        continue-on-error: true
+        if: hashFiles('.base/provider-map.yaml') != ''
+        run: |
+          qramp policy-diff assessment.json --kind provider-map \
+            --old .base/provider-map.yaml --new "$MAP" --fail-on-worse
+
+      - name: Audit VEX change
+        id: vex_audit
+        continue-on-error: true
+        if: hashFiles('.base/vex.yaml') != ''
+        run: |
+          qramp policy-diff assessment.json --kind vex \
+            --old .base/vex.yaml --new "$VEX" --fail-on-worse
+
+  # ---------------------------------------------------------------------------
+  # 4. One place to see every gate. Because the gates above use
+  #    continue-on-error, each job finishes and exposes its gate outcomes as
+  #    outputs; this job tabulates them into the run's Summary page and fails the
+  #    pipeline if any gate failed — so a reviewer reads one table instead of
+  #    opening each step's log. A gate that did not run (its policy file is
+  #    absent, or policy-audit was skipped on a push) shows as "skipped".
+  # ---------------------------------------------------------------------------
+  gate-summary:
+    runs-on: ubuntu-latest
+    needs: [policy-lint, crypto-scan, policy-audit]
+    if: always()
+    permissions:
+      contents: read
+      pull-requests: write          # to post/update the PR comment
+    steps:
+      # Turn every job's gate outcomes into one gates.json. Rendered both into
+      # the run Summary and (on a PR) into the QRAMP comment, so the gate matrix
+      # sits next to the metrics a reviewer already reads.
+      - name: Collect gate outcomes
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const L = o => o || {};
+            const lint = L(${{ toJSON(needs['policy-lint'].outputs) }});
+            const scan = L(${{ toJSON(needs['crypto-scan'].outputs) }});
+            const audit = L(${{ toJSON(needs['policy-audit'].outputs) }});
+            // gate label -> [outcome, job name, a keyword identifying its step]
+            const gates = [
+              ['Policy: rule pack', lint.rule_lint, 'policy-lint', 'rule pack'],
+              ['Policy: provider map', lint.provider_lint, 'policy-lint', 'provider map'],
+              ['Policy: VEX', lint.vex_lint, 'policy-lint', 'VEX document'],
+              ['Policy: alias map', lint.alias_lint, 'policy-lint', 'alias map'],
+              ['Scan: quantum-broken (SARIF)', scan.sarif_gate, 'crypto-scan', 'quantum-broken'],
+              ['Scan: provenance coverage', scan.provenance_gate, 'crypto-scan', 'un-sourced'],
+              ['Scan: VEX still valid', scan.vex_check, 'crypto-scan', 'VEX exceptions'],
+              ['Scan: wrapper coverage', scan.wrapper_gate, 'crypto-scan', 'Wrapper coverage'],
+              ['Scan: baseline (no new exposure)', scan.baseline_gate, 'crypto-scan', 'Baseline'],
+              ['Audit: rule-pack change', audit.rules_audit, 'policy-audit', 'rule-pack change'],
+              ['Audit: provider-map change', audit.provider_audit, 'policy-audit', 'provider-map change'],
+              ['Audit: VEX change', audit.vex_audit, 'policy-audit', 'VEX change'],
+            ];
+            const norm = o => (o === 'success' || o === 'failure') ? o : 'skipped';
+
+            // fetch each job's log URL + steps so a failing gate can link to its
+            // step anchor; degrade to the run URL if the API call is unavailable.
+            const runUrl = `${process.env.GITHUB_SERVER_URL}/${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID}`;
+            let jobs = [];
+            try {
+              const {data} = await github.rest.actions.listJobsForWorkflowRun({
+                owner: context.repo.owner, repo: context.repo.repo,
+                run_id: context.runId, per_page: 100});
+              jobs = data.jobs || [];
+            } catch (e) { core.warning(`could not list jobs: ${e.message}`); }
+            const jobByName = {};
+            for (const j of jobs) jobByName[j.name] = j;
+            const linkFor = (jobName, kw) => {
+              const j = jobByName[jobName];
+              if (!j) return runUrl;
+              const step = (j.steps || []).find(s => s.name && s.name.includes(kw));
+              return step ? `${j.html_url}#step:${step.number}:1` : j.html_url;
+            };
+
+            const obj = {};
+            for (const [name, outcome, jobName, kw] of gates) {
+              const o = norm(outcome);
+              const entry = {outcome: o};
+              if (o === 'failure') entry.url = linkFor(jobName, kw);
+              obj[name] = entry;
+            }
+            fs.writeFileSync('gates.json', JSON.stringify(obj, null, 2));
+
+            // render the run Summary page (linking failures to their logs)
+            const icon = o => o === 'success' ? '✅ pass'
+              : o === 'failure' ? '❌ FAIL' : '➖ skipped';
+            let md = '## QRAMP gate summary\n\n| Gate | Result |\n| --- | --- |\n';
+            for (const [name, outcome, jobName, kw] of gates) {
+              const o = norm(outcome);
+              const cell = o === 'failure'
+                ? `[${icon(o)}](${linkFor(jobName, kw)})` : icon(o);
+              md += `| ${name} | ${cell} |\n`;
+            }
+            const failed = gates.filter(([, o]) => norm(o) === 'failure').map(([n]) => n);
+            md += '\n' + (failed.length
+              ? `**${failed.length} gate(s) failed:** ${failed.join(', ')}.\n`
+              : 'All gates passed. ✅\n');
+            await core.summary.addRaw(md).write();
+            core.info(md);
+            core.exportVariable('QRAMP_GATES_FAILED', String(failed.length));
+            core.exportVariable('QRAMP_JOB_FAILED', JSON.stringify({
+              'policy-lint': '${{ needs['policy-lint'].result }}',
+              'crypto-scan': '${{ needs['crypto-scan'].result }}',
+              'policy-audit': '${{ needs['policy-audit'].result }}',
+            }));
+
+      # Build and post the PR comment (metrics + change-vs-base + gate matrix).
+      # Only on pull requests, and best-effort so a comment failure never masks
+      # the gate verdict below.
+      - name: Check out the repo (for history and policy files)
+        if: github.event_name == 'pull_request'
+        uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        if: github.event_name == 'pull_request'
+        with: {python-version: "3.12"}
+      - name: Install qramp
+        if: github.event_name == 'pull_request'
+        run: pip install "qramp[versions]"
+      - name: Download the assessment artifact
+        if: github.event_name == 'pull_request'
+        uses: actions/download-artifact@v4
+        with: {name: qramp-cbom, path: .}
+        continue-on-error: true
+      - name: Post or update the PR comment
+        if: github.event_name == 'pull_request'
+        continue-on-error: true
+        run: |
+          [ -f assessment.json ] || exit 0
+          history_arg=""
+          [ -d .qramp/history ] && history_arg="--history .qramp/history"
+          map_arg=""
+          [ -f "$MAP" ] && map_arg="--map $MAP"
+          base_arg=""
+          [ -f base-assessment.json ] && base_arg="--base base-assessment.json"
+          compact_arg=""
+          [ "${PR_COMMENT_COMPACT:-}" = "true" ] && compact_arg="--compact"
+          run_url="$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
+          # --subtitle is passed separately and quoted so a value with spaces
+          # (e.g. "Acme Corp · payments") is not split into multiple arguments
+          qramp pr-comment assessment.json $map_arg $history_arg $base_arg $compact_arg \
+            --title "${PR_COMMENT_TITLE:-QRAMP — PQC posture}" \
+            ${PR_COMMENT_SUBTITLE:+--subtitle "$PR_COMMENT_SUBTITLE"} \
+            --gates gates.json --report-url "$run_url" -o pr-comment.md
+      - name: Publish the comment
+        if: github.event_name == 'pull_request'
+        continue-on-error: true
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            if (!fs.existsSync('pr-comment.md')) return;
+            const body = fs.readFileSync('pr-comment.md', 'utf8');
+            const marker = '<!-- qramp-pr-comment -->';
+            const {owner, repo} = context.repo;
+            const issue_number = context.issue.number;
+            const {data: comments} = await github.rest.issues.listComments(
+              {owner, repo, issue_number});
+            const existing = comments.find(c => c.body.includes(marker));
+            if (existing) {
+              await github.rest.issues.updateComment(
+                {owner, repo, comment_id: existing.id, body});
+            } else {
+              await github.rest.issues.createComment(
+                {owner, repo, issue_number, body});
+            }
+
+      # Authoritative pass/fail: fail the pipeline if any gate failed or a needed
+      # job errored. Runs last so the comment is posted regardless.
+      - name: Enforce the gate verdict
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const failed = Number(process.env.QRAMP_GATES_FAILED || '0');
+            const jobs = JSON.parse(process.env.QRAMP_JOB_FAILED || '{}');
+            const jobFailed = Object.entries(jobs)
+              .filter(([, r]) => r === 'failure').map(([j]) => j);
+            if (failed || jobFailed.length) {
+              core.setFailed(
+                `gate summary: ${failed} gate(s) failed` +
+                (jobFailed.length ? `; job(s) errored: ${jobFailed.join(', ')}` : ''));
+            }

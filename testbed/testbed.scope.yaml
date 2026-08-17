@@ -1,0 +1,4 @@
+description: Authorised probe targets for the QRAMP testbed only.
+targets:
+  - {host: 127.0.0.1, port: 8443, owner: platform-net, tags: [external, long-lived-data]}
+signature: dd79536f115bbc4b5efd1cad7d82f5947b52fb4a5b797e8cd9ee221391ae2f00

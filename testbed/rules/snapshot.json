@@ -1,0 +1,282 @@
+{
+  "description": "Known-good classification baseline for transition-2024. Regenerate with --update-snapshot after an intentional policy change.",
+  "assets": [
+    {
+      "label": "ML-KEM",
+      "primitive": "key-agreement",
+      "algorithm": "ml-kem"
+    },
+    {
+      "label": "ML-DSA",
+      "primitive": "signature",
+      "algorithm": "ml-dsa"
+    },
+    {
+      "label": "hybrid-pq",
+      "primitive": "key-agreement",
+      "algorithm": "hybrid-pq"
+    },
+    {
+      "label": "RSA-2048",
+      "primitive": "pk-encryption",
+      "algorithm": "rsa",
+      "key_length": 2048
+    },
+    {
+      "label": "RSA-1024 weak-key cert",
+      "primitive": "pk-encryption",
+      "algorithm": "rsa",
+      "key_length": 1024,
+      "tags": [
+        "weak-key"
+      ]
+    },
+    {
+      "label": "static-RSA kx",
+      "primitive": "key-agreement",
+      "algorithm": "rsa"
+    },
+    {
+      "label": "ECDSA",
+      "primitive": "signature",
+      "algorithm": "ecdsa"
+    },
+    {
+      "label": "ECDSA weak-curve cert",
+      "primitive": "signature",
+      "algorithm": "ecdsa",
+      "params": "secp192r1",
+      "tags": [
+        "weak-curve"
+      ]
+    },
+    {
+      "label": "SHA1-RSA cert-sig",
+      "primitive": "signature",
+      "algorithm": "rsa",
+      "params": "cert-sig:sha1"
+    },
+    {
+      "label": "DH-2048",
+      "primitive": "key-agreement",
+      "algorithm": "dh",
+      "key_length": 2048
+    },
+    {
+      "label": "DH-1024 weak",
+      "primitive": "key-agreement",
+      "algorithm": "dh",
+      "key_length": 1024
+    },
+    {
+      "label": "MD5",
+      "primitive": "hash",
+      "algorithm": "md5"
+    },
+    {
+      "label": "SHA1",
+      "primitive": "hash",
+      "algorithm": "sha1"
+    },
+    {
+      "label": "3DES",
+      "primitive": "symmetric-cipher",
+      "algorithm": "3des",
+      "key_length": 112
+    },
+    {
+      "label": "TLS-1.0",
+      "primitive": "protocol",
+      "algorithm": "tls",
+      "params": "1.0"
+    },
+    {
+      "label": "AES-128",
+      "primitive": "symmetric-cipher",
+      "algorithm": "aes",
+      "key_length": 128
+    },
+    {
+      "label": "AES-256",
+      "primitive": "symmetric-cipher",
+      "algorithm": "aes",
+      "key_length": 256
+    },
+    {
+      "label": "SHA-256",
+      "primitive": "hash",
+      "algorithm": "sha2-256"
+    },
+    {
+      "label": "SHA-512",
+      "primitive": "hash",
+      "algorithm": "sha2-512"
+    },
+    {
+      "label": "ChaCha20",
+      "primitive": "symmetric-cipher",
+      "algorithm": "chacha20"
+    },
+    {
+      "label": "FN-DSA",
+      "primitive": "signature",
+      "algorithm": "falcon"
+    },
+    {
+      "label": "FrodoKEM",
+      "primitive": "key-agreement",
+      "algorithm": "frodokem"
+    },
+    {
+      "label": "X25519-MLKEM768",
+      "primitive": "key-agreement",
+      "algorithm": "x25519-mlkem768"
+    },
+    {
+      "label": "ECDH-secp160",
+      "primitive": "key-agreement",
+      "algorithm": "ecdh",
+      "params": "secp160r1"
+    },
+    {
+      "label": "PRESENT",
+      "primitive": "symmetric-cipher",
+      "algorithm": "present"
+    },
+    {
+      "label": "Speck",
+      "primitive": "symmetric-cipher",
+      "algorithm": "speck"
+    },
+    {
+      "label": "ASCON",
+      "primitive": "symmetric-cipher",
+      "algorithm": "ascon"
+    },
+    {
+      "label": "ASCON-Hash",
+      "primitive": "hash",
+      "algorithm": "ascon-hash"
+    },
+    {
+      "label": "ECDSA-secp224",
+      "primitive": "signature",
+      "algorithm": "ecdsa",
+      "params": "secp224r1"
+    }
+  ],
+  "expected": {
+    "ASCON-Hash": {
+      "class": "pq_ready",
+      "rule": "ascon-hash-ok"
+    },
+    "MD5": {
+      "class": "quantum_broken",
+      "rule": "md5-dead"
+    },
+    "SHA1": {
+      "class": "quantum_broken",
+      "rule": "sha1-dead"
+    },
+    "SHA-256": {
+      "class": "quantum_weakened",
+      "rule": "sha256-weak"
+    },
+    "SHA-512": {
+      "class": "pq_ready",
+      "rule": "sha512-ok"
+    },
+    "DH-1024 weak": {
+      "class": "quantum_broken",
+      "rule": "weak-dh-group"
+    },
+    "DH-2048": {
+      "class": "quantum_broken",
+      "rule": "dh-broken"
+    },
+    "ECDH-secp160": {
+      "class": "quantum_broken",
+      "rule": "weak-curve-ecdh"
+    },
+    "FrodoKEM": {
+      "class": "quantum_weakened",
+      "rule": "pq-nonstandard-kem"
+    },
+    "X25519-MLKEM768": {
+      "class": "hybrid",
+      "rule": "hybrid-pq"
+    },
+    "ML-KEM": {
+      "class": "pq_ready",
+      "rule": "mlkem"
+    },
+    "static-RSA kx": {
+      "class": "quantum_broken",
+      "rule": "static-rsa-kx"
+    },
+    "RSA-1024 weak-key cert": {
+      "class": "quantum_weakened",
+      "rule": "weak-cert-key"
+    },
+    "RSA-2048": {
+      "class": "quantum_broken",
+      "rule": "rsa-broken"
+    },
+    "TLS-1.0": {
+      "class": "quantum_broken",
+      "rule": "old-tls"
+    },
+    "ECDSA": {
+      "class": "quantum_broken",
+      "rule": "ecdsa-broken"
+    },
+    "ECDSA weak-curve cert": {
+      "class": "quantum_weakened",
+      "rule": "weak-cert-curve"
+    },
+    "ECDSA-secp224": {
+      "class": "quantum_broken",
+      "rule": "weak-curve-ecdsa"
+    },
+    "FN-DSA": {
+      "class": "pq_ready",
+      "rule": "fndsa"
+    },
+    "ML-DSA": {
+      "class": "pq_ready",
+      "rule": "mldsa"
+    },
+    "SHA1-RSA cert-sig": {
+      "class": "quantum_weakened",
+      "rule": "weak-cert-signature"
+    },
+    "3DES": {
+      "class": "quantum_broken",
+      "rule": "des-dead"
+    },
+    "AES-128": {
+      "class": "quantum_weakened",
+      "rule": "aes128-weak"
+    },
+    "AES-256": {
+      "class": "pq_ready",
+      "rule": "aes256-ok"
+    },
+    "ASCON": {
+      "class": "pq_ready",
+      "rule": "ascon-ok"
+    },
+    "ChaCha20": {
+      "class": "pq_ready",
+      "rule": "chacha-ok"
+    },
+    "PRESENT": {
+      "class": "quantum_broken",
+      "rule": "lightweight-broken"
+    },
+    "Speck": {
+      "class": "quantum_weakened",
+      "rule": "lightweight-weak"
+    }
+  }
+}

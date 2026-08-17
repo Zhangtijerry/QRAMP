@@ -1,0 +1,9 @@
+version = 3
+
+[[package]]
+name = "openssl-sys"
+version = "0.9.90"
+
+[[package]]
+name = "serde"
+version = "1.0.195"

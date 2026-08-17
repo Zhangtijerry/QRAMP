@@ -1,0 +1,39 @@
+version: "manifest-aliases-0.1"
+description: >
+  Maps ecosystem package names (as they appear in package-lock.json,
+  requirements.txt, go.mod, pom.xml, Cargo.lock, ...) to the provider-map
+  component key for the underlying cryptographic library. A crypto library ships
+  under different names in different ecosystems; this normalises them so a
+  discovered dependency resolves to the same capabilities as an SBOM component.
+
+  `tracks_version: true` (the default) means the package version IS the library
+  version, so the provider map's version gates apply directly. `false` marks a
+  *wrapper/binding* whose version does NOT track the underlying library
+  (pyOpenSSL 24.x wraps whatever OpenSSL is installed; the openssl-sys crate
+  binds an arbitrary build) — those are resolved fail-closed at an unknown
+  version so they cannot wrongly claim version-gated capabilities like ML-KEM.
+
+  `ecosystem` is documentation only (which manifest the package comes from).
+  Editable, versioned data — not code. Lint with `qramp lint-aliases`.
+schema: 1
+
+aliases:
+  # ---- python (requirements.txt / package metadata) ----
+  - {package: cryptography, component: cryptography, ecosystem: pip}
+  - {package: pyopenssl, component: openssl, tracks_version: false, ecosystem: pip}
+  - {package: pynacl, component: libsodium, tracks_version: false, ecosystem: pip}
+  - {package: paramiko, component: paramiko, ecosystem: pip}
+
+  # ---- java / maven (artifactId or groupId) ----
+  - {package: bcprov-jdk18on, component: bouncycastle, ecosystem: maven}
+  - {package: bcprov-jdk15on, component: bouncycastle, ecosystem: maven}
+  - {package: bcpkix-jdk18on, component: bouncycastle, ecosystem: maven}
+  - {package: org.bouncycastle, component: bouncycastle, ecosystem: maven}
+
+  # ---- rust (crate name) ----
+  - {package: openssl-sys, component: openssl, tracks_version: false, ecosystem: cargo}
+
+  # ---- native library names ----
+  - {package: libssl, component: openssl, ecosystem: native}
+  - {package: libcrypto, component: openssl, ecosystem: native}
+  - {package: libsodium, component: libsodium, ecosystem: native}

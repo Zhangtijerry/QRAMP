@@ -1,0 +1,11 @@
+{
+  "bomFormat": "CycloneDX", "specVersion": "1.6",
+  "components": [
+    {"type": "library", "name": "cryptography", "version": "42.0.5"},
+    {"type": "library", "name": "openssl", "version": "3.0.13"},
+    {"type": "library", "name": "paramiko", "version": "3.4.0"},
+    {"type": "library", "name": "libsodium", "version": "1.0.19"},
+    {"type": "library", "name": "requests", "version": "2.32.0"},
+    {"type": "library", "name": "numpy", "version": "1.26.4"}
+  ]
+}

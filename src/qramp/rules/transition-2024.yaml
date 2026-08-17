@@ -1,0 +1,310 @@
+version: "transition-2024.3"
+description: >-
+  Post-quantum exposure classification aligned with FIPS 203/204/205 (2024), NIST SP 800-232 lightweight cryptography, and common transition guidance. Editable, versioned policy — not code. Each rule carries `references` to the governing standard (FIPS/NIST SP/RFC) for auditable provenance.
+
+scenario:
+  crqc_horizon_years: 12          # assumed arrival of a cryptographically relevant quantum computer
+  migration_years_default:
+    quantum_broken: 2.0
+    quantum_weakened: 1.0
+
+rules:
+  # ---- post-quantum ready ----
+  - id: mlkem
+    match: {algorithm: ml-kem}
+    class: pq_ready
+    why: ML-KEM (FIPS 203) is a standardised post-quantum KEM
+    references:
+      - {standard: FIPS 203, note: ML-KEM, url: https://doi.org/10.6028/NIST.FIPS.203}
+  - id: mldsa
+    match: {algorithm: ml-dsa}
+    class: pq_ready
+    why: ML-DSA (FIPS 204) is a standardised post-quantum signature
+    references:
+      - {standard: FIPS 204, note: ML-DSA, url: https://doi.org/10.6028/NIST.FIPS.204}
+  - id: slhdsa
+    match: {algorithm: slh-dsa}
+    class: pq_ready
+    why: SLH-DSA (FIPS 205) is a standardised post-quantum signature
+    references:
+      - {standard: FIPS 205, note: SLH-DSA, url: https://doi.org/10.6028/NIST.FIPS.205}
+  - id: fndsa
+    match: {algorithm: fn-dsa}
+    class: pq_ready
+    why: FN-DSA (FIPS 206, Falcon) is a standardised post-quantum signature
+    references:
+      - {standard: FIPS 206 (draft), note: FN-DSA / Falcon}
+  - id: hybrid-pq
+    match: {algorithm: hybrid-pq}
+    class: hybrid
+    why: hybrid classical+PQ key agreement (transitional, recommended)
+  # ---- non-standardised / alternate PQ (not FIPS-approved on their own) ----
+    references:
+      - {standard: NIST SP 800-56C Rev.2, note: hybrid key derivation}
+      - {standard: draft-ietf-tls-hybrid-design, note: hybrid KEX in TLS 1.3}
+  - id: pq-nonstandard-kem
+    match: {algorithm: [frodo-kem, bike, hqc, classic-mceliece]}
+    class: quantum_weakened
+    why: >
+      post-quantum KEM candidate that is not (yet) FIPS-standardised (ML-KEM is
+      the approved KEM); acceptable only as a hedge alongside a standard scheme,
+      review before production reliance
+    remediate:
+      require_algorithm: [ml-kem, hybrid-pq]
+    references:
+      - {standard: FIPS 203, note: ML-KEM is the approved KEM; others are unstandardised}
+      - {standard: NIST IR 8413, note: PQC round-3 candidates status}
+
+  # ---- certificate hygiene (classical weaknesses, act today) ----
+  - id: weak-cert-signature
+    match: {primitive: signature, params: [cert-sig:sha1, cert-sig:md5]}
+    class: quantum_weakened
+    why: certificate signed with a forgeable digest (SHA-1/MD5); reissue with SHA-256+ and a PQ-ready or classical-strong scheme
+    remediate:
+      action: reissue
+      require_signature_hash: sha2-256
+    references:
+      - {standard: RFC 9155, note: deprecating SHA-1 (and MD5) signatures in TLS}
+      - {standard: NIST SP 800-131A Rev.2, section: §9, note: SHA-1 disallowed for signatures}
+      - {standard: RFC 6151, note: MD5 security considerations}
+  - id: weak-cert-key
+    match: {primitive: pk-encryption, algorithm: rsa, has_tag: weak-key}
+    class: quantum_weakened
+    why: certificate public key is below the 2048-bit RSA minimum; reissue with a stronger key
+    remediate:
+      action: reissue
+      min_key_length: 2048
+    references:
+      - {standard: NIST SP 800-131A Rev.2, section: §6, note: RSA <2048 disallowed}
+      - {standard: NIST SP 800-57 Part 1 Rev.5, note: key-length recommendations}
+  - id: weak-cert-curve
+    match: {primitive: signature, algorithm: ecdsa, has_tag: weak-curve}
+    class: quantum_weakened
+    why: certificate uses a curve below the 224-bit minimum; reissue with P-256 or stronger
+    remediate:
+      action: reissue
+      prefer: secp256r1
+
+  # ---- specific weak elliptic curves (Shor-broken AND classically weak) ----
+    references:
+      - {standard: NIST SP 800-186, note: approved curves (P-256+)}
+      - {standard: NIST SP 800-131A Rev.2, section: §5, note: <224-bit ECC disallowed}
+  - id: weak-curve-ecdsa
+    match: {primitive: signature, algorithm: ecdsa, params: [secp160r1, secp160k1, secp192r1, secp192k1, nistp192, secp224r1, nistp224, brainpoolp160r1, brainpoolp192r1]}
+    class: quantum_broken
+    why: >
+      ECDSA on a sub-256-bit curve (secp160/192/224) is both below the classical
+      112–128-bit security floor today and Shor-broken later; migrate off it now
+    remediate:
+      action: reissue
+      prefer: ml-dsa-or-hybrid
+      min_curve_bits: 256
+    references:
+      - {standard: NIST SP 800-186, note: recommended curves}
+      - {standard: NIST SP 800-131A Rev.2, section: §5, note: sub-224-bit ECC disallowed}
+      - {standard: FIPS 204, note: PQ migration target (ML-DSA)}
+  - id: weak-curve-ecdh
+    match: {primitive: key-agreement, algorithm: ecdh, params: [secp160r1, secp160k1, secp192r1, secp192k1, nistp192, secp224r1, nistp224, brainpoolp160r1, brainpoolp192r1]}
+    class: quantum_broken
+    why: >
+      ECDH on a sub-256-bit curve is below the classical security floor today and
+      Shor-broken later; move to ML-KEM or a hybrid group
+    remediate:
+      action: decommission
+      prefer: ml-kem-or-hybrid
+      min_curve_bits: 256
+
+  # ---- quantum broken (Shor) ----
+    references:
+      - {standard: NIST SP 800-186, note: recommended curves}
+      - {standard: NIST SP 800-131A Rev.2, section: §5, note: sub-224-bit ECC disallowed}
+      - {standard: FIPS 203, note: PQ migration target (ML-KEM)}
+  - id: static-rsa-kx
+    match: {primitive: key-agreement, algorithm: rsa}
+    class: quantum_broken
+    why: static-RSA key exchange has no forward secrecy and is Shor-broken; the endpoint must stop offering it
+    remediate:
+      action: decommission
+      require_forward_secrecy: true
+    references:
+      - {standard: RFC 8446, section: §1.2, note: static RSA key exchange removed in TLS 1.3}
+      - {standard: NIST SP 800-131A Rev.2, note: RSA broken by Shor (CRQC)}
+  - id: rsa-broken
+    match: {algorithm: rsa}
+    class: quantum_broken
+    why: RSA is broken by Shor's algorithm
+    references:
+      - {standard: NISTIR 8105, note: RSA broken by Shor's algorithm}
+      - {standard: NIST SP 800-208, note: migration guidance}
+  - id: ecdsa-broken
+    match: {algorithm: ecdsa}
+    class: quantum_broken
+    why: ECDSA relies on ECDLP, broken by Shor
+    references:
+      - {standard: NISTIR 8105, note: ECDLP broken by Shor}
+  - id: ecdh-broken
+    match: {algorithm: ecdh}
+    class: quantum_broken
+    why: ECDH relies on ECDLP, broken by Shor
+    references:
+      - {standard: NISTIR 8105, note: ECDLP broken by Shor}
+  - id: weak-dh-group
+    match: {primitive: key-agreement, algorithm: dh, max_key_length: 1024}
+    class: quantum_broken
+    why: finite-field DH with a <=1024-bit group is breakable today by Logjam-style precomputation (in addition to being Shor-broken); the endpoint must stop offering it
+    remediate:
+      action: decommission
+      min_key_length: 2048
+      prefer: ecdhe-or-hybrid
+    references:
+      - {standard: RFC 7919, note: FFDHE groups; avoid <2048-bit}
+      - {standard: CVE-2015-4000, note: Logjam precomputation attack}
+  - id: dh-broken
+    match: {algorithm: dh}
+    class: quantum_broken
+    why: finite-field Diffie-Hellman broken by Shor
+    references:
+      - {standard: NISTIR 8105, note: DLP broken by Shor}
+  - id: dsa-broken
+    match: {algorithm: dsa}
+    class: quantum_broken
+    why: DSA relies on DLP, broken by Shor
+    references:
+      - {standard: NISTIR 8105, note: DLP broken by Shor}
+      - {standard: FIPS 186-5, section: §1, note: DSA no longer approved for signing}
+  - id: x25519-broken
+    match: {algorithm: [x25519, x448]}
+    class: quantum_broken
+    why: X25519/X448 ECDH broken by Shor
+    references:
+      - {standard: NISTIR 8105, note: ECDLP broken by Shor}
+  - id: eddsa-broken
+    match: {algorithm: [ed25519, ed448]}
+    class: quantum_broken
+    why: EdDSA relies on ECDLP, broken by Shor
+
+  # ---- classically broken already (surface as broken too) ----
+    references:
+      - {standard: NISTIR 8105, note: ECDLP broken by Shor}
+      - {standard: RFC 8032, note: EdDSA definition}
+  - id: md5-dead
+    match: {algorithm: md5}
+    class: quantum_broken
+    why: MD5 is collision-broken and must be removed regardless of PQC
+    references:
+      - {standard: RFC 6151, note: MD5 collision attacks}
+      - {standard: NIST SP 800-131A Rev.2, note: MD5 not approved}
+  - id: sha1-dead
+    match: {algorithm: sha1}
+    class: quantum_broken
+    why: SHA-1 is collision-broken and must be removed
+    references:
+      - {standard: NIST SP 800-131A Rev.2, section: §9, note: SHA-1 disallowed for signatures}
+      - {standard: NIST policy 2022, note: SHA-1 phase-out by 2030}
+  - id: rc4-dead
+    match: {algorithm: rc4}
+    class: quantum_broken
+    why: RC4 is insecure and must be removed
+    references:
+      - {standard: RFC 7465, note: prohibiting RC4 cipher suites}
+  - id: des-dead
+    match: {algorithm: [des, 3des]}
+    class: quantum_broken
+    why: DES/3DES insufficient key strength; remove
+    references:
+      - {standard: NIST SP 800-131A Rev.2, section: §1, note: DES/3DES disallowed}
+      - {standard: NIST SP 800-67 Rev.2, note: 3DES deprecation}
+  - id: legacy-tls
+    match: {algorithm: [ssl]}
+    class: quantum_broken
+    why: SSLv3 must be disabled
+    references:
+      - {standard: RFC 8996, note: deprecating SSLv3/TLS 1.0/1.1}
+  - id: old-tls
+    match: {primitive: protocol, algorithm: tls, params: ["1.0", "1.1"]}
+    class: quantum_broken
+    why: TLS 1.0/1.1 are deprecated and must be disabled
+
+  # ---- quantum weakened (Grover) ----
+    references:
+      - {standard: RFC 8996, note: deprecating TLS 1.0 and TLS 1.1}
+  - id: aes128-weak
+    match: {algorithm: aes, max_key_length: 128}
+    class: quantum_weakened
+    why: AES-128 has ~64-bit post-quantum security under Grover; prefer AES-256
+    remediate:                       # machine-checkable target for increase-parameters
+      require_min_key_length: 256
+    references:
+      - {standard: NISTIR 8105, note: Grover halves symmetric strength}
+      - {standard: NIST SP 800-57 Part 1 Rev.5, note: prefer AES-256 for PQ margin}
+  - id: sha256-weak
+    match: {algorithm: sha2-256}
+    class: quantum_weakened
+    why: SHA-256 collision resistance reduced under quantum attack; acceptable near-term
+    remediate:
+      require_algorithm: [sha2-384, sha2-512, sha3-256, sha3-512]
+    references:
+      - {standard: NISTIR 8105, note: Grover/quantum collision margin}
+      - {standard: FIPS 180-4, note: SHA-2 family}
+
+  # ---- lightweight cryptography ----
+  - id: lightweight-broken
+    match: {algorithm: [present, prince, katan]}
+    class: quantum_broken
+    why: >
+      legacy lightweight block cipher with a 64-bit block and ≤128-bit key
+      (PRESENT/PRINCE/KATAN); Grover halves the key and the small block invites
+      birthday attacks — do not use for new designs
+    remediate:
+      require_algorithm: [ascon, aes]
+    references:
+      - {standard: NIST SP 800-232, note: ASCON is the standard; legacy 64-bit-block ciphers are not}
+      - {standard: ISO/IEC 29192-2, note: PRESENT (superseded for new designs)}
+  - id: lightweight-weak
+    match: {algorithm: [speck, simon, gift]}
+    class: quantum_weakened
+    why: >
+      lightweight cipher that is unstandardised for general use (Speck/Simon were
+      withdrawn from ISO; GIFT is a research primitive); prefer the NIST
+      lightweight standard ASCON
+    remediate:
+      require_algorithm: [ascon]
+    references:
+      - {standard: NIST SP 800-232, note: ASCON is the recommended lightweight standard}
+      - {standard: ISO/IEC 29192 (2019 withdrawal), note: Simon/Speck withdrawn}
+  - id: ascon-ok
+    match: {algorithm: ascon}
+    class: pq_ready
+    why: >
+      ASCON (NIST SP 800-232) is the standardised lightweight AEAD; 128-bit key
+      retains adequate strength for constrained devices against Grover
+    references:
+      - {standard: NIST SP 800-232, note: ASCON AEAD (lightweight standard)}
+  - id: ascon-hash-ok
+    match: {algorithm: ascon-hash}
+    class: pq_ready
+    why: ASCON-Hash256 (NIST SP 800-232) is the standardised lightweight hash
+
+  # ---- explicitly fine ----
+    references:
+      - {standard: NIST SP 800-232, note: ASCON-Hash256}
+  - id: aes256-ok
+    match: {algorithm: aes, min_key_length: 256}
+    class: pq_ready
+    why: AES-256 retains adequate strength against Grover
+    references:
+      - {standard: FIPS 197, note: AES}
+      - {standard: NISTIR 8105, note: AES-256 retains ~128-bit PQ strength}
+  - id: chacha-ok
+    match: {algorithm: chacha20}
+    class: pq_ready
+    why: 256-bit stream cipher, adequate against Grover
+    references:
+      - {standard: RFC 8439, note: ChaCha20-Poly1305}
+  - id: sha512-ok
+    match: {algorithm: [sha2-384, sha2-512, sha3-256, sha3-512]}
+    class: pq_ready
+    why: large-output hashes retain adequate quantum security
+    references:
+      - {standard: FIPS 180-4, note: SHA-384/512}
+      - {standard: FIPS 202, note: SHA-3}

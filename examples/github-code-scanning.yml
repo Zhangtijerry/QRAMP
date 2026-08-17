@@ -1,0 +1,61 @@
+# Example: run QRAMP in CI and upload results to GitHub code scanning.
+# Weak cryptography then shows as annotations on the exact source lines in the
+# pull request, and the security tab tracks each finding across commits.
+#
+# Drop this in .github/workflows/qramp.yml
+name: crypto-inventory
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+  security-events: write        # required to upload SARIF
+
+jobs:
+  qramp:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install QRAMP
+        run: pip install "qramp[source,versions]"
+
+      - name: Scan for cryptographic assets
+        run: |
+          qramp scan --source . --config . --certs . -o cbom.json
+
+      - name: Assess post-quantum exposure
+        run: |
+          qramp assess cbom.json \
+            --rules "$(python -c 'import qramp,os;print(os.path.join(os.path.dirname(qramp.__file__),"rules","transition-2024.yaml"))')" \
+            --lifetimes .qramp/data-lifetimes.yaml \
+            -o assessment.json
+
+      - name: Export SARIF
+        run: |
+          qramp export assessment.json --format sarif \
+            --rules "$(python -c 'import qramp,os;print(os.path.join(os.path.dirname(qramp.__file__),"rules","transition-2024.yaml"))')" \
+            -o qramp.sarif
+
+      # upload always, so annotations appear even when the gate below fails
+      - name: Upload to code scanning
+        if: always()
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: qramp.sarif
+          category: qramp
+
+      # optional hard gate: fail the build on any quantum-broken finding
+      - name: Fail on quantum-broken crypto
+        run: |
+          qramp export assessment.json --format sarif --min-level error -o gate.sarif
+          count=$(python -c "import json;print(len(json.load(open('gate.sarif'))['runs'][0]['results']))")
+          echo "error-level findings: $count"
+          test "$count" -eq 0

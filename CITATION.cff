@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+title: "QRAMP: cryptographic asset inventory and quantum-resistant migration planning"
+message: "If you use this software, please cite it."
+type: software
+authors:
+  - family-names: "Zhang"
+    given-names: "Ti"
+    email: "21111104@bjtu.edu.cn"
+    orcid: "https://orcid.org/0009-0005-6137-4350"
+    affiliation: "Beijing Key Laboratory of Security and Privacy in Intelligent Transportation, Beijing Jiaotong University, Beijing 100044, China"
+version: 0.1.0
+date-released: "2026-08-17"
+license: MIT
+repository-code: "https://github.com/Zhangtijerry/QRAMP"
+# doi: "10.5281/zenodo.XXXXXXX"  # TODO: replace after Zenodo release
+abstract: "QRAMP collects cryptographic evidence from source code, SBOMs, X.509 certificates, configurations and TLS endpoints; resolves it into a CycloneDX cryptographic bill of materials (CBOM); classifies each asset with Mosca-inequality urgency; compiles a phased migration plan; and verifies execution by re-scanning."
+keywords:
+  - post-quantum
+  - cryptography
+  - cbom
+  - crypto-agility
+  - security

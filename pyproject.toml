@@ -1,0 +1,53 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "qramp"
+version = "0.1.0"
+description = "Cryptographic asset inventory and quantum-resistant migration planning"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+authors = [{ name = "Ti Zhang", email = "21111104@bjtu.edu.cn" }]
+keywords = ["post-quantum", "cryptography", "cbom", "crypto-agility", "security"]
+dependencies = [
+  "cryptography>=42",
+  "PyYAML>=6",
+  "networkx>=3",
+]
+
+[project.urls]
+Homepage = "https://github.com/Zhangtijerry/QRAMP"
+Repository = "https://github.com/Zhangtijerry/QRAMP"
+Issues = "https://github.com/Zhangtijerry/QRAMP/issues"
+
+[project.optional-dependencies]
+solver = ["ortools>=9.8"]
+tls = []              # uses stdlib ssl; placeholder for future backends
+java = ["tree-sitter>=0.21", "tree-sitter-java>=0.21"]
+go = ["tree-sitter>=0.21", "tree-sitter-go>=0.21"]
+python = ["tree-sitter>=0.21", "tree-sitter-python>=0.21"]
+rust = ["tree-sitter>=0.21", "tree-sitter-rust>=0.21"]
+c = ["tree-sitter>=0.21", "tree-sitter-c>=0.21"]
+validate = ["cyclonedx-python-lib>=7", "jsonschema>=4"]
+versions = ["packaging>=21"]     # correct PEP 440 provider-map version gates (falls back to a built-in comparator parser if absent)
+source = ["tree-sitter>=0.21", "tree-sitter-python>=0.21",
+          "tree-sitter-java>=0.21", "tree-sitter-go>=0.21",
+          "tree-sitter-rust>=0.21", "tree-sitter-c>=0.21"]
+dev = ["pytest>=8", "tree-sitter>=0.21", "tree-sitter-python>=0.21",
+       "tree-sitter-java>=0.21", "tree-sitter-go>=0.21",
+       "tree-sitter-rust>=0.21", "tree-sitter-c>=0.21"]
+
+[project.scripts]
+qramp = "qramp.cli:main"
+
+[project.entry-points."qramp.collectors"]
+# built-ins are registered on import; third parties add their own here, e.g.:
+# my-hsm = "mypkg.hsm_collector:run"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+qramp = ["rules/*.yaml", "data/*.yaml", "collectors/queries/*.scm"]

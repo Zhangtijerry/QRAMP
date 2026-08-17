@@ -1,0 +1,5 @@
+default_concurrent: 1
+per_owner_concurrent:
+  platform-net: 3
+  app-team: 2
+  unassigned: 2

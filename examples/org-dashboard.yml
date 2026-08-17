@@ -1,0 +1,86 @@
+# QRAMP organisation dashboard
+# =============================
+# Aggregate many repositories' PQC posture into one static HTML dashboard.
+#
+# Two halves:
+#
+#   1. Each repo, at the end of its own QRAMP run, emits a compact *repo card*
+#      (a small JSON of its metrics + gate outcomes) and publishes it — either by
+#      committing it to a shared "posture" repo under cards/<repo>.json, or by
+#      pushing it to this workflow's repo. The snippet in `emit-card` below shows
+#      how a repo produces its card from the assessment and gates.json it already
+#      builds in the full pipeline.
+#
+#   2. This workflow (in the org's dashboard repo) collects every card and builds
+#      one dashboard.html, then publishes it to GitHub Pages. It runs on a
+#      schedule and whenever a card changes.
+#
+# The dashboard is a single self-contained file — no server, sortable in the
+# browser — so it can be published to Pages or handed to a CISO as-is.
+
+name: QRAMP org dashboard
+
+on:
+  push:
+    paths: ['cards/**']          # a repo pushed an updated card
+  schedule:
+    - cron: '0 6 * * 1'          # every Monday morning
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build-dashboard:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - run: pip install "qramp[versions]"
+
+      # cards/ holds one <repo>.json per repository (committed by each repo's CI,
+      # or synced here by a bot). Build the aggregated dashboard from all of them.
+      - name: Build the organisation dashboard
+        run: |
+          mkdir -p site
+          qramp org-dashboard cards \
+            --title "Acme Corp — post-quantum migration" \
+            -o site/index.html
+
+      - name: Upload the dashboard as a Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  # Publish the built dashboard to GitHub Pages.
+  deploy:
+    needs: build-dashboard
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
+
+# ---------------------------------------------------------------------------
+# Reference: how each repo emits its card at the end of its own QRAMP run.
+# Add this to the crypto-scan / gate-summary job of ci-full-pipeline.yml, after
+# assessment.json and gates.json exist, then commit or upload cards/<repo>.json.
+#
+#   - name: Emit the repo card for the org dashboard
+#     if: always()
+#     run: |
+#       repo="${GITHUB_REPOSITORY}"
+#       safe="${repo//\//__}"          # acme/payments -> acme__payments
+#       map_arg=""; [ -f "$MAP" ] && map_arg="--map $MAP"
+#       gates_arg=""; [ -f gates.json ] && gates_arg="--gates gates.json"
+#       run_url="$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
+#       qramp repo-card assessment.json --name "$repo" $map_arg $gates_arg \
+#         --url "$run_url" -o "card.json"
+#       # then: commit card.json to the dashboard repo as cards/$safe.json,
+#       # or upload it as an artifact the dashboard workflow collects.
+# ---------------------------------------------------------------------------

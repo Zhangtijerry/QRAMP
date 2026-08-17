@@ -1,0 +1,53 @@
+{
+  "description": "Known-good package-name resolutions for the manifest alias map. Each package must resolve to the same (component, tracks_version). Guards against accidental edits — e.g. a typo that stops pyOpenSSL resolving to openssl, or a wrapper flag flipped so a wrapper wrongly drives version-gated capability resolution.",
+  "resolutions": {
+    "bcpkix-jdk18on": {
+      "component": "bouncycastle",
+      "tracks_version": true
+    },
+    "bcprov-jdk15on": {
+      "component": "bouncycastle",
+      "tracks_version": true
+    },
+    "bcprov-jdk18on": {
+      "component": "bouncycastle",
+      "tracks_version": true
+    },
+    "cryptography": {
+      "component": "cryptography",
+      "tracks_version": true
+    },
+    "libcrypto": {
+      "component": "openssl",
+      "tracks_version": true
+    },
+    "libsodium": {
+      "component": "libsodium",
+      "tracks_version": true
+    },
+    "libssl": {
+      "component": "openssl",
+      "tracks_version": true
+    },
+    "openssl-sys": {
+      "component": "openssl",
+      "tracks_version": false
+    },
+    "org.bouncycastle": {
+      "component": "bouncycastle",
+      "tracks_version": true
+    },
+    "paramiko": {
+      "component": "paramiko",
+      "tracks_version": true
+    },
+    "pynacl": {
+      "component": "libsodium",
+      "tracks_version": false
+    },
+    "pyopenssl": {
+      "component": "openssl",
+      "tracks_version": false
+    }
+  }
+}

@@ -1,0 +1,4 @@
+default_years: 3
+tags:
+  - {tag: long-lived-data, years: 25}
+  - {tag: external, years: 7}

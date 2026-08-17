@@ -1,0 +1,49 @@
+version: "provider-map-0.2"
+description: >
+  Maps SBOM component names to the cryptographic capabilities they ship.
+  Version-aware: a `provides` entry may carry a `version` constraint (PEP 440 /
+  simple comparators, e.g. ">=3.5", ">=1.1.0,<3.0"). An entry with no constraint
+  applies to every version. Each capability carries a confidence in [0,1].
+  Editable, versioned data — not code. Lint with `qramp lint-provider-map`.
+schema: 2
+components:
+  - component: openssl
+    provides:
+      # RSA / ECDH / AES ship across all supported OpenSSL versions
+      - {primitive: pk-encryption, algorithm: rsa, confidence: 0.6}
+      - {primitive: key-agreement, algorithm: ecdh, confidence: 0.6}
+      - {primitive: symmetric-cipher, algorithm: aes, key_length: 256, confidence: 0.7}
+      # post-quantum KEM/signature only in OpenSSL 3.5+ (ML-KEM/ML-DSA landed 3.5)
+      - {primitive: key-agreement, algorithm: ml-kem, version: ">=3.5", confidence: 0.8}
+      - {primitive: signature, algorithm: ml-dsa, version: ">=3.5", confidence: 0.8}
+      # SSLv3/TLS1.0 only offered by ancient 1.0.x builds
+      - {primitive: protocol, algorithm: ssl, version: "<1.1.0", confidence: 0.5}
+  - component: cryptography
+    provides:
+      - {primitive: pk-encryption, algorithm: rsa, confidence: 0.6}
+      - {primitive: signature, algorithm: ecdsa, confidence: 0.6}
+  - component: pyopenssl
+    provides:
+      - {primitive: protocol, algorithm: tls, confidence: 0.6}
+  - component: bouncycastle
+    provides:
+      - {primitive: pk-encryption, algorithm: rsa, confidence: 0.6}
+      - {primitive: signature, algorithm: ecdsa, confidence: 0.6}
+      # BouncyCastle added ML-KEM/ML-DSA in 1.78
+      - {primitive: key-agreement, algorithm: ml-kem, version: ">=1.78", confidence: 0.7}
+      - {primitive: signature, algorithm: ml-dsa, version: ">=1.78", confidence: 0.7}
+  - component: bcprov
+    provides:
+      - {primitive: pk-encryption, algorithm: rsa, confidence: 0.6}
+  - component: libsodium
+    provides:
+      - {primitive: key-agreement, algorithm: x25519, confidence: 0.7}
+      - {primitive: signature, algorithm: ed25519, confidence: 0.7}
+  - component: liboqs
+    provides:
+      - {primitive: key-agreement, algorithm: ml-kem, confidence: 0.8}
+      - {primitive: signature, algorithm: ml-dsa, confidence: 0.8}
+  - component: paramiko
+    provides:
+      - {primitive: protocol, algorithm: ssh, confidence: 0.6}
+      - {primitive: signature, algorithm: rsa, confidence: 0.5}

@@ -1,0 +1,18 @@
+# filename -> owning team
+payments.py: app-team
+storage.py: app-team
+cryptopolicy.py: app-team
+CryptoService.java: app-team
+cryptoservice.go: platform-net
+sshd_config: platform-net
+nginx-gateway.conf: platform-net
+java.security: platform-net
+gateway-rsa2048.pem: platform-net
+api-ec256.pem: platform-net
+mesh-ed25519.pem: platform-net
+crypto_service.rs: platform-net
+crypto_service.c: platform-net
+legacy-sha1-rsa.pem: pki-team
+weak-rsa1024.pem: pki-team
+weak-curve-secp192.pem: pki-team
+expiring-soon.pem: pki-team

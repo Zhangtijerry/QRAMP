@@ -1,0 +1,6 @@
+# app dependencies
+cryptography==42.0.5
+pyOpenSSL==24.0.0
+paramiko==3.4.0
+requests==2.31.0
+flask>=2.0
