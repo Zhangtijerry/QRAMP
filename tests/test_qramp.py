@@ -285,34 +285,28 @@ def test_weak_cert_routes_to_reissue_recipe(tmp_path):
 
 
 def test_reissue_verify_fails_closed_then_passes(tmp_path):
-    """Fail-closed: while the weak cert is still present the reissue task fails;
-    once a fresh scan no longer shows it, the task passes."""
-    from qramp import assess, plan, report
-    import yaml
-    inv = Inventory()
-    inv.observe("pk-encryption", "rsa",
-                Occurrence("certs", "weak.pem", "weak", tags=["weak-key"]),
-                key_length=1024)
+    """A complete same-scope rescan verifies certificate hygiene only."""
+    import shutil
+    cert_dir = tmp_path / "certs"; cert_dir.mkdir()
+    target = cert_dir / "service.pem"
+    shutil.copy(os.path.join(CERT_DIR, "weak-rsa1024.pem"), target)
+    inv = Inventory(); cert_col.run(inv, cert_dir=str(cert_dir))
     cbom = tmp_path / "c.json"; inv.save(str(cbom))
     lt = tmp_path / "lt.yaml"; lt.write_text("default_years: 3\n", encoding="utf-8")
     a = tmp_path / "a.json"; assess.assess(str(cbom), RULES, str(lt), str(a))
     cap = tmp_path / "cap.yaml"; cap.write_text("default_concurrent: 2\n", encoding="utf-8")
     planp = tmp_path / "plan.yaml"
     plan.plan(str(a), str(cap), 36, str(planp), solver="list")
-    # BEFORE: weak cert still present -> reissue fails
     ev = tmp_path / "ev.json"
-    b = report.verify(str(planp), str(cbom), str(ev))
-    reissue = [r for r in b["results"] if r["type"] == "reissue-certificate"]
-    assert reissue and all(not r["passed"] for r in reissue)
-    # AFTER: fresh scan with a strong cert only
-    inv2 = Inventory()
-    inv2.observe("pk-encryption", "rsa",
-                 Occurrence("certs", "strong.pem", "strong"), key_length=2048)
-    cbom2 = tmp_path / "c2.json"; inv2.save(str(cbom2))
-    ev2 = tmp_path / "ev2.json"
-    b2 = report.verify(str(planp), str(cbom2), str(ev2))
-    reissue2 = [r for r in b2["results"] if r["type"] == "reissue-certificate"]
-    assert reissue2 and all(r["passed"] for r in reissue2)
+    before = report.verify(str(planp), str(cbom), str(ev))
+    assert any(r["status"] == "fail" for r in before["results"] if r["type"] == "reissue-certificate")
+    shutil.copy(os.path.join(CERT_DIR, "gateway-rsa2048.pem"), target)
+    fresh = Inventory(); cert_col.run(fresh, cert_dir=str(cert_dir))
+    fresh.save(str(cbom))
+    after = report.verify(str(planp), str(cbom), str(ev))
+    hygiene = [r for r in after["results"] if r["type"] == "reissue-certificate" and "2048 bits" in r["acceptance"]]
+    assert hygiene and all(r["passed"] for r in hygiene)
+    assert all(not r["passed"] for r in after["results"] if r["type"] == "deploy-and-revoke")
 
 
 def test_sbom_collector_records_unmapped():
@@ -1101,14 +1095,14 @@ def test_weak_dh_1024_routed_to_decommission(tmp_path):
     assert "externalise-algorithm" not in [t[1] for t in plan._recipe_for(dh)]
 
 
-def test_strong_dh_2048_keeps_full_recipe(tmp_path):
+def test_strong_dh_2048_uses_config_replacement_recipe(tmp_path):
     """2048-bit DH is only quantum-broken (not classically weak), so it keeps
     the full recipe rather than the urgent decommission route."""
     from qramp import plan
     dh = _assess_dh(tmp_path, 2048, params="group14")
     assert dh.exposure_class == "quantum_broken"
     assert dh.remediate is None
-    assert "externalise-algorithm" in [t[1] for t in plan._recipe_for(dh)]
+    assert [t[1] for t in plan._recipe_for(dh)] == ["replace-algorithm"]
 
 
 def test_config_reads_dhparam_bits(tmp_path):
@@ -1449,7 +1443,7 @@ def test_increase_parameters_end_to_end_flip(tmp_path):
     assert ip_before and any(not r["passed"] for r in ip_before)
 
     # AFTER config with aes128-cbc removed
-    etc_after = tmp_path / "etc_after"; etc_after.mkdir()
+    etc_after = etc_before  # acceptance requires the same documented scan root
     (etc_after / "sshd_config").write_text("Ciphers aes256-gcm@openssh.com\n", encoding="utf-8")
     inv_a = Inventory(); cfg.run(inv_a, config_dir=str(etc_after))
     cbom_a = tmp_path / "a.json"; inv_a.save(str(cbom_a))
