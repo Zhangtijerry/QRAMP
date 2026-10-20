@@ -111,8 +111,11 @@ def run(inv: Inventory, source_dir: str, owner_map: dict | None = None,
         inv.record_collector("source-go", stats)
         return stats
 
+    if not os.path.isdir(source_dir):
+        raise ValueError(f"source directory does not exist: {source_dir}")
+    scanned_paths, errors = [], []
     files = hits = 0
-    for root, _d, fns in os.walk(source_dir):
+    for root, _d, fns in os.walk(source_dir, onerror=lambda e: errors.append(str(e))):
         if any(p in root for p in (".git", "vendor", "node_modules")):
             continue
         for fn in fns:
@@ -120,9 +123,14 @@ def run(inv: Inventory, source_dir: str, owner_map: dict | None = None,
                 continue
             path = os.path.join(root, fn)
             src = open(path, "rb").read()
+            scanned_paths.append(os.path.abspath(path))
+            if engine.syntax_errors(src):
+                errors.append(f"parse errors: {os.path.abspath(path)}")
             files += 1
             hits += _interpret(inv, src, path, owner_map.get(fn), engine)
     stats = {"files": files, "call_sites": hits,
+             "root": os.path.abspath(source_dir),
+             "scanned_paths": sorted(scanned_paths), "errors": errors,
              "query_hash": engine.query_source_hash(),
              "query_sources": engine.describe_sources()}
     inv.record_collector("source-go", stats)

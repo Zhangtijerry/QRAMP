@@ -177,6 +177,10 @@ class QueryEngine:
         import hashlib
         return hashlib.sha256(self._scm.encode()).hexdigest()[:16]
 
+    def syntax_errors(self, src: bytes) -> bool:
+        """Syntax errors make an absence-based acceptance inconclusive."""
+        return not self.available or self._parser.parse(src).root_node.has_error
+
     def run(self, src: bytes):
         """Yield Match objects for a source buffer."""
         if not self.available:
