@@ -30,7 +30,7 @@ jobs:
       - name: Install
         run: |
           python -m pip install --upgrade pip
-          pip install -e ".[source,validate,versions]"
+          pip install -e ".[source,solver,validate,versions]"
           pip install pytest
 
       - name: Run tests
@@ -51,7 +51,7 @@ jobs:
       - name: Install
         run: |
           python -m pip install --upgrade pip
-          pip install -e ".[source,validate,versions]"
+          pip install -e ".[source,solver,validate,versions]"
 
       - name: Lint the policy data
         run: |
