@@ -1,8 +1,19 @@
 # QRAMP User Manual
 
-**Version 0.1.0** · Cryptographic asset inventory and quantum-resistant migration planning
+**Version 0.1.1** · Cryptographic asset inventory and quantum-resistant migration planning
 
 ---
+
+## Changes in 0.1.1
+
+See [revision notes](REVISION_NOTES_zh.md) for fixes and
+[reproducible experiments](examples/REVISION_EXPERIMENTS.md) for current results.
+Tasks now represent owner/file or endpoint obligations. `verify` evaluates a
+supplied refreshed scan and reports pass/fail/deferred/manual; it does not run a
+rescan. Matching roots, queries and parsed target files are required for absence
+checks. Missing/moved files and skipped collectors are deferred. C/Rust are
+included. Investigation and certificate deployment/revocation remain manual.
+The old asset-loss, 120-task and 20-pass examples do not apply to this version.
 
 ## Table of Contents
 
@@ -26,15 +37,15 @@
 
 QRAMP answers a question most organisations cannot currently answer: *where is our cryptography, which of it will a quantum computer break, and how far along is the migration?*
 
-It collects cryptographic evidence from source code, software bills of materials, package manifests, X.509 certificates, service configurations and live TLS endpoints; resolves that evidence into a CycloneDX **cryptographic bill of materials (CBOM)**; classifies and prioritises each asset with a versioned rule pack and an explicit Mosca-inequality urgency model; compiles a phased, dependency-ordered migration plan; and then **re-scans to verify** that plan steps actually completed.
+It collects cryptographic evidence from source code, software bills of materials, package manifests, X.509 certificates, service configurations and live TLS endpoints; resolves that evidence into a CycloneDX **cryptographic bill of materials (CBOM)**; classifies and prioritises each asset with a versioned rule pack and an explicit Mosca-inequality urgency model; compiles a phased, dependency-ordered migration plan; and evaluates task acceptance against operator-supplied refreshed scan evidence.
 
-The last step is the design centre. Every task carries a machine-checkable acceptance predicate, so progress is measured rather than self-reported.
+Tasks carry explicit acceptance requirements. Supported checks use refreshed scan evidence; investigations, certificate deployment/revocation and unsupported profiles require operator evidence.
 
 ### 1.2 Key Features
 
 - **Cross-language entity resolution** — the same algorithm seen in Python, Java and Go resolves to one asset with three occurrences.
 - **Mosca-based prioritisation** — urgency from X+Y−Z (data secrecy lifetime + migration time vs. quantum arrival), not a hand-assigned severity.
-- **Verified completion** — `verify` re-scans and evaluates each acceptance predicate, attaching an evidence bundle of timestamps and content hashes.
+- **Scoped acceptance** — `verify` checks refreshed scan evidence and records explicit status, timestamps and input hashes. Manual tasks remain manual.
 - **Version-aware capability resolution** — `openssl@3.5` resolves to ML-KEM/ML-DSA; `openssl@3.0.13` does not. Unknown versions withhold gated capabilities rather than guessing.
 - **Policy as versioned data** — the rule pack, provider map and alias map are YAML with dedicated linters, snapshot regression, and a `policy-diff` audit against real inventory.
 - **Standards output** — CycloneDX 1.6 CBOM, SARIF 2.1.0, OpenVEX; all schema-validated and round-trip verified.
@@ -59,7 +70,7 @@ PLAN      task DAG under prereq / interop / window / capacity  →  schedule
 REPORT    CBOM · plan · dashboard · SARIF · VEX · graphs · bundle    ↺ verify
 ```
 
-Implementation is roughly 10,000 lines of Python across 34 modules, with 377 tests.
+Implementation is roughly 10,000 lines of Python across 34 modules, with additional review regression tests in `tests/test_revision.py`.
 
 ### 1.4 Two Ways to Run an Audit
 
@@ -94,7 +105,7 @@ Optional extras:
 | `solver` | OR-Tools CP-SAT | falls back to deterministic list scheduling |
 | `java` / `go` / `python` / `rust` / `c` | one grammar each | that language is not scanned |
 
-Nothing in the optional set is load-bearing. Every fallback is deterministic and every skip is recorded in the CBOM metadata.
+Missing grammars skip their source collectors and are recorded. Such skipped collectors cannot supply successful absence-based acceptance evidence. The list fallback is deterministic; time-bounded CP-SAT can vary.
 
 ### 2.2 TLS Collection
 
@@ -151,7 +162,7 @@ pytest -q
 ```
 
 ```
-374 passed, 3 skipped
+See REVISION_NOTES_zh.md for the current recorded test result.
 ```
 
 The three skips are tests requiring `node` or `dot` on PATH; they are guarded and their absence is not an error.
@@ -342,18 +353,13 @@ qramp scan --source testbed/sample-app \
 ```
 
 ```
-[scan] 52 assets, 111 occurrences -> cbom.json
-        source-py    files=3 call_sites=12  query_hash=548044d33fcdc82a
-        source-java  files=1 call_sites=10
-        source-go    files=1 call_sites=11
-        source-rust  files=1 call_sites=7
-        source-c     files=1 call_sites=11
-        sbom         components_mapped=4 unmapped=2 provides_edges=9
-        certs        files=11 certificates=11 weak_findings=4 chain_links=2
-        configs      findings=23
+# Collector output includes scan roots, scanned files, query hashes and errors.
 ```
 
-Without the `source` extra you get 39 assets / 56 occurrences instead, and each source collector reports the missing grammar by name.
+Add `--manifests testbed/manifests` for the complete revision evaluation. With all
+source grammars installed that configuration records 52 algorithm assets and
+125 occurrences; internal reloading retains all 52 assets. Missing grammars are
+recorded and cannot supply successful acceptance evidence.
 
 ### 6.2 Classify and Prioritise
 
@@ -366,8 +372,8 @@ qramp assess cbom.json \
 
 ```
 [assess] rule pack transition-2024.3 (5613092fb16894de)
-         classes: quantum_broken=36  unknown=9  quantum_weakened=4  pq_ready=2
-         tiers:   P2=39  P1=6  P3=4  OK=2
+         classes: quantum_broken=36  unknown=7  quantum_weakened=6  pq_ready=3
+         tiers:   P2=37  P1=6  P3=6  OK=3
 ```
 
 The hash after the pack version identifies the exact policy that produced this classification.
@@ -382,7 +388,7 @@ qramp plan assessment.json --capacity testbed/policy/teams.yaml \
 ```
 
 ```
-[plan] solver=list-scheduling tasks=120 phases=[0,1,2,3] weighted_exposure_days=892770
+# Run scripts/reproduce_revision.py for current per-location task counts and schedules.
 ```
 
 With OR-Tools installed, compare the two schedulers:
@@ -401,24 +407,17 @@ qramp verify plan.yaml --against cbom.json --phase 1 --evidence-out evidence.jso
 ```
 
 ```
-[verify] phase=1 checked=36 passed=20 failed=16
-         [FAIL] T-001 externalise-algorithm: hard-coded literal still present
-         [PASS] T-008 externalise-algorithm: literal removed
-         [FAIL] T-044 reissue-certificate: 1 undersized-key certificate(s) still present: RSA-1024
-         [FAIL] T-067 reissue-certificate: 1 weak-curve certificate(s) still present: ECDSA-192 (secp192r1)
+# Inspect status_counts: pass, fail, deferred and manual. Non-passes exit 2.
 ```
 
-This re-scans and evaluates predicates against fresh evidence. It does not read a status you filled in. Remove the literals, re-run, and the same predicates flip to PASS with locations, timestamps and content hashes recorded in `evidence.json`.
+This evaluates the CBOM supplied to `--against`; run collectors separately after changes. Absence checks pass only with matching scope and complete target evidence. Unsupported checks and manual obligations remain explicit non-passes.
 
 Acceptance predicates by task type:
 
-| Task type | Passes when the fresh CBOM shows |
-|---|---|
-| `externalise-algorithm` | no hard-coded literal for the asset remains in source |
-| `enable-hybrid-kex` | the endpoint negotiates a PQ hybrid group (passive), or a forced-PQ handshake succeeds above threshold (`--active-probe`) |
-| `decommission-legacy` | the endpoint no longer negotiates a quantum-broken suite; with `--active-probe`, every forced legacy version and Shor-broken KEX is refused |
-| `increase-parameters` | every remaining occurrence meets the rule pack's target; unknown key lengths fail closed |
-| `reissue-certificate` | no certificate with that weakness dimension remains |
+See the complete current acceptance table in [README](README.md#task-acceptance-against-refreshed-evidence).
+Each task covers its recorded owner/file or endpoint. New uses elsewhere require
+a fresh assessment and baseline/drift review; passing one target is not a global
+clean-inventory verdict.
 
 ### 6.5 Readiness and Upgrade Simulation
 
@@ -489,7 +488,7 @@ qramp bundle assessment.json -o report --rules /path/to/rules.yaml --title "Acme
 
 Wrapper packages whose version does not track the underlying library (`pyOpenSSL`, `openssl-sys`) are resolved **fail-closed**: their version does not drive version gates, and they are marked `~wrapper`. This keeps PQC attribution honest at the cost of being conservative.
 
-> **Before you trust a zero result**, read §9.1. A mistyped path currently reports "0 assets" and exits 0.
+Review collector coverage when interpreting zero findings. Nonexistent scan directories are rejected in 0.1.1.
 
 ---
 
@@ -543,23 +542,23 @@ Where the linters ask "is the new policy internally consistent?", `policy-diff` 
 
 ### 8.1 Test Suite
 
-377 tests against ~10,000 lines of implementation. Verified on Python 3.10 / 3.11 / 3.12 across Linux, macOS and Windows:
-
-```
-374 passed, 3 skipped
-```
-
-The suite also passes under a forced non-UTF-8 default encoding (`PYTHONUTF8=0 PYTHONCOERCECLOCALE=0 LC_ALL=C`), which is the regression guard for the Windows `cp1252` class of bug.
+The review regression suite and the original suite were run on Linux with
+Python 3.12; recorded results and dependency versions are in the revision notes
+and experiment outputs. The CI matrix defines additional platform checks; those
+are not claimed as locally executed validation for this revision.
 
 ### 8.2 Standards Conformance
 
-- **CycloneDX 1.6** — exports validate against the official JSON schema and are round-trip verified: `cyclonedx-python-lib` parses the output into its object model and re-serialises it. QRAMP-specific enrichment lives in a `qramp:` property namespace, so schema validity holds and nothing is lost.
+- **CycloneDX 1.6** — exports validate against the official JSON schema and are round-trip verified: `cyclonedx-python-lib` parses the output into its object model and re-serialises it. QRAMP-specific enrichment lives in a `qramp:` property namespace, so schema validity holds. Imported-tool provenance differs from native collector coverage and cannot substitute for a fresh native acceptance scan.
 - **SARIF 2.1.0** — validated against the official schema. Results carry a partial fingerprint keyed on asset identity and file but deliberately **not** line number, so GitHub tracks a finding across commits when edits shift lines.
 - **OpenVEX / CycloneDX VEX** — the OpenVEX justification vocabulary maps onto CycloneDX `analysis.justification`.
 
 ### 8.3 Scheduler Comparison
 
-On the shipped 90-task instance, CP-SAT reduces weighted exposure by roughly 29% versus the list heuristic (273k vs 384k) at the same makespan, by ordering low-priority fillers around urgent tasks. Both schedulers are deterministic.
+Run `python scripts/reproduce_revision.py --sensitivity` for seven controlled
+capacity/duration/size configurations and all raw schedules. E measures weighted
+start delay. CP-SAT uses one worker, seed 42 and a 10-second budget by default;
+inspect status/bounds and do not assume optimality or superiority.
 
 ### 8.4 Fail-Closed Behaviour
 
@@ -577,7 +576,7 @@ Verified deliberate fail-closed paths:
 - Classification is only as good as the rule pack. `unknown` assets are uncovered surface.
 - The Mosca model needs a `Z` estimate (quantum arrival). That is an assumption, not a measurement.
 - The provider map covers common libraries; a site-specific library needs a map entry before its capabilities resolve.
-- **Known defect:** nonexistent scan paths report zero findings and exit 0. See §9.1.
+- Nonexistent scan directories are rejected. Missing grammar, parse errors and absent target files prevent absence-based acceptance.
 
 ---
 
@@ -585,27 +584,11 @@ Verified deliberate fail-closed paths:
 
 ### 9.1 The Scan Reports Zero Assets
 
-**First check that the paths exist.** As of 0.1.0, a nonexistent `--source`, `--certs` or `--config` directory is silently skipped: the scan reports `0 assets` and exits 0.
-
-```bash
-qramp scan --source /nonexistent/src --certs /nonexistent/certs -o cbom.json
-# [scan] 0 assets, 0 occurrences -> cbom.json      exit 0
-```
-
-This is the most dangerous failure mode in the tool, because a clean-looking report is indistinguishable from a genuinely clean scan. In CI, a repository restructure that moves `certs/` turns the gate **green**, not red.
-
-Behaviour differs by argument, which makes it easy to miss:
-
-| Argument | Missing path behaviour | Exit |
-|---|---|---|
-| `--sbom` | uncaught `FileNotFoundError` traceback | 1 |
-| `--certs` / `--source` / `--config` | silent, reports 0 | 0 |
-
-Until this is fixed, assert the paths yourself before scanning:
-
-```bash
-for d in ./src ./certs ./etc; do [ -e "$d" ] || { echo "missing: $d"; exit 1; }; done
-```
+Nonexistent source/certificate/configuration/manifest directories are rejected
+with a nonzero exit. An existing directory can still contain no supported files,
+or an optional grammar can be missing. Inspect collector stats, including roots,
+scanned_paths, errors, query hashes and skipped reasons. Zero detections are not
+proof that all cryptography in an environment has been found.
 
 ### 9.2 Source Collectors Report Zero Call Sites
 
@@ -624,7 +607,7 @@ The scan is still valid without them — SBOM, manifest, certificate and config 
 
 ### 9.3 `verify` Exits 2 and Fails My Build
 
-That is correct behaviour when tasks have not been remediated. Exit 2 means "one or more acceptance predicates failed", which on the shipped testbed is the intended outcome — the planted MD5/DES literals and weak certificates are deliberately unfixed.
+That is correct behaviour when tasks have not been remediated. Exit 2 means "one or more selected tasks are failed, deferred, or manual", which on the shipped testbed is the intended outcome — the planted MD5/DES literals and weak certificates are deliberately unfixed.
 
 In CI, assert the expected code rather than masking it with `|| true`:
 
@@ -687,7 +670,10 @@ The local TLS stack cannot offer the required parameters — PQ hybrid groups un
 
 ### 9.10 Certificate Count Looks Low
 
-Unparseable certificates are currently skipped without being counted (`certs.py`). A directory of 100 certificates where 30 fail to parse reports `certificates: 70` with no indication the other 30 were never assessed. Until this is fixed, compare the reported `files` count against the actual file count in the directory.
+Inspect collector `files`, `certificates` and `errors`. In 0.1.1 each candidate
+certificate file is counted and an unparseable candidate is recorded as an error.
+Such errors defer absence-based acceptance. PEM bundles can contain several
+certificates, so candidate-file and certificate totals need not be equal.
 
 ---
 
@@ -701,7 +687,7 @@ Unparseable certificates are currently skipped without being counted (`certs.py`
 
 | Component | Version |
 |---|---|
-| Package | 0.1.0 |
+| Package | 0.1.1 |
 | Rule pack | transition-2024.3 |
 | Provider map | provider-map-0.2 |
 | CycloneDX target | 1.6 |
@@ -729,9 +715,8 @@ MIT. Copyright (c) 2026 Ti Zhang.
   author  = {Zhang, Ti},
   title   = {{QRAMP}: cryptographic asset inventory and quantum-resistant migration planning},
   year    = {2026},
-  version = {0.1.0},
+  version = {0.1.1},
   license = {MIT},
-  doi     = {10.5281/zenodo.21974850},
   url     = {https://github.com/Zhangtijerry/QRAMP}
 }
 ```
@@ -821,12 +806,12 @@ Optional: `key_length`, `mode`, `params`, `evidence`, `confidence`.
 
 **New policy** — the rule pack, provider map and alias map are versioned YAML with matching linters and snapshot regression. Edit the data, run the linter, commit the snapshot.
 
-### E. Known Defects in 0.1.0
+### E. Remaining limitations and historical defects
 
 | ID | Severity | Description | Workaround |
 |---|---|---|---|
-| §9.1 | High | Nonexistent scan paths report 0 assets, exit 0 | assert paths exist before scanning |
-| §9.10 | Medium | Unparseable certificates skipped without being counted | compare `files` against actual file count |
+| §9.1 | Fixed | Nonexistent scan directories are rejected in 0.1.1 | use valid paths |
+| §9.10 | Fixed | Certificate parse failures are counted and recorded in errors | replace invalid inputs before acceptance |
 | — | Low | Manifest parse failures not recorded in stats | inspect `dependencies_seen` against expectation |
 | — | Low | `assess.py:109`, `plan.py:334` write text without explicit encoding | safe today (`json.dump` emits ASCII) |
-| — | Low | No `.gitignore` in the repository | add one before committing |
+| — | Fixed | Build/cache exclusions supplied in `.gitignore` | — |

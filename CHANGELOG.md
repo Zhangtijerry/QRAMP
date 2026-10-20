@@ -5,6 +5,32 @@ All notable changes to QRAMP will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.1] - Unreleased
+
+### Fixed
+
+- Preserve canonical algorithms, all occurrences and certificate asset references
+  through internal save/load; retain compatibility with readable 0.1.0 inventories.
+- Reject nonexistent scan directories; record source/config/certificate scope,
+  successfully scanned files, query hashes and collection/parse errors.
+- Include all five source languages in acceptance checks. Missing, moved,
+  indeterminate, skipped or differently scoped evidence cannot pass by absence.
+- Scope tasks and acceptance to owner/file or endpoint obligations with stable ids;
+  use primitive-appropriate replacement rather than TLS recipes for offline use.
+- Separate pass/fail/deferred/manual results while retaining legacy Boolean/exit
+  semantics. Certificate deployment/revocation requires operator evidence.
+- Respect prerequisite acceptance, including phase-selected verification. Report
+  new locations of planned asset identities separately and block the overall
+  gate; empty selections are not acceptance verdicts.
+- Preserve list-scheduler capacity even far beyond the reporting horizon, handle
+  same-phase DAG prerequisites and reject invalid graphs/capacities/durations.
+
+### Added
+
+- Review regression tests, a new labelled 60-fixture controlled challenge set,
+  and a script recording raw inventory, schedules, constraints and environment.
+- Updated notebook, reproducibility dependency snapshot and revision notes.
+
 ## [0.1.0] - 2026-08-17
 
 ### Added

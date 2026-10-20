@@ -3,7 +3,7 @@
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21974850.svg)](https://doi.org/10.5281/zenodo.21974850)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![CI](https://github.com/Zhangtijerry/QRAMP/actions/workflows/ci.yml/badge.svg)](https://github.com/Zhangtijerry/QRAMP/actions/workflows/ci.yml)
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Zhangtijerry/QRAMP/blob/main/examples/QRAMP_demo.ipynb)
+[Revision demo notebook](examples/QRAMP_demo.ipynb)
 
 **Cryptographic asset inventory and quantum-resistant migration planning.**
 
@@ -12,11 +12,43 @@ materials, X.509 certificates, service configurations and live protocol
 endpoints; resolves it into a CycloneDX **cryptographic bill of materials
 (CBOM)**; classifies and prioritises each asset with a versioned rule pack and
 an explicit Mosca-inequality urgency model; compiles the result into a phased,
-dependency-ordered migration plan in which **every task carries prerequisites,
-a rollback action and a machine-checkable acceptance probe**; and verifies plan
-execution by re-scanning — so progress is *measured*, not self-reported.
+dependency-ordered migration plan with explicit ownership, rollback guidance
+and acceptance requirements. Operators re-scan after changes and supply the new
+inventory to `verify`; checks report pass, fail, deferred, or manual outcomes.
 
-License: MIT · Python ≥ 3.10 · No compilation required.
+License: MIT · Python ≥ 3.10. The DOI badge above identifies the published 0.1.0 archive; this 0.1.1 revision awaits a separate release/archive.
+
+## Version 0.1.1 review fixes
+
+Canonical algorithms and certificate references now survive internal save/load.
+Remediation tasks are scoped by owner, collector and file/endpoint; task ids are
+stable across inventory reordering. Hashes and offline signatures use replacement
+recipes rather than TLS key-exchange tasks. Library capability declarations create
+investigation tasks, not claims of observed application use.
+
+Acceptance requires matching collector provenance, scan root, detection queries
+and successfully scanned target files. Missing/moved files, skipped collectors,
+parse errors and absent legacy provenance are deferred. C and Rust participate in
+source checks. Certificate hygiene checks do not prove live deployment or
+revocation; those steps require operator evidence. Task acceptance is scoped to
+the original target; run a fresh assessment/baseline check to detect other or new
+weak uses. A collector remains a bounded static detector, not a proof of absence
+of all cryptographic use.
+
+For a complete reproducible run, including the 60-fixture controlled challenge
+set and optional seven-configuration scheduling comparison:
+
+```bash
+pip install -e ".[source,solver,validate,versions,dev]"
+python scripts/reproduce_revision.py --out revision-results --sensitivity
+pytest -q
+```
+
+Each scheduler run stores its complete schedule, status and bound and independently
+checks precedence and capacity. CP-SAT is time-bounded and is not guaranteed to
+beat the heuristic. See [revision notes](REVISION_NOTES_zh.md) and
+[experiment instructions](examples/REVISION_EXPERIMENTS.md). The challenge set is
+new author-constructed evidence, not independent real-project annotation.
 
 ## Install
 
@@ -29,7 +61,7 @@ pip install -e ".[java,go,solver]"
 ```
 
 The tool runs fully without OR-Tools (deterministic list-scheduling fallback)
-and without tree-sitter (the Java and Go collectors simply yield nothing and
+and without tree-sitter (source collectors with unavailable grammars yield nothing and
 record why, so Python-only scanning is unaffected).
 
 ## Five-layer architecture
@@ -77,53 +109,55 @@ qramp assess cbom.json \
 qramp plan assessment.json --capacity testbed/policy/teams.yaml \
       --horizon 24m -o plan.yaml
 
-# 5. verify (re-scan and evaluate every acceptance predicate)
+# 5. evaluate this supplied scan (unremediated testbed: nonzero exit expected)
 qramp verify plan.yaml --against cbom.json --phase 1 --evidence-out evidence.json
 
 # artefacts
 qramp report assessment.json -o dashboard.html
 qramp export plan.yaml --format issues -o issues.json
 qramp export assessment.json --format cyclonedx -o cbom.cdx.json   # standards-compliant CBOM
-qramp export assessment.json --format sarif --rules rules/transition-2024.yaml -o qramp.sarif   # GitHub code scanning
+qramp export assessment.json --format sarif --rules src/qramp/rules/transition-2024.yaml -o qramp.sarif   # GitHub code scanning
 qramp diff cbom_before.json cbom_after.json
 ```
 
-## The verify loop is the point
+## Task acceptance against refreshed evidence
 
-Before remediation, the `externalise-algorithm` tasks fail because a hard-coded
-RSA-2048/DES literal is still present in the source. After you actually remove
-those literals and re-scan, the same predicates pass — with the evidence bundle
-attached (timestamps + content hashes). A plan step is *done* only when the
-infrastructure says so.
+Run `scan` again after remediation, preserving the scan roots and detection query
+versions, and pass that file to `verify`. This command does not run collectors.
+Definite retained weaknesses fail; a successful absence-based check additionally
+requires complete evidence for its target file. File deletion or a move requires
+operator review and replanning, not an automatic pass. A file move inside the root
+is also deferred because the old obligation no longer has its original file.
 
-Every task type has a real, machine-checked predicate — none is a stub:
-
-| Task type | Passes when the fresh CBOM shows … |
+| Task type | Acceptance scope |
 |---|---|
-| `externalise-algorithm` | no hard-coded literal for the asset remains in source |
-| `enable-hybrid-kex` | the endpoint negotiates a PQ hybrid key-agreement group (passively), or — with `--active-probe` — a real forced-PQ handshake succeeds above the success-rate threshold |
-| `decommission-legacy` | the endpoint no longer negotiates a quantum-broken suite — passively by observed TLS version, or with `--active-probe` by a real handshake that forces each legacy version and Shor-broken key exchange (static-RSA, 3DES, RC4, export) and confirms every one is refused |
-| `increase-parameters` | every remaining occurrence of the algorithm meets the rule-pack target (`require_min_key_length` or `require_algorithm`); unknown key lengths fail closed |
+| `externalise-algorithm` | No confirmed hard-coded use of the target algorithm in the target source file; indeterminate use is deferred |
+| `replace-algorithm` | Target algorithm removed and a configured alternative observed in the same target file; this is file-level co-occurrence evidence, not dataflow equivalence |
+| `increase-parameters` | Parameters/replacement satisfy the rule requirement in the target file |
+| `enable-hybrid-kex` | Successful authorised active PQ-hybrid probe; passive group observation alone is deferred |
+| `decommission-legacy` | Authorised active legacy-refusal probe; modern passive TLS versions alone are insufficient |
+| `reissue-certificate` | Parsed replacement file meets supported key/digest/curve hygiene requirement; unsupported profiles are manual |
+| `deploy-and-revoke` | Manual evidence required; scan absence does not prove deployment or revocation |
+| `investigate-asset` | Manual disposition required |
 
-The `increase-parameters` target is declared in the rule pack itself, e.g.
-
-```yaml
-- id: aes128-weak
-  match: {algorithm: aes, max_key_length: 128}
-  class: quantum_weakened
-  remediate:
-    require_min_key_length: 256
-```
-
-so tightening or relaxing the requirement is a data change, and `verify` reads
-it back — remove `aes128-cbc` from a config, re-scan, and the task flips FAIL →
-PASS with the specific occurrences named in the evidence.
+Results retain `passed` and the `failed` count of all non-passes for existing CI
+consumers. New `status` and `status_counts` distinguish `pass`, `fail`, `deferred`
+and `manual`. Prerequisites are re-evaluated even when a phase selector hides them;
+a task cannot pass while a prerequisite is unaccepted. Non-passes exit with code 2.
+Legacy plans without evidence scope must be regenerated before they can pass.
+New locations of planned asset identities are reported separately in
+`unplanned_target_occurrences`; these block the overall `accepted` verdict and
+CLI gate even if the original file-specific task passes. This is not a detector
+for every new algorithm: run a fresh assessment for broader inventory drift. An
+empty check selection is not an acceptance verdict.
 
 ## Scheduling: exact and heuristic, compared
 
 The planner has two interchangeable schedulers behind one dispatcher. Both
-minimise weighted exposure-days (start the most urgent assets soonest) under
-prerequisite ordering and per-owner monthly capacity:
+respect prerequisites and per-owner concurrency. The reported metric is weighted
+task-start delay, E = 30 sum(weight * start_month), not exposure until completion.
+CP-SAT minimises sum(weight * start_month) + makespan; the list scheduler uses a
+deterministic ready-task heuristic:
 
 - **CP-SAT** (`--solver cpsat`, needs `pip install -e ".[solver]"`) — an exact
   constraint model (OR-Tools) using a cumulative constraint for capacity. It
@@ -132,12 +166,13 @@ prerequisite ordering and per-owner monthly capacity:
 - **List scheduling** (`--solver list`) — a deterministic greedy heuristic,
   always available, used automatically when OR-Tools is absent.
 
-`--solver auto` (default) picks CP-SAT when OR-Tools is installed. On the
-shipped 90-task testbed instance CP-SAT cuts weighted exposure by ~29% versus
-the heuristic (273k vs 384k) with the same makespan, by ordering low-priority
-fillers around the urgent tasks. Both schedulers are deterministic and both
-report `feasible_within_horizon`, `makespan_months` and `over_horizon_tasks`,
-so an under-capacity plan is surfaced honestly instead of silently overflowing.
+`--solver auto` picks CP-SAT when installed. The single-worker search uses seed
+42, but a wall-clock limit does not guarantee the same incumbent across machines
+or versions. Inspect solver status, objective, best bound and proven-optimal flag.
+The requested horizon is a reporting target; tasks may extend beyond it. Positive
+integer capacities and durations and a valid DAG are required. Change-window
+strings are metadata, not enforced constraints. Generate current metrics with the
+revision reproduction script; the former 90-task/~29% example is obsolete.
 
 ```bash
 qramp plan assessment.json --capacity teams.yaml --horizon 30m --solver cpsat --time-limit 8
@@ -166,10 +201,10 @@ qramp verify plan.yaml --against cbom.json --phase 3 \
       --active-probe --scope testbed/testbed.scope.yaml --scope-key testbed/scope.key
 ```
 
-Both probes are **capability-tiered and never lie**: if a check cannot actually
+Both probes report capability limitations explicitly: if a check cannot actually
 be performed here (PQ groups unsupported by the local OpenSSL; endpoint
 unreachable; none of the legacy parameters offerable), the result is **deferred
-and fails closed** with the specific reason — never a false pass. Like the TLS
+and fails closed** with the specific reason — without treating unavailable probes as successful. Like the TLS
 collector, the probes are read-only (standard handshakes, no application data,
 no exploitation) and run only against hosts in the HMAC-signed scope file.
 
@@ -277,10 +312,11 @@ qramp diff qramp-cbom.json vendor-inventory.json --detailed     # coverage gaps 
 Import inverts the spec mapping (`block-cipher` → symmetric-cipher, `pke` →
 pk-encryption, `key-agree` → key-agreement, `ae` → symmetric-cipher with an
 AEAD mode, and so on) and canonicalises free-form component names
-(`SHA512withRSA` → an RSA signature). A QRAMP-produced BOM round-trips
-**losslessly** — the exact internal fields are carried in the `qramp:` property
-namespace and recovered verbatim — while a foreign BOM falls back to
-heuristic name parsing and is reconstructed from the standard fields alone.
+(`SHA512withRSA` → an RSA signature). A QRAMP-produced BOM carries canonical algorithm identity in `qramp:`
+properties, while a foreign BOM falls back to heuristic name parsing of standard
+fields. Import adds imported-tool provenance; it is not a lossless replacement
+for native per-occurrence evidence or collector coverage. Generate a fresh native
+scan before task acceptance.
 Every imported occurrence is tagged with its provenance (`source:<tool>`).
 
 `--merge` performs cross-tool **entity resolution**: an asset that QRAMP and the
@@ -469,7 +505,7 @@ edges — schema-valid and round-trippable.
 
 ## What the rule pack classifies
 
-The shipped pack (`transition-2024.2`) covers the standardised post-quantum
+The shipped pack (`transition-2024.3`) covers the standardised post-quantum
 schemes (ML-KEM, ML-DSA, SLH-DSA, FN-DSA → `pq_ready`; classical+PQ hybrids such
 as `X25519+ML-KEM-768` and X-Wing → `hybrid`) and the classical schemes Shor or
 Grover breaks. Beyond the obvious RSA/ECC/DH, three areas get specific coverage:
@@ -728,7 +764,7 @@ downloadable DOT/Mermaid text under `graphs/`, and the machine-readable exports
 
 ```bash
 qramp bundle assessment.json -o acme-pqc-report \
-  --history scans/ --vex exceptions.yaml --rules rules/transition-2024.yaml \
+  --history scans/ --vex exceptions.yaml --rules src/qramp/rules/transition-2024.yaml \
   --title "Acme Corp — PQC Readiness"
 # open acme-pqc-report/index.html, or zip the directory and send it
 ```
@@ -882,13 +918,14 @@ notAfter). The rule pack routes weak certificates to a dedicated `reissue`
 action — you cannot "externalise" or "decommission" a certificate, you replace
 it — which the planner expands into a **reissue-certificate → deploy-and-revoke**
 recipe. Each task carries a machine-checkable acceptance predicate: `qramp
-verify` re-scans and fails the task while any weak certificate of that dimension
-remains, and passes only once a fresh scan is clean. The `has_tag` rule-matcher
+verify` checks the operator-supplied refreshed scan of the same certificate file.
+It validates supported hygiene requirements; deployment and revocation remain
+manual, and a missing or unparseable replacement file is deferred. The `has_tag` rule-matcher
 condition (added for this) lets policy select assets by the collector's tags
 without hard-coding key sizes in code.
 
 ## Test
 
 ```bash
-pytest -q          # 377 tests
+pytest -q          # see revision notes for the recorded environment and result
 ```
