@@ -57,7 +57,7 @@ def main(argv=None) -> int:
     p.add_argument("--time-limit", type=float, default=10.0,
                    help="CP-SAT time limit in seconds")
 
-    v = sub.add_parser("verify", help="re-scan and evaluate acceptance predicates")
+    v = sub.add_parser("verify", help="evaluate task acceptance against a supplied fresh CBOM")
     v.add_argument("plan"); v.add_argument("--against", required=True, help="freshly collected CBOM")
     v.add_argument("--phase", type=int); v.add_argument("--evidence-out", default="evidence.json")
     v.add_argument("--active-probe", action="store_true",
@@ -313,6 +313,10 @@ def main(argv=None) -> int:
     args = ap.parse_args(argv)
 
     if args.cmd == "scan":
+        if not any((args.source, args.sbom, args.certs, args.config, args.scope, args.manifests)):
+            ap.error("scan requires at least one evidence source")
+        if args.manifests == "__source__" and not args.source:
+            ap.error("--manifests without a directory requires --source")
         inv = Inventory()
         owner_map = None
         if args.owners:
@@ -366,9 +370,13 @@ def main(argv=None) -> int:
         print(f"[verify] phase={args.phase} checked={b['checked']} "
               f"passed={b['passed']} failed={b['failed']} -> {args.evidence_out}")
         for res in b["results"]:
-            mark = "PASS" if res["passed"] else "FAIL"
+            mark = res.get("status", "pass" if res["passed"] else "fail").upper()
             print(f"         [{mark}] {res['id']} {res['type']}: {res['detail']}")
-        return 0 if b["failed"] == 0 else 2
+        for finding in b.get("unplanned_target_occurrences", []):
+            print(f"         [UNPLANNED] {finding['display']} at {finding['path']}")
+        if b.get("selection_note"):
+            print(f"         [DEFERRED] {b['selection_note']}")
+        return 0 if b["accepted"] else 2
 
     if args.cmd == "diff":
         old, new = Inventory.load(args.old), Inventory.load(args.new)

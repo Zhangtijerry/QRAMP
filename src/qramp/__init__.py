@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: MIT
 # Copyright (c) 2026 Ti Zhang
 """QRAMP — cryptographic asset inventory and quantum-resistant migration planning."""
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 
 from .model import Inventory, CryptoAsset, Occurrence, diff  # noqa: F401
 from . import collectors, assess, plan, report  # noqa: F401
@@ -10,6 +10,12 @@ from . import collectors, assess, plan, report  # noqa: F401
 def scan(inventory: Inventory, **sources) -> Inventory:
     """Run the requested collectors against an inventory. Recognised kwargs:
     source_dir, sbom_path, cert_dir, config_dir, and (scope_path + scope_key)."""
+    import os
+    for key in ("source_dir", "manifests_dir", "cert_dir", "config_dir"):
+        if sources.get(key) and not os.path.isdir(sources[key]):
+            raise ValueError(f"{key} directory does not exist: {sources[key]}")
+    if sources.get("sbom_path") and not os.path.isfile(sources["sbom_path"]):
+        raise ValueError(f"SBOM file does not exist: {sources['sbom_path']}")
     if sources.get("source_dir"):
         collectors.get("source-py")(inventory, source_dir=sources["source_dir"],
                                     owner_map=sources.get("owner_map"),

@@ -3,15 +3,18 @@
 """qramp.plan — Layer 4.
 
 Compiles assessed assets into typed tasks, builds a DAG, and schedules it
-under change-window/capacity constraints minimising weighted exposure-days.
+under precedence/capacity constraints with weighted task-start objectives.
+Change windows are descriptive metadata, not enforced constraints.
 Uses OR-Tools CP-SAT when available and a deterministic list-scheduling
-heuristic otherwise. Every task carries prerequisites, a rollback action and
-a machine-checkable acceptance predicate.
+heuristic otherwise. Tasks carry prerequisites, rollback guidance and acceptance
+requirements; some obligations require manual evidence.
 """
 from __future__ import annotations
 
 import json
-from dataclasses import dataclass, field, asdict
+import os
+import hashlib
+from dataclasses import dataclass, field, asdict, replace
 
 import yaml
 
@@ -30,10 +33,6 @@ RECIPE = {
     "quantum_broken": [
         (1, "externalise-algorithm", 1,
          "revert config to pinned baseline snapshot and reload service"),
-        (2, "enable-hybrid-kex", 2,
-         "disable PQ group, fall back to classical KEX, reload"),
-        (3, "decommission-legacy", 1,
-         "re-open legacy listener from snapshot if peers regress"),
     ],
     "quantum_weakened": [
         (1, "increase-parameters", 1,
@@ -70,19 +69,63 @@ REISSUE_RECIPE = [
 ]
 
 
+REPLACE_STEP = (2, "replace-algorithm", 2,
+                "restore the previous implementation and configuration snapshot")
+
+
 def _recipe_for(asset):
-    """Choose the remediation recipe for an asset. Assets whose rule marks
-    remediate.action == 'decommission' (negotiated kx weaknesses) skip the
-    source-level externalise step and go straight to hybrid + decommission;
-    remediate.action == 'reissue' (weak certificates) route to the issuance
-    workflow."""
-    if isinstance(asset.remediate, dict):
-        action = asset.remediate.get("action")
-        if action == "decommission" and asset.exposure_class == "quantum_broken":
-            return DECOMMISSION_RECIPE
-        if action == "reissue":
-            return REISSUE_RECIPE
-    return RECIPE.get(asset.exposure_class)
+    """Choose actions by the actual primitive AND the observed usage.
+
+    Library capability declarations are inventory evidence, not proof that a
+    particular source file or endpoint uses that capability.
+    """
+    if asset.exposure_class == "unknown":
+        return RECIPE["unknown"]
+    if asset.exposure_class in ("pq_ready", "hybrid"):
+        return None
+    kinds = {o.collector for o in asset.occurrences}
+    if kinds and kinds <= {"sbom", "manifests"}:
+        return RECIPE["unknown"]
+    hint = asset.remediate or {}
+    if "certs" in kinds:
+        return REISSUE_RECIPE
+    if hint.get("action") == "decommission" or asset.primitive == "protocol":
+        return DECOMMISSION_RECIPE
+    if "tls" in kinds and asset.primitive == "key-agreement":
+        return DECOMMISSION_RECIPE
+    if asset.exposure_class == "quantum_weakened":
+        return RECIPE["quantum_weakened"]
+    if asset.exposure_class == "quantum_broken":
+        prefix = RECIPE["quantum_broken"][:1] if any(k.startswith("source-") for k in kinds) else []
+        return prefix + [REPLACE_STEP]
+    return RECIPE["unknown"]
+
+
+def _replacement_requirement(asset):
+    req = dict(asset.remediate or {})
+    if "require_algorithm" not in req:
+        defaults = {
+            "hash": ["sha2-256", "sha2-384", "sha2-512", "sha3-256", "sha3-512"],
+            "symmetric-cipher": ["aes", "chacha20"],
+            "key-agreement": ["ml-kem", "hybrid-pq"],
+            "pk-encryption": ["ml-kem", "hybrid-pq"],
+            "signature": ["ml-dsa", "slh-dsa", "fn-dsa"],
+        }
+        req["require_algorithm"] = defaults.get(asset.primitive, [])
+        if asset.primitive == "symmetric-cipher":
+            req["replacement_min_key_length"] = 256
+    return req
+
+
+def _location(occ):
+    loc = occ.locator
+    if occ.collector == "tls":
+        return loc
+    if occ.collector.startswith("source-") or occ.collector == "configs":
+        head, sep, tail = loc.rpartition(":")
+        if sep and tail.isdigit():
+            loc = head
+    return os.path.abspath(loc)
 
 
 @dataclass
@@ -103,6 +146,10 @@ class Task:
     requirement: dict | None = None      # remediation target copied from the asset's rule (for verify)
     weight: int = 0
     start_month: int | None = None
+    target_primitive: str = ""
+    target_params: str = ""
+    target_locations: list[dict] = field(default_factory=list)
+    evidence_scope: dict = field(default_factory=dict)
 
 
 def _acceptance_for(ttype: str, display: str, loc: str, requirement: dict | None = None) -> str:
@@ -112,6 +159,8 @@ def _acceptance_for(ttype: str, display: str, loc: str, requirement: dict | None
         return f"source_scan finds no hard-coded algorithm literal for {display}"
     if ttype == "decommission-legacy":
         return f"tls_endpoint({loc}) does NOT negotiate any quantum_broken suite"
+    if ttype == "replace-algorithm":
+        return f"{display} is absent and an approved replacement is observed in the target file"
     if ttype == "increase-parameters":
         req = requirement or {}
         if "require_min_key_length" in req:
@@ -133,41 +182,50 @@ def _acceptance_for(ttype: str, display: str, loc: str, requirement: dict | None
             return f"no weak-curve certificate remains for {display}"
         return f"weak certificate {display} has been reissued"
     if ttype == "deploy-and-revoke":
-        return f"old weak certificate for {display} no longer served and is revoked"
+        return f"deployment and revocation of the old certificate for {display} require operator evidence"
     return f"asset {display} manually reviewed and dispositioned"
 
 
 def synthesise_tasks(inv: Inventory) -> list[Task]:
     tasks: list[Task] = []
-    n = 0
-    for a in inv.assets:
-        if a.tier in (None, "OK", "P3") and a.exposure_class in ("pq_ready", "hybrid"):
+    stats = {c["name"]: c for c in inv.meta.get("collectors", [])}
+    for asset in inv.assets:
+        if asset.exposure_class in ("pq_ready", "hybrid"):
             continue
-        recipe = _recipe_for(a)
-        if not recipe:
-            continue
-        owner = sorted(a.owners())[0] if a.owners() else "unassigned"
-        loc = next((o.locator for o in a.occurrences if o.collector == "tls"),
-                   a.occurrences[0].locator if a.occurrences else "?")
-        prev_id = None
-        for phase, ttype, dur, rollback in recipe:
-            n += 1
-            tid = f"T-{n:03d}"
-            requirement = a.remediate if ttype in ("increase-parameters",
-                                                     "reissue-certificate",
-                                                     "deploy-and-revoke") else None
-            t = Task(id=tid, type=ttype, phase=phase,
-                     target_asset=a.asset_id, target_display=a.display,
-                     target_algorithm=a.algorithm,
-                     owner=owner, duration_months=dur,
-                     prerequisites=[prev_id] if prev_id else [],
-                     action=f"{ttype} for {a.display} at {loc}",
-                     rollback=rollback,
-                     acceptance=_acceptance_for(ttype, a.display, loc, requirement),
-                     requirement=requirement,
-                     weight=TIER_WEIGHT.get(a.tier, 1))
-            tasks.append(t)
-            prev_id = tid
+        groups = {}
+        for o in asset.occurrences:
+            groups.setdefault((o.owner or "unassigned", o.collector, _location(o)), []).append(o)
+        if not groups:
+            groups[("unassigned", "unknown", "?")] = []
+        for (owner, collector, loc), occurrences in sorted(groups.items()):
+            a = replace(asset, occurrences=occurrences)
+            recipe = _recipe_for(a) or []
+            scope = {}
+            if collector in stats:
+                base = stats[collector]
+                scope[collector] = {k: base[k] for k in ("root", "query_hash") if k in base}
+            identity = json.dumps([a.key, owner, collector, loc], sort_keys=True)
+            group_id = hashlib.sha256(identity.encode()).hexdigest()[:12]
+            prev_id = None
+            for phase, ttype, dur, rollback in recipe:
+                tid = f"T-{group_id}-{ttype}"
+                requirement = a.remediate
+                if ttype == "replace-algorithm":
+                    requirement = _replacement_requirement(a)
+                t = Task(id=tid, type=ttype, phase=phase,
+                         target_asset=a.asset_id, target_display=a.display,
+                         target_algorithm=a.algorithm,
+                         target_primitive=a.primitive, target_params=a.params,
+                         target_locations=[{"collector": collector, "path": loc}],
+                         evidence_scope=scope,
+                         owner=owner, duration_months=dur,
+                         prerequisites=[prev_id] if prev_id else [],
+                         action=f"{ttype} for {a.display} at {loc}",
+                         rollback=rollback,
+                         acceptance=_acceptance_for(ttype, a.display, loc, requirement),
+                         requirement=requirement, weight=TIER_WEIGHT.get(a.tier, 1))
+                tasks.append(t)
+                prev_id = tid
     return tasks
 
 
@@ -179,8 +237,15 @@ def _list_schedule(tasks: list[Task], capacity: dict, horizon: int) -> dict:
     per_owner = capacity.get("per_owner_concurrent", {})
     default_cap = capacity.get("default_concurrent", 1)
     by_id = {t.id: t for t in tasks}
-    # order by (phase, -weight, id) so urgent items go first
-    order = sorted(tasks, key=lambda t: (t.phase, -t.weight, t.id))
+    # Select only ready tasks, including DAGs with same-phase prerequisites.
+    pending = {t.id: t for t in tasks}
+    order, done = [], set()
+    while pending:
+        ready = [t for t in pending.values() if set(t.prerequisites) <= done]
+        t = min(ready, key=lambda t: (t.phase, -t.weight, t.id))
+        order.append(t)
+        done.add(t.id)
+        del pending[t.id]
     load: dict[tuple, int] = {}   # (owner, month) -> count
     overflow = 0
     for t in order:
@@ -198,8 +263,6 @@ def _list_schedule(tasks: list[Task], capacity: dict, horizon: int) -> dict:
                    for mm in range(m, m + t.duration_months)):
                 break
             m += 1
-            if m > horizon * 4:          # guard against pathological loops
-                break
         t.start_month = m
         for mm in range(m, m + t.duration_months):
             load[(t.owner, mm)] = load.get((t.owner, mm), 0) + 1
@@ -257,8 +320,7 @@ def _cpsat_schedule(tasks: list[Task], capacity: dict, horizon: int,
     makespan = model.NewIntVar(0, ub, "makespan")
     model.AddMaxEquality(makespan, [end[t.id] for t in tasks]) if tasks else None
 
-    # primary: weighted start (exposure); secondary: makespan, lightly weighted
-    # so it never dominates urgency but breaks ties toward compact schedules.
+    # Additive objective, not lexicographic: weighted start plus makespan.
     weighted_start = sum(t.weight * start[t.id] for t in tasks)
     model.Minimize(weighted_start + makespan)
 
@@ -297,6 +359,23 @@ def schedule(tasks: list[Task], capacity: dict, horizon: int,
       'list'  -> force the deterministic heuristic.
     Returns metadata describing what actually ran.
     """
+    if horizon < 1:
+        raise ValueError("horizon must be positive")
+    ids = {t.id for t in tasks}
+    if len(ids) != len(tasks):
+        raise ValueError("task ids must be unique")
+    done = set()
+    while len(done) < len(tasks):
+        ready = {t.id for t in tasks if t.id not in done and set(t.prerequisites) <= done}
+        if not ready:
+            raise ValueError("task graph has a cycle or an unknown prerequisite")
+        done |= ready
+    for t in tasks:
+        cap = capacity.get("per_owner_concurrent", {}).get(t.owner, capacity.get("default_concurrent", 1))
+        if not isinstance(cap, int) or cap < 1:
+            raise ValueError(f"capacity for {t.owner} must be a positive integer")
+        if not isinstance(t.duration_months, int) or t.duration_months < 1:
+            raise ValueError("task durations must be positive whole months")
     want_cpsat = solver == "cpsat" or (solver == "auto" and HAVE_ORTOOLS)
     if want_cpsat and HAVE_ORTOOLS:
         meta = _cpsat_schedule(tasks, capacity, horizon, time_limit_s)

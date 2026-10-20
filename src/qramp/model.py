@@ -368,7 +368,7 @@ class Inventory:
     # -- access ---------------------------------------------------------
     @property
     def assets(self) -> list[CryptoAsset]:
-        return sorted(self._assets.values(), key=lambda a: (a.primitive, a.algorithm, a.key_length or 0))
+        return sorted(self._assets.values(), key=lambda a: (a.primitive, a.algorithm, a.params, a.key_length or 0, a.mode))
 
     def __len__(self) -> int:
         return len(self._assets)
@@ -397,6 +397,7 @@ class Inventory:
                     "occurrences": [asdict(o) for o in a.occurrences],
                 },
                 "qramp": {
+                    "algorithm": a.algorithm,
                     "exposureClass": a.exposure_class,
                     "tier": a.tier,
                     "rationale": a.rationale,
@@ -445,7 +446,7 @@ class Inventory:
             "bomFormat": "CycloneDX", "specVersion": "1.6",
             "serialNumber": self.meta["serial"],
             "metadata": {"timestamp": self.meta["generated"],
-                         "tools": [{"vendor": "qramp", "name": "qramp", "version": "0.1.0"}],
+                         "tools": [{"vendor": "qramp", "name": "qramp", "version": "0.1.1"}],
                          "qrampCollectors": self.meta["collectors"]},
             "components": comps,
         }
@@ -506,7 +507,14 @@ class Inventory:
             q = c.get("qramp", {})
             occs = [Occurrence(**o) for o in c.get("evidence", {}).get("occurrences", [])]
             name = c.get("name", "")
-            alg = name.split("-")[0].split(" ")[0].lower() if name else "unknown"
+            # New inventories carry the canonical algorithm explicitly. For a
+            # 0.1.0 file, undo only the display suffixes, never split the name
+            # at its first hyphen (ML-KEM and SHA2-256 contain real hyphens).
+            token = name.split(" ", 1)[0].split("/", 1)[0]
+            bits = ap.get("keyLength")
+            if bits is not None and token.endswith(f"-{bits}"):
+                token = token[:-(len(str(bits)) + 1)]
+            alg = q.get("algorithm") or token.lower() or "unknown"
             # recover canonical fields
             asset = CryptoAsset(
                 primitive=ap.get("primitive", "unknown"),
@@ -522,9 +530,24 @@ class Inventory:
                 remediate=q.get("remediate"),
                 references=q.get("references"),
             )
-            inv._assets[asset.key] = asset
+            previous = inv._assets.get(asset.key)
+            if previous is not None:
+                previous.occurrences.extend(asset.occurrences)
+                asset = previous
+            else:
+                inv._assets[asset.key] = asset
             if c.get("bom-ref"):
                 ref_to_asset[c["bom-ref"]] = asset
+        # Certificate references must survive assess/save/export as well.
+        for c in doc.get("components", []):
+            cert = ref_to_cert.get(c.get("bom-ref"))
+            if cert is None:
+                continue
+            cp = c.get("cryptoProperties", {}).get("certificateProperties", {})
+            key = ref_to_asset.get(cp.get("subjectPublicKeyRef"))
+            sig = ref_to_asset.get(cp.get("signatureAlgorithmRef"))
+            cert.key_ref = key.key if key else None
+            cert.sig_ref = sig.key if sig else None
         # rebuild provides edges from the dependency graph
         for dep in doc.get("dependencies", []):
             comp = ref_to_comp.get(dep.get("ref"))

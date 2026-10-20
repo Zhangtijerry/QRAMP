@@ -9,6 +9,8 @@ import csv
 import hashlib
 import html
 import json
+import os
+from dataclasses import replace
 from datetime import datetime, timezone
 
 import yaml
@@ -495,81 +497,189 @@ def plan_to_issues(plan_path: str, out_json: str) -> None:
 
 
 # ---------------- verify ----------------
+def _file_locator(collector, locator):
+    if collector == "tls":
+        return locator
+    if collector.startswith("source-") or collector == "configs":
+        head, sep, tail = locator.rpartition(":")
+        if sep and tail.isdigit():
+            locator = head
+    return os.path.abspath(locator)
+
+
+def _task_inventory(inv, task):
+    """A task covers one owner/file or endpoint; other owners remain separate."""
+    locations = task.get("target_locations", [])
+    if not locations:
+        return inv
+    wanted = {(x["collector"], x["path"]) for x in locations}
+    scoped = Inventory()
+    for a in inv.assets:
+        occs = [o for o in a.occurrences
+                if (o.collector, _file_locator(o.collector, o.locator)) in wanted]
+        if occs:
+            scoped._assets[a.key] = replace(a, occurrences=occs)
+    for cert in inv.certificates:
+        if ("certs", os.path.abspath(cert.locator)) in wanted:
+            scoped.add_certificate(cert)
+    scoped.meta = inv.meta
+    return scoped
+
+
+def _evidence_problem(task, inv):
+    locations = task.get("target_locations", [])
+    if not locations:
+        return "legacy task lacks evidence scope; regenerate the plan from a complete scan"
+    stats = {c["name"]: c for c in inv.meta.get("collectors", [])}
+    for loc in locations:
+        col = loc["collector"]
+        if col == "tls":
+            continue  # Successful active handshakes supply their own evidence.
+        if col not in {"certs", "configs"} and not col.startswith("source-"):
+            return f"{col} is a capability declaration, not remediation evidence"
+        record = stats.get(col)
+        if not record or record.get("skipped"):
+            return f"required collector {col} did not complete"
+        if record.get("errors"):
+            return f"{col} has collection/parse errors: {record['errors'][0]}"
+        baseline = task.get("evidence_scope", {}).get(col, {})
+        if not baseline.get("root") or record.get("root") != baseline["root"]:
+            return f"{col} scan root changed or is undocumented"
+        if loc["path"] not in record.get("scanned_paths", []):
+            return f"target file is missing or unscanned: {loc['path']}"
+        if col.startswith("source-") and (not baseline.get("query_hash") or
+                record.get("query_hash") != baseline["query_hash"]):
+            return f"{col} detection queries changed or their hash is missing"
+    return None
+
+
+def _verify_index(inv):
+    index = {"tls_versions": {}, "tls_groups": {}, "literals": set(), "literal_algorithms": set(),
+             "uncertain_literals": set(), "by_algorithm": {},
+             "weak_cert": {"weak-key": [], "weak-curve": [], "weak-signature": []}}
+    for a in inv.assets:
+        atags = a.tag_union()
+        for wt in index["weak_cert"]:
+            if wt in atags or (wt == "weak-signature" and a.params in ("cert-sig:sha1", "cert-sig:md5")):
+                index["weak_cert"][wt].append(a.display)
+        index["by_algorithm"].setdefault(a.algorithm, []).append(
+            {"key_length": a.key_length, "params": a.params, "display": a.display,
+             "locators": [o.locator for o in a.occurrences]})
+        for o in a.occurrences:
+            if o.collector == "tls" and a.primitive == "protocol":
+                index["tls_versions"].setdefault(o.locator, set()).add(a.params)
+            if o.collector == "tls" and a.primitive == "key-agreement":
+                index["tls_groups"].setdefault(o.locator, set()).add(a.algorithm)
+            if o.collector.startswith("source-"):
+                if "indeterminate" in o.tags:
+                    index["uncertain_literals"].add(a.algorithm)
+                else:
+                    index["literals"].add(a.display)
+                    index["literal_algorithms"].add(a.algorithm)
+    return index
+
+
 def verify(plan_path: str, fresh_cbom_path: str, evidence_out: str,
            phase: int | None = None, active_probe: bool = False,
            scope_path: str | None = None, scope_key: str | None = None,
            attempts: int = 5) -> dict:
-    """Evaluate each task's acceptance predicate against a freshly collected
-    CBOM. When active_probe is set (with a signed scope file), the
-    enable-hybrid-kex check is confirmed by a real PQ hybrid handshake rather
-    than by passive observation alone."""
+    """Evaluate supplied scan evidence. PASS requires complete matching scope.
+
+    Missing/moved files, skipped collectors and changed queries are deferred;
+    they never count as successful remediation. This does not run a rescan.
+    """
     plan_doc = yaml.safe_load(open(plan_path, encoding="utf-8"))
     inv = Inventory.load(fresh_cbom_path)
-
-    # index current evidence
-    tls_versions: dict[str, set] = {}
-    tls_groups: dict[str, set] = {}
-    literals: set[str] = set()
-    # for reissue-certificate: which weak-cert tags remain
-    weak_cert = {"weak-key": [], "weak-curve": [], "weak-signature": []}
-    for a in inv.assets:
-        atags = a.tag_union()
-        for wt in weak_cert:
-            if wt in atags or (wt == "weak-signature" and a.params in ("cert-sig:sha1", "cert-sig:md5")):
-                weak_cert[wt].append(a.display)
-    # for increase-parameters: every fresh (algorithm) -> list of (key_length, params, locator)
-    by_algorithm: dict[str, list] = {}
-    for a in inv.assets:
-        by_algorithm.setdefault(a.algorithm, []).append(
-            {"key_length": a.key_length, "params": a.params,
-             "display": a.display,
-             "locators": [o.locator for o in a.occurrences
-                          if "indeterminate" not in o.tags]})
-        for o in a.occurrences:
-            if o.collector == "tls" and a.primitive == "protocol":
-                tls_versions.setdefault(o.locator, set()).add(a.params)
-            if o.collector == "tls" and a.primitive == "key-agreement":
-                tls_groups.setdefault(o.locator, set()).add(a.algorithm)
-            if o.collector in ("source-py", "source-java", "source-go") and "indeterminate" not in o.tags:
-                literals.add(a.display)
-
-    # authorised targets for active probing (host:port -> (host, port))
-    probe_targets: dict[str, tuple] = {}
-    probe_cap = None
-    if active_probe and scope_path and scope_key:
+    if phase is not None and not any(t["phase"] == phase for t in plan_doc["tasks"]):
+        raise ValueError(f"no tasks match requested phase {phase}")
+    if active_probe and (not scope_path or not scope_key):
+        raise ValueError("active probes require --scope and --scope-key")
+    if attempts < 1:
+        raise ValueError("attempts must be positive")
+    probe_targets, probe_cap = {}, None
+    if active_probe:
         from .collectors.tls import load_scope
         from .handshake import local_capability
-        for t in load_scope(scope_path, scope_key):     # raises if signature invalid
+        for t in load_scope(scope_path, scope_key):
             probe_targets[f"{t['host']}:{t['port']}"] = (t["host"], int(t["port"]))
         probe_cap = local_capability()
 
-    index = {"tls_versions": tls_versions, "tls_groups": tls_groups,
-             "literals": literals, "by_algorithm": by_algorithm,
-             "weak_cert": weak_cert,
-             "active_probe": active_probe, "probe_targets": probe_targets,
-             "attempts": attempts}
+    results, evaluated, visiting = [], {}, set()
+    tasks = {t["id"]: t for t in plan_doc["tasks"]}
+    def evaluate(t):
+        tid = t["id"]
+        if tid in evaluated:
+            return evaluated[tid]
+        if tid in visiting:
+            raise ValueError("cyclic prerequisites in plan")
+        visiting.add(tid)
+        blockers = []
+        for pre in t.get("prerequisites", []):
+            if pre not in tasks or not evaluate(tasks[pre])["passed"]:
+                blockers.append(pre)
+        scoped = _task_inventory(inv, t)
+        index = _verify_index(scoped)
+        index.update(active_probe=active_probe, probe_targets=probe_targets, attempts=attempts)
+        ok, detail = _eval_predicate(t, t["acceptance"], index, scoped)
+        status = "pass" if ok else "fail"
+        if not ok and ("deferred" in detail.lower() or "unknown" in detail.lower()):
+            status = "deferred"
+        if not ok and ("manual" in detail.lower() or t["type"] == "investigate-asset"):
+            status = "manual"
+        if ok:
+            problem = _evidence_problem(t, inv)
+            if problem:
+                ok, status, detail = False, "deferred", f"deferred: {problem}"
+        if blockers and ok:
+            ok, status, detail = False, "deferred", "deferred: prerequisite not accepted: " + ", ".join(blockers)
+        visiting.remove(tid)
+        result = {"id": tid, "type": t["type"], "acceptance": t["acceptance"],
+                  "passed": ok, "status": status, "detail": detail,
+                  "target_locations": t.get("target_locations", [])}
+        evaluated[tid] = result
+        return result
 
-    results = []
     for t in plan_doc["tasks"]:
-        if phase is not None and t["phase"] != phase:
-            continue
-        pred = t["acceptance"]
-        ok, detail = _eval_predicate(t, pred, index, inv)
-        results.append({"id": t["id"], "type": t["type"], "acceptance": pred,
-                        "passed": ok, "detail": detail})
-
+        if phase is None or t["phase"] == phase:
+            results.append(evaluate(t))
     passed = sum(r["passed"] for r in results)
+    # A target task can pass independently while a new use of that same asset
+    # appears elsewhere. Report that drift separately and keep the CLI gate red.
+    covered = {}
+    for t in plan_doc["tasks"]:
+        if t.get("target_asset") and t.get("target_locations"):
+            covered.setdefault(t["target_asset"], set()).update(
+                (x["collector"], x["path"]) for x in t["target_locations"])
+    unplanned, seen = [], set()
+    for a in inv.assets:
+        if a.asset_id not in covered:
+            continue
+        for o in a.occurrences:
+            if not (o.collector.startswith("source-") or o.collector in ("configs", "certs", "tls")):
+                continue
+            location = (o.collector, _file_locator(o.collector, o.locator))
+            key = (a.asset_id, *location)
+            if location not in covered[a.asset_id] and key not in seen:
+                seen.add(key)
+                unplanned.append({"asset_id": a.asset_id, "display": a.display,
+                                  "collector": location[0], "path": location[1]})
     bundle = {
         "generated": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "plan_hash": hashlib.sha256(open(plan_path, "rb").read()).hexdigest()[:16],
         "cbom_hash": hashlib.sha256(open(fresh_cbom_path, "rb").read()).hexdigest()[:16],
-        "phase": phase, "checked": len(results),
-        "passed": passed, "failed": len(results) - passed,
-        "active_probe": active_probe,
-        "probe_capability": probe_cap,
+        "phase": phase, "checked": len(results), "passed": passed,
+        "accepted": bool(results) and passed == len(results) and not unplanned,
+        "selection_note": None if results else "no tasks selected; no acceptance verdict",
+        "unplanned_target_occurrences": unplanned,
+        # failed is retained as the backwards-compatible count of all non-passes.
+        "failed": len(results) - passed,
+        "status_counts": {s: sum(r["status"] == s for r in results)
+                          for s in ("pass", "fail", "deferred", "manual")},
+        "active_probe": active_probe, "probe_capability": probe_cap,
         "results": results,
     }
-    json.dump(bundle, open(evidence_out, "w", encoding="utf-8"), indent=2)
+    with open(evidence_out, "w", encoding="utf-8") as f:
+        json.dump(bundle, f, indent=2)
     return bundle
 
 
@@ -606,7 +716,9 @@ def _eval_predicate(task, pred, index, inv):
             return False, f"deferred: no live TLS evidence for {loc} (fail-closed)"
         vers = tls_versions.get(loc, set())
         legacy = {"1.0", "1.1", "3.0"} & vers
-        return (not legacy), f"{loc} negotiates versions {sorted(vers)} (passive)"
+        if legacy:
+            return False, f"{loc} negotiates versions {sorted(vers)} (passive)"
+        return False, "deferred: passive TLS versions do not prove refusal of legacy suites; use an active probe"
 
     if ttype == "enable-hybrid-kex":
         # Prefer an active handshake when probing is enabled and the endpoint
@@ -631,20 +743,31 @@ def _eval_predicate(task, pred, index, inv):
         groups = tls_groups.get(loc, set())
         has_pq = any("hybrid" in g or "ml-kem" in g for g in groups)
         if has_pq:
-            return True, f"passive: {loc} offers PQ group(s) {sorted(groups)}"
+            return False, f"deferred: passive PQ group observation does not establish handshake success rate at {loc}; use an active probe"
         if index.get("active_probe"):
-            return False, f"passive-only and no PQ group observed at {loc}"
+            return False, f"deferred: no authorised active target or PQ evidence at {loc}"
         return has_pq, f"{loc} key-agreement groups {sorted(groups)} (passive)"
 
     if ttype == "externalise-algorithm":
-        still = task["target_display"] in literals
-        return (not still), ("literal removed" if not still else "hard-coded literal still present")
+        still = (task["target_display"] in literals or
+                 _algorithm_of(task) in index.get("literal_algorithms", set()))
+        if still:
+            return False, "hard-coded literal still present"
+        if _algorithm_of(task) in index.get("uncertain_literals", set()):
+            return False, "deferred: indeterminate algorithm use remains"
+        return True, "literal removed within the task scope"
+
+    if ttype == "replace-algorithm":
+        return _check_parameters(task, by_algorithm)
 
     if ttype == "increase-parameters":
         return _check_parameters(task, by_algorithm)
 
-    if ttype in ("reissue-certificate", "deploy-and-revoke"):
-        return _check_reissue(task, index["weak_cert"])
+    if ttype == "deploy-and-revoke":
+        return False, "manual confirmation required: inventory absence does not prove deployment or revocation"
+
+    if ttype == "reissue-certificate":
+        return _check_reissue(task, index["weak_cert"], inv)
 
     if ttype == "investigate-asset":
         return False, "investigation task — requires manual disposition"
@@ -699,38 +822,58 @@ def _check_parameters(task, by_algorithm):
             return False, f"weak {alg.upper()} still present ({len(entries)} occurrence(s))"
         present_alts = [a for a in allowed if by_algorithm.get(a)]
         if present_alts:
-            return True, f"{alg.upper()} replaced; found stronger: {', '.join(sorted(present_alts))}"
+            floor = req.get("replacement_min_key_length")
+            if floor is not None:
+                for alt in present_alts:
+                    for e in by_algorithm[alt]:
+                        if e["key_length"] is None or e["key_length"] < floor:
+                            return False, "replacement key length is unknown or below the required floor"
+            return True, f"{alg.upper()} replaced; found allowed alternative: {', '.join(sorted(present_alts))}"
         return False, f"{alg.upper()} gone but no acceptable replacement observed"
 
     # requirement missing from the task (older plan) — do not pass vacuously
     return False, "no machine-checkable requirement attached to task (fail-closed)"
 
-def _check_reissue(task, weak_cert):
-    """reissue-certificate / deploy-and-revoke are satisfied when the specific
-    weak-certificate condition no longer appears in the freshly collected CBOM.
-    Fail-closed: an unrecognised requirement does not pass vacuously.
+def _check_reissue(task, weak_cert, inv=None):
+    """Check the declared target against observed replacement certificates.
 
-    The requirement (verbatim from the rule pack) selects the dimension:
-      * require_signature_hash -> no weak-signature (SHA-1/MD5) cert remains
-      * min_key_length         -> no weak-key (undersized) cert remains
-      * prefer                 -> no weak-curve cert remains
+    This confirms file-level certificate hygiene, never issuance history,
+    live deployment or revocation. Unsupported requirements remain manual.
     """
     req = task.get("requirement") or {}
-    if "require_signature_hash" in req:
-        remaining = weak_cert.get("weak-signature", [])
-        dim = "weak-signature (SHA-1/MD5) certificate"
-    elif "min_key_length" in req:
-        remaining = weak_cert.get("weak-key", [])
-        dim = "undersized-key certificate"
-    elif "prefer" in req:
-        remaining = weak_cert.get("weak-curve", [])
-        dim = "weak-curve certificate"
-    else:
-        return False, "no machine-checkable reissue requirement attached (fail-closed)"
-
-    if remaining:
-        return False, f"{len(remaining)} {dim}(s) still present: " + "; ".join(remaining)
-    return True, f"no {dim} remains in the fresh scan"
+    if inv is None or not inv.certificates:
+        return False, "deferred: no parsed certificate evidence in the task scope"
+    for cert in inv.certificates:
+        key = inv._assets.get(cert.key_ref)
+        sig = inv._assets.get(cert.sig_ref)
+        if "min_key_length" in req:
+            floor = int(req["min_key_length"])
+            if key is None or key.key_length is None:
+                return False, "deferred: certificate key length unknown"
+            if key.key_length < floor:
+                return False, f"certificate key remains below {floor} bits"
+        elif "require_signature_hash" in req:
+            # Ordered digest families supported by the shipped hygiene policy.
+            bits = {"sha2-224": 224, "sha2-256": 256, "sha2-384": 384,
+                    "sha2-512": 512, "sha3-256": 256, "sha3-384": 384,
+                    "sha3-512": 512, "sha1": 160, "md5": 128}
+            target = bits.get(req["require_signature_hash"])
+            digest = sig.params.removeprefix("cert-sig:") if sig else ""
+            if target is None or digest not in bits:
+                return False, "deferred: certificate signature digest cannot be checked against this policy"
+            if digest in ("sha1", "md5") or bits[digest] < target:
+                return False, "certificate signature digest remains below the requirement"
+        elif "prefer" in req:
+            floor = int(req.get("min_curve_bits", 256))
+            if req["prefer"] != "secp256r1":
+                return False, "manual confirmation required: unsupported certificate replacement profile"
+            if key is None or key.algorithm != "ecdsa" or key.key_length is None:
+                return False, "deferred: certificate EC key parameters unknown"
+            if key.key_length < floor:
+                return False, f"certificate curve remains below {floor} bits"
+        else:
+            return False, "manual confirmation required: no supported certificate reissue requirement"
+    return True, "target certificate file meets the declared hygiene requirement; deployment and revocation are not checked"
 
 
 # ---------------- migration progress report ----------------

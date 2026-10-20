@@ -281,7 +281,7 @@ def to_cyclonedx(inv, *, spec_version: str = "1.6") -> dict:
         if ct.signed_by:                     # cert dependsOn its issuer cert
             dependencies.append({"ref": ct.bom_ref, "dependsOn": [ct.signed_by]})
 
-    tools = [{"vendor": "qramp", "name": "qramp", "version": "0.1.0"}]
+    tools = [{"vendor": "qramp", "name": "qramp", "version": "0.1.1"}]
     metadata = {
         "timestamp": inv.meta["generated"],
         "tools": {"components": [
