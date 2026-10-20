@@ -1,0 +1,485 @@
+{
+  "description": "New author-constructed 0.1.1 challenge set. Labels specified before detector execution; not independent real-project annotation and not a reconstruction of the unpublished 0.1.0 fixtures.",
+  "fixtures": [
+    {
+      "id": "python-direct-1",
+      "language": "python",
+      "filename": "sample.py",
+      "kind": "direct",
+      "positive": true,
+      "source": "import hashlib\nhashlib.md5(b\"x\")\n"
+    },
+    {
+      "id": "python-direct-2",
+      "language": "python",
+      "filename": "sample.py",
+      "kind": "direct",
+      "positive": true,
+      "source": "import hashlib\nhashlib.sha1(b\"x\")\n"
+    },
+    {
+      "id": "python-direct-3",
+      "language": "python",
+      "filename": "sample.py",
+      "kind": "direct",
+      "positive": true,
+      "source": "import hashlib\nhashlib.sha256(b\"x\")\n"
+    },
+    {
+      "id": "python-direct-4",
+      "language": "python",
+      "filename": "sample.py",
+      "kind": "direct",
+      "positive": true,
+      "source": "from Crypto.Cipher import DES\nDES.new(k)\n"
+    },
+    {
+      "id": "python-direct-5",
+      "language": "python",
+      "filename": "sample.py",
+      "kind": "direct",
+      "positive": true,
+      "source": "from cryptography.hazmat.primitives.asymmetric import rsa\nrsa.generate_private_key(public_exponent=65537,key_size=2048)\n"
+    },
+    {
+      "id": "python-direct-6",
+      "language": "python",
+      "filename": "sample.py",
+      "kind": "direct",
+      "positive": true,
+      "source": "import ssl\nx=ssl.PROTOCOL_TLSv1\n"
+    },
+    {
+      "id": "python-boundary-1",
+      "language": "python",
+      "filename": "sample.py",
+      "kind": "boundary",
+      "positive": true,
+      "source": "import hashlib as h\nh.md5(b\"x\")\n"
+    },
+    {
+      "id": "python-boundary-2",
+      "language": "python",
+      "filename": "sample.py",
+      "kind": "boundary",
+      "positive": true,
+      "source": "import hashlib\nhashlib.new(\"m\"+\"d5\",b\"x\")\n"
+    },
+    {
+      "id": "python-negative-1",
+      "language": "python",
+      "filename": "sample.py",
+      "kind": "negative",
+      "positive": false,
+      "source": "# hashlib.md5(b\"x\")\n"
+    },
+    {
+      "id": "python-negative-2",
+      "language": "python",
+      "filename": "sample.py",
+      "kind": "negative",
+      "positive": false,
+      "source": "text=\"hashlib.md5(b'x')\"\n"
+    },
+    {
+      "id": "python-negative-3",
+      "language": "python",
+      "filename": "sample.py",
+      "kind": "negative",
+      "positive": false,
+      "source": "x=1+2\n"
+    },
+    {
+      "id": "python-negative-4",
+      "language": "python",
+      "filename": "sample.py",
+      "kind": "negative",
+      "positive": false,
+      "source": "class Fake:\n def md5(self,x): return x\nhashlib=Fake()\nhashlib.md5(b\"x\")\n"
+    },
+    {
+      "id": "java-direct-1",
+      "language": "java",
+      "filename": "sample.java",
+      "kind": "direct",
+      "positive": true,
+      "source": "import java.security.*; import javax.crypto.*; class Sample { void f() throws Exception { MessageDigest.getInstance(\"MD5\"); } }\n"
+    },
+    {
+      "id": "java-direct-2",
+      "language": "java",
+      "filename": "sample.java",
+      "kind": "direct",
+      "positive": true,
+      "source": "import java.security.*; import javax.crypto.*; class Sample { void f() throws Exception { MessageDigest.getInstance(\"SHA-1\"); } }\n"
+    },
+    {
+      "id": "java-direct-3",
+      "language": "java",
+      "filename": "sample.java",
+      "kind": "direct",
+      "positive": true,
+      "source": "import java.security.*; import javax.crypto.*; class Sample { void f() throws Exception { MessageDigest.getInstance(\"SHA-256\"); } }\n"
+    },
+    {
+      "id": "java-direct-4",
+      "language": "java",
+      "filename": "sample.java",
+      "kind": "direct",
+      "positive": true,
+      "source": "import java.security.*; import javax.crypto.*; class Sample { void f() throws Exception { Cipher.getInstance(\"DES/ECB/PKCS5Padding\"); } }\n"
+    },
+    {
+      "id": "java-direct-5",
+      "language": "java",
+      "filename": "sample.java",
+      "kind": "direct",
+      "positive": true,
+      "source": "import java.security.*; import javax.crypto.*; class Sample { void f() throws Exception { Cipher.getInstance(\"AES/GCM/NoPadding\"); } }\n"
+    },
+    {
+      "id": "java-direct-6",
+      "language": "java",
+      "filename": "sample.java",
+      "kind": "direct",
+      "positive": true,
+      "source": "import java.security.*; import javax.crypto.*; class Sample { void f() throws Exception { KeyPairGenerator.getInstance(\"RSA\"); } }\n"
+    },
+    {
+      "id": "java-boundary-1",
+      "language": "java",
+      "filename": "sample.java",
+      "kind": "boundary",
+      "positive": true,
+      "source": "import java.security.*; import javax.crypto.*; class Sample { void f() throws Exception { java.security.MessageDigest.getInstance(\"MD5\"); } }\n"
+    },
+    {
+      "id": "java-boundary-2",
+      "language": "java",
+      "filename": "sample.java",
+      "kind": "boundary",
+      "positive": true,
+      "source": "import java.security.*; import javax.crypto.*; class Sample { void f() throws Exception { String a=\"M\"+\"D5\"; MessageDigest.getInstance(a); } }\n"
+    },
+    {
+      "id": "java-negative-1",
+      "language": "java",
+      "filename": "sample.java",
+      "kind": "negative",
+      "positive": false,
+      "source": "import java.security.*; import javax.crypto.*; class Sample { void f() throws Exception { // MessageDigest.getInstance(\"MD5\");\n } }\n"
+    },
+    {
+      "id": "java-negative-2",
+      "language": "java",
+      "filename": "sample.java",
+      "kind": "negative",
+      "positive": false,
+      "source": "import java.security.*; import javax.crypto.*; class Sample { void f() throws Exception { String x=\"MessageDigest.getInstance(\\\"MD5\\\")\"; } }\n"
+    },
+    {
+      "id": "java-negative-3",
+      "language": "java",
+      "filename": "sample.java",
+      "kind": "negative",
+      "positive": false,
+      "source": "import java.security.*; import javax.crypto.*; class Sample { void f() throws Exception { int x=1+2; } }\n"
+    },
+    {
+      "id": "java-negative-4",
+      "language": "java",
+      "filename": "sample.java",
+      "kind": "negative",
+      "positive": false,
+      "source": "class MessageDigest { static int getInstance(String s){return 1;} } class Sample {void f(){MessageDigest.getInstance(\"MD5\");}}"
+    },
+    {
+      "id": "go-direct-1",
+      "language": "go",
+      "filename": "sample.go",
+      "kind": "direct",
+      "positive": true,
+      "source": "package sample\nimport (\"crypto/md5\")\nfunc f(){ md5.Sum(data) }\n"
+    },
+    {
+      "id": "go-direct-2",
+      "language": "go",
+      "filename": "sample.go",
+      "kind": "direct",
+      "positive": true,
+      "source": "package sample\nimport (\"crypto/sha1\")\nfunc f(){ sha1.Sum(data) }\n"
+    },
+    {
+      "id": "go-direct-3",
+      "language": "go",
+      "filename": "sample.go",
+      "kind": "direct",
+      "positive": true,
+      "source": "package sample\nimport (\"crypto/sha256\")\nfunc f(){ sha256.Sum256(data) }\n"
+    },
+    {
+      "id": "go-direct-4",
+      "language": "go",
+      "filename": "sample.go",
+      "kind": "direct",
+      "positive": true,
+      "source": "package sample\nimport (\"crypto/des\")\nfunc f(){ des.NewCipher(key) }\n"
+    },
+    {
+      "id": "go-direct-5",
+      "language": "go",
+      "filename": "sample.go",
+      "kind": "direct",
+      "positive": true,
+      "source": "package sample\nimport (\"crypto/aes\")\nfunc f(){ aes.NewCipher(key) }\n"
+    },
+    {
+      "id": "go-direct-6",
+      "language": "go",
+      "filename": "sample.go",
+      "kind": "direct",
+      "positive": true,
+      "source": "package sample\nimport (\"crypto/rsa\";\"crypto/rand\")\nfunc f(){ rsa.GenerateKey(rand.Reader,2048) }\n"
+    },
+    {
+      "id": "go-boundary-1",
+      "language": "go",
+      "filename": "sample.go",
+      "kind": "boundary",
+      "positive": true,
+      "source": "package sample\nimport digest \"crypto/md5\"\nfunc f(){digest.Sum(data)}"
+    },
+    {
+      "id": "go-boundary-2",
+      "language": "go",
+      "filename": "sample.go",
+      "kind": "boundary",
+      "positive": true,
+      "source": "package sample\nimport \"crypto/md5\"\nfunc f(){ h:=md5.Sum;h(data) }\n"
+    },
+    {
+      "id": "go-negative-1",
+      "language": "go",
+      "filename": "sample.go",
+      "kind": "negative",
+      "positive": false,
+      "source": "package sample\nfunc f(){ // md5.Sum(data)\n }\n"
+    },
+    {
+      "id": "go-negative-2",
+      "language": "go",
+      "filename": "sample.go",
+      "kind": "negative",
+      "positive": false,
+      "source": "package sample\nfunc f(){ s:=\"md5.Sum(data)\";_ = s }\n"
+    },
+    {
+      "id": "go-negative-3",
+      "language": "go",
+      "filename": "sample.go",
+      "kind": "negative",
+      "positive": false,
+      "source": "package sample\nfunc f(){ x:=1+2;_ = x }\n"
+    },
+    {
+      "id": "go-negative-4",
+      "language": "go",
+      "filename": "sample.go",
+      "kind": "negative",
+      "positive": false,
+      "source": "package sample\ntype Fake struct{}\nfunc(Fake) Sum(x int) int{return x}\nvar md5 Fake\nfunc f(){md5.Sum(1)}"
+    },
+    {
+      "id": "rust-direct-1",
+      "language": "rust",
+      "filename": "sample.rs",
+      "kind": "direct",
+      "positive": true,
+      "source": "use md5::Md5;\nfn main(){ Md5::new(); }\n"
+    },
+    {
+      "id": "rust-direct-2",
+      "language": "rust",
+      "filename": "sample.rs",
+      "kind": "direct",
+      "positive": true,
+      "source": "use sha1::Sha1;\nfn main(){ Sha1::new(); }\n"
+    },
+    {
+      "id": "rust-direct-3",
+      "language": "rust",
+      "filename": "sample.rs",
+      "kind": "direct",
+      "positive": true,
+      "source": "use sha2::Sha256;\nfn main(){ Sha256::digest(data); }\n"
+    },
+    {
+      "id": "rust-direct-4",
+      "language": "rust",
+      "filename": "sample.rs",
+      "kind": "direct",
+      "positive": true,
+      "source": "use des::Des;\nfn main(){ Des::new_from_slice(key); }\n"
+    },
+    {
+      "id": "rust-direct-5",
+      "language": "rust",
+      "filename": "sample.rs",
+      "kind": "direct",
+      "positive": true,
+      "source": "use aes_gcm::Aes256Gcm;\nfn main(){ Aes256Gcm::new(key); }\n"
+    },
+    {
+      "id": "rust-direct-6",
+      "language": "rust",
+      "filename": "sample.rs",
+      "kind": "direct",
+      "positive": true,
+      "source": "use rsa::RsaPrivateKey;\nfn main(){ RsaPrivateKey::new(rng,2048); }\n"
+    },
+    {
+      "id": "rust-boundary-1",
+      "language": "rust",
+      "filename": "sample.rs",
+      "kind": "boundary",
+      "positive": true,
+      "source": "fn main(){ use md5::Md5 as Legacy; Legacy::new(); }\n"
+    },
+    {
+      "id": "rust-boundary-2",
+      "language": "rust",
+      "filename": "sample.rs",
+      "kind": "boundary",
+      "positive": true,
+      "source": "use md5::Md5;\nfn main(){ let f=Md5::new; f(); }\n"
+    },
+    {
+      "id": "rust-negative-1",
+      "language": "rust",
+      "filename": "sample.rs",
+      "kind": "negative",
+      "positive": false,
+      "source": "fn main(){ // Md5::new();\n }\n"
+    },
+    {
+      "id": "rust-negative-2",
+      "language": "rust",
+      "filename": "sample.rs",
+      "kind": "negative",
+      "positive": false,
+      "source": "fn main(){ let s=\"Md5::new()\"; }\n"
+    },
+    {
+      "id": "rust-negative-3",
+      "language": "rust",
+      "filename": "sample.rs",
+      "kind": "negative",
+      "positive": false,
+      "source": "fn main(){ let x=1+2; }\n"
+    },
+    {
+      "id": "rust-negative-4",
+      "language": "rust",
+      "filename": "sample.rs",
+      "kind": "negative",
+      "positive": false,
+      "source": "fn main(){ struct Md5; impl Md5 { fn new()->i32 {1} } Md5::new(); }\n"
+    },
+    {
+      "id": "c-direct-1",
+      "language": "c",
+      "filename": "sample.c",
+      "kind": "direct",
+      "positive": true,
+      "source": "#include <openssl/evp.h>\n#include <openssl/rsa.h>\nvoid f(){ EVP_md5(); }\n"
+    },
+    {
+      "id": "c-direct-2",
+      "language": "c",
+      "filename": "sample.c",
+      "kind": "direct",
+      "positive": true,
+      "source": "#include <openssl/evp.h>\n#include <openssl/rsa.h>\nvoid f(){ EVP_sha1(); }\n"
+    },
+    {
+      "id": "c-direct-3",
+      "language": "c",
+      "filename": "sample.c",
+      "kind": "direct",
+      "positive": true,
+      "source": "#include <openssl/evp.h>\n#include <openssl/rsa.h>\nvoid f(){ EVP_sha256(); }\n"
+    },
+    {
+      "id": "c-direct-4",
+      "language": "c",
+      "filename": "sample.c",
+      "kind": "direct",
+      "positive": true,
+      "source": "#include <openssl/evp.h>\n#include <openssl/rsa.h>\nvoid f(){ EVP_des_ecb(); }\n"
+    },
+    {
+      "id": "c-direct-5",
+      "language": "c",
+      "filename": "sample.c",
+      "kind": "direct",
+      "positive": true,
+      "source": "#include <openssl/evp.h>\n#include <openssl/rsa.h>\nvoid f(){ EVP_aes_256_gcm(); }\n"
+    },
+    {
+      "id": "c-direct-6",
+      "language": "c",
+      "filename": "sample.c",
+      "kind": "direct",
+      "positive": true,
+      "source": "#include <openssl/evp.h>\n#include <openssl/rsa.h>\nvoid f(){ RSA_generate_key(2048,3,0,0); }\n"
+    },
+    {
+      "id": "c-boundary-1",
+      "language": "c",
+      "filename": "sample.c",
+      "kind": "boundary",
+      "positive": true,
+      "source": "void f(){ void *(*factory)()=EVP_md5;factory(); }\n"
+    },
+    {
+      "id": "c-boundary-2",
+      "language": "c",
+      "filename": "sample.c",
+      "kind": "boundary",
+      "positive": true,
+      "source": "#define HASH EVP_md5\nvoid f(){ HASH(); }\n"
+    },
+    {
+      "id": "c-negative-1",
+      "language": "c",
+      "filename": "sample.c",
+      "kind": "negative",
+      "positive": false,
+      "source": "void f(){ /* EVP_md5(); */ }\n"
+    },
+    {
+      "id": "c-negative-2",
+      "language": "c",
+      "filename": "sample.c",
+      "kind": "negative",
+      "positive": false,
+      "source": "void f(){ char *s=\"EVP_md5()\"; }\n"
+    },
+    {
+      "id": "c-negative-3",
+      "language": "c",
+      "filename": "sample.c",
+      "kind": "negative",
+      "positive": false,
+      "source": "void f(){ int x=1+2; }\n"
+    },
+    {
+      "id": "c-negative-4",
+      "language": "c",
+      "filename": "sample.c",
+      "kind": "negative",
+      "positive": false,
+      "source": "int EVP_md5(){return 1;} void f(){ EVP_md5(); }\n"
+    }
+  ]
+}
