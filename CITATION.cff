@@ -9,6 +9,8 @@ authors:
     orcid: "https://orcid.org/0009-0005-6137-4350"
     affiliation: "Beijing Key Laboratory of Security and Privacy in Intelligent Transportation, Beijing Jiaotong University, Beijing 100044, China"
 version: 0.1.1
+date-released: 2026-10-20
+doi: "10.5281/zenodo.23487117"
 license: MIT
 repository-code: "https://github.com/Zhangtijerry/QRAMP"
 abstract: "QRAMP collects cryptographic evidence from source code, SBOMs, X.509 certificates, configurations and TLS endpoints; resolves it into a CycloneDX cryptographic bill of materials (CBOM); classifies each asset with Mosca-inequality urgency; compiles a phased migration plan; and checks task acceptance against supplied scan evidence with explicit manual and deferred outcomes."
@@ -18,3 +20,4 @@ keywords:
   - cbom
   - crypto-agility
   - security
+

@@ -1,6 +1,6 @@
 # QRAMP
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21974850.svg)](https://doi.org/10.5281/zenodo.21974850)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23487117.svg)](https://doi.org/10.5281/zenodo.23487117)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![CI](https://github.com/Zhangtijerry/QRAMP/actions/workflows/ci.yml/badge.svg)](https://github.com/Zhangtijerry/QRAMP/actions/workflows/ci.yml)
 [Revision demo notebook](examples/QRAMP_demo.ipynb)
@@ -16,7 +16,7 @@ dependency-ordered migration plan with explicit ownership, rollback guidance
 and acceptance requirements. Operators re-scan after changes and supply the new
 inventory to `verify`; checks report pass, fail, deferred, or manual outcomes.
 
-License: MIT · Python ≥ 3.10. The DOI badge above identifies the published 0.1.0 archive; this 0.1.1 revision awaits a separate release/archive.
+License: MIT · Python ≥ 3.10. Version 0.1.1 was released on 2026-10-20 and is archived at [Zenodo](https://doi.org/10.5281/zenodo.23487117). The [GitHub release](https://github.com/Zhangtijerry/QRAMP/releases/tag/v0.1.1) and DOI identify the released software snapshot; subsequent documentation updates on `main` do not change that archive.
 
 ## Version 0.1.1 review fixes
 
@@ -929,3 +929,4 @@ without hard-coding key sizes in code.
 ```bash
 pytest -q          # see revision notes for the recorded environment and result
 ```
+

@@ -5,7 +5,9 @@ All notable changes to QRAMP will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.1.1] - Unreleased
+## [0.1.1] - 2026-10-20
+
+Archived software: [10.5281/zenodo.23487117](https://doi.org/10.5281/zenodo.23487117).
 
 ### Fixed
 
@@ -66,4 +68,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Provenance**: every rule cites its governing FIPS / NIST SP / RFC / CVE
   standard; citations flow through to all outputs.
 
+[0.1.1]: https://github.com/Zhangtijerry/QRAMP/releases/tag/v0.1.1
 [0.1.0]: https://github.com/Zhangtijerry/QRAMP/releases/tag/v0.1.0
+
