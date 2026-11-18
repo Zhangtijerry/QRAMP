@@ -1,0 +1,1 @@
+class MessageDigest { static int getInstance(String s){return 1;} } class Sample {void f(){MessageDigest.getInstance("MD5");}}
