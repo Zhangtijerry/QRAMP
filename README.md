@@ -1,6 +1,6 @@
 # QRAMP
 
-[![v0.1.1 archive DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23487117.svg)](https://doi.org/10.5281/zenodo.23487117)
+[![v0.1.2 archive DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24345237.svg)](https://doi.org/10.5281/zenodo.24345237)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![CI](https://github.com/Zhangtijerry/QRAMP/actions/workflows/ci.yml/badge.svg)](https://github.com/Zhangtijerry/QRAMP/actions/workflows/ci.yml)
 [Revision demo notebook](examples/QRAMP_demo.ipynb)
@@ -16,13 +16,19 @@ dependency-ordered migration plan with explicit ownership, rollback guidance
 and acceptance requirements. Operators re-scan after changes and supply the new
 inventory to `verify`; checks report pass, fail, deferred, or manual outcomes.
 
-License: MIT · Python ≥ 3.10. Version 0.1.1 was released on 2026-10-20 and is archived at [Zenodo](https://doi.org/10.5281/zenodo.23487117). The [GitHub release](https://github.com/Zhangtijerry/QRAMP/releases/tag/v0.1.1) and DOI identify the released software snapshot; subsequent documentation updates on `main` do not change that archive.
+MIT license · Python ≥ 3.10
+
+## Citing QRAMP
+
+Zhang, T. (2026). *QRAMP: cryptographic asset inventory and quantum-resistant migration planning* (Version 0.1.2) [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.24345237
+
+Version 0.1.2 was released on 18 November 2026. [GitHub release](https://github.com/Zhangtijerry/QRAMP/releases/tag/v0.1.2) · [Citation metadata](CITATION.cff)
+
+The raw scheduling outputs for Tables 7–8 and Figure 3 were added after the release. [Download or inspect the results at commit d874e6a](https://github.com/Zhangtijerry/QRAMP/tree/d874e6a441d75f77abb2ba9d414483c241e7955e/revision2-results).
 
 ## Version 0.1.2
 
-This checkout includes the second-review changes. The v0.1.1 release and DOI
-above identify the baseline used for comparison. See `REVIEW2_NOTES.md` for the measured
-results and limits. Source queries are unchanged. Import aliases can hide MD5,
+See [the validation notes](REVIEW2_NOTES.md) for measured results and limitations. Source queries are unchanged. Import aliases can hide MD5,
 and a new SHA-1 identity beside SHA-256 can leave both original MD5 tasks passed.
 The evidence bundle always reports `migration_status: not_established` and
 lists detected new identities for reassessment. `accepted` and exit 0 still
@@ -48,6 +54,8 @@ The two derived SBOMs were generated with cyclonedx-bom 8.0.1 and are not
 independent deployment samples. See the provenance file for regeneration.
 
 ## Version 0.1.1 review fixes
+
+The comparison baseline is archived at [Zenodo (v0.1.1)](https://doi.org/10.5281/zenodo.23487117).
 
 Canonical algorithms and certificate references now survive internal save/load.
 Remediation tasks are scoped by owner, collector and file/endpoint; task ids are
