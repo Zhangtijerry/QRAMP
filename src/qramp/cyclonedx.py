@@ -14,6 +14,8 @@ from __future__ import annotations
 
 from dataclasses import asdict
 
+from . import __version__
+
 # --- enum mappings to the CycloneDX 1.6 spec --------------------------------
 
 # internal primitive -> CycloneDX algorithmProperties.primitive enum
@@ -281,7 +283,7 @@ def to_cyclonedx(inv, *, spec_version: str = "1.6") -> dict:
         if ct.signed_by:                     # cert dependsOn its issuer cert
             dependencies.append({"ref": ct.bom_ref, "dependsOn": [ct.signed_by]})
 
-    tools = [{"vendor": "qramp", "name": "qramp", "version": "0.1.1"}]
+    tools = [{"vendor": "qramp", "name": "qramp", "version": __version__}]
     metadata = {
         "timestamp": inv.meta["generated"],
         "tools": {"components": [

@@ -376,6 +376,10 @@ def main(argv=None) -> int:
             print(f"         [UNPLANNED] {finding['display']} at {finding['path']}")
         if b.get("selection_note"):
             print(f"         [DEFERRED] {b['selection_note']}")
+        print("[verify] acceptance covers selected observed predicates only; "
+              "successful migration is not established")
+        if b.get("reassessment_required"):
+            print("[verify] new asset identities observed; run assess and review/replan")
         return 0 if b["accepted"] else 2
 
     if args.cmd == "diff":

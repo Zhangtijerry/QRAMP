@@ -663,12 +663,25 @@ def verify(plan_path: str, fresh_cbom_path: str, evidence_out: str,
                 seen.add(key)
                 unplanned.append({"asset_id": a.asset_id, "display": a.display,
                                   "collector": location[0], "path": location[1]})
+    baseline_ids = set(plan_doc.get("baseline_asset_ids", []))
+    added_identities = ([{"asset_id": a.asset_id, "algorithm": a.algorithm,
+                          "display": a.display} for a in inv.assets
+                         if a.asset_id not in baseline_ids]
+                        if "baseline_asset_ids" in plan_doc else None)
     bundle = {
         "generated": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "plan_hash": hashlib.sha256(open(plan_path, "rb").read()).hexdigest()[:16],
         "cbom_hash": hashlib.sha256(open(fresh_cbom_path, "rb").read()).hexdigest()[:16],
         "phase": phase, "checked": len(results), "passed": passed,
         "accepted": bool(results) and passed == len(results) and not unplanned,
+        "acceptance_scope": "selected task predicates and detected drift of planned identities only",
+        "migration_status": "not_established",
+        "acceptance_limitations": [
+            "undetected aliases and indirect calls can conceal retained algorithms",
+            "new algorithm identities are not policy-assessed by verify",
+            "file-level replacement does not prove equivalent data flow or deployment"],
+        "observed_added_asset_identities": added_identities,
+        "reassessment_required": bool(added_identities) if added_identities is not None else None,
         "selection_note": None if results else "no tasks selected; no acceptance verdict",
         "unplanned_target_occurrences": unplanned,
         # failed is retained as the backwards-compatible count of all non-passes.

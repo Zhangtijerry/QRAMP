@@ -55,6 +55,7 @@ def run(inv: Inventory, sbom_path: str, provider_map: str | None = None, **_) ->
             inv.provide(component, asset)          # record the provides edge
             edges += 1
     stats = {"components_mapped": mapped, "components_unmapped": unmapped,
+             "root": os.path.dirname(os.path.abspath(sbom_path)),
              "provides_edges": edges, "version_gated_edges": version_gated,
              "map_version": mapping.get("version", "?")}
     inv.record_collector("sbom", stats)

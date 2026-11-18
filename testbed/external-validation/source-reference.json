@@ -1,0 +1,122 @@
+[
+  {
+    "file": "requests/auth.py",
+    "line": 148,
+    "primitive": "hash",
+    "algorithm": "md5",
+    "kind": "direct",
+    "source": "return hashlib.md5(x).hexdigest()"
+  },
+  {
+    "file": "requests/auth.py",
+    "line": 156,
+    "primitive": "hash",
+    "algorithm": "sha1",
+    "kind": "direct",
+    "source": "return hashlib.sha1(x).hexdigest()"
+  },
+  {
+    "file": "requests/auth.py",
+    "line": 164,
+    "primitive": "hash",
+    "algorithm": "sha2-256",
+    "kind": "direct",
+    "source": "return hashlib.sha256(x).hexdigest()"
+  },
+  {
+    "file": "requests/auth.py",
+    "line": 172,
+    "primitive": "hash",
+    "algorithm": "sha2-512",
+    "kind": "direct",
+    "source": "return hashlib.sha512(x).hexdigest()"
+  },
+  {
+    "file": "requests/auth.py",
+    "line": 176,
+    "primitive": "hash",
+    "algorithm": "selectable",
+    "kind": "indirect",
+    "source": "KD = lambda s, d: hash_utf8(f\"{s}:{d}\")  # noqa:E731"
+  },
+  {
+    "file": "requests/auth.py",
+    "line": 192,
+    "primitive": "hash",
+    "algorithm": "selectable",
+    "kind": "indirect",
+    "source": "HA1 = hash_utf8(A1)"
+  },
+  {
+    "file": "requests/auth.py",
+    "line": 193,
+    "primitive": "hash",
+    "algorithm": "selectable",
+    "kind": "indirect",
+    "source": "HA2 = hash_utf8(A2)"
+  },
+  {
+    "file": "requests/auth.py",
+    "line": 205,
+    "primitive": "hash",
+    "algorithm": "sha1",
+    "kind": "direct",
+    "source": "cnonce = hashlib.sha1(s).hexdigest()[:16]"
+  },
+  {
+    "file": "requests/auth.py",
+    "line": 207,
+    "primitive": "hash",
+    "algorithm": "selectable",
+    "kind": "indirect",
+    "source": "HA1 = hash_utf8(f\"{HA1}:{nonce}:{cnonce}\")"
+  },
+  {
+    "file": "itsdangerous/signer.py",
+    "line": 45,
+    "primitive": "hash",
+    "algorithm": "sha1",
+    "kind": "direct",
+    "source": "return hashlib.sha1(string)"
+  },
+  {
+    "file": "itsdangerous/signer.py",
+    "line": 63,
+    "primitive": "mac",
+    "algorithm": "hmac",
+    "kind": "mac",
+    "source": "mac = hmac.new(key, msg=value, digestmod=self.digest_method)"
+  },
+  {
+    "file": "itsdangerous/signer.py",
+    "line": 201,
+    "primitive": "hash",
+    "algorithm": "selectable",
+    "kind": "indirect",
+    "source": "return t.cast(bytes, self.digest_method(self.salt + secret_key).digest())"
+  },
+  {
+    "file": "itsdangerous/signer.py",
+    "line": 204,
+    "primitive": "hash",
+    "algorithm": "selectable",
+    "kind": "indirect",
+    "source": "bytes, self.digest_method(self.salt + b\"signer\" + secret_key).digest()"
+  },
+  {
+    "file": "itsdangerous/signer.py",
+    "line": 207,
+    "primitive": "mac",
+    "algorithm": "hmac",
+    "kind": "mac",
+    "source": "mac = hmac.new(secret_key, digestmod=self.digest_method)"
+  },
+  {
+    "file": "flask/sessions.py",
+    "line": 295,
+    "primitive": "hash",
+    "algorithm": "sha1",
+    "kind": "direct",
+    "source": "return hashlib.sha1(string)"
+  }
+]

@@ -330,6 +330,7 @@ def run(inv: Inventory, source_dir: str, provider_map: str | None = None,
             inv.provide(component, asset)
             edges += 1
     stats = {"manifests_found": len(manifests_seen),
+             "root": os.path.abspath(source_dir),
              "dependencies_seen": len(discovered),
              "components_mapped": mapped, "wrapper_components": wrappers,
              "provides_edges": edges, "version_gated_edges": version_gated,

@@ -1,0 +1,105 @@
+{
+  "selection": "Purposive bounded pilot, not a representative project sample. Files selected for authentication, signing, sessions, trust-store, service-policy and declared dependency roles. Entire selected files reviewed, not whole projects. No collector query tuning on this set.",
+  "annotation": "Source reference constructed by code inspection separately from QRAMP predictions; not independent human annotation. Source scope: hash and HMAC construction calls, including file-local selectable digest invocations; external high-level wrapper calls, random generators and digest comparisons excluded.",
+  "files": [
+    {
+      "project": "requests",
+      "tag": "v2.32.5",
+      "commit": "b25c87d7cb8d6a18a37fa12442b5f883f9e41741",
+      "original_path": "src/requests/auth.py",
+      "local_path": "source/requests/auth.py",
+      "sha256": "905ef9b6a9cb72d67d31ffe19bd4d9223e1c4169cde6ec51cfca16b31e70991d",
+      "source_url": "https://github.com/psf/requests/blob/b25c87d7cb8d6a18a37fa12442b5f883f9e41741/src/requests/auth.py"
+    },
+    {
+      "project": "itsdangerous",
+      "tag": "2.2.0",
+      "commit": "096c8d42545d3b68ea21a4f890fb2b2d8979c0bd",
+      "original_path": "src/itsdangerous/signer.py",
+      "local_path": "source/itsdangerous/signer.py",
+      "sha256": "60ed0257b341bc703a8f9e3d4441c91548d4a23c36a47ab0714a509d4ef23584",
+      "source_url": "https://github.com/pallets/itsdangerous/blob/096c8d42545d3b68ea21a4f890fb2b2d8979c0bd/src/itsdangerous/signer.py"
+    },
+    {
+      "project": "flask",
+      "tag": "3.1.2",
+      "commit": "2c1b30d0503cfb064f1cb252e6614a06915a362a",
+      "original_path": "src/flask/sessions.py",
+      "local_path": "source/flask/sessions.py",
+      "sha256": "76ebd81a608687f1f772032ecb6a1e4a3ac2b02bcbca517808128e5e9374426b",
+      "source_url": "https://github.com/pallets/flask/blob/2c1b30d0503cfb064f1cb252e6614a06915a362a/src/flask/sessions.py"
+    },
+    {
+      "project": "certifi",
+      "tag": "2025.11.12",
+      "commit": "37ea150bee10958559f804f128de2fdd48e1ed45",
+      "original_path": "certifi/cacert.pem",
+      "local_path": "certs/cacert.pem",
+      "sha256": "a1ad5d643e21c43b5bed74c7e0891dcdb58f6af51c8ace1e4f020d654aa52a16",
+      "source_url": "https://github.com/certifi/python-certifi/blob/37ea150bee10958559f804f128de2fdd48e1ed45/certifi/cacert.pem"
+    },
+    {
+      "project": "openjdk",
+      "tag": "jdk-21+35",
+      "commit": "890adb6410dab4606a4f26a942aed02fb2f55387",
+      "original_path": "src/java.base/share/conf/security/java.security",
+      "local_path": "configs/java.security",
+      "sha256": "05fe1073e0381059378b8b94d5b8ecabdcbc812ba0c6a251a2d7971a2d951126",
+      "source_url": "https://github.com/openjdk/jdk/blob/890adb6410dab4606a4f26a942aed02fb2f55387/src/java.base/share/conf/security/java.security"
+    },
+    {
+      "project": "openssh",
+      "tag": "V_9_9_P2",
+      "commit": "d76b2675116617394cd355a3437b4963a562b64d",
+      "original_path": "sshd_config",
+      "local_path": "configs/sshd_config",
+      "sha256": "fb8466de9f364cd663efd019be854eb72b2c2c70872455a36de21e0c918b970c",
+      "source_url": "https://github.com/openssh/openssh-portable/blob/d76b2675116617394cd355a3437b4963a562b64d/sshd_config"
+    },
+    {
+      "project": "nginx",
+      "tag": "release-1.26.3",
+      "commit": "1be0fb0c9f9bc3489c7b40576efd6afe6b2eccd5",
+      "original_path": "conf/nginx.conf",
+      "local_path": "configs/nginx.conf",
+      "sha256": "95363d79620c1b3eb6951711b6630a411f147bc9197bc91442c0605cf6688e46",
+      "source_url": "https://github.com/nginx/nginx/blob/1be0fb0c9f9bc3489c7b40576efd6afe6b2eccd5/conf/nginx.conf"
+    },
+    {
+      "project": "httpx",
+      "tag": "0.27.0",
+      "commit": "326b9431c761e1ef1e00b9f760d1f654c8db48c6",
+      "original_path": "requirements.txt",
+      "local_path": "manifests/httpx/requirements.txt",
+      "sha256": "13ce4c04ec973a7663cb5ee545374141f5e4a03c0bd72b2039c896cf0e88a702",
+      "source_url": "https://github.com/encode/httpx/blob/326b9431c761e1ef1e00b9f760d1f654c8db48c6/requirements.txt"
+    },
+    {
+      "project": "ansible",
+      "tag": "v2.18.0",
+      "commit": "ec78526b976481f3fcdf91a904eeaa68b89ccdea",
+      "original_path": "requirements.txt",
+      "local_path": "manifests/ansible/requirements.txt",
+      "sha256": "4a81a15406200d85982b03121f483c5ac09073355fb7a39b6f978f3cc40f4535",
+      "source_url": "https://github.com/ansible/ansible/blob/ec78526b976481f3fcdf91a904eeaa68b89ccdea/requirements.txt"
+    }
+  ],
+  "derived_artifacts": [
+    {
+      "local_path": "sbom/httpx.cdx.json",
+      "sha256": "f9b75d8c745891c4c9aec401b5ecb97e09371189404359e0489fe96a90cca613",
+      "generator": "cyclonedx-bom 8.0.1",
+      "source_manifest": "manifests/httpx/requirements.txt",
+      "command": "cyclonedx-py requirements manifests/httpx/requirements.txt --output-reproducible --of JSON --sv 1.6 -o sbom/httpx.cdx.json",
+      "independence_note": "Derived from the same manifest; a separate representation, not a second deployment sample."
+    },
+    {
+      "local_path": "sbom/ansible.cdx.json",
+      "sha256": "4248bc93a479079875505e97bd723cf73847408c5b3f01d5af6736c61bf8bed3",
+      "generator": "cyclonedx-bom 8.0.1",
+      "source_manifest": "manifests/ansible/requirements.txt",
+      "command": "cyclonedx-py requirements manifests/ansible/requirements.txt --output-reproducible --of JSON --sv 1.6 -o sbom/ansible.cdx.json",
+      "independence_note": "Derived from the same manifest; a separate representation, not a second deployment sample."
+    }
+  ]
+}

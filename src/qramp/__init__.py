@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: MIT
 # Copyright (c) 2026 Ti Zhang
 """QRAMP — cryptographic asset inventory and quantum-resistant migration planning."""
-__version__ = "0.1.1"
+__version__ = "0.1.2"
 
 from .model import Inventory, CryptoAsset, Occurrence, diff  # noqa: F401
 from . import collectors, assess, plan, report  # noqa: F401

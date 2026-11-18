@@ -15,6 +15,8 @@ import uuid
 from dataclasses import dataclass, field, asdict
 from datetime import datetime, timezone
 
+from . import __version__
+
 SCHEMA_VERSION = "qramp-cbom/0.1"
 
 # canonical primitive vocabulary
@@ -446,7 +448,7 @@ class Inventory:
             "bomFormat": "CycloneDX", "specVersion": "1.6",
             "serialNumber": self.meta["serial"],
             "metadata": {"timestamp": self.meta["generated"],
-                         "tools": [{"vendor": "qramp", "name": "qramp", "version": "0.1.1"}],
+                         "tools": [{"vendor": "qramp", "name": "qramp", "version": __version__}],
                          "qrampCollectors": self.meta["collectors"]},
             "components": comps,
         }

@@ -128,6 +128,34 @@ def _location(occ):
     return os.path.abspath(loc)
 
 
+def _identity_location(occ, stats):
+    """Logical location used only for identity, never for evidence checks.
+
+    Keep absolute paths in target_locations/evidence_scope for conservative
+    verification. Relocation of the same inputs must not change task IDs.
+    A missing root on an absolute legacy locator requires a fresh scan.
+    """
+    if occ.collector == "tls":
+        return occ.locator
+    loc = occ.locator
+    fragment = ""
+    if occ.collector in {"sbom", "manifests"}:
+        loc, sep, tail = loc.partition("#")
+        fragment = sep + tail
+    elif occ.collector.startswith("source-") or occ.collector == "configs":
+        head, sep, tail = loc.rpartition(":")
+        if sep and tail.isdigit():
+            loc = head
+    root = stats.get(occ.collector, {}).get("root")
+    if os.path.isabs(loc):
+        if not root:
+            raise ValueError(f"{occ.collector} absolute locator lacks scan root; rescan before planning")
+        loc = os.path.relpath(loc, root)
+        if loc == os.pardir or loc.startswith(os.pardir + os.sep):
+            raise ValueError("occurrence is outside its recorded collector root")
+    return os.path.normpath(loc).replace(os.sep, "/") + fragment
+
+
 @dataclass
 class Task:
     id: str
@@ -194,17 +222,19 @@ def synthesise_tasks(inv: Inventory) -> list[Task]:
             continue
         groups = {}
         for o in asset.occurrences:
-            groups.setdefault((o.owner or "unassigned", o.collector, _location(o)), []).append(o)
+            groups.setdefault((o.owner or "unassigned", o.collector,
+                               _identity_location(o, stats)), []).append(o)
         if not groups:
             groups[("unassigned", "unknown", "?")] = []
-        for (owner, collector, loc), occurrences in sorted(groups.items()):
+        for (owner, collector, logical_loc), occurrences in sorted(groups.items()):
+            loc = _location(occurrences[0]) if occurrences else "?"
             a = replace(asset, occurrences=occurrences)
             recipe = _recipe_for(a) or []
             scope = {}
             if collector in stats:
                 base = stats[collector]
                 scope[collector] = {k: base[k] for k in ("root", "query_hash") if k in base}
-            identity = json.dumps([a.key, owner, collector, loc], sort_keys=True)
+            identity = json.dumps([a.key, owner, collector, logical_loc], sort_keys=True)
             group_id = hashlib.sha256(identity.encode()).hexdigest()[:12]
             prev_id = None
             for phase, ttype, dur, rollback in recipe:
@@ -226,7 +256,7 @@ def synthesise_tasks(inv: Inventory) -> list[Task]:
                          requirement=requirement, weight=TIER_WEIGHT.get(a.tier, 1))
                 tasks.append(t)
                 prev_id = tid
-    return tasks
+    return sorted(tasks, key=lambda t: t.id)
 
 
 def _list_schedule(tasks: list[Task], capacity: dict, horizon: int) -> dict:
@@ -326,8 +356,8 @@ def _cpsat_schedule(tasks: list[Task], capacity: dict, horizon: int,
 
     solver = cp_model.CpSolver()
     solver.parameters.max_time_in_seconds = time_limit_s
-    # deterministic output: single worker + fixed seed so the same instance
-    # always yields the same schedule (the plan artefact must be reproducible).
+    # Stable model order, one worker and a fixed seed improve repeatability.
+    # A wall-clock cutoff can still return different feasible incumbents.
     solver.parameters.num_search_workers = 1
     solver.parameters.random_seed = 42
     status = solver.Solve(model)
@@ -361,6 +391,8 @@ def schedule(tasks: list[Task], capacity: dict, horizon: int,
     """
     if horizon < 1:
         raise ValueError("horizon must be positive")
+    # The CP-SAT model and all tie-breaks use the same canonical order.
+    tasks.sort(key=lambda t: t.id)
     ids = {t.id for t in tasks}
     if len(ids) != len(tasks):
         raise ValueError("task ids must be unique")
@@ -402,6 +434,8 @@ def plan(assessment_cbom: str, capacity_path: str, horizon_months: int,
                     time_limit_s=time_limit_s)
 
     doc = {
+        "task_identity_scheme": "collector-relative-v1",
+        "baseline_asset_ids": sorted(a.asset_id for a in inv.assets),
         "solver": meta["solver"],
         "solver_meta": {k: v for k, v in meta.items() if k != "solver"},
         "horizon_months": horizon_months,
