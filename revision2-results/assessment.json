@@ -1,0 +1,3766 @@
+{
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.6",
+  "serialNumber": "urn:uuid:02deb73a-0c4e-4b5d-9004-db212291cb22",
+  "metadata": {
+    "timestamp": "2026-11-18T12:05:58+00:00",
+    "tools": [
+      {
+        "vendor": "qramp",
+        "name": "qramp",
+        "version": "0.1.1"
+      }
+    ],
+    "qrampCollectors": [
+      {
+        "name": "source-py",
+        "files": 3,
+        "call_sites": 12,
+        "root": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app",
+        "scanned_paths": [
+          "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/app/cryptopolicy.py",
+          "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/app/payments.py",
+          "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/app/storage.py"
+        ],
+        "errors": [],
+        "query_hash": "548044d33fcdc82a",
+        "query_sources": [
+          {
+            "role": "builtin",
+            "path": "/workspace/scratch/b5e81a169f87/qramp/src/qramp/collectors/queries/python.scm"
+          }
+        ]
+      },
+      {
+        "name": "source-java",
+        "files": 1,
+        "call_sites": 10,
+        "root": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app",
+        "scanned_paths": [
+          "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/java/com/testbed/CryptoService.java"
+        ],
+        "errors": [],
+        "query_hash": "639bd07879e59b0d",
+        "query_sources": [
+          {
+            "role": "builtin",
+            "path": "/workspace/scratch/b5e81a169f87/qramp/src/qramp/collectors/queries/java.scm"
+          }
+        ]
+      },
+      {
+        "name": "source-go",
+        "files": 1,
+        "call_sites": 11,
+        "root": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app",
+        "scanned_paths": [
+          "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/go/cryptoservice.go"
+        ],
+        "errors": [],
+        "query_hash": "c2edf5029ba06bda",
+        "query_sources": [
+          {
+            "role": "builtin",
+            "path": "/workspace/scratch/b5e81a169f87/qramp/src/qramp/collectors/queries/go.scm"
+          }
+        ]
+      },
+      {
+        "name": "source-rust",
+        "files": 1,
+        "call_sites": 7,
+        "root": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app",
+        "scanned_paths": [
+          "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/rust/crypto_service.rs"
+        ],
+        "errors": [],
+        "query_hash": "9594de84414a536e",
+        "query_sources": [
+          {
+            "role": "builtin",
+            "path": "/workspace/scratch/b5e81a169f87/qramp/src/qramp/collectors/queries/rust.scm"
+          }
+        ]
+      },
+      {
+        "name": "source-c",
+        "files": 1,
+        "call_sites": 11,
+        "root": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app",
+        "scanned_paths": [
+          "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/c/crypto_service.c"
+        ],
+        "errors": [],
+        "query_hash": "a0905a159d855447",
+        "query_sources": [
+          {
+            "role": "builtin",
+            "path": "/workspace/scratch/b5e81a169f87/qramp/src/qramp/collectors/queries/c.scm"
+          }
+        ]
+      },
+      {
+        "name": "sbom",
+        "components_mapped": 4,
+        "components_unmapped": 2,
+        "root": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app",
+        "provides_edges": 9,
+        "version_gated_edges": 0,
+        "map_version": "provider-map-0.2"
+      },
+      {
+        "name": "manifests",
+        "manifests_found": 5,
+        "root": "/workspace/scratch/b5e81a169f87/qramp/testbed/manifests",
+        "dependencies_seen": 14,
+        "components_mapped": 6,
+        "wrapper_components": 2,
+        "provides_edges": 14,
+        "version_gated_edges": 0,
+        "by_ecosystem": {
+          "maven": 4,
+          "cargo": 2,
+          "pip": 4,
+          "npm": 2,
+          "gomod": 2
+        },
+        "alias_resolutions": [
+          {
+            "package": "bcprov-jdk18on",
+            "version": "1.77",
+            "ecosystem": "maven",
+            "component": "bouncycastle",
+            "wrapper": false,
+            "mapped": true,
+            "manifest": "pom.xml"
+          },
+          {
+            "package": "org.bouncycastle",
+            "version": "1.77",
+            "ecosystem": "maven",
+            "component": "bouncycastle",
+            "wrapper": false,
+            "mapped": true,
+            "manifest": "pom.xml"
+          },
+          {
+            "package": "junit",
+            "version": "4.13.2",
+            "ecosystem": "maven",
+            "component": "junit",
+            "wrapper": false,
+            "mapped": false,
+            "manifest": "pom.xml"
+          },
+          {
+            "package": "junit",
+            "version": "4.13.2",
+            "ecosystem": "maven",
+            "component": "junit",
+            "wrapper": false,
+            "mapped": false,
+            "manifest": "pom.xml"
+          },
+          {
+            "package": "openssl-sys",
+            "version": "0.9.90",
+            "ecosystem": "cargo",
+            "component": "openssl",
+            "wrapper": true,
+            "mapped": true,
+            "manifest": "Cargo.lock"
+          },
+          {
+            "package": "serde",
+            "version": "1.0.195",
+            "ecosystem": "cargo",
+            "component": "serde",
+            "wrapper": false,
+            "mapped": false,
+            "manifest": "Cargo.lock"
+          },
+          {
+            "package": "cryptography",
+            "version": "42.0.5",
+            "ecosystem": "pip",
+            "component": "cryptography",
+            "wrapper": false,
+            "mapped": true,
+            "manifest": "requirements.txt"
+          },
+          {
+            "package": "pyOpenSSL",
+            "version": "24.0.0",
+            "ecosystem": "pip",
+            "component": "openssl",
+            "wrapper": true,
+            "mapped": true,
+            "manifest": "requirements.txt"
+          },
+          {
+            "package": "paramiko",
+            "version": "3.4.0",
+            "ecosystem": "pip",
+            "component": "paramiko",
+            "wrapper": false,
+            "mapped": true,
+            "manifest": "requirements.txt"
+          },
+          {
+            "package": "requests",
+            "version": "2.31.0",
+            "ecosystem": "pip",
+            "component": "requests",
+            "wrapper": false,
+            "mapped": false,
+            "manifest": "requirements.txt"
+          },
+          {
+            "package": "express",
+            "version": "4.18.2",
+            "ecosystem": "npm",
+            "component": "express",
+            "wrapper": false,
+            "mapped": false,
+            "manifest": "package-lock.json"
+          },
+          {
+            "package": "libsodium",
+            "version": "0.7.11",
+            "ecosystem": "npm",
+            "component": "libsodium",
+            "wrapper": false,
+            "mapped": true,
+            "manifest": "package-lock.json"
+          },
+          {
+            "package": "golang.org/x/crypto",
+            "version": "0.17.0",
+            "ecosystem": "gomod",
+            "component": "golang.org/x/crypto",
+            "wrapper": false,
+            "mapped": false,
+            "manifest": "go.mod"
+          },
+          {
+            "package": "github.com/gorilla/mux",
+            "version": "1.8.0",
+            "ecosystem": "gomod",
+            "component": "github.com/gorilla/mux",
+            "wrapper": false,
+            "mapped": false,
+            "manifest": "go.mod"
+          }
+        ],
+        "map_version": "provider-map-0.2"
+      },
+      {
+        "name": "certs",
+        "files": 11,
+        "certificates": 11,
+        "weak_findings": 4,
+        "chain_links": 2,
+        "root": "/workspace/scratch/b5e81a169f87/qramp/testbed/certs",
+        "scanned_paths": [
+          "/workspace/scratch/b5e81a169f87/qramp/testbed/certs/api-ec256.pem",
+          "/workspace/scratch/b5e81a169f87/qramp/testbed/certs/chain/leaf-under-sha1-ca.pem",
+          "/workspace/scratch/b5e81a169f87/qramp/testbed/certs/chain/leaf-under-strong-ca.pem",
+          "/workspace/scratch/b5e81a169f87/qramp/testbed/certs/chain/root-ca-sha1.pem",
+          "/workspace/scratch/b5e81a169f87/qramp/testbed/certs/chain/root-ca-strong.pem",
+          "/workspace/scratch/b5e81a169f87/qramp/testbed/certs/expiring-soon.pem",
+          "/workspace/scratch/b5e81a169f87/qramp/testbed/certs/gateway-rsa2048.pem",
+          "/workspace/scratch/b5e81a169f87/qramp/testbed/certs/legacy-sha1-rsa.pem",
+          "/workspace/scratch/b5e81a169f87/qramp/testbed/certs/mesh-ed25519.pem",
+          "/workspace/scratch/b5e81a169f87/qramp/testbed/certs/weak-curve-secp192.pem",
+          "/workspace/scratch/b5e81a169f87/qramp/testbed/certs/weak-rsa1024.pem"
+        ],
+        "errors": []
+      },
+      {
+        "name": "configs",
+        "findings": 23,
+        "root": "/workspace/scratch/b5e81a169f87/qramp/testbed/etc",
+        "scanned_paths": [
+          "/workspace/scratch/b5e81a169f87/qramp/testbed/etc/java.security",
+          "/workspace/scratch/b5e81a169f87/qramp/testbed/etc/nginx-gateway.conf",
+          "/workspace/scratch/b5e81a169f87/qramp/testbed/etc/sshd_config"
+        ],
+        "errors": []
+      }
+    ]
+  },
+  "components": [
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "A-441acf289995",
+      "name": "MD5 [hash]",
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "parameterSetIdentifier": null,
+          "keyLength": null,
+          "mode": null
+        }
+      },
+      "evidence": {
+        "occurrences": [
+          {
+            "collector": "source-py",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/app/payments.py:10",
+            "evidence": "call to hashlib.md5()",
+            "confidence": 1.0,
+            "owner": "app-team",
+            "tags": []
+          },
+          {
+            "collector": "source-java",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/java/com/testbed/CryptoService.java:14",
+            "evidence": "MessageDigest.getInstance(\"MD5\")",
+            "confidence": 1.0,
+            "owner": "app-team",
+            "tags": []
+          },
+          {
+            "collector": "source-go",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/go/cryptoservice.go:20",
+            "evidence": "md5.Sum(...)",
+            "confidence": 1.0,
+            "owner": "platform-net",
+            "tags": []
+          },
+          {
+            "collector": "source-rust",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/rust/crypto_service.rs:10",
+            "evidence": "Md5::new(...)",
+            "confidence": 1.0,
+            "owner": "platform-net",
+            "tags": []
+          },
+          {
+            "collector": "source-c",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/c/crypto_service.c:9",
+            "evidence": "EVP_md5() call site",
+            "confidence": 1.0,
+            "owner": "platform-net",
+            "tags": []
+          },
+          {
+            "collector": "source-c",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/c/crypto_service.c:10",
+            "evidence": "MD5(...)",
+            "confidence": 1.0,
+            "owner": "platform-net",
+            "tags": []
+          }
+        ]
+      },
+      "qramp": {
+        "algorithm": "md5",
+        "exposureClass": "quantum_broken",
+        "tier": "P2",
+        "rationale": "MD5 is collision-broken and must be removed regardless of PQC | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0",
+        "ruleId": "md5-dead",
+        "remediate": null,
+        "references": [
+          {
+            "standard": "RFC 6151",
+            "note": "MD5 collision attacks"
+          },
+          {
+            "standard": "NIST SP 800-131A Rev.2",
+            "note": "MD5 not approved"
+          }
+        ],
+        "owners": [
+          "app-team",
+          "platform-net"
+        ],
+        "tags": []
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "A-04757e45f12a",
+      "name": "SHA1 [hash]",
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "parameterSetIdentifier": null,
+          "keyLength": null,
+          "mode": null
+        }
+      },
+      "evidence": {
+        "occurrences": [
+          {
+            "collector": "source-py",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/app/payments.py:15",
+            "evidence": "call to hashlib.sha1()",
+            "confidence": 1.0,
+            "owner": "app-team",
+            "tags": []
+          },
+          {
+            "collector": "source-java",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/java/com/testbed/CryptoService.java:20",
+            "evidence": "MessageDigest.getInstance(\"SHA-1\")",
+            "confidence": 1.0,
+            "owner": "app-team",
+            "tags": []
+          },
+          {
+            "collector": "source-go",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/go/cryptoservice.go:25",
+            "evidence": "sha1.Sum(...)",
+            "confidence": 1.0,
+            "owner": "platform-net",
+            "tags": []
+          },
+          {
+            "collector": "source-rust",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/rust/crypto_service.rs:16",
+            "evidence": "Sha1::new(...)",
+            "confidence": 1.0,
+            "owner": "platform-net",
+            "tags": []
+          },
+          {
+            "collector": "source-rust",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/rust/crypto_service.rs:17",
+            "evidence": "Sha1::digest(...)",
+            "confidence": 1.0,
+            "owner": "platform-net",
+            "tags": []
+          },
+          {
+            "collector": "source-c",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/c/crypto_service.c:11",
+            "evidence": "SHA1(...)",
+            "confidence": 1.0,
+            "owner": "platform-net",
+            "tags": []
+          },
+          {
+            "collector": "certs",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/certs/legacy-sha1-rsa.pem",
+            "evidence": "weak digest sha1 in certificate signature",
+            "confidence": 1.0,
+            "owner": "pki-team",
+            "tags": [
+              "weak-signature"
+            ]
+          },
+          {
+            "collector": "certs",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/certs/chain/root-ca-sha1.pem",
+            "evidence": "weak digest sha1 in certificate signature",
+            "confidence": 1.0,
+            "owner": null,
+            "tags": [
+              "weak-signature"
+            ]
+          }
+        ]
+      },
+      "qramp": {
+        "algorithm": "sha1",
+        "exposureClass": "quantum_broken",
+        "tier": "P2",
+        "rationale": "SHA-1 is collision-broken and must be removed | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0",
+        "ruleId": "sha1-dead",
+        "remediate": null,
+        "references": [
+          {
+            "standard": "NIST SP 800-131A Rev.2",
+            "section": "§9",
+            "note": "SHA-1 disallowed for signatures"
+          },
+          {
+            "standard": "NIST policy 2022",
+            "note": "SHA-1 phase-out by 2030"
+          }
+        ],
+        "owners": [
+          "app-team",
+          "pki-team",
+          "platform-net"
+        ],
+        "tags": [
+          "weak-signature"
+        ]
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "A-ff3fa9fd1f8d",
+      "name": "SHA2-256 [hash]",
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "parameterSetIdentifier": null,
+          "keyLength": null,
+          "mode": null
+        }
+      },
+      "evidence": {
+        "occurrences": [
+          {
+            "collector": "source-py",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/app/storage.py:10",
+            "evidence": "call to hashlib.sha256()",
+            "confidence": 1.0,
+            "owner": "app-team",
+            "tags": []
+          },
+          {
+            "collector": "source-java",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/java/com/testbed/CryptoService.java:25",
+            "evidence": "MessageDigest.getInstance(\"SHA-256\")",
+            "confidence": 1.0,
+            "owner": "app-team",
+            "tags": []
+          },
+          {
+            "collector": "source-go",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/go/cryptoservice.go:30",
+            "evidence": "sha256.Sum256(...)",
+            "confidence": 1.0,
+            "owner": "platform-net",
+            "tags": []
+          },
+          {
+            "collector": "source-rust",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/rust/crypto_service.rs:21",
+            "evidence": "Sha256::digest(...)",
+            "confidence": 1.0,
+            "owner": "platform-net",
+            "tags": []
+          }
+        ]
+      },
+      "qramp": {
+        "algorithm": "sha2-256",
+        "exposureClass": "quantum_weakened",
+        "tier": "P3",
+        "rationale": "SHA-256 collision resistance reduced under quantum attack; acceptable near-term | Mosca X=3.0 Y=1.0 Z=12.0 gap=-8.0",
+        "ruleId": "sha256-weak",
+        "remediate": {
+          "require_algorithm": [
+            "sha2-384",
+            "sha2-512",
+            "sha3-256",
+            "sha3-512"
+          ]
+        },
+        "references": [
+          {
+            "standard": "NISTIR 8105",
+            "note": "Grover/quantum collision margin"
+          },
+          {
+            "standard": "FIPS 180-4",
+            "note": "SHA-2 family"
+          }
+        ],
+        "owners": [
+          "app-team",
+          "platform-net"
+        ],
+        "tags": []
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "A-f20e73391068",
+      "name": "SHA2-512 [hash]",
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "parameterSetIdentifier": null,
+          "keyLength": null,
+          "mode": null
+        }
+      },
+      "evidence": {
+        "occurrences": [
+          {
+            "collector": "source-py",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/app/storage.py:15",
+            "evidence": "call to hashlib.sha512()",
+            "confidence": 1.0,
+            "owner": "app-team",
+            "tags": []
+          }
+        ]
+      },
+      "qramp": {
+        "algorithm": "sha2-512",
+        "exposureClass": "pq_ready",
+        "tier": "OK",
+        "rationale": "large-output hashes retain adequate quantum security",
+        "ruleId": "sha512-ok",
+        "remediate": null,
+        "references": [
+          {
+            "standard": "FIPS 180-4",
+            "note": "SHA-384/512"
+          },
+          {
+            "standard": "FIPS 202",
+            "note": "SHA-3"
+          }
+        ],
+        "owners": [
+          "app-team"
+        ],
+        "tags": []
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "A-e66b6ecf7dd9",
+      "name": "DH [key-agreement]",
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "key-agreement",
+          "parameterSetIdentifier": null,
+          "keyLength": null,
+          "mode": null
+        }
+      },
+      "evidence": {
+        "occurrences": [
+          {
+            "collector": "configs",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/etc/nginx-gateway.conf:5",
+            "evidence": "DHE (finite-field) key exchange in ssl_ciphers",
+            "confidence": 0.8,
+            "owner": "platform-net",
+            "tags": [
+              "external"
+            ]
+          }
+        ]
+      },
+      "qramp": {
+        "algorithm": "dh",
+        "exposureClass": "quantum_broken",
+        "tier": "P1",
+        "rationale": "finite-field Diffie-Hellman broken by Shor | Mosca X=7.0 Y=2.0 Z=12.0 gap=-3.0",
+        "ruleId": "dh-broken",
+        "remediate": null,
+        "references": [
+          {
+            "standard": "NISTIR 8105",
+            "note": "DLP broken by Shor"
+          }
+        ],
+        "owners": [
+          "platform-net"
+        ],
+        "tags": [
+          "external"
+        ]
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "A-6abb92d31111",
+      "name": "DH-512 (ffdhe) [key-agreement]",
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "key-agreement",
+          "parameterSetIdentifier": "ffdhe",
+          "keyLength": 512,
+          "mode": null
+        }
+      },
+      "evidence": {
+        "occurrences": [
+          {
+            "collector": "source-c",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/c/crypto_service.c:23",
+            "evidence": "DH_generate_parameters(...), key size 512",
+            "confidence": 1.0,
+            "owner": "platform-net",
+            "tags": []
+          }
+        ]
+      },
+      "qramp": {
+        "algorithm": "dh",
+        "exposureClass": "quantum_broken",
+        "tier": "P2",
+        "rationale": "finite-field DH with a <=1024-bit group is breakable today by Logjam-style precomputation (in addition to being Shor-broken); the endpoint must stop offering it | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0",
+        "ruleId": "weak-dh-group",
+        "remediate": {
+          "action": "decommission",
+          "min_key_length": 2048,
+          "prefer": "ecdhe-or-hybrid"
+        },
+        "references": [
+          {
+            "standard": "RFC 7919",
+            "note": "FFDHE groups; avoid <2048-bit"
+          },
+          {
+            "standard": "CVE-2015-4000",
+            "note": "Logjam precomputation attack"
+          }
+        ],
+        "owners": [
+          "platform-net"
+        ],
+        "tags": []
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "A-c97584d9aea8",
+      "name": "DH-1024 (ffdhe) [key-agreement]",
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "key-agreement",
+          "parameterSetIdentifier": "ffdhe",
+          "keyLength": 1024,
+          "mode": null
+        }
+      },
+      "evidence": {
+        "occurrences": [
+          {
+            "collector": "source-py",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/app/cryptopolicy.py:6",
+            "evidence": "DH parameter generation key_size=1024",
+            "confidence": 1.0,
+            "owner": "app-team",
+            "tags": []
+          },
+          {
+            "collector": "configs",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/etc/nginx-gateway.conf:6",
+            "evidence": "ssl_dhparam group of 1024 bits",
+            "confidence": 1.0,
+            "owner": "platform-net",
+            "tags": [
+              "external"
+            ]
+          }
+        ]
+      },
+      "qramp": {
+        "algorithm": "dh",
+        "exposureClass": "quantum_broken",
+        "tier": "P1",
+        "rationale": "finite-field DH with a <=1024-bit group is breakable today by Logjam-style precomputation (in addition to being Shor-broken); the endpoint must stop offering it | Mosca X=7.0 Y=2.0 Z=12.0 gap=-3.0",
+        "ruleId": "weak-dh-group",
+        "remediate": {
+          "action": "decommission",
+          "min_key_length": 2048,
+          "prefer": "ecdhe-or-hybrid"
+        },
+        "references": [
+          {
+            "standard": "RFC 7919",
+            "note": "FFDHE groups; avoid <2048-bit"
+          },
+          {
+            "standard": "CVE-2015-4000",
+            "note": "Logjam precomputation attack"
+          }
+        ],
+        "owners": [
+          "app-team",
+          "platform-net"
+        ],
+        "tags": [
+          "external"
+        ]
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "A-701d5994fccd",
+      "name": "DH-1024 (group1) [key-agreement]",
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "key-agreement",
+          "parameterSetIdentifier": "group1",
+          "keyLength": 1024,
+          "mode": null
+        }
+      },
+      "evidence": {
+        "occurrences": [
+          {
+            "collector": "configs",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/etc/sshd_config:4",
+            "evidence": "KexAlgorithms includes diffie-hellman-group1-sha1",
+            "confidence": 1.0,
+            "owner": "platform-net",
+            "tags": []
+          }
+        ]
+      },
+      "qramp": {
+        "algorithm": "dh",
+        "exposureClass": "quantum_broken",
+        "tier": "P2",
+        "rationale": "finite-field DH with a <=1024-bit group is breakable today by Logjam-style precomputation (in addition to being Shor-broken); the endpoint must stop offering it | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0",
+        "ruleId": "weak-dh-group",
+        "remediate": {
+          "action": "decommission",
+          "min_key_length": 2048,
+          "prefer": "ecdhe-or-hybrid"
+        },
+        "references": [
+          {
+            "standard": "RFC 7919",
+            "note": "FFDHE groups; avoid <2048-bit"
+          },
+          {
+            "standard": "CVE-2015-4000",
+            "note": "Logjam precomputation attack"
+          }
+        ],
+        "owners": [
+          "platform-net"
+        ],
+        "tags": []
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "A-08566a327181",
+      "name": "DH-2048 (group14) [key-agreement]",
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "key-agreement",
+          "parameterSetIdentifier": "group14",
+          "keyLength": 2048,
+          "mode": null
+        }
+      },
+      "evidence": {
+        "occurrences": [
+          {
+            "collector": "configs",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/etc/sshd_config:4",
+            "evidence": "KexAlgorithms includes diffie-hellman-group14-sha1",
+            "confidence": 1.0,
+            "owner": "platform-net",
+            "tags": []
+          }
+        ]
+      },
+      "qramp": {
+        "algorithm": "dh",
+        "exposureClass": "quantum_broken",
+        "tier": "P2",
+        "rationale": "finite-field Diffie-Hellman broken by Shor | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0",
+        "ruleId": "dh-broken",
+        "remediate": null,
+        "references": [
+          {
+            "standard": "NISTIR 8105",
+            "note": "DLP broken by Shor"
+          }
+        ],
+        "owners": [
+          "platform-net"
+        ],
+        "tags": []
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "A-e8044ca5438c",
+      "name": "ECDH [key-agreement]",
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "key-agreement",
+          "parameterSetIdentifier": null,
+          "keyLength": null,
+          "mode": null
+        }
+      },
+      "evidence": {
+        "occurrences": [
+          {
+            "collector": "source-go",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/go/cryptoservice.go:67",
+            "evidence": "cipher suite TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA",
+            "confidence": 0.8,
+            "owner": "platform-net",
+            "tags": []
+          },
+          {
+            "collector": "sbom",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/sbom.cdx.json#openssl@3.0.13",
+            "evidence": "component openssl@3.0.13 ships ecdh",
+            "confidence": 0.6,
+            "owner": null,
+            "tags": []
+          },
+          {
+            "collector": "manifests",
+            "locator": "Cargo.lock#openssl@0.9.90",
+            "evidence": "cargo manifest declares openssl-sys@0.9.90 which ships ecdh [wrapper openssl-sys@0.9.90; underlying library version unknown, version-gated capabilities withheld]",
+            "confidence": 0.6,
+            "owner": null,
+            "tags": []
+          },
+          {
+            "collector": "manifests",
+            "locator": "requirements.txt#openssl@24.0.0",
+            "evidence": "pip manifest declares pyOpenSSL@24.0.0 which ships ecdh [wrapper pyOpenSSL@24.0.0; underlying library version unknown, version-gated capabilities withheld]",
+            "confidence": 0.6,
+            "owner": null,
+            "tags": []
+          }
+        ]
+      },
+      "qramp": {
+        "algorithm": "ecdh",
+        "exposureClass": "quantum_broken",
+        "tier": "P2",
+        "rationale": "ECDH relies on ECDLP, broken by Shor | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0",
+        "ruleId": "ecdh-broken",
+        "remediate": null,
+        "references": [
+          {
+            "standard": "NISTIR 8105",
+            "note": "ECDLP broken by Shor"
+          }
+        ],
+        "owners": [
+          "platform-net"
+        ],
+        "tags": []
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "A-23d12022b762",
+      "name": "ECDH-256 (nistp256) [key-agreement]",
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "key-agreement",
+          "parameterSetIdentifier": "nistp256",
+          "keyLength": 256,
+          "mode": null
+        }
+      },
+      "evidence": {
+        "occurrences": [
+          {
+            "collector": "configs",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/etc/sshd_config:4",
+            "evidence": "KexAlgorithms includes ecdh-sha2-nistp256",
+            "confidence": 1.0,
+            "owner": "platform-net",
+            "tags": []
+          }
+        ]
+      },
+      "qramp": {
+        "algorithm": "ecdh",
+        "exposureClass": "quantum_broken",
+        "tier": "P2",
+        "rationale": "ECDH relies on ECDLP, broken by Shor | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0",
+        "ruleId": "ecdh-broken",
+        "remediate": null,
+        "references": [
+          {
+            "standard": "NISTIR 8105",
+            "note": "ECDLP broken by Shor"
+          }
+        ],
+        "owners": [
+          "platform-net"
+        ],
+        "tags": []
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "A-d0b15f16866c",
+      "name": "RSA [key-agreement]",
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "key-agreement",
+          "parameterSetIdentifier": null,
+          "keyLength": null,
+          "mode": null
+        }
+      },
+      "evidence": {
+        "occurrences": [
+          {
+            "collector": "source-go",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/go/cryptoservice.go:66",
+            "evidence": "cipher suite TLS_RSA_WITH_3DES_EDE_CBC_SHA",
+            "confidence": 0.8,
+            "owner": "platform-net",
+            "tags": []
+          },
+          {
+            "collector": "configs",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/etc/nginx-gateway.conf:5",
+            "evidence": "static-RSA key exchange in ssl_ciphers (no forward secrecy)",
+            "confidence": 1.0,
+            "owner": "platform-net",
+            "tags": [
+              "external"
+            ]
+          }
+        ]
+      },
+      "qramp": {
+        "algorithm": "rsa",
+        "exposureClass": "quantum_broken",
+        "tier": "P1",
+        "rationale": "static-RSA key exchange has no forward secrecy and is Shor-broken; the endpoint must stop offering it | Mosca X=7.0 Y=2.0 Z=12.0 gap=-3.0",
+        "ruleId": "static-rsa-kx",
+        "remediate": {
+          "action": "decommission",
+          "require_forward_secrecy": true
+        },
+        "references": [
+          {
+            "standard": "RFC 8446",
+            "section": "§1.2",
+            "note": "static RSA key exchange removed in TLS 1.3"
+          },
+          {
+            "standard": "NIST SP 800-131A Rev.2",
+            "note": "RSA broken by Shor (CRQC)"
+          }
+        ],
+        "owners": [
+          "platform-net"
+        ],
+        "tags": [
+          "external"
+        ]
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "A-4c0cbcf97416",
+      "name": "X25519 [key-agreement]",
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "key-agreement",
+          "parameterSetIdentifier": null,
+          "keyLength": null,
+          "mode": null
+        }
+      },
+      "evidence": {
+        "occurrences": [
+          {
+            "collector": "sbom",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/sbom.cdx.json#libsodium@1.0.19",
+            "evidence": "component libsodium@1.0.19 ships x25519",
+            "confidence": 0.7,
+            "owner": null,
+            "tags": []
+          },
+          {
+            "collector": "manifests",
+            "locator": "package-lock.json#libsodium@0.7.11",
+            "evidence": "npm manifest declares libsodium@0.7.11 which ships x25519",
+            "confidence": 0.7,
+            "owner": null,
+            "tags": []
+          }
+        ]
+      },
+      "qramp": {
+        "algorithm": "x25519",
+        "exposureClass": "quantum_broken",
+        "tier": "P2",
+        "rationale": "X25519/X448 ECDH broken by Shor | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0",
+        "ruleId": "x25519-broken",
+        "remediate": null,
+        "references": [
+          {
+            "standard": "NISTIR 8105",
+            "note": "ECDLP broken by Shor"
+          }
+        ],
+        "owners": [],
+        "tags": []
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "A-521e1d315603",
+      "name": "X25519-256 [key-agreement]",
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "key-agreement",
+          "parameterSetIdentifier": null,
+          "keyLength": 256,
+          "mode": null
+        }
+      },
+      "evidence": {
+        "occurrences": [
+          {
+            "collector": "configs",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/etc/sshd_config:4",
+            "evidence": "KexAlgorithms includes curve25519-sha256",
+            "confidence": 1.0,
+            "owner": "platform-net",
+            "tags": []
+          }
+        ]
+      },
+      "qramp": {
+        "algorithm": "x25519",
+        "exposureClass": "quantum_broken",
+        "tier": "P2",
+        "rationale": "X25519/X448 ECDH broken by Shor | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0",
+        "ruleId": "x25519-broken",
+        "remediate": null,
+        "references": [
+          {
+            "standard": "NISTIR 8105",
+            "note": "ECDLP broken by Shor"
+          }
+        ],
+        "owners": [
+          "platform-net"
+        ],
+        "tags": []
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "A-9c224777a4e9",
+      "name": "MD5 (hmac) [mac]",
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "mac",
+          "parameterSetIdentifier": "hmac",
+          "keyLength": null,
+          "mode": null
+        }
+      },
+      "evidence": {
+        "occurrences": [
+          {
+            "collector": "configs",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/etc/sshd_config:6",
+            "evidence": "MACs includes hmac-md5",
+            "confidence": 1.0,
+            "owner": "platform-net",
+            "tags": []
+          }
+        ]
+      },
+      "qramp": {
+        "algorithm": "md5",
+        "exposureClass": "quantum_broken",
+        "tier": "P2",
+        "rationale": "MD5 is collision-broken and must be removed regardless of PQC | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0",
+        "ruleId": "md5-dead",
+        "remediate": null,
+        "references": [
+          {
+            "standard": "RFC 6151",
+            "note": "MD5 collision attacks"
+          },
+          {
+            "standard": "NIST SP 800-131A Rev.2",
+            "note": "MD5 not approved"
+          }
+        ],
+        "owners": [
+          "platform-net"
+        ],
+        "tags": []
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "A-fac28a97e87d",
+      "name": "SHA1 (hmac) [mac]",
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "mac",
+          "parameterSetIdentifier": "hmac",
+          "keyLength": null,
+          "mode": null
+        }
+      },
+      "evidence": {
+        "occurrences": [
+          {
+            "collector": "configs",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/etc/sshd_config:6",
+            "evidence": "MACs includes hmac-sha1",
+            "confidence": 1.0,
+            "owner": "platform-net",
+            "tags": []
+          }
+        ]
+      },
+      "qramp": {
+        "algorithm": "sha1",
+        "exposureClass": "quantum_broken",
+        "tier": "P2",
+        "rationale": "SHA-1 is collision-broken and must be removed | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0",
+        "ruleId": "sha1-dead",
+        "remediate": null,
+        "references": [
+          {
+            "standard": "NIST SP 800-131A Rev.2",
+            "section": "§9",
+            "note": "SHA-1 disallowed for signatures"
+          },
+          {
+            "standard": "NIST policy 2022",
+            "note": "SHA-1 phase-out by 2030"
+          }
+        ],
+        "owners": [
+          "platform-net"
+        ],
+        "tags": []
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "A-d0a8dbd7c10f",
+      "name": "SHA2-256 (hmac) [mac]",
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "mac",
+          "parameterSetIdentifier": "hmac",
+          "keyLength": null,
+          "mode": null
+        }
+      },
+      "evidence": {
+        "occurrences": [
+          {
+            "collector": "configs",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/etc/sshd_config:6",
+            "evidence": "MACs includes hmac-sha2-256",
+            "confidence": 1.0,
+            "owner": "platform-net",
+            "tags": []
+          }
+        ]
+      },
+      "qramp": {
+        "algorithm": "sha2-256",
+        "exposureClass": "quantum_weakened",
+        "tier": "P3",
+        "rationale": "SHA-256 collision resistance reduced under quantum attack; acceptable near-term | Mosca X=3.0 Y=1.0 Z=12.0 gap=-8.0",
+        "ruleId": "sha256-weak",
+        "remediate": {
+          "require_algorithm": [
+            "sha2-384",
+            "sha2-512",
+            "sha3-256",
+            "sha3-512"
+          ]
+        },
+        "references": [
+          {
+            "standard": "NISTIR 8105",
+            "note": "Grover/quantum collision margin"
+          },
+          {
+            "standard": "FIPS 180-4",
+            "note": "SHA-2 family"
+          }
+        ],
+        "owners": [
+          "platform-net"
+        ],
+        "tags": []
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "A-dcf698f6e76b",
+      "name": "RSA [pk-encryption]",
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "pk-encryption",
+          "parameterSetIdentifier": null,
+          "keyLength": null,
+          "mode": null
+        }
+      },
+      "evidence": {
+        "occurrences": [
+          {
+            "collector": "source-py",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/app/storage.py:27",
+            "evidence": "RSA keygen, key_size computed at run time",
+            "confidence": 0.5,
+            "owner": "app-team",
+            "tags": [
+              "indeterminate"
+            ]
+          },
+          {
+            "collector": "sbom",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/sbom.cdx.json#cryptography@42.0.5",
+            "evidence": "component cryptography@42.0.5 ships rsa",
+            "confidence": 0.6,
+            "owner": null,
+            "tags": []
+          },
+          {
+            "collector": "sbom",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/sbom.cdx.json#openssl@3.0.13",
+            "evidence": "component openssl@3.0.13 ships rsa",
+            "confidence": 0.6,
+            "owner": null,
+            "tags": []
+          },
+          {
+            "collector": "manifests",
+            "locator": "pom.xml#bouncycastle@1.77",
+            "evidence": "maven manifest declares bcprov-jdk18on@1.77 which ships rsa",
+            "confidence": 0.6,
+            "owner": null,
+            "tags": []
+          },
+          {
+            "collector": "manifests",
+            "locator": "Cargo.lock#openssl@0.9.90",
+            "evidence": "cargo manifest declares openssl-sys@0.9.90 which ships rsa [wrapper openssl-sys@0.9.90; underlying library version unknown, version-gated capabilities withheld]",
+            "confidence": 0.6,
+            "owner": null,
+            "tags": []
+          },
+          {
+            "collector": "manifests",
+            "locator": "requirements.txt#cryptography@42.0.5",
+            "evidence": "pip manifest declares cryptography@42.0.5 which ships rsa",
+            "confidence": 0.6,
+            "owner": null,
+            "tags": []
+          },
+          {
+            "collector": "manifests",
+            "locator": "requirements.txt#openssl@24.0.0",
+            "evidence": "pip manifest declares pyOpenSSL@24.0.0 which ships rsa [wrapper pyOpenSSL@24.0.0; underlying library version unknown, version-gated capabilities withheld]",
+            "confidence": 0.6,
+            "owner": null,
+            "tags": []
+          }
+        ]
+      },
+      "qramp": {
+        "algorithm": "rsa",
+        "exposureClass": "quantum_broken",
+        "tier": "P2",
+        "rationale": "RSA is broken by Shor's algorithm | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0",
+        "ruleId": "rsa-broken",
+        "remediate": null,
+        "references": [
+          {
+            "standard": "NISTIR 8105",
+            "note": "RSA broken by Shor's algorithm"
+          },
+          {
+            "standard": "NIST SP 800-208",
+            "note": "migration guidance"
+          }
+        ],
+        "owners": [
+          "app-team"
+        ],
+        "tags": [
+          "indeterminate"
+        ]
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "A-a2af3da4b832",
+      "name": "RSA-1024 [pk-encryption]",
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "pk-encryption",
+          "parameterSetIdentifier": null,
+          "keyLength": 1024,
+          "mode": null
+        }
+      },
+      "evidence": {
+        "occurrences": [
+          {
+            "collector": "source-c",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/c/crypto_service.c:22",
+            "evidence": "RSA_generate_key_ex(...), key size 1024",
+            "confidence": 1.0,
+            "owner": "platform-net",
+            "tags": []
+          },
+          {
+            "collector": "certs",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/certs/weak-rsa1024.pem",
+            "evidence": "RSA-1024 public key in cert for CN=weak-rsa1024.testbed.local, below 2048-bit minimum",
+            "confidence": 1.0,
+            "owner": "pki-team",
+            "tags": [
+              "weak-key"
+            ]
+          }
+        ]
+      },
+      "qramp": {
+        "algorithm": "rsa",
+        "exposureClass": "quantum_weakened",
+        "tier": "P3",
+        "rationale": "certificate public key is below the 2048-bit RSA minimum; reissue with a stronger key | Mosca X=3.0 Y=1.0 Z=12.0 gap=-8.0",
+        "ruleId": "weak-cert-key",
+        "remediate": {
+          "action": "reissue",
+          "min_key_length": 2048
+        },
+        "references": [
+          {
+            "standard": "NIST SP 800-131A Rev.2",
+            "section": "§6",
+            "note": "RSA <2048 disallowed"
+          },
+          {
+            "standard": "NIST SP 800-57 Part 1 Rev.5",
+            "note": "key-length recommendations"
+          }
+        ],
+        "owners": [
+          "pki-team",
+          "platform-net"
+        ],
+        "tags": [
+          "weak-key"
+        ]
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "A-9999a3d9ddb4",
+      "name": "RSA-2048 [pk-encryption]",
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "pk-encryption",
+          "parameterSetIdentifier": null,
+          "keyLength": 2048,
+          "mode": null
+        }
+      },
+      "evidence": {
+        "occurrences": [
+          {
+            "collector": "source-py",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/app/payments.py:26",
+            "evidence": "RSA keygen key_size=2048",
+            "confidence": 1.0,
+            "owner": "app-team",
+            "tags": []
+          },
+          {
+            "collector": "source-java",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/java/com/testbed/CryptoService.java:47",
+            "evidence": "KeyPairGenerator.getInstance(\"RSA\"), key size 2048",
+            "confidence": 1.0,
+            "owner": "app-team",
+            "tags": []
+          },
+          {
+            "collector": "source-go",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/go/cryptoservice.go:47",
+            "evidence": "rsa.GenerateKey(...), key size 2048",
+            "confidence": 1.0,
+            "owner": "platform-net",
+            "tags": []
+          },
+          {
+            "collector": "source-rust",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/rust/crypto_service.rs:25",
+            "evidence": "RsaPrivateKey::new(...), key size 2048",
+            "confidence": 1.0,
+            "owner": "platform-net",
+            "tags": []
+          },
+          {
+            "collector": "source-c",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/c/crypto_service.c:21",
+            "evidence": "RSA_generate_key(...), key size 2048",
+            "confidence": 1.0,
+            "owner": "platform-net",
+            "tags": []
+          },
+          {
+            "collector": "certs",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/certs/gateway-rsa2048.pem",
+            "evidence": "RSA-2048 public key in cert for CN=gateway.testbed.local",
+            "confidence": 1.0,
+            "owner": "platform-net",
+            "tags": []
+          },
+          {
+            "collector": "certs",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/certs/expiring-soon.pem",
+            "evidence": "RSA-2048 public key in cert for CN=expiring.testbed.local",
+            "confidence": 1.0,
+            "owner": "pki-team",
+            "tags": [
+              "expired"
+            ]
+          },
+          {
+            "collector": "certs",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/certs/legacy-sha1-rsa.pem",
+            "evidence": "RSA-2048 public key in cert for CN=legacy-sha1.testbed.local",
+            "confidence": 1.0,
+            "owner": "pki-team",
+            "tags": []
+          },
+          {
+            "collector": "certs",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/certs/chain/leaf-under-sha1-ca.pem",
+            "evidence": "RSA-2048 public key in cert for CN=secure.example.com",
+            "confidence": 1.0,
+            "owner": null,
+            "tags": []
+          },
+          {
+            "collector": "certs",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/certs/chain/root-ca-sha1.pem",
+            "evidence": "RSA-2048 public key in cert for CN=SHA1 Legacy Root CA",
+            "confidence": 1.0,
+            "owner": null,
+            "tags": []
+          },
+          {
+            "collector": "certs",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/certs/chain/leaf-under-strong-ca.pem",
+            "evidence": "RSA-2048 public key in cert for CN=api.example.com",
+            "confidence": 1.0,
+            "owner": null,
+            "tags": []
+          },
+          {
+            "collector": "certs",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/certs/chain/root-ca-strong.pem",
+            "evidence": "RSA-2048 public key in cert for CN=Legacy Root CA",
+            "confidence": 1.0,
+            "owner": null,
+            "tags": []
+          }
+        ]
+      },
+      "qramp": {
+        "algorithm": "rsa",
+        "exposureClass": "quantum_broken",
+        "tier": "P2",
+        "rationale": "RSA is broken by Shor's algorithm | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0",
+        "ruleId": "rsa-broken",
+        "remediate": null,
+        "references": [
+          {
+            "standard": "NISTIR 8105",
+            "note": "RSA broken by Shor's algorithm"
+          },
+          {
+            "standard": "NIST SP 800-208",
+            "note": "migration guidance"
+          }
+        ],
+        "owners": [
+          "app-team",
+          "pki-team",
+          "platform-net"
+        ],
+        "tags": [
+          "expired"
+        ]
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "A-b3e207adeef1",
+      "name": "SSH [protocol]",
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "protocol",
+          "parameterSetIdentifier": null,
+          "keyLength": null,
+          "mode": null
+        }
+      },
+      "evidence": {
+        "occurrences": [
+          {
+            "collector": "sbom",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/sbom.cdx.json#paramiko@3.4.0",
+            "evidence": "component paramiko@3.4.0 ships ssh",
+            "confidence": 0.6,
+            "owner": null,
+            "tags": []
+          },
+          {
+            "collector": "manifests",
+            "locator": "requirements.txt#paramiko@3.4.0",
+            "evidence": "pip manifest declares paramiko@3.4.0 which ships ssh",
+            "confidence": 0.6,
+            "owner": null,
+            "tags": []
+          }
+        ]
+      },
+      "qramp": {
+        "algorithm": "ssh",
+        "exposureClass": "unknown",
+        "tier": "P2",
+        "rationale": "no rule matched | Mosca X=3.0 Y=1.0 Z=12.0 gap=-8.0",
+        "ruleId": null,
+        "remediate": null,
+        "references": null,
+        "owners": [],
+        "tags": []
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "A-0b5b4770df42",
+      "name": "TLS (1.0) [protocol]",
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "protocol",
+          "parameterSetIdentifier": "1.0",
+          "keyLength": null,
+          "mode": null
+        }
+      },
+      "evidence": {
+        "occurrences": [
+          {
+            "collector": "source-py",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/app/payments.py:36",
+            "evidence": "use of ssl.PROTOCOL_TLSv1",
+            "confidence": 1.0,
+            "owner": "app-team",
+            "tags": []
+          },
+          {
+            "collector": "source-java",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/java/com/testbed/CryptoService.java:59",
+            "evidence": "SSLContext.getInstance(\"TLSv1\")",
+            "confidence": 1.0,
+            "owner": "app-team",
+            "tags": []
+          },
+          {
+            "collector": "source-go",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/go/cryptoservice.go:64",
+            "evidence": "tls.VersionTLS10 configured",
+            "confidence": 1.0,
+            "owner": "platform-net",
+            "tags": []
+          },
+          {
+            "collector": "configs",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/etc/nginx-gateway.conf:4",
+            "evidence": "ssl_protocols enables TLSv1",
+            "confidence": 1.0,
+            "owner": "platform-net",
+            "tags": [
+              "external"
+            ]
+          },
+          {
+            "collector": "configs",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/etc/java.security",
+            "evidence": "tlsv1 NOT in jdk.tls.disabledAlgorithms",
+            "confidence": 0.6,
+            "owner": "platform-net",
+            "tags": []
+          }
+        ]
+      },
+      "qramp": {
+        "algorithm": "tls",
+        "exposureClass": "quantum_broken",
+        "tier": "P1",
+        "rationale": "TLS 1.0/1.1 are deprecated and must be disabled | Mosca X=7.0 Y=2.0 Z=12.0 gap=-3.0",
+        "ruleId": "old-tls",
+        "remediate": null,
+        "references": [
+          {
+            "standard": "RFC 8996",
+            "note": "deprecating TLS 1.0 and TLS 1.1"
+          }
+        ],
+        "owners": [
+          "app-team",
+          "platform-net"
+        ],
+        "tags": [
+          "external"
+        ]
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "A-6f3b337e5d7d",
+      "name": "TLS (1.1) [protocol]",
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "protocol",
+          "parameterSetIdentifier": "1.1",
+          "keyLength": null,
+          "mode": null
+        }
+      },
+      "evidence": {
+        "occurrences": [
+          {
+            "collector": "configs",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/etc/nginx-gateway.conf:4",
+            "evidence": "ssl_protocols enables TLSv1.1",
+            "confidence": 1.0,
+            "owner": "platform-net",
+            "tags": [
+              "external"
+            ]
+          }
+        ]
+      },
+      "qramp": {
+        "algorithm": "tls",
+        "exposureClass": "quantum_broken",
+        "tier": "P1",
+        "rationale": "TLS 1.0/1.1 are deprecated and must be disabled | Mosca X=7.0 Y=2.0 Z=12.0 gap=-3.0",
+        "ruleId": "old-tls",
+        "remediate": null,
+        "references": [
+          {
+            "standard": "RFC 8996",
+            "note": "deprecating TLS 1.0 and TLS 1.1"
+          }
+        ],
+        "owners": [
+          "platform-net"
+        ],
+        "tags": [
+          "external"
+        ]
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "A-26c9dcb7dd02",
+      "name": "TLS (1.2) [protocol]",
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "protocol",
+          "parameterSetIdentifier": "1.2",
+          "keyLength": null,
+          "mode": null
+        }
+      },
+      "evidence": {
+        "occurrences": [
+          {
+            "collector": "configs",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/etc/nginx-gateway.conf:4",
+            "evidence": "ssl_protocols enables TLSv1.2",
+            "confidence": 1.0,
+            "owner": "platform-net",
+            "tags": [
+              "external"
+            ]
+          }
+        ]
+      },
+      "qramp": {
+        "algorithm": "tls",
+        "exposureClass": "unknown",
+        "tier": "P2",
+        "rationale": "no rule matched | Mosca X=7.0 Y=1.0 Z=12.0 gap=-4.0",
+        "ruleId": null,
+        "remediate": null,
+        "references": null,
+        "owners": [
+          "platform-net"
+        ],
+        "tags": [
+          "external"
+        ]
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "A-cccb9d140d16",
+      "name": "TLS (1.3) [protocol]",
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "protocol",
+          "parameterSetIdentifier": "1.3",
+          "keyLength": null,
+          "mode": null
+        }
+      },
+      "evidence": {
+        "occurrences": [
+          {
+            "collector": "source-java",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/java/com/testbed/CryptoService.java:64",
+            "evidence": "SSLContext.getInstance(\"TLSv1.3\")",
+            "confidence": 1.0,
+            "owner": "app-team",
+            "tags": []
+          },
+          {
+            "collector": "source-go",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/go/cryptoservice.go:74",
+            "evidence": "tls.VersionTLS13 configured",
+            "confidence": 1.0,
+            "owner": "platform-net",
+            "tags": []
+          },
+          {
+            "collector": "configs",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/etc/nginx-gateway.conf:4",
+            "evidence": "ssl_protocols enables TLSv1.3",
+            "confidence": 1.0,
+            "owner": "platform-net",
+            "tags": [
+              "external"
+            ]
+          }
+        ]
+      },
+      "qramp": {
+        "algorithm": "tls",
+        "exposureClass": "unknown",
+        "tier": "P2",
+        "rationale": "no rule matched | Mosca X=7.0 Y=1.0 Z=12.0 gap=-4.0",
+        "ruleId": null,
+        "remediate": null,
+        "references": null,
+        "owners": [
+          "app-team",
+          "platform-net"
+        ],
+        "tags": [
+          "external"
+        ]
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "A-732339ef42a8",
+      "name": "ECDSA [signature]",
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "parameterSetIdentifier": null,
+          "keyLength": null,
+          "mode": null
+        }
+      },
+      "evidence": {
+        "occurrences": [
+          {
+            "collector": "source-java",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/java/com/testbed/CryptoService.java:54",
+            "evidence": "KeyPairGenerator.getInstance(\"EC\")",
+            "confidence": 1.0,
+            "owner": "app-team",
+            "tags": []
+          },
+          {
+            "collector": "sbom",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/sbom.cdx.json#cryptography@42.0.5",
+            "evidence": "component cryptography@42.0.5 ships ecdsa",
+            "confidence": 0.6,
+            "owner": null,
+            "tags": []
+          },
+          {
+            "collector": "manifests",
+            "locator": "pom.xml#bouncycastle@1.77",
+            "evidence": "maven manifest declares bcprov-jdk18on@1.77 which ships ecdsa",
+            "confidence": 0.6,
+            "owner": null,
+            "tags": []
+          },
+          {
+            "collector": "manifests",
+            "locator": "requirements.txt#cryptography@42.0.5",
+            "evidence": "pip manifest declares cryptography@42.0.5 which ships ecdsa",
+            "confidence": 0.6,
+            "owner": null,
+            "tags": []
+          }
+        ]
+      },
+      "qramp": {
+        "algorithm": "ecdsa",
+        "exposureClass": "quantum_broken",
+        "tier": "P2",
+        "rationale": "ECDSA relies on ECDLP, broken by Shor | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0",
+        "ruleId": "ecdsa-broken",
+        "remediate": null,
+        "references": [
+          {
+            "standard": "NISTIR 8105",
+            "note": "ECDLP broken by Shor"
+          }
+        ],
+        "owners": [
+          "app-team"
+        ],
+        "tags": []
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "A-118d3cd7d301",
+      "name": "ECDSA (cert-sig:sha2-256) [signature]",
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "parameterSetIdentifier": "cert-sig:sha2-256",
+          "keyLength": null,
+          "mode": null
+        }
+      },
+      "evidence": {
+        "occurrences": [
+          {
+            "collector": "certs",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/certs/weak-curve-secp192.pem",
+            "evidence": "certificate signed with sha2-256-ecdsa by issuer CN=Test CA",
+            "confidence": 1.0,
+            "owner": "pki-team",
+            "tags": []
+          },
+          {
+            "collector": "certs",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/certs/api-ec256.pem",
+            "evidence": "certificate signed with sha2-256-ecdsa by issuer CN=api.testbed.local",
+            "confidence": 1.0,
+            "owner": "platform-net",
+            "tags": []
+          }
+        ]
+      },
+      "qramp": {
+        "algorithm": "ecdsa",
+        "exposureClass": "quantum_broken",
+        "tier": "P2",
+        "rationale": "ECDSA relies on ECDLP, broken by Shor | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0",
+        "ruleId": "ecdsa-broken",
+        "remediate": null,
+        "references": [
+          {
+            "standard": "NISTIR 8105",
+            "note": "ECDLP broken by Shor"
+          }
+        ],
+        "owners": [
+          "pki-team",
+          "platform-net"
+        ],
+        "tags": []
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "A-4429958f3e1b",
+      "name": "ECDSA-256 (nistp256) [signature]",
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "parameterSetIdentifier": "nistp256",
+          "keyLength": 256,
+          "mode": null
+        }
+      },
+      "evidence": {
+        "occurrences": [
+          {
+            "collector": "source-go",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/go/cryptoservice.go:52",
+            "evidence": "ecdsa.GenerateKey(...), key size 256, curve nistp256",
+            "confidence": 1.0,
+            "owner": "platform-net",
+            "tags": []
+          }
+        ]
+      },
+      "qramp": {
+        "algorithm": "ecdsa",
+        "exposureClass": "quantum_broken",
+        "tier": "P2",
+        "rationale": "ECDSA relies on ECDLP, broken by Shor | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0",
+        "ruleId": "ecdsa-broken",
+        "remediate": null,
+        "references": [
+          {
+            "standard": "NISTIR 8105",
+            "note": "ECDLP broken by Shor"
+          }
+        ],
+        "owners": [
+          "platform-net"
+        ],
+        "tags": []
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "A-36058b99a4a6",
+      "name": "ECDSA-192 (secp192r1) [signature]",
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "parameterSetIdentifier": "secp192r1",
+          "keyLength": 192,
+          "mode": null
+        }
+      },
+      "evidence": {
+        "occurrences": [
+          {
+            "collector": "certs",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/certs/weak-curve-secp192.pem",
+            "evidence": "EC public key (secp192r1) (weak curve) for CN=weak-curve.testbed.local",
+            "confidence": 1.0,
+            "owner": "pki-team",
+            "tags": [
+              "weak-curve"
+            ]
+          }
+        ]
+      },
+      "qramp": {
+        "algorithm": "ecdsa",
+        "exposureClass": "quantum_weakened",
+        "tier": "P3",
+        "rationale": "certificate uses a curve below the 224-bit minimum; reissue with P-256 or stronger | Mosca X=3.0 Y=1.0 Z=12.0 gap=-8.0",
+        "ruleId": "weak-cert-curve",
+        "remediate": {
+          "action": "reissue",
+          "prefer": "secp256r1"
+        },
+        "references": [
+          {
+            "standard": "NIST SP 800-186",
+            "note": "approved curves (P-256+)"
+          },
+          {
+            "standard": "NIST SP 800-131A Rev.2",
+            "section": "§5",
+            "note": "<224-bit ECC disallowed"
+          }
+        ],
+        "owners": [
+          "pki-team"
+        ],
+        "tags": [
+          "weak-curve"
+        ]
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "A-c0e9e0e1f80c",
+      "name": "ECDSA (secp256r1) [signature]",
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "parameterSetIdentifier": "secp256r1",
+          "keyLength": null,
+          "mode": null
+        }
+      },
+      "evidence": {
+        "occurrences": [
+          {
+            "collector": "source-py",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/app/payments.py:31",
+            "evidence": "EC keygen curve=secp256r1",
+            "confidence": 1.0,
+            "owner": "app-team",
+            "tags": []
+          }
+        ]
+      },
+      "qramp": {
+        "algorithm": "ecdsa",
+        "exposureClass": "quantum_broken",
+        "tier": "P2",
+        "rationale": "ECDSA relies on ECDLP, broken by Shor | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0",
+        "ruleId": "ecdsa-broken",
+        "remediate": null,
+        "references": [
+          {
+            "standard": "NISTIR 8105",
+            "note": "ECDLP broken by Shor"
+          }
+        ],
+        "owners": [
+          "app-team"
+        ],
+        "tags": []
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "A-c1fe93a85f95",
+      "name": "ECDSA-256 (secp256r1) [signature]",
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "parameterSetIdentifier": "secp256r1",
+          "keyLength": 256,
+          "mode": null
+        }
+      },
+      "evidence": {
+        "occurrences": [
+          {
+            "collector": "certs",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/certs/api-ec256.pem",
+            "evidence": "EC public key (secp256r1) for CN=api.testbed.local",
+            "confidence": 1.0,
+            "owner": "platform-net",
+            "tags": []
+          }
+        ]
+      },
+      "qramp": {
+        "algorithm": "ecdsa",
+        "exposureClass": "quantum_broken",
+        "tier": "P2",
+        "rationale": "ECDSA relies on ECDLP, broken by Shor | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0",
+        "ruleId": "ecdsa-broken",
+        "remediate": null,
+        "references": [
+          {
+            "standard": "NISTIR 8105",
+            "note": "ECDLP broken by Shor"
+          }
+        ],
+        "owners": [
+          "platform-net"
+        ],
+        "tags": []
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "A-6a50cfa83e84",
+      "name": "ED25519 [signature]",
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "parameterSetIdentifier": null,
+          "keyLength": null,
+          "mode": null
+        }
+      },
+      "evidence": {
+        "occurrences": [
+          {
+            "collector": "sbom",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/sbom.cdx.json#libsodium@1.0.19",
+            "evidence": "component libsodium@1.0.19 ships ed25519",
+            "confidence": 0.7,
+            "owner": null,
+            "tags": []
+          },
+          {
+            "collector": "manifests",
+            "locator": "package-lock.json#libsodium@0.7.11",
+            "evidence": "npm manifest declares libsodium@0.7.11 which ships ed25519",
+            "confidence": 0.7,
+            "owner": null,
+            "tags": []
+          }
+        ]
+      },
+      "qramp": {
+        "algorithm": "ed25519",
+        "exposureClass": "quantum_broken",
+        "tier": "P2",
+        "rationale": "EdDSA relies on ECDLP, broken by Shor | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0",
+        "ruleId": "eddsa-broken",
+        "remediate": null,
+        "references": [
+          {
+            "standard": "NISTIR 8105",
+            "note": "ECDLP broken by Shor"
+          },
+          {
+            "standard": "RFC 8032",
+            "note": "EdDSA definition"
+          }
+        ],
+        "owners": [],
+        "tags": []
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "A-22f4d3043c8f",
+      "name": "ED25519-256 [signature]",
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "parameterSetIdentifier": null,
+          "keyLength": 256,
+          "mode": null
+        }
+      },
+      "evidence": {
+        "occurrences": [
+          {
+            "collector": "source-c",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/c/crypto_service.c:29",
+            "evidence": "crypto_sign_ed25519() call site",
+            "confidence": 1.0,
+            "owner": "platform-net",
+            "tags": []
+          },
+          {
+            "collector": "certs",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/certs/mesh-ed25519.pem",
+            "evidence": "Ed25519 key for CN=mesh.testbed.local",
+            "confidence": 1.0,
+            "owner": "platform-net",
+            "tags": []
+          }
+        ]
+      },
+      "qramp": {
+        "algorithm": "ed25519",
+        "exposureClass": "quantum_broken",
+        "tier": "P2",
+        "rationale": "EdDSA relies on ECDLP, broken by Shor | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0",
+        "ruleId": "eddsa-broken",
+        "remediate": null,
+        "references": [
+          {
+            "standard": "NISTIR 8105",
+            "note": "ECDLP broken by Shor"
+          },
+          {
+            "standard": "RFC 8032",
+            "note": "EdDSA definition"
+          }
+        ],
+        "owners": [
+          "platform-net"
+        ],
+        "tags": []
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "A-3b6bf4a46131",
+      "name": "ED25519 (cert-sig) [signature]",
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "parameterSetIdentifier": "cert-sig",
+          "keyLength": null,
+          "mode": null
+        }
+      },
+      "evidence": {
+        "occurrences": [
+          {
+            "collector": "certs",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/certs/mesh-ed25519.pem",
+            "evidence": "certificate signed with ed25519 by issuer CN=mesh.testbed.local",
+            "confidence": 1.0,
+            "owner": "platform-net",
+            "tags": []
+          }
+        ]
+      },
+      "qramp": {
+        "algorithm": "ed25519",
+        "exposureClass": "quantum_broken",
+        "tier": "P2",
+        "rationale": "EdDSA relies on ECDLP, broken by Shor | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0",
+        "ruleId": "eddsa-broken",
+        "remediate": null,
+        "references": [
+          {
+            "standard": "NISTIR 8105",
+            "note": "ECDLP broken by Shor"
+          },
+          {
+            "standard": "RFC 8032",
+            "note": "EdDSA definition"
+          }
+        ],
+        "owners": [
+          "platform-net"
+        ],
+        "tags": []
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "A-a4a9fdc82631",
+      "name": "ED25519-256 (ssh-hostkey) [signature]",
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "parameterSetIdentifier": "ssh-hostkey",
+          "keyLength": 256,
+          "mode": null
+        }
+      },
+      "evidence": {
+        "occurrences": [
+          {
+            "collector": "configs",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/etc/sshd_config:3",
+            "evidence": "HostKeyAlgorithms includes ssh-ed25519",
+            "confidence": 1.0,
+            "owner": "platform-net",
+            "tags": []
+          }
+        ]
+      },
+      "qramp": {
+        "algorithm": "ed25519",
+        "exposureClass": "quantum_broken",
+        "tier": "P2",
+        "rationale": "EdDSA relies on ECDLP, broken by Shor | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0",
+        "ruleId": "eddsa-broken",
+        "remediate": null,
+        "references": [
+          {
+            "standard": "NISTIR 8105",
+            "note": "ECDLP broken by Shor"
+          },
+          {
+            "standard": "RFC 8032",
+            "note": "EdDSA definition"
+          }
+        ],
+        "owners": [
+          "platform-net"
+        ],
+        "tags": []
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "A-35f417ea0357",
+      "name": "RSA [signature]",
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "parameterSetIdentifier": null,
+          "keyLength": null,
+          "mode": null
+        }
+      },
+      "evidence": {
+        "occurrences": [
+          {
+            "collector": "source-go",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/go/cryptoservice.go:66",
+            "evidence": "cipher suite TLS_RSA_WITH_3DES_EDE_CBC_SHA",
+            "confidence": 0.8,
+            "owner": "platform-net",
+            "tags": []
+          },
+          {
+            "collector": "source-go",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/go/cryptoservice.go:67",
+            "evidence": "cipher suite TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA",
+            "confidence": 0.8,
+            "owner": "platform-net",
+            "tags": []
+          },
+          {
+            "collector": "sbom",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/sbom.cdx.json#paramiko@3.4.0",
+            "evidence": "component paramiko@3.4.0 ships rsa",
+            "confidence": 0.5,
+            "owner": null,
+            "tags": []
+          },
+          {
+            "collector": "manifests",
+            "locator": "requirements.txt#paramiko@3.4.0",
+            "evidence": "pip manifest declares paramiko@3.4.0 which ships rsa",
+            "confidence": 0.5,
+            "owner": null,
+            "tags": []
+          }
+        ]
+      },
+      "qramp": {
+        "algorithm": "rsa",
+        "exposureClass": "quantum_broken",
+        "tier": "P2",
+        "rationale": "RSA is broken by Shor's algorithm | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0",
+        "ruleId": "rsa-broken",
+        "remediate": null,
+        "references": [
+          {
+            "standard": "NISTIR 8105",
+            "note": "RSA broken by Shor's algorithm"
+          },
+          {
+            "standard": "NIST SP 800-208",
+            "note": "migration guidance"
+          }
+        ],
+        "owners": [
+          "platform-net"
+        ],
+        "tags": []
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "A-a3f02be8b29c",
+      "name": "RSA (cert-sig:sha1) [signature]",
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "parameterSetIdentifier": "cert-sig:sha1",
+          "keyLength": null,
+          "mode": null
+        }
+      },
+      "evidence": {
+        "occurrences": [
+          {
+            "collector": "certs",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/certs/legacy-sha1-rsa.pem",
+            "evidence": "certificate signed with sha1-rsa (forgeable digest) by issuer CN=legacy-sha1.testbed.local",
+            "confidence": 1.0,
+            "owner": "pki-team",
+            "tags": [
+              "weak-signature"
+            ]
+          },
+          {
+            "collector": "certs",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/certs/chain/root-ca-sha1.pem",
+            "evidence": "certificate signed with sha1-rsa (forgeable digest) by issuer CN=SHA1 Legacy Root CA",
+            "confidence": 1.0,
+            "owner": null,
+            "tags": [
+              "weak-signature"
+            ]
+          }
+        ]
+      },
+      "qramp": {
+        "algorithm": "rsa",
+        "exposureClass": "quantum_weakened",
+        "tier": "P3",
+        "rationale": "certificate signed with a forgeable digest (SHA-1/MD5); reissue with SHA-256+ and a PQ-ready or classical-strong scheme | Mosca X=3.0 Y=1.0 Z=12.0 gap=-8.0",
+        "ruleId": "weak-cert-signature",
+        "remediate": {
+          "action": "reissue",
+          "require_signature_hash": "sha2-256"
+        },
+        "references": [
+          {
+            "standard": "RFC 9155",
+            "note": "deprecating SHA-1 (and MD5) signatures in TLS"
+          },
+          {
+            "standard": "NIST SP 800-131A Rev.2",
+            "section": "§9",
+            "note": "SHA-1 disallowed for signatures"
+          },
+          {
+            "standard": "RFC 6151",
+            "note": "MD5 security considerations"
+          }
+        ],
+        "owners": [
+          "pki-team"
+        ],
+        "tags": [
+          "weak-signature"
+        ]
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "A-c6758cf65d06",
+      "name": "RSA (cert-sig:sha2-256) [signature]",
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "parameterSetIdentifier": "cert-sig:sha2-256",
+          "keyLength": null,
+          "mode": null
+        }
+      },
+      "evidence": {
+        "occurrences": [
+          {
+            "collector": "certs",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/certs/weak-rsa1024.pem",
+            "evidence": "certificate signed with sha2-256-rsa by issuer CN=Test CA",
+            "confidence": 1.0,
+            "owner": "pki-team",
+            "tags": []
+          },
+          {
+            "collector": "certs",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/certs/gateway-rsa2048.pem",
+            "evidence": "certificate signed with sha2-256-rsa by issuer CN=gateway.testbed.local",
+            "confidence": 1.0,
+            "owner": "platform-net",
+            "tags": []
+          },
+          {
+            "collector": "certs",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/certs/expiring-soon.pem",
+            "evidence": "certificate signed with sha2-256-rsa by issuer CN=Test CA",
+            "confidence": 1.0,
+            "owner": "pki-team",
+            "tags": [
+              "expired"
+            ]
+          },
+          {
+            "collector": "certs",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/certs/chain/leaf-under-sha1-ca.pem",
+            "evidence": "certificate signed with sha2-256-rsa by issuer CN=SHA1 Legacy Root CA",
+            "confidence": 1.0,
+            "owner": null,
+            "tags": []
+          },
+          {
+            "collector": "certs",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/certs/chain/leaf-under-strong-ca.pem",
+            "evidence": "certificate signed with sha2-256-rsa by issuer CN=Legacy Root CA",
+            "confidence": 1.0,
+            "owner": null,
+            "tags": []
+          },
+          {
+            "collector": "certs",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/certs/chain/root-ca-strong.pem",
+            "evidence": "certificate signed with sha2-256-rsa by issuer CN=Legacy Root CA",
+            "confidence": 1.0,
+            "owner": null,
+            "tags": []
+          }
+        ]
+      },
+      "qramp": {
+        "algorithm": "rsa",
+        "exposureClass": "quantum_broken",
+        "tier": "P2",
+        "rationale": "RSA is broken by Shor's algorithm | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0",
+        "ruleId": "rsa-broken",
+        "remediate": null,
+        "references": [
+          {
+            "standard": "NISTIR 8105",
+            "note": "RSA broken by Shor's algorithm"
+          },
+          {
+            "standard": "NIST SP 800-208",
+            "note": "migration guidance"
+          }
+        ],
+        "owners": [
+          "pki-team",
+          "platform-net"
+        ],
+        "tags": [
+          "expired"
+        ]
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "A-df7124751d36",
+      "name": "RSA-2048 (ssh-hostkey) [signature]",
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "parameterSetIdentifier": "ssh-hostkey",
+          "keyLength": 2048,
+          "mode": null
+        }
+      },
+      "evidence": {
+        "occurrences": [
+          {
+            "collector": "configs",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/etc/sshd_config:3",
+            "evidence": "HostKeyAlgorithms includes ssh-rsa",
+            "confidence": 1.0,
+            "owner": "platform-net",
+            "tags": []
+          }
+        ]
+      },
+      "qramp": {
+        "algorithm": "rsa",
+        "exposureClass": "quantum_broken",
+        "tier": "P2",
+        "rationale": "RSA is broken by Shor's algorithm | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0",
+        "ruleId": "rsa-broken",
+        "remediate": null,
+        "references": [
+          {
+            "standard": "NISTIR 8105",
+            "note": "RSA broken by Shor's algorithm"
+          },
+          {
+            "standard": "NIST SP 800-208",
+            "note": "migration guidance"
+          }
+        ],
+        "owners": [
+          "platform-net"
+        ],
+        "tags": []
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "A-1af2b5586b57",
+      "name": "3DES [symmetric-cipher]",
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "symmetric-cipher",
+          "parameterSetIdentifier": null,
+          "keyLength": null,
+          "mode": null
+        }
+      },
+      "evidence": {
+        "occurrences": [
+          {
+            "collector": "configs",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/etc/java.security",
+            "evidence": "3des NOT in jdk.tls.disabledAlgorithms",
+            "confidence": 0.6,
+            "owner": "platform-net",
+            "tags": []
+          }
+        ]
+      },
+      "qramp": {
+        "algorithm": "3des",
+        "exposureClass": "quantum_broken",
+        "tier": "P2",
+        "rationale": "DES/3DES insufficient key strength; remove | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0",
+        "ruleId": "des-dead",
+        "remediate": null,
+        "references": [
+          {
+            "standard": "NIST SP 800-131A Rev.2",
+            "section": "§1",
+            "note": "DES/3DES disallowed"
+          },
+          {
+            "standard": "NIST SP 800-67 Rev.2",
+            "note": "3DES deprecation"
+          }
+        ],
+        "owners": [
+          "platform-net"
+        ],
+        "tags": []
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "A-a127ec19f35a",
+      "name": "3DES-112/cbc [symmetric-cipher]",
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "symmetric-cipher",
+          "parameterSetIdentifier": null,
+          "keyLength": 112,
+          "mode": "cbc"
+        }
+      },
+      "evidence": {
+        "occurrences": [
+          {
+            "collector": "source-go",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/go/cryptoservice.go:66",
+            "evidence": "cipher suite TLS_RSA_WITH_3DES_EDE_CBC_SHA",
+            "confidence": 0.8,
+            "owner": "platform-net",
+            "tags": []
+          },
+          {
+            "collector": "configs",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/etc/sshd_config:5",
+            "evidence": "Ciphers includes 3des-cbc",
+            "confidence": 1.0,
+            "owner": "platform-net",
+            "tags": []
+          }
+        ]
+      },
+      "qramp": {
+        "algorithm": "3des",
+        "exposureClass": "quantum_broken",
+        "tier": "P2",
+        "rationale": "DES/3DES insufficient key strength; remove | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0",
+        "ruleId": "des-dead",
+        "remediate": null,
+        "references": [
+          {
+            "standard": "NIST SP 800-131A Rev.2",
+            "section": "§1",
+            "note": "DES/3DES disallowed"
+          },
+          {
+            "standard": "NIST SP 800-67 Rev.2",
+            "note": "3DES deprecation"
+          }
+        ],
+        "owners": [
+          "platform-net"
+        ],
+        "tags": []
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "A-e98fd17566e1",
+      "name": "AES [symmetric-cipher]",
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "symmetric-cipher",
+          "parameterSetIdentifier": null,
+          "keyLength": null,
+          "mode": null
+        }
+      },
+      "evidence": {
+        "occurrences": [
+          {
+            "collector": "source-go",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/go/cryptoservice.go:41",
+            "evidence": "aes.NewCipher(...)",
+            "confidence": 1.0,
+            "owner": "platform-net",
+            "tags": []
+          }
+        ]
+      },
+      "qramp": {
+        "algorithm": "aes",
+        "exposureClass": "unknown",
+        "tier": "P2",
+        "rationale": "no rule matched | Mosca X=3.0 Y=1.0 Z=12.0 gap=-8.0",
+        "ruleId": null,
+        "remediate": null,
+        "references": null,
+        "owners": [
+          "platform-net"
+        ],
+        "tags": []
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "A-907bb759a93c",
+      "name": "AES/cbc [symmetric-cipher]",
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "symmetric-cipher",
+          "parameterSetIdentifier": null,
+          "keyLength": null,
+          "mode": "cbc"
+        }
+      },
+      "evidence": {
+        "occurrences": [
+          {
+            "collector": "source-py",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/app/storage.py:33",
+            "evidence": "AES.new() call site",
+            "confidence": 1.0,
+            "owner": "app-team",
+            "tags": []
+          },
+          {
+            "collector": "source-java",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/java/com/testbed/CryptoService.java:35",
+            "evidence": "Cipher.getInstance(\"AES/CBC/PKCS5Padding\")",
+            "confidence": 1.0,
+            "owner": "app-team",
+            "tags": []
+          }
+        ]
+      },
+      "qramp": {
+        "algorithm": "aes",
+        "exposureClass": "unknown",
+        "tier": "P2",
+        "rationale": "no rule matched | Mosca X=3.0 Y=1.0 Z=12.0 gap=-8.0",
+        "ruleId": null,
+        "remediate": null,
+        "references": null,
+        "owners": [
+          "app-team"
+        ],
+        "tags": []
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "A-93dcffb05667",
+      "name": "AES/gcm [symmetric-cipher]",
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "symmetric-cipher",
+          "parameterSetIdentifier": null,
+          "keyLength": null,
+          "mode": "gcm"
+        }
+      },
+      "evidence": {
+        "occurrences": [
+          {
+            "collector": "source-py",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/app/storage.py:20",
+            "evidence": "AES.new() call site",
+            "confidence": 1.0,
+            "owner": "app-team",
+            "tags": []
+          }
+        ]
+      },
+      "qramp": {
+        "algorithm": "aes",
+        "exposureClass": "unknown",
+        "tier": "P2",
+        "rationale": "no rule matched | Mosca X=3.0 Y=1.0 Z=12.0 gap=-8.0",
+        "ruleId": null,
+        "remediate": null,
+        "references": null,
+        "owners": [
+          "app-team"
+        ],
+        "tags": []
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "A-295658508ba4",
+      "name": "AES-128/cbc [symmetric-cipher]",
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "symmetric-cipher",
+          "parameterSetIdentifier": null,
+          "keyLength": 128,
+          "mode": "cbc"
+        }
+      },
+      "evidence": {
+        "occurrences": [
+          {
+            "collector": "source-go",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/go/cryptoservice.go:67",
+            "evidence": "cipher suite TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA",
+            "confidence": 0.8,
+            "owner": "platform-net",
+            "tags": []
+          },
+          {
+            "collector": "configs",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/etc/sshd_config:5",
+            "evidence": "Ciphers includes aes128-cbc",
+            "confidence": 1.0,
+            "owner": "platform-net",
+            "tags": []
+          }
+        ]
+      },
+      "qramp": {
+        "algorithm": "aes",
+        "exposureClass": "quantum_weakened",
+        "tier": "P3",
+        "rationale": "AES-128 has ~64-bit post-quantum security under Grover; prefer AES-256 | Mosca X=3.0 Y=1.0 Z=12.0 gap=-8.0",
+        "ruleId": "aes128-weak",
+        "remediate": {
+          "require_min_key_length": 256
+        },
+        "references": [
+          {
+            "standard": "NISTIR 8105",
+            "note": "Grover halves symmetric strength"
+          },
+          {
+            "standard": "NIST SP 800-57 Part 1 Rev.5",
+            "note": "prefer AES-256 for PQ margin"
+          }
+        ],
+        "owners": [
+          "platform-net"
+        ],
+        "tags": []
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "A-120c0e3bebc5",
+      "name": "AES-256 [symmetric-cipher]",
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "symmetric-cipher",
+          "parameterSetIdentifier": null,
+          "keyLength": 256,
+          "mode": null
+        }
+      },
+      "evidence": {
+        "occurrences": [
+          {
+            "collector": "source-java",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/java/com/testbed/CryptoService.java:40",
+            "evidence": "KeyGenerator.getInstance(\"AES\"), key size 256",
+            "confidence": 1.0,
+            "owner": "app-team",
+            "tags": []
+          },
+          {
+            "collector": "source-rust",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/rust/crypto_service.rs:33",
+            "evidence": "Aes256Gcm::new(...), key size 256",
+            "confidence": 1.0,
+            "owner": "platform-net",
+            "tags": []
+          },
+          {
+            "collector": "sbom",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/sbom.cdx.json#openssl@3.0.13",
+            "evidence": "component openssl@3.0.13 ships aes",
+            "confidence": 0.7,
+            "owner": null,
+            "tags": []
+          },
+          {
+            "collector": "manifests",
+            "locator": "Cargo.lock#openssl@0.9.90",
+            "evidence": "cargo manifest declares openssl-sys@0.9.90 which ships aes [wrapper openssl-sys@0.9.90; underlying library version unknown, version-gated capabilities withheld]",
+            "confidence": 0.7,
+            "owner": null,
+            "tags": []
+          },
+          {
+            "collector": "manifests",
+            "locator": "requirements.txt#openssl@24.0.0",
+            "evidence": "pip manifest declares pyOpenSSL@24.0.0 which ships aes [wrapper pyOpenSSL@24.0.0; underlying library version unknown, version-gated capabilities withheld]",
+            "confidence": 0.7,
+            "owner": null,
+            "tags": []
+          }
+        ]
+      },
+      "qramp": {
+        "algorithm": "aes",
+        "exposureClass": "pq_ready",
+        "tier": "OK",
+        "rationale": "AES-256 retains adequate strength against Grover",
+        "ruleId": "aes256-ok",
+        "remediate": null,
+        "references": [
+          {
+            "standard": "FIPS 197",
+            "note": "AES"
+          },
+          {
+            "standard": "NISTIR 8105",
+            "note": "AES-256 retains ~128-bit PQ strength"
+          }
+        ],
+        "owners": [
+          "app-team",
+          "platform-net"
+        ],
+        "tags": []
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "A-57732edb4dad",
+      "name": "AES-256/gcm [symmetric-cipher]",
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "symmetric-cipher",
+          "parameterSetIdentifier": null,
+          "keyLength": 256,
+          "mode": "gcm"
+        }
+      },
+      "evidence": {
+        "occurrences": [
+          {
+            "collector": "source-c",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/c/crypto_service.c:16",
+            "evidence": "EVP_aes_256_gcm() call site",
+            "confidence": 1.0,
+            "owner": "platform-net",
+            "tags": []
+          },
+          {
+            "collector": "configs",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/etc/sshd_config:5",
+            "evidence": "Ciphers includes aes256-gcm@openssh.com",
+            "confidence": 1.0,
+            "owner": "platform-net",
+            "tags": []
+          }
+        ]
+      },
+      "qramp": {
+        "algorithm": "aes",
+        "exposureClass": "pq_ready",
+        "tier": "OK",
+        "rationale": "AES-256 retains adequate strength against Grover",
+        "ruleId": "aes256-ok",
+        "remediate": null,
+        "references": [
+          {
+            "standard": "FIPS 197",
+            "note": "AES"
+          },
+          {
+            "standard": "NISTIR 8105",
+            "note": "AES-256 retains ~128-bit PQ strength"
+          }
+        ],
+        "owners": [
+          "platform-net"
+        ],
+        "tags": []
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "A-5902e08340eb",
+      "name": "DES-56 [symmetric-cipher]",
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "symmetric-cipher",
+          "parameterSetIdentifier": null,
+          "keyLength": 56,
+          "mode": null
+        }
+      },
+      "evidence": {
+        "occurrences": [
+          {
+            "collector": "source-go",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/go/cryptoservice.go:35",
+            "evidence": "des.NewCipher(...), key size 56",
+            "confidence": 1.0,
+            "owner": "platform-net",
+            "tags": []
+          },
+          {
+            "collector": "source-rust",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/rust/crypto_service.rs:29",
+            "evidence": "Des::new_from_slice(...), key size 56",
+            "confidence": 1.0,
+            "owner": "platform-net",
+            "tags": []
+          }
+        ]
+      },
+      "qramp": {
+        "algorithm": "des",
+        "exposureClass": "quantum_broken",
+        "tier": "P2",
+        "rationale": "DES/3DES insufficient key strength; remove | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0",
+        "ruleId": "des-dead",
+        "remediate": null,
+        "references": [
+          {
+            "standard": "NIST SP 800-131A Rev.2",
+            "section": "§1",
+            "note": "DES/3DES disallowed"
+          },
+          {
+            "standard": "NIST SP 800-67 Rev.2",
+            "note": "3DES deprecation"
+          }
+        ],
+        "owners": [
+          "platform-net"
+        ],
+        "tags": []
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "A-969132eb4bd8",
+      "name": "DES-56/cbc [symmetric-cipher]",
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "symmetric-cipher",
+          "parameterSetIdentifier": null,
+          "keyLength": 56,
+          "mode": "cbc"
+        }
+      },
+      "evidence": {
+        "occurrences": [
+          {
+            "collector": "source-c",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/c/crypto_service.c:17",
+            "evidence": "EVP_get_cipherbyname(\"des-cbc\")",
+            "confidence": 1.0,
+            "owner": "platform-net",
+            "tags": []
+          }
+        ]
+      },
+      "qramp": {
+        "algorithm": "des",
+        "exposureClass": "quantum_broken",
+        "tier": "P2",
+        "rationale": "DES/3DES insufficient key strength; remove | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0",
+        "ruleId": "des-dead",
+        "remediate": null,
+        "references": [
+          {
+            "standard": "NIST SP 800-131A Rev.2",
+            "section": "§1",
+            "note": "DES/3DES disallowed"
+          },
+          {
+            "standard": "NIST SP 800-67 Rev.2",
+            "note": "3DES deprecation"
+          }
+        ],
+        "owners": [
+          "platform-net"
+        ],
+        "tags": []
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "A-4678e4b4b7a5",
+      "name": "DES-56/ecb [symmetric-cipher]",
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "symmetric-cipher",
+          "parameterSetIdentifier": null,
+          "keyLength": 56,
+          "mode": "ecb"
+        }
+      },
+      "evidence": {
+        "occurrences": [
+          {
+            "collector": "source-py",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/app/payments.py:20",
+            "evidence": "DES.new() call site",
+            "confidence": 1.0,
+            "owner": "app-team",
+            "tags": []
+          },
+          {
+            "collector": "source-java",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/java/com/testbed/CryptoService.java:30",
+            "evidence": "Cipher.getInstance(\"DES/ECB/PKCS5Padding\"), key size 56",
+            "confidence": 1.0,
+            "owner": "app-team",
+            "tags": []
+          },
+          {
+            "collector": "source-c",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/c/crypto_service.c:15",
+            "evidence": "EVP_des_ecb() call site",
+            "confidence": 1.0,
+            "owner": "platform-net",
+            "tags": []
+          }
+        ]
+      },
+      "qramp": {
+        "algorithm": "des",
+        "exposureClass": "quantum_broken",
+        "tier": "P2",
+        "rationale": "DES/3DES insufficient key strength; remove | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0",
+        "ruleId": "des-dead",
+        "remediate": null,
+        "references": [
+          {
+            "standard": "NIST SP 800-131A Rev.2",
+            "section": "§1",
+            "note": "DES/3DES disallowed"
+          },
+          {
+            "standard": "NIST SP 800-67 Rev.2",
+            "note": "3DES deprecation"
+          }
+        ],
+        "owners": [
+          "app-team",
+          "platform-net"
+        ],
+        "tags": []
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "A-5c1817b037d5",
+      "name": "RC4 [symmetric-cipher]",
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "symmetric-cipher",
+          "parameterSetIdentifier": null,
+          "keyLength": null,
+          "mode": null
+        }
+      },
+      "evidence": {
+        "occurrences": [
+          {
+            "collector": "configs",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/etc/nginx-gateway.conf:5",
+            "evidence": "legacy cipher in ssl_ciphers",
+            "confidence": 1.0,
+            "owner": "platform-net",
+            "tags": [
+              "external"
+            ]
+          },
+          {
+            "collector": "configs",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/etc/java.security",
+            "evidence": "rc4 NOT in jdk.tls.disabledAlgorithms",
+            "confidence": 0.6,
+            "owner": "platform-net",
+            "tags": []
+          }
+        ]
+      },
+      "qramp": {
+        "algorithm": "rc4",
+        "exposureClass": "quantum_broken",
+        "tier": "P1",
+        "rationale": "RC4 is insecure and must be removed | Mosca X=7.0 Y=2.0 Z=12.0 gap=-3.0",
+        "ruleId": "rc4-dead",
+        "remediate": null,
+        "references": [
+          {
+            "standard": "RFC 7465",
+            "note": "prohibiting RC4 cipher suites"
+          }
+        ],
+        "owners": [
+          "platform-net"
+        ],
+        "tags": [
+          "external"
+        ]
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "A-81b36ecc239d",
+      "name": "XSALSA20-256/poly1305 [symmetric-cipher]",
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "symmetric-cipher",
+          "parameterSetIdentifier": null,
+          "keyLength": 256,
+          "mode": "poly1305"
+        }
+      },
+      "evidence": {
+        "occurrences": [
+          {
+            "collector": "source-c",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/c/crypto_service.c:28",
+            "evidence": "crypto_secretbox_easy() call site",
+            "confidence": 1.0,
+            "owner": "platform-net",
+            "tags": []
+          }
+        ]
+      },
+      "qramp": {
+        "algorithm": "xsalsa20",
+        "exposureClass": "unknown",
+        "tier": "P2",
+        "rationale": "no rule matched | Mosca X=3.0 Y=1.0 Z=12.0 gap=-8.0",
+        "ruleId": null,
+        "remediate": null,
+        "references": null,
+        "owners": [
+          "platform-net"
+        ],
+        "tags": []
+      }
+    },
+    {
+      "type": "library",
+      "bom-ref": "C-a27150d5c6af",
+      "name": "bouncycastle",
+      "version": "1.77"
+    },
+    {
+      "type": "library",
+      "bom-ref": "C-cfd0a0f89d4e",
+      "name": "cryptography",
+      "version": "42.0.5"
+    },
+    {
+      "type": "library",
+      "bom-ref": "C-878ce14d47fe",
+      "name": "libsodium",
+      "version": "0.7.11"
+    },
+    {
+      "type": "library",
+      "bom-ref": "C-a185b53cac5f",
+      "name": "libsodium",
+      "version": "1.0.19"
+    },
+    {
+      "type": "library",
+      "bom-ref": "C-4a8aba2337e3",
+      "name": "openssl",
+      "version": "0.9.90~wrapper"
+    },
+    {
+      "type": "library",
+      "bom-ref": "C-0aaf336a6952",
+      "name": "openssl",
+      "version": "24.0.0~wrapper"
+    },
+    {
+      "type": "library",
+      "bom-ref": "C-0b6e9fc5855c",
+      "name": "openssl",
+      "version": "3.0.13"
+    },
+    {
+      "type": "library",
+      "bom-ref": "C-759a55e0b98d",
+      "name": "paramiko",
+      "version": "3.4.0"
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "X-91215550b35d",
+      "name": "CN=Legacy Root CA [CA]",
+      "cryptoProperties": {
+        "assetType": "certificate",
+        "certificateProperties": {
+          "subjectName": "CN=Legacy Root CA",
+          "issuerName": "CN=Legacy Root CA",
+          "notValidAfter": "2036-07-26T01:32:37+00:00",
+          "signatureAlgorithmRef": "A-c6758cf65d06",
+          "subjectPublicKeyRef": "A-9999a3d9ddb4"
+        }
+      },
+      "qrampCert": {
+        "isCA": true,
+        "selfSigned": true,
+        "serial": "558944a78f91e0027d5b682d35c4e5b6913cca11",
+        "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/certs/chain/root-ca-strong.pem",
+        "weakTags": [],
+        "signedBy": null
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "X-ae264d831ef4",
+      "name": "CN=SHA1 Legacy Root CA [CA]",
+      "cryptoProperties": {
+        "assetType": "certificate",
+        "certificateProperties": {
+          "subjectName": "CN=SHA1 Legacy Root CA",
+          "issuerName": "CN=SHA1 Legacy Root CA",
+          "notValidAfter": "2036-07-26T01:32:38+00:00",
+          "signatureAlgorithmRef": "A-a3f02be8b29c",
+          "subjectPublicKeyRef": "A-9999a3d9ddb4"
+        }
+      },
+      "qrampCert": {
+        "isCA": true,
+        "selfSigned": true,
+        "serial": "a3f211f8efde67636af2c46b1b44daf2b5d1e94",
+        "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/certs/chain/root-ca-sha1.pem",
+        "weakTags": [
+          "weak-signature"
+        ],
+        "signedBy": null
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "X-43651d4ead24",
+      "name": "CN=legacy-sha1.testbed.local [CA]",
+      "cryptoProperties": {
+        "assetType": "certificate",
+        "certificateProperties": {
+          "subjectName": "CN=legacy-sha1.testbed.local",
+          "issuerName": "CN=legacy-sha1.testbed.local",
+          "notValidAfter": "2027-07-29T01:01:02+00:00",
+          "signatureAlgorithmRef": "A-a3f02be8b29c",
+          "subjectPublicKeyRef": "A-9999a3d9ddb4"
+        }
+      },
+      "qrampCert": {
+        "isCA": true,
+        "selfSigned": true,
+        "serial": "312f71bac5da3bb3d339f6a6da17e331bb849933",
+        "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/certs/legacy-sha1-rsa.pem",
+        "weakTags": [
+          "weak-signature"
+        ],
+        "signedBy": null
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "X-46a97e4020fe",
+      "name": "CN=api.example.com [leaf]",
+      "cryptoProperties": {
+        "assetType": "certificate",
+        "certificateProperties": {
+          "subjectName": "CN=api.example.com",
+          "issuerName": "CN=Legacy Root CA",
+          "notValidAfter": "2027-07-29T01:32:37+00:00",
+          "signatureAlgorithmRef": "A-c6758cf65d06",
+          "subjectPublicKeyRef": "A-9999a3d9ddb4"
+        }
+      },
+      "qrampCert": {
+        "isCA": false,
+        "selfSigned": false,
+        "serial": "cfa786837d2cfbd7d02401ebe8fc1fdd14d7002",
+        "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/certs/chain/leaf-under-strong-ca.pem",
+        "weakTags": [],
+        "signedBy": "X-91215550b35d"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "X-a99ac005d20b",
+      "name": "CN=api.testbed.local [leaf]",
+      "cryptoProperties": {
+        "assetType": "certificate",
+        "certificateProperties": {
+          "subjectName": "CN=api.testbed.local",
+          "issuerName": "CN=api.testbed.local",
+          "notValidAfter": "2027-09-01T22:43:51+00:00",
+          "signatureAlgorithmRef": "A-118d3cd7d301",
+          "subjectPublicKeyRef": "A-c1fe93a85f95"
+        }
+      },
+      "qrampCert": {
+        "isCA": false,
+        "selfSigned": true,
+        "serial": "7bb7e03c0d4fd8b566e95d4fc3151cfb37ab6e01",
+        "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/certs/api-ec256.pem",
+        "weakTags": [],
+        "signedBy": null
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "X-30f2c8f6b743",
+      "name": "CN=expiring.testbed.local [leaf]",
+      "cryptoProperties": {
+        "assetType": "certificate",
+        "certificateProperties": {
+          "subjectName": "CN=expiring.testbed.local",
+          "issuerName": "CN=Test CA",
+          "notValidAfter": "2026-08-28T01:01:02+00:00",
+          "signatureAlgorithmRef": "A-c6758cf65d06",
+          "subjectPublicKeyRef": "A-9999a3d9ddb4"
+        }
+      },
+      "qrampCert": {
+        "isCA": false,
+        "selfSigned": false,
+        "serial": "4d515cb7fdf6dba08e4ac58d05979323308672a",
+        "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/certs/expiring-soon.pem",
+        "weakTags": [
+          "expired"
+        ],
+        "signedBy": null
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "X-09e6baccfa63",
+      "name": "CN=gateway.testbed.local [leaf]",
+      "cryptoProperties": {
+        "assetType": "certificate",
+        "certificateProperties": {
+          "subjectName": "CN=gateway.testbed.local",
+          "issuerName": "CN=gateway.testbed.local",
+          "notValidAfter": "2027-09-01T22:43:51+00:00",
+          "signatureAlgorithmRef": "A-c6758cf65d06",
+          "subjectPublicKeyRef": "A-9999a3d9ddb4"
+        }
+      },
+      "qrampCert": {
+        "isCA": false,
+        "selfSigned": true,
+        "serial": "86d1105e90b722f2b428e0a340e6e6df9738d79",
+        "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/certs/gateway-rsa2048.pem",
+        "weakTags": [],
+        "signedBy": null
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "X-35ee75216cd9",
+      "name": "CN=mesh.testbed.local [leaf]",
+      "cryptoProperties": {
+        "assetType": "certificate",
+        "certificateProperties": {
+          "subjectName": "CN=mesh.testbed.local",
+          "issuerName": "CN=mesh.testbed.local",
+          "notValidAfter": "2027-09-01T22:43:51+00:00",
+          "signatureAlgorithmRef": "A-3b6bf4a46131",
+          "subjectPublicKeyRef": "A-22f4d3043c8f"
+        }
+      },
+      "qrampCert": {
+        "isCA": false,
+        "selfSigned": true,
+        "serial": "73bb19ff4ab7dd29a3b57ac1ba762fe44bd94cd6",
+        "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/certs/mesh-ed25519.pem",
+        "weakTags": [],
+        "signedBy": null
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "X-e3cf94a72a49",
+      "name": "CN=secure.example.com [leaf]",
+      "cryptoProperties": {
+        "assetType": "certificate",
+        "certificateProperties": {
+          "subjectName": "CN=secure.example.com",
+          "issuerName": "CN=SHA1 Legacy Root CA",
+          "notValidAfter": "2027-07-29T01:32:38+00:00",
+          "signatureAlgorithmRef": "A-c6758cf65d06",
+          "subjectPublicKeyRef": "A-9999a3d9ddb4"
+        }
+      },
+      "qrampCert": {
+        "isCA": false,
+        "selfSigned": false,
+        "serial": "7cc6e10e3b4009722b712e67d6b846be3f64a962",
+        "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/certs/chain/leaf-under-sha1-ca.pem",
+        "weakTags": [],
+        "signedBy": "X-ae264d831ef4"
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "X-e8d07ec1e6d2",
+      "name": "CN=weak-curve.testbed.local [leaf]",
+      "cryptoProperties": {
+        "assetType": "certificate",
+        "certificateProperties": {
+          "subjectName": "CN=weak-curve.testbed.local",
+          "issuerName": "CN=Test CA",
+          "notValidAfter": "2027-07-29T01:01:02+00:00",
+          "signatureAlgorithmRef": "A-118d3cd7d301",
+          "subjectPublicKeyRef": "A-36058b99a4a6"
+        }
+      },
+      "qrampCert": {
+        "isCA": false,
+        "selfSigned": false,
+        "serial": "489dea983d6cb41eba6e11a0ae766085bcc4d2b0",
+        "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/certs/weak-curve-secp192.pem",
+        "weakTags": [
+          "weak-curve"
+        ],
+        "signedBy": null
+      }
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "X-827b1da44e0e",
+      "name": "CN=weak-rsa1024.testbed.local [leaf]",
+      "cryptoProperties": {
+        "assetType": "certificate",
+        "certificateProperties": {
+          "subjectName": "CN=weak-rsa1024.testbed.local",
+          "issuerName": "CN=Test CA",
+          "notValidAfter": "2027-07-29T01:01:02+00:00",
+          "signatureAlgorithmRef": "A-c6758cf65d06",
+          "subjectPublicKeyRef": "A-a2af3da4b832"
+        }
+      },
+      "qrampCert": {
+        "isCA": false,
+        "selfSigned": false,
+        "serial": "23a279abf855360bbc09f100642b6070dcd4e0d0",
+        "locator": "/workspace/scratch/b5e81a169f87/qramp/testbed/certs/weak-rsa1024.pem",
+        "weakTags": [
+          "weak-key"
+        ],
+        "signedBy": null
+      }
+    }
+  ],
+  "dependencies": [
+    {
+      "ref": "C-a27150d5c6af",
+      "provides": [
+        "A-732339ef42a8",
+        "A-dcf698f6e76b"
+      ]
+    },
+    {
+      "ref": "C-cfd0a0f89d4e",
+      "provides": [
+        "A-732339ef42a8",
+        "A-dcf698f6e76b"
+      ]
+    },
+    {
+      "ref": "C-878ce14d47fe",
+      "provides": [
+        "A-4c0cbcf97416",
+        "A-6a50cfa83e84"
+      ]
+    },
+    {
+      "ref": "C-a185b53cac5f",
+      "provides": [
+        "A-4c0cbcf97416",
+        "A-6a50cfa83e84"
+      ]
+    },
+    {
+      "ref": "C-4a8aba2337e3",
+      "provides": [
+        "A-120c0e3bebc5",
+        "A-dcf698f6e76b",
+        "A-e8044ca5438c"
+      ]
+    },
+    {
+      "ref": "C-0aaf336a6952",
+      "provides": [
+        "A-120c0e3bebc5",
+        "A-dcf698f6e76b",
+        "A-e8044ca5438c"
+      ]
+    },
+    {
+      "ref": "C-0b6e9fc5855c",
+      "provides": [
+        "A-120c0e3bebc5",
+        "A-dcf698f6e76b",
+        "A-e8044ca5438c"
+      ]
+    },
+    {
+      "ref": "C-759a55e0b98d",
+      "provides": [
+        "A-35f417ea0357",
+        "A-b3e207adeef1"
+      ]
+    },
+    {
+      "ref": "X-46a97e4020fe",
+      "dependsOn": [
+        "X-91215550b35d"
+      ]
+    },
+    {
+      "ref": "X-e3cf94a72a49",
+      "dependsOn": [
+        "X-ae264d831ef4"
+      ]
+    }
+  ]
+}

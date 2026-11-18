@@ -1,0 +1,18 @@
+{
+  "rule_pack": {
+    "version": "transition-2024.3",
+    "hash": "5613092fb16894de"
+  },
+  "classes": {
+    "quantum_broken": 36,
+    "quantum_weakened": 6,
+    "pq_ready": 3,
+    "unknown": 7
+  },
+  "tiers": {
+    "P2": 37,
+    "P3": 6,
+    "OK": 3,
+    "P1": 6
+  }
+}

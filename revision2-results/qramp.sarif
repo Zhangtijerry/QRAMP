@@ -1,0 +1,4327 @@
+{
+  "$schema": "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/master/Schemas/sarif-schema-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "QRAMP",
+          "informationUri": "https://github.com/qramp/qramp",
+          "version": "0.1.0",
+          "rules": [
+            {
+              "id": "mlkem",
+              "name": "Mlkem",
+              "shortDescription": {
+                "text": "ML-KEM (FIPS 203) is a standardised post-quantum KEM"
+              },
+              "fullDescription": {
+                "text": "ML-KEM (FIPS 203) is a standardised post-quantum KEM"
+              },
+              "helpUri": "https://doi.org/10.6028/NIST.FIPS.203",
+              "help": {
+                "text": "ML-KEM (FIPS 203) is a standardised post-quantum KEM\nReferences: FIPS 203 (ML-KEM)."
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "properties": {
+                "exposureClass": "pq_ready",
+                "references": [
+                  {
+                    "standard": "FIPS 203",
+                    "note": "ML-KEM",
+                    "url": "https://doi.org/10.6028/NIST.FIPS.203"
+                  }
+                ],
+                "tags": [
+                  "cryptography",
+                  "post-quantum",
+                  "exposure/pq_ready",
+                  "standard/FIPS 203"
+                ]
+              }
+            },
+            {
+              "id": "mldsa",
+              "name": "Mldsa",
+              "shortDescription": {
+                "text": "ML-DSA (FIPS 204) is a standardised post-quantum signature"
+              },
+              "fullDescription": {
+                "text": "ML-DSA (FIPS 204) is a standardised post-quantum signature"
+              },
+              "helpUri": "https://doi.org/10.6028/NIST.FIPS.204",
+              "help": {
+                "text": "ML-DSA (FIPS 204) is a standardised post-quantum signature\nReferences: FIPS 204 (ML-DSA)."
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "properties": {
+                "exposureClass": "pq_ready",
+                "references": [
+                  {
+                    "standard": "FIPS 204",
+                    "note": "ML-DSA",
+                    "url": "https://doi.org/10.6028/NIST.FIPS.204"
+                  }
+                ],
+                "tags": [
+                  "cryptography",
+                  "post-quantum",
+                  "exposure/pq_ready",
+                  "standard/FIPS 204"
+                ]
+              }
+            },
+            {
+              "id": "slhdsa",
+              "name": "Slhdsa",
+              "shortDescription": {
+                "text": "SLH-DSA (FIPS 205) is a standardised post-quantum signature"
+              },
+              "fullDescription": {
+                "text": "SLH-DSA (FIPS 205) is a standardised post-quantum signature"
+              },
+              "helpUri": "https://doi.org/10.6028/NIST.FIPS.205",
+              "help": {
+                "text": "SLH-DSA (FIPS 205) is a standardised post-quantum signature\nReferences: FIPS 205 (SLH-DSA)."
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "properties": {
+                "exposureClass": "pq_ready",
+                "references": [
+                  {
+                    "standard": "FIPS 205",
+                    "note": "SLH-DSA",
+                    "url": "https://doi.org/10.6028/NIST.FIPS.205"
+                  }
+                ],
+                "tags": [
+                  "cryptography",
+                  "post-quantum",
+                  "exposure/pq_ready",
+                  "standard/FIPS 205"
+                ]
+              }
+            },
+            {
+              "id": "fndsa",
+              "name": "Fndsa",
+              "shortDescription": {
+                "text": "FN-DSA (FIPS 206, Falcon) is a standardised post-quantum signature"
+              },
+              "fullDescription": {
+                "text": "FN-DSA (FIPS 206, Falcon) is a standardised post-quantum signature"
+              },
+              "helpUri": "https://github.com/qramp/qramp",
+              "help": {
+                "text": "FN-DSA (FIPS 206, Falcon) is a standardised post-quantum signature\nReferences: FIPS 206 (draft) (FN-DSA / Falcon)."
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "properties": {
+                "exposureClass": "pq_ready",
+                "references": [
+                  {
+                    "standard": "FIPS 206 (draft)",
+                    "note": "FN-DSA / Falcon"
+                  }
+                ],
+                "tags": [
+                  "cryptography",
+                  "post-quantum",
+                  "exposure/pq_ready",
+                  "standard/FIPS 206 (draft)"
+                ]
+              }
+            },
+            {
+              "id": "hybrid-pq",
+              "name": "HybridPq",
+              "shortDescription": {
+                "text": "hybrid classical+PQ key agreement (transitional, recommended)"
+              },
+              "fullDescription": {
+                "text": "hybrid classical+PQ key agreement (transitional, recommended)"
+              },
+              "helpUri": "https://github.com/qramp/qramp",
+              "help": {
+                "text": "hybrid classical+PQ key agreement (transitional, recommended)\nReferences: NIST SP 800-56C Rev.2 (hybrid key derivation); draft-ietf-tls-hybrid-design (hybrid KEX in TLS 1.3)."
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "properties": {
+                "exposureClass": "hybrid",
+                "references": [
+                  {
+                    "standard": "NIST SP 800-56C Rev.2",
+                    "note": "hybrid key derivation"
+                  },
+                  {
+                    "standard": "draft-ietf-tls-hybrid-design",
+                    "note": "hybrid KEX in TLS 1.3"
+                  }
+                ],
+                "tags": [
+                  "cryptography",
+                  "post-quantum",
+                  "exposure/hybrid",
+                  "standard/NIST SP 800-56C Rev.2",
+                  "standard/draft-ietf-tls-hybrid-design"
+                ]
+              }
+            },
+            {
+              "id": "pq-nonstandard-kem",
+              "name": "PqNonstandardKem",
+              "shortDescription": {
+                "text": "post-quantum KEM candidate that is not (yet) FIPS-standardised (ML-KEM is the approved KEM); acceptable only as a hedge "
+              },
+              "fullDescription": {
+                "text": "post-quantum KEM candidate that is not (yet) FIPS-standardised (ML-KEM is the approved KEM); acceptable only as a hedge alongside a standard scheme, review before production reliance\n"
+              },
+              "helpUri": "https://github.com/qramp/qramp",
+              "help": {
+                "text": "post-quantum KEM candidate that is not (yet) FIPS-standardised (ML-KEM is the approved KEM); acceptable only as a hedge alongside a standard scheme, review before production reliance\n\nTarget: require_algorithm=['ml-kem', 'hybrid-pq'].\nReferences: FIPS 203 (ML-KEM is the approved KEM; others are unstandardised); NIST IR 8413 (PQC round-3 candidates status)."
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "exposureClass": "quantum_weakened",
+                "references": [
+                  {
+                    "standard": "FIPS 203",
+                    "note": "ML-KEM is the approved KEM; others are unstandardised"
+                  },
+                  {
+                    "standard": "NIST IR 8413",
+                    "note": "PQC round-3 candidates status"
+                  }
+                ],
+                "tags": [
+                  "cryptography",
+                  "post-quantum",
+                  "exposure/quantum_weakened",
+                  "standard/FIPS 203",
+                  "standard/NIST IR 8413"
+                ]
+              }
+            },
+            {
+              "id": "weak-cert-signature",
+              "name": "WeakCertSignature",
+              "shortDescription": {
+                "text": "certificate signed with a forgeable digest (SHA-1/MD5); reissue with SHA-256+ and a PQ-ready or classical-strong scheme"
+              },
+              "fullDescription": {
+                "text": "certificate signed with a forgeable digest (SHA-1/MD5); reissue with SHA-256+ and a PQ-ready or classical-strong scheme"
+              },
+              "helpUri": "https://github.com/qramp/qramp",
+              "help": {
+                "text": "certificate signed with a forgeable digest (SHA-1/MD5); reissue with SHA-256+ and a PQ-ready or classical-strong scheme\nRemediation action: reissue.\nTarget: require_signature_hash=sha2-256.\nReferences: RFC 9155 (deprecating SHA-1 (and MD5) signatures in TLS); NIST SP 800-131A Rev.2 §9 (SHA-1 disallowed for signatures); RFC 6151 (MD5 security considerations)."
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "exposureClass": "quantum_weakened",
+                "references": [
+                  {
+                    "standard": "RFC 9155",
+                    "note": "deprecating SHA-1 (and MD5) signatures in TLS"
+                  },
+                  {
+                    "standard": "NIST SP 800-131A Rev.2",
+                    "section": "§9",
+                    "note": "SHA-1 disallowed for signatures"
+                  },
+                  {
+                    "standard": "RFC 6151",
+                    "note": "MD5 security considerations"
+                  }
+                ],
+                "tags": [
+                  "cryptography",
+                  "post-quantum",
+                  "exposure/quantum_weakened",
+                  "standard/RFC 9155",
+                  "standard/NIST SP 800-131A Rev.2",
+                  "standard/RFC 6151"
+                ]
+              }
+            },
+            {
+              "id": "weak-cert-key",
+              "name": "WeakCertKey",
+              "shortDescription": {
+                "text": "certificate public key is below the 2048-bit RSA minimum; reissue with a stronger key"
+              },
+              "fullDescription": {
+                "text": "certificate public key is below the 2048-bit RSA minimum; reissue with a stronger key"
+              },
+              "helpUri": "https://github.com/qramp/qramp",
+              "help": {
+                "text": "certificate public key is below the 2048-bit RSA minimum; reissue with a stronger key\nRemediation action: reissue.\nTarget: min_key_length=2048.\nReferences: NIST SP 800-131A Rev.2 §6 (RSA <2048 disallowed); NIST SP 800-57 Part 1 Rev.5 (key-length recommendations)."
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "exposureClass": "quantum_weakened",
+                "references": [
+                  {
+                    "standard": "NIST SP 800-131A Rev.2",
+                    "section": "§6",
+                    "note": "RSA <2048 disallowed"
+                  },
+                  {
+                    "standard": "NIST SP 800-57 Part 1 Rev.5",
+                    "note": "key-length recommendations"
+                  }
+                ],
+                "tags": [
+                  "cryptography",
+                  "post-quantum",
+                  "exposure/quantum_weakened",
+                  "standard/NIST SP 800-131A Rev.2",
+                  "standard/NIST SP 800-57 Part 1 Rev.5"
+                ]
+              }
+            },
+            {
+              "id": "weak-cert-curve",
+              "name": "WeakCertCurve",
+              "shortDescription": {
+                "text": "certificate uses a curve below the 224-bit minimum; reissue with P-256 or stronger"
+              },
+              "fullDescription": {
+                "text": "certificate uses a curve below the 224-bit minimum; reissue with P-256 or stronger"
+              },
+              "helpUri": "https://github.com/qramp/qramp",
+              "help": {
+                "text": "certificate uses a curve below the 224-bit minimum; reissue with P-256 or stronger\nRemediation action: reissue.\nTarget: prefer=secp256r1.\nReferences: NIST SP 800-186 (approved curves (P-256+)); NIST SP 800-131A Rev.2 §5 (<224-bit ECC disallowed)."
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "exposureClass": "quantum_weakened",
+                "references": [
+                  {
+                    "standard": "NIST SP 800-186",
+                    "note": "approved curves (P-256+)"
+                  },
+                  {
+                    "standard": "NIST SP 800-131A Rev.2",
+                    "section": "§5",
+                    "note": "<224-bit ECC disallowed"
+                  }
+                ],
+                "tags": [
+                  "cryptography",
+                  "post-quantum",
+                  "exposure/quantum_weakened",
+                  "standard/NIST SP 800-186",
+                  "standard/NIST SP 800-131A Rev.2"
+                ]
+              }
+            },
+            {
+              "id": "weak-curve-ecdsa",
+              "name": "WeakCurveEcdsa",
+              "shortDescription": {
+                "text": "ECDSA on a sub-256-bit curve (secp160/192/224) is both below the classical 112–128-bit security floor today and Shor-bro"
+              },
+              "fullDescription": {
+                "text": "ECDSA on a sub-256-bit curve (secp160/192/224) is both below the classical 112–128-bit security floor today and Shor-broken later; migrate off it now\n"
+              },
+              "helpUri": "https://github.com/qramp/qramp",
+              "help": {
+                "text": "ECDSA on a sub-256-bit curve (secp160/192/224) is both below the classical 112–128-bit security floor today and Shor-broken later; migrate off it now\n\nRemediation action: reissue.\nTarget: prefer=ml-dsa-or-hybrid, min_curve_bits=256.\nReferences: NIST SP 800-186 (recommended curves); NIST SP 800-131A Rev.2 §5 (sub-224-bit ECC disallowed); FIPS 204 (PQ migration target (ML-DSA))."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "exposureClass": "quantum_broken",
+                "references": [
+                  {
+                    "standard": "NIST SP 800-186",
+                    "note": "recommended curves"
+                  },
+                  {
+                    "standard": "NIST SP 800-131A Rev.2",
+                    "section": "§5",
+                    "note": "sub-224-bit ECC disallowed"
+                  },
+                  {
+                    "standard": "FIPS 204",
+                    "note": "PQ migration target (ML-DSA)"
+                  }
+                ],
+                "tags": [
+                  "cryptography",
+                  "post-quantum",
+                  "exposure/quantum_broken",
+                  "standard/NIST SP 800-186",
+                  "standard/NIST SP 800-131A Rev.2",
+                  "standard/FIPS 204"
+                ]
+              }
+            },
+            {
+              "id": "weak-curve-ecdh",
+              "name": "WeakCurveEcdh",
+              "shortDescription": {
+                "text": "ECDH on a sub-256-bit curve is below the classical security floor today and Shor-broken later; move to ML-KEM or a hybri"
+              },
+              "fullDescription": {
+                "text": "ECDH on a sub-256-bit curve is below the classical security floor today and Shor-broken later; move to ML-KEM or a hybrid group\n"
+              },
+              "helpUri": "https://github.com/qramp/qramp",
+              "help": {
+                "text": "ECDH on a sub-256-bit curve is below the classical security floor today and Shor-broken later; move to ML-KEM or a hybrid group\n\nRemediation action: decommission.\nTarget: prefer=ml-kem-or-hybrid, min_curve_bits=256.\nReferences: NIST SP 800-186 (recommended curves); NIST SP 800-131A Rev.2 §5 (sub-224-bit ECC disallowed); FIPS 203 (PQ migration target (ML-KEM))."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "exposureClass": "quantum_broken",
+                "references": [
+                  {
+                    "standard": "NIST SP 800-186",
+                    "note": "recommended curves"
+                  },
+                  {
+                    "standard": "NIST SP 800-131A Rev.2",
+                    "section": "§5",
+                    "note": "sub-224-bit ECC disallowed"
+                  },
+                  {
+                    "standard": "FIPS 203",
+                    "note": "PQ migration target (ML-KEM)"
+                  }
+                ],
+                "tags": [
+                  "cryptography",
+                  "post-quantum",
+                  "exposure/quantum_broken",
+                  "standard/NIST SP 800-186",
+                  "standard/NIST SP 800-131A Rev.2",
+                  "standard/FIPS 203"
+                ]
+              }
+            },
+            {
+              "id": "static-rsa-kx",
+              "name": "StaticRsaKx",
+              "shortDescription": {
+                "text": "static-RSA key exchange has no forward secrecy and is Shor-broken; the endpoint must stop offering it"
+              },
+              "fullDescription": {
+                "text": "static-RSA key exchange has no forward secrecy and is Shor-broken; the endpoint must stop offering it"
+              },
+              "helpUri": "https://github.com/qramp/qramp",
+              "help": {
+                "text": "static-RSA key exchange has no forward secrecy and is Shor-broken; the endpoint must stop offering it\nRemediation action: decommission.\nTarget: require_forward_secrecy=True.\nReferences: RFC 8446 §1.2 (static RSA key exchange removed in TLS 1.3); NIST SP 800-131A Rev.2 (RSA broken by Shor (CRQC))."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "exposureClass": "quantum_broken",
+                "references": [
+                  {
+                    "standard": "RFC 8446",
+                    "section": "§1.2",
+                    "note": "static RSA key exchange removed in TLS 1.3"
+                  },
+                  {
+                    "standard": "NIST SP 800-131A Rev.2",
+                    "note": "RSA broken by Shor (CRQC)"
+                  }
+                ],
+                "tags": [
+                  "cryptography",
+                  "post-quantum",
+                  "exposure/quantum_broken",
+                  "standard/RFC 8446",
+                  "standard/NIST SP 800-131A Rev.2"
+                ]
+              }
+            },
+            {
+              "id": "rsa-broken",
+              "name": "RsaBroken",
+              "shortDescription": {
+                "text": "RSA is broken by Shor's algorithm"
+              },
+              "fullDescription": {
+                "text": "RSA is broken by Shor's algorithm"
+              },
+              "helpUri": "https://github.com/qramp/qramp",
+              "help": {
+                "text": "RSA is broken by Shor's algorithm\nReferences: NISTIR 8105 (RSA broken by Shor's algorithm); NIST SP 800-208 (migration guidance)."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "exposureClass": "quantum_broken",
+                "references": [
+                  {
+                    "standard": "NISTIR 8105",
+                    "note": "RSA broken by Shor's algorithm"
+                  },
+                  {
+                    "standard": "NIST SP 800-208",
+                    "note": "migration guidance"
+                  }
+                ],
+                "tags": [
+                  "cryptography",
+                  "post-quantum",
+                  "exposure/quantum_broken",
+                  "standard/NISTIR 8105",
+                  "standard/NIST SP 800-208"
+                ]
+              }
+            },
+            {
+              "id": "ecdsa-broken",
+              "name": "EcdsaBroken",
+              "shortDescription": {
+                "text": "ECDSA relies on ECDLP, broken by Shor"
+              },
+              "fullDescription": {
+                "text": "ECDSA relies on ECDLP, broken by Shor"
+              },
+              "helpUri": "https://github.com/qramp/qramp",
+              "help": {
+                "text": "ECDSA relies on ECDLP, broken by Shor\nReferences: NISTIR 8105 (ECDLP broken by Shor)."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "exposureClass": "quantum_broken",
+                "references": [
+                  {
+                    "standard": "NISTIR 8105",
+                    "note": "ECDLP broken by Shor"
+                  }
+                ],
+                "tags": [
+                  "cryptography",
+                  "post-quantum",
+                  "exposure/quantum_broken",
+                  "standard/NISTIR 8105"
+                ]
+              }
+            },
+            {
+              "id": "ecdh-broken",
+              "name": "EcdhBroken",
+              "shortDescription": {
+                "text": "ECDH relies on ECDLP, broken by Shor"
+              },
+              "fullDescription": {
+                "text": "ECDH relies on ECDLP, broken by Shor"
+              },
+              "helpUri": "https://github.com/qramp/qramp",
+              "help": {
+                "text": "ECDH relies on ECDLP, broken by Shor\nReferences: NISTIR 8105 (ECDLP broken by Shor)."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "exposureClass": "quantum_broken",
+                "references": [
+                  {
+                    "standard": "NISTIR 8105",
+                    "note": "ECDLP broken by Shor"
+                  }
+                ],
+                "tags": [
+                  "cryptography",
+                  "post-quantum",
+                  "exposure/quantum_broken",
+                  "standard/NISTIR 8105"
+                ]
+              }
+            },
+            {
+              "id": "weak-dh-group",
+              "name": "WeakDhGroup",
+              "shortDescription": {
+                "text": "finite-field DH with a <=1024-bit group is breakable today by Logjam-style precomputation (in addition to being Shor-bro"
+              },
+              "fullDescription": {
+                "text": "finite-field DH with a <=1024-bit group is breakable today by Logjam-style precomputation (in addition to being Shor-broken); the endpoint must stop offering it"
+              },
+              "helpUri": "https://github.com/qramp/qramp",
+              "help": {
+                "text": "finite-field DH with a <=1024-bit group is breakable today by Logjam-style precomputation (in addition to being Shor-broken); the endpoint must stop offering it\nRemediation action: decommission.\nTarget: min_key_length=2048, prefer=ecdhe-or-hybrid.\nReferences: RFC 7919 (FFDHE groups; avoid <2048-bit); CVE-2015-4000 (Logjam precomputation attack)."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "exposureClass": "quantum_broken",
+                "references": [
+                  {
+                    "standard": "RFC 7919",
+                    "note": "FFDHE groups; avoid <2048-bit"
+                  },
+                  {
+                    "standard": "CVE-2015-4000",
+                    "note": "Logjam precomputation attack"
+                  }
+                ],
+                "tags": [
+                  "cryptography",
+                  "post-quantum",
+                  "exposure/quantum_broken",
+                  "standard/RFC 7919",
+                  "standard/CVE-2015-4000"
+                ]
+              }
+            },
+            {
+              "id": "dh-broken",
+              "name": "DhBroken",
+              "shortDescription": {
+                "text": "finite-field Diffie-Hellman broken by Shor"
+              },
+              "fullDescription": {
+                "text": "finite-field Diffie-Hellman broken by Shor"
+              },
+              "helpUri": "https://github.com/qramp/qramp",
+              "help": {
+                "text": "finite-field Diffie-Hellman broken by Shor\nReferences: NISTIR 8105 (DLP broken by Shor)."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "exposureClass": "quantum_broken",
+                "references": [
+                  {
+                    "standard": "NISTIR 8105",
+                    "note": "DLP broken by Shor"
+                  }
+                ],
+                "tags": [
+                  "cryptography",
+                  "post-quantum",
+                  "exposure/quantum_broken",
+                  "standard/NISTIR 8105"
+                ]
+              }
+            },
+            {
+              "id": "dsa-broken",
+              "name": "DsaBroken",
+              "shortDescription": {
+                "text": "DSA relies on DLP, broken by Shor"
+              },
+              "fullDescription": {
+                "text": "DSA relies on DLP, broken by Shor"
+              },
+              "helpUri": "https://github.com/qramp/qramp",
+              "help": {
+                "text": "DSA relies on DLP, broken by Shor\nReferences: NISTIR 8105 (DLP broken by Shor); FIPS 186-5 §1 (DSA no longer approved for signing)."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "exposureClass": "quantum_broken",
+                "references": [
+                  {
+                    "standard": "NISTIR 8105",
+                    "note": "DLP broken by Shor"
+                  },
+                  {
+                    "standard": "FIPS 186-5",
+                    "section": "§1",
+                    "note": "DSA no longer approved for signing"
+                  }
+                ],
+                "tags": [
+                  "cryptography",
+                  "post-quantum",
+                  "exposure/quantum_broken",
+                  "standard/NISTIR 8105",
+                  "standard/FIPS 186-5"
+                ]
+              }
+            },
+            {
+              "id": "x25519-broken",
+              "name": "X25519Broken",
+              "shortDescription": {
+                "text": "X25519/X448 ECDH broken by Shor"
+              },
+              "fullDescription": {
+                "text": "X25519/X448 ECDH broken by Shor"
+              },
+              "helpUri": "https://github.com/qramp/qramp",
+              "help": {
+                "text": "X25519/X448 ECDH broken by Shor\nReferences: NISTIR 8105 (ECDLP broken by Shor)."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "exposureClass": "quantum_broken",
+                "references": [
+                  {
+                    "standard": "NISTIR 8105",
+                    "note": "ECDLP broken by Shor"
+                  }
+                ],
+                "tags": [
+                  "cryptography",
+                  "post-quantum",
+                  "exposure/quantum_broken",
+                  "standard/NISTIR 8105"
+                ]
+              }
+            },
+            {
+              "id": "eddsa-broken",
+              "name": "EddsaBroken",
+              "shortDescription": {
+                "text": "EdDSA relies on ECDLP, broken by Shor"
+              },
+              "fullDescription": {
+                "text": "EdDSA relies on ECDLP, broken by Shor"
+              },
+              "helpUri": "https://github.com/qramp/qramp",
+              "help": {
+                "text": "EdDSA relies on ECDLP, broken by Shor\nReferences: NISTIR 8105 (ECDLP broken by Shor); RFC 8032 (EdDSA definition)."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "exposureClass": "quantum_broken",
+                "references": [
+                  {
+                    "standard": "NISTIR 8105",
+                    "note": "ECDLP broken by Shor"
+                  },
+                  {
+                    "standard": "RFC 8032",
+                    "note": "EdDSA definition"
+                  }
+                ],
+                "tags": [
+                  "cryptography",
+                  "post-quantum",
+                  "exposure/quantum_broken",
+                  "standard/NISTIR 8105",
+                  "standard/RFC 8032"
+                ]
+              }
+            },
+            {
+              "id": "md5-dead",
+              "name": "Md5Dead",
+              "shortDescription": {
+                "text": "MD5 is collision-broken and must be removed regardless of PQC"
+              },
+              "fullDescription": {
+                "text": "MD5 is collision-broken and must be removed regardless of PQC"
+              },
+              "helpUri": "https://github.com/qramp/qramp",
+              "help": {
+                "text": "MD5 is collision-broken and must be removed regardless of PQC\nReferences: RFC 6151 (MD5 collision attacks); NIST SP 800-131A Rev.2 (MD5 not approved)."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "exposureClass": "quantum_broken",
+                "references": [
+                  {
+                    "standard": "RFC 6151",
+                    "note": "MD5 collision attacks"
+                  },
+                  {
+                    "standard": "NIST SP 800-131A Rev.2",
+                    "note": "MD5 not approved"
+                  }
+                ],
+                "tags": [
+                  "cryptography",
+                  "post-quantum",
+                  "exposure/quantum_broken",
+                  "standard/RFC 6151",
+                  "standard/NIST SP 800-131A Rev.2"
+                ]
+              }
+            },
+            {
+              "id": "sha1-dead",
+              "name": "Sha1Dead",
+              "shortDescription": {
+                "text": "SHA-1 is collision-broken and must be removed"
+              },
+              "fullDescription": {
+                "text": "SHA-1 is collision-broken and must be removed"
+              },
+              "helpUri": "https://github.com/qramp/qramp",
+              "help": {
+                "text": "SHA-1 is collision-broken and must be removed\nReferences: NIST SP 800-131A Rev.2 §9 (SHA-1 disallowed for signatures); NIST policy 2022 (SHA-1 phase-out by 2030)."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "exposureClass": "quantum_broken",
+                "references": [
+                  {
+                    "standard": "NIST SP 800-131A Rev.2",
+                    "section": "§9",
+                    "note": "SHA-1 disallowed for signatures"
+                  },
+                  {
+                    "standard": "NIST policy 2022",
+                    "note": "SHA-1 phase-out by 2030"
+                  }
+                ],
+                "tags": [
+                  "cryptography",
+                  "post-quantum",
+                  "exposure/quantum_broken",
+                  "standard/NIST SP 800-131A Rev.2",
+                  "standard/NIST policy 2022"
+                ]
+              }
+            },
+            {
+              "id": "rc4-dead",
+              "name": "Rc4Dead",
+              "shortDescription": {
+                "text": "RC4 is insecure and must be removed"
+              },
+              "fullDescription": {
+                "text": "RC4 is insecure and must be removed"
+              },
+              "helpUri": "https://github.com/qramp/qramp",
+              "help": {
+                "text": "RC4 is insecure and must be removed\nReferences: RFC 7465 (prohibiting RC4 cipher suites)."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "exposureClass": "quantum_broken",
+                "references": [
+                  {
+                    "standard": "RFC 7465",
+                    "note": "prohibiting RC4 cipher suites"
+                  }
+                ],
+                "tags": [
+                  "cryptography",
+                  "post-quantum",
+                  "exposure/quantum_broken",
+                  "standard/RFC 7465"
+                ]
+              }
+            },
+            {
+              "id": "des-dead",
+              "name": "DesDead",
+              "shortDescription": {
+                "text": "DES/3DES insufficient key strength; remove"
+              },
+              "fullDescription": {
+                "text": "DES/3DES insufficient key strength; remove"
+              },
+              "helpUri": "https://github.com/qramp/qramp",
+              "help": {
+                "text": "DES/3DES insufficient key strength; remove\nReferences: NIST SP 800-131A Rev.2 §1 (DES/3DES disallowed); NIST SP 800-67 Rev.2 (3DES deprecation)."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "exposureClass": "quantum_broken",
+                "references": [
+                  {
+                    "standard": "NIST SP 800-131A Rev.2",
+                    "section": "§1",
+                    "note": "DES/3DES disallowed"
+                  },
+                  {
+                    "standard": "NIST SP 800-67 Rev.2",
+                    "note": "3DES deprecation"
+                  }
+                ],
+                "tags": [
+                  "cryptography",
+                  "post-quantum",
+                  "exposure/quantum_broken",
+                  "standard/NIST SP 800-131A Rev.2",
+                  "standard/NIST SP 800-67 Rev.2"
+                ]
+              }
+            },
+            {
+              "id": "legacy-tls",
+              "name": "LegacyTls",
+              "shortDescription": {
+                "text": "SSLv3 must be disabled"
+              },
+              "fullDescription": {
+                "text": "SSLv3 must be disabled"
+              },
+              "helpUri": "https://github.com/qramp/qramp",
+              "help": {
+                "text": "SSLv3 must be disabled\nReferences: RFC 8996 (deprecating SSLv3/TLS 1.0/1.1)."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "exposureClass": "quantum_broken",
+                "references": [
+                  {
+                    "standard": "RFC 8996",
+                    "note": "deprecating SSLv3/TLS 1.0/1.1"
+                  }
+                ],
+                "tags": [
+                  "cryptography",
+                  "post-quantum",
+                  "exposure/quantum_broken",
+                  "standard/RFC 8996"
+                ]
+              }
+            },
+            {
+              "id": "old-tls",
+              "name": "OldTls",
+              "shortDescription": {
+                "text": "TLS 1.0/1.1 are deprecated and must be disabled"
+              },
+              "fullDescription": {
+                "text": "TLS 1.0/1.1 are deprecated and must be disabled"
+              },
+              "helpUri": "https://github.com/qramp/qramp",
+              "help": {
+                "text": "TLS 1.0/1.1 are deprecated and must be disabled\nReferences: RFC 8996 (deprecating TLS 1.0 and TLS 1.1)."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "exposureClass": "quantum_broken",
+                "references": [
+                  {
+                    "standard": "RFC 8996",
+                    "note": "deprecating TLS 1.0 and TLS 1.1"
+                  }
+                ],
+                "tags": [
+                  "cryptography",
+                  "post-quantum",
+                  "exposure/quantum_broken",
+                  "standard/RFC 8996"
+                ]
+              }
+            },
+            {
+              "id": "aes128-weak",
+              "name": "Aes128Weak",
+              "shortDescription": {
+                "text": "AES-128 has ~64-bit post-quantum security under Grover; prefer AES-256"
+              },
+              "fullDescription": {
+                "text": "AES-128 has ~64-bit post-quantum security under Grover; prefer AES-256"
+              },
+              "helpUri": "https://github.com/qramp/qramp",
+              "help": {
+                "text": "AES-128 has ~64-bit post-quantum security under Grover; prefer AES-256\nTarget: require_min_key_length=256.\nReferences: NISTIR 8105 (Grover halves symmetric strength); NIST SP 800-57 Part 1 Rev.5 (prefer AES-256 for PQ margin)."
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "exposureClass": "quantum_weakened",
+                "references": [
+                  {
+                    "standard": "NISTIR 8105",
+                    "note": "Grover halves symmetric strength"
+                  },
+                  {
+                    "standard": "NIST SP 800-57 Part 1 Rev.5",
+                    "note": "prefer AES-256 for PQ margin"
+                  }
+                ],
+                "tags": [
+                  "cryptography",
+                  "post-quantum",
+                  "exposure/quantum_weakened",
+                  "standard/NISTIR 8105",
+                  "standard/NIST SP 800-57 Part 1 Rev.5"
+                ]
+              }
+            },
+            {
+              "id": "sha256-weak",
+              "name": "Sha256Weak",
+              "shortDescription": {
+                "text": "SHA-256 collision resistance reduced under quantum attack; acceptable near-term"
+              },
+              "fullDescription": {
+                "text": "SHA-256 collision resistance reduced under quantum attack; acceptable near-term"
+              },
+              "helpUri": "https://github.com/qramp/qramp",
+              "help": {
+                "text": "SHA-256 collision resistance reduced under quantum attack; acceptable near-term\nTarget: require_algorithm=['sha2-384', 'sha2-512', 'sha3-256', 'sha3-512'].\nReferences: NISTIR 8105 (Grover/quantum collision margin); FIPS 180-4 (SHA-2 family)."
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "exposureClass": "quantum_weakened",
+                "references": [
+                  {
+                    "standard": "NISTIR 8105",
+                    "note": "Grover/quantum collision margin"
+                  },
+                  {
+                    "standard": "FIPS 180-4",
+                    "note": "SHA-2 family"
+                  }
+                ],
+                "tags": [
+                  "cryptography",
+                  "post-quantum",
+                  "exposure/quantum_weakened",
+                  "standard/NISTIR 8105",
+                  "standard/FIPS 180-4"
+                ]
+              }
+            },
+            {
+              "id": "lightweight-broken",
+              "name": "LightweightBroken",
+              "shortDescription": {
+                "text": "legacy lightweight block cipher with a 64-bit block and ≤128-bit key (PRESENT/PRINCE/KATAN); Grover halves the key and t"
+              },
+              "fullDescription": {
+                "text": "legacy lightweight block cipher with a 64-bit block and ≤128-bit key (PRESENT/PRINCE/KATAN); Grover halves the key and the small block invites birthday attacks — do not use for new designs\n"
+              },
+              "helpUri": "https://github.com/qramp/qramp",
+              "help": {
+                "text": "legacy lightweight block cipher with a 64-bit block and ≤128-bit key (PRESENT/PRINCE/KATAN); Grover halves the key and the small block invites birthday attacks — do not use for new designs\n\nTarget: require_algorithm=['ascon', 'aes'].\nReferences: NIST SP 800-232 (ASCON is the standard; legacy 64-bit-block ciphers are not); ISO/IEC 29192-2 (PRESENT (superseded for new designs))."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "exposureClass": "quantum_broken",
+                "references": [
+                  {
+                    "standard": "NIST SP 800-232",
+                    "note": "ASCON is the standard; legacy 64-bit-block ciphers are not"
+                  },
+                  {
+                    "standard": "ISO/IEC 29192-2",
+                    "note": "PRESENT (superseded for new designs)"
+                  }
+                ],
+                "tags": [
+                  "cryptography",
+                  "post-quantum",
+                  "exposure/quantum_broken",
+                  "standard/NIST SP 800-232",
+                  "standard/ISO/IEC 29192-2"
+                ]
+              }
+            },
+            {
+              "id": "lightweight-weak",
+              "name": "LightweightWeak",
+              "shortDescription": {
+                "text": "lightweight cipher that is unstandardised for general use (Speck/Simon were withdrawn from ISO; GIFT is a research primi"
+              },
+              "fullDescription": {
+                "text": "lightweight cipher that is unstandardised for general use (Speck/Simon were withdrawn from ISO; GIFT is a research primitive); prefer the NIST lightweight standard ASCON\n"
+              },
+              "helpUri": "https://github.com/qramp/qramp",
+              "help": {
+                "text": "lightweight cipher that is unstandardised for general use (Speck/Simon were withdrawn from ISO; GIFT is a research primitive); prefer the NIST lightweight standard ASCON\n\nTarget: require_algorithm=['ascon'].\nReferences: NIST SP 800-232 (ASCON is the recommended lightweight standard); ISO/IEC 29192 (2019 withdrawal) (Simon/Speck withdrawn)."
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "exposureClass": "quantum_weakened",
+                "references": [
+                  {
+                    "standard": "NIST SP 800-232",
+                    "note": "ASCON is the recommended lightweight standard"
+                  },
+                  {
+                    "standard": "ISO/IEC 29192 (2019 withdrawal)",
+                    "note": "Simon/Speck withdrawn"
+                  }
+                ],
+                "tags": [
+                  "cryptography",
+                  "post-quantum",
+                  "exposure/quantum_weakened",
+                  "standard/NIST SP 800-232",
+                  "standard/ISO/IEC 29192 (2019 withdrawal)"
+                ]
+              }
+            },
+            {
+              "id": "ascon-ok",
+              "name": "AsconOk",
+              "shortDescription": {
+                "text": "ASCON (NIST SP 800-232) is the standardised lightweight AEAD; 128-bit key retains adequate strength for constrained devi"
+              },
+              "fullDescription": {
+                "text": "ASCON (NIST SP 800-232) is the standardised lightweight AEAD; 128-bit key retains adequate strength for constrained devices against Grover\n"
+              },
+              "helpUri": "https://github.com/qramp/qramp",
+              "help": {
+                "text": "ASCON (NIST SP 800-232) is the standardised lightweight AEAD; 128-bit key retains adequate strength for constrained devices against Grover\n\nReferences: NIST SP 800-232 (ASCON AEAD (lightweight standard))."
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "properties": {
+                "exposureClass": "pq_ready",
+                "references": [
+                  {
+                    "standard": "NIST SP 800-232",
+                    "note": "ASCON AEAD (lightweight standard)"
+                  }
+                ],
+                "tags": [
+                  "cryptography",
+                  "post-quantum",
+                  "exposure/pq_ready",
+                  "standard/NIST SP 800-232"
+                ]
+              }
+            },
+            {
+              "id": "ascon-hash-ok",
+              "name": "AsconHashOk",
+              "shortDescription": {
+                "text": "ASCON-Hash256 (NIST SP 800-232) is the standardised lightweight hash"
+              },
+              "fullDescription": {
+                "text": "ASCON-Hash256 (NIST SP 800-232) is the standardised lightweight hash"
+              },
+              "helpUri": "https://github.com/qramp/qramp",
+              "help": {
+                "text": "ASCON-Hash256 (NIST SP 800-232) is the standardised lightweight hash\nReferences: NIST SP 800-232 (ASCON-Hash256)."
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "properties": {
+                "exposureClass": "pq_ready",
+                "references": [
+                  {
+                    "standard": "NIST SP 800-232",
+                    "note": "ASCON-Hash256"
+                  }
+                ],
+                "tags": [
+                  "cryptography",
+                  "post-quantum",
+                  "exposure/pq_ready",
+                  "standard/NIST SP 800-232"
+                ]
+              }
+            },
+            {
+              "id": "aes256-ok",
+              "name": "Aes256Ok",
+              "shortDescription": {
+                "text": "AES-256 retains adequate strength against Grover"
+              },
+              "fullDescription": {
+                "text": "AES-256 retains adequate strength against Grover"
+              },
+              "helpUri": "https://github.com/qramp/qramp",
+              "help": {
+                "text": "AES-256 retains adequate strength against Grover\nReferences: FIPS 197 (AES); NISTIR 8105 (AES-256 retains ~128-bit PQ strength)."
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "properties": {
+                "exposureClass": "pq_ready",
+                "references": [
+                  {
+                    "standard": "FIPS 197",
+                    "note": "AES"
+                  },
+                  {
+                    "standard": "NISTIR 8105",
+                    "note": "AES-256 retains ~128-bit PQ strength"
+                  }
+                ],
+                "tags": [
+                  "cryptography",
+                  "post-quantum",
+                  "exposure/pq_ready",
+                  "standard/FIPS 197",
+                  "standard/NISTIR 8105"
+                ]
+              }
+            },
+            {
+              "id": "chacha-ok",
+              "name": "ChachaOk",
+              "shortDescription": {
+                "text": "256-bit stream cipher, adequate against Grover"
+              },
+              "fullDescription": {
+                "text": "256-bit stream cipher, adequate against Grover"
+              },
+              "helpUri": "https://github.com/qramp/qramp",
+              "help": {
+                "text": "256-bit stream cipher, adequate against Grover\nReferences: RFC 8439 (ChaCha20-Poly1305)."
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "properties": {
+                "exposureClass": "pq_ready",
+                "references": [
+                  {
+                    "standard": "RFC 8439",
+                    "note": "ChaCha20-Poly1305"
+                  }
+                ],
+                "tags": [
+                  "cryptography",
+                  "post-quantum",
+                  "exposure/pq_ready",
+                  "standard/RFC 8439"
+                ]
+              }
+            },
+            {
+              "id": "sha512-ok",
+              "name": "Sha512Ok",
+              "shortDescription": {
+                "text": "large-output hashes retain adequate quantum security"
+              },
+              "fullDescription": {
+                "text": "large-output hashes retain adequate quantum security"
+              },
+              "helpUri": "https://github.com/qramp/qramp",
+              "help": {
+                "text": "large-output hashes retain adequate quantum security\nReferences: FIPS 180-4 (SHA-384/512); FIPS 202 (SHA-3)."
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "properties": {
+                "exposureClass": "pq_ready",
+                "references": [
+                  {
+                    "standard": "FIPS 180-4",
+                    "note": "SHA-384/512"
+                  },
+                  {
+                    "standard": "FIPS 202",
+                    "note": "SHA-3"
+                  }
+                ],
+                "tags": [
+                  "cryptography",
+                  "post-quantum",
+                  "exposure/pq_ready",
+                  "standard/FIPS 180-4",
+                  "standard/FIPS 202"
+                ]
+              }
+            },
+            {
+              "id": "qramp-unclassified",
+              "name": "QrampUnclassified",
+              "shortDescription": {
+                "text": "Cryptographic asset with no matching policy rule"
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "properties": {
+                "tags": [
+                  "cryptography"
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "results": [
+        {
+          "ruleId": "md5-dead",
+          "ruleIndex": 20,
+          "level": "error",
+          "message": {
+            "text": "MD5 [hash]: MD5 is collision-broken and must be removed regardless of PQC | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0. Evidence: call to hashlib.md5()."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "1baa22e37f71176b"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P2",
+            "security-severity": "5.0",
+            "collector": "source-py"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/app/payments.py"
+                },
+                "region": {
+                  "startLine": 10
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "md5-dead",
+          "ruleIndex": 20,
+          "level": "error",
+          "message": {
+            "text": "MD5 [hash]: MD5 is collision-broken and must be removed regardless of PQC | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0. Evidence: MessageDigest.getInstance(\"MD5\")."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "2e40117d03a1a574"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P2",
+            "security-severity": "5.0",
+            "collector": "source-java"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/java/com/testbed/CryptoService.java"
+                },
+                "region": {
+                  "startLine": 14
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "md5-dead",
+          "ruleIndex": 20,
+          "level": "error",
+          "message": {
+            "text": "MD5 [hash]: MD5 is collision-broken and must be removed regardless of PQC | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0. Evidence: md5.Sum(...)."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "feee84f4ebfcdb2e"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P2",
+            "security-severity": "5.0",
+            "collector": "source-go"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/go/cryptoservice.go"
+                },
+                "region": {
+                  "startLine": 20
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "md5-dead",
+          "ruleIndex": 20,
+          "level": "error",
+          "message": {
+            "text": "MD5 [hash]: MD5 is collision-broken and must be removed regardless of PQC | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0. Evidence: Md5::new(...)."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "f6189e9ad4de5e60"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P2",
+            "security-severity": "5.0",
+            "collector": "source-rust"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/rust/crypto_service.rs"
+                },
+                "region": {
+                  "startLine": 10
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "md5-dead",
+          "ruleIndex": 20,
+          "level": "error",
+          "message": {
+            "text": "MD5 [hash]: MD5 is collision-broken and must be removed regardless of PQC | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0. Evidence: EVP_md5() call site."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "b8f315545012e365"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P2",
+            "security-severity": "5.0",
+            "collector": "source-c"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/c/crypto_service.c"
+                },
+                "region": {
+                  "startLine": 9
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "md5-dead",
+          "ruleIndex": 20,
+          "level": "error",
+          "message": {
+            "text": "MD5 [hash]: MD5 is collision-broken and must be removed regardless of PQC | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0. Evidence: MD5(...)."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "b8f315545012e365"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P2",
+            "security-severity": "5.0",
+            "collector": "source-c"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/c/crypto_service.c"
+                },
+                "region": {
+                  "startLine": 10
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "sha1-dead",
+          "ruleIndex": 21,
+          "level": "error",
+          "message": {
+            "text": "SHA1 [hash]: SHA-1 is collision-broken and must be removed | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0. Evidence: call to hashlib.sha1()."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "afda7e74fc6553a4"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P2",
+            "security-severity": "5.0",
+            "collector": "source-py"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/app/payments.py"
+                },
+                "region": {
+                  "startLine": 15
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "sha1-dead",
+          "ruleIndex": 21,
+          "level": "error",
+          "message": {
+            "text": "SHA1 [hash]: SHA-1 is collision-broken and must be removed | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0. Evidence: MessageDigest.getInstance(\"SHA-1\")."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "20b714441621b251"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P2",
+            "security-severity": "5.0",
+            "collector": "source-java"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/java/com/testbed/CryptoService.java"
+                },
+                "region": {
+                  "startLine": 20
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "sha1-dead",
+          "ruleIndex": 21,
+          "level": "error",
+          "message": {
+            "text": "SHA1 [hash]: SHA-1 is collision-broken and must be removed | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0. Evidence: sha1.Sum(...)."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "a68128667d73033c"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P2",
+            "security-severity": "5.0",
+            "collector": "source-go"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/go/cryptoservice.go"
+                },
+                "region": {
+                  "startLine": 25
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "sha1-dead",
+          "ruleIndex": 21,
+          "level": "error",
+          "message": {
+            "text": "SHA1 [hash]: SHA-1 is collision-broken and must be removed | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0. Evidence: Sha1::new(...)."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "0d765fe4ff8766fd"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P2",
+            "security-severity": "5.0",
+            "collector": "source-rust"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/rust/crypto_service.rs"
+                },
+                "region": {
+                  "startLine": 16
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "sha1-dead",
+          "ruleIndex": 21,
+          "level": "error",
+          "message": {
+            "text": "SHA1 [hash]: SHA-1 is collision-broken and must be removed | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0. Evidence: Sha1::digest(...)."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "0d765fe4ff8766fd"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P2",
+            "security-severity": "5.0",
+            "collector": "source-rust"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/rust/crypto_service.rs"
+                },
+                "region": {
+                  "startLine": 17
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "sha1-dead",
+          "ruleIndex": 21,
+          "level": "error",
+          "message": {
+            "text": "SHA1 [hash]: SHA-1 is collision-broken and must be removed | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0. Evidence: SHA1(...)."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "93ad2002e8569228"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P2",
+            "security-severity": "5.0",
+            "collector": "source-c"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/c/crypto_service.c"
+                },
+                "region": {
+                  "startLine": 11
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "sha1-dead",
+          "ruleIndex": 21,
+          "level": "error",
+          "message": {
+            "text": "SHA1 [hash]: SHA-1 is collision-broken and must be removed | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0. Evidence: weak digest sha1 in certificate signature."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "93371fb14ae1f89c"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P2",
+            "security-severity": "5.0",
+            "collector": "certs"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/workspace/scratch/b5e81a169f87/qramp/testbed/certs/legacy-sha1-rsa.pem"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "sha1-dead",
+          "ruleIndex": 21,
+          "level": "error",
+          "message": {
+            "text": "SHA1 [hash]: SHA-1 is collision-broken and must be removed | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0. Evidence: weak digest sha1 in certificate signature."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "0b66580981d7c228"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P2",
+            "security-severity": "5.0",
+            "collector": "certs"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/workspace/scratch/b5e81a169f87/qramp/testbed/certs/chain/root-ca-sha1.pem"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "dh-broken",
+          "ruleIndex": 16,
+          "level": "error",
+          "message": {
+            "text": "DH [key-agreement]: finite-field Diffie-Hellman broken by Shor | Mosca X=7.0 Y=2.0 Z=12.0 gap=-3.0. Evidence: DHE (finite-field) key exchange in ssl_ciphers."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "74d313329ca1699e"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P1",
+            "security-severity": "7.5",
+            "collector": "configs"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/workspace/scratch/b5e81a169f87/qramp/testbed/etc/nginx-gateway.conf"
+                },
+                "region": {
+                  "startLine": 5
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "weak-dh-group",
+          "ruleIndex": 15,
+          "level": "error",
+          "message": {
+            "text": "DH-512 (ffdhe) [key-agreement]: finite-field DH with a <=1024-bit group is breakable today by Logjam-style precomputation (in addition to being Shor-broken); the endpoint must stop offering it | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0. Evidence: DH_generate_parameters(...), key size 512. Remediation: decommission."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "8aba14f4e880939c"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P2",
+            "security-severity": "5.0",
+            "collector": "source-c"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/c/crypto_service.c"
+                },
+                "region": {
+                  "startLine": 23
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "weak-dh-group",
+          "ruleIndex": 15,
+          "level": "error",
+          "message": {
+            "text": "DH-1024 (ffdhe) [key-agreement]: finite-field DH with a <=1024-bit group is breakable today by Logjam-style precomputation (in addition to being Shor-broken); the endpoint must stop offering it | Mosca X=7.0 Y=2.0 Z=12.0 gap=-3.0. Evidence: DH parameter generation key_size=1024. Remediation: decommission."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "8e071a4871779bff"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P1",
+            "security-severity": "7.5",
+            "collector": "source-py"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/app/cryptopolicy.py"
+                },
+                "region": {
+                  "startLine": 6
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "weak-dh-group",
+          "ruleIndex": 15,
+          "level": "error",
+          "message": {
+            "text": "DH-1024 (ffdhe) [key-agreement]: finite-field DH with a <=1024-bit group is breakable today by Logjam-style precomputation (in addition to being Shor-broken); the endpoint must stop offering it | Mosca X=7.0 Y=2.0 Z=12.0 gap=-3.0. Evidence: ssl_dhparam group of 1024 bits. Remediation: decommission."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "dbbc3b7fe50e5646"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P1",
+            "security-severity": "7.5",
+            "collector": "configs"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/workspace/scratch/b5e81a169f87/qramp/testbed/etc/nginx-gateway.conf"
+                },
+                "region": {
+                  "startLine": 6
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "weak-dh-group",
+          "ruleIndex": 15,
+          "level": "error",
+          "message": {
+            "text": "DH-1024 (group1) [key-agreement]: finite-field DH with a <=1024-bit group is breakable today by Logjam-style precomputation (in addition to being Shor-broken); the endpoint must stop offering it | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0. Evidence: KexAlgorithms includes diffie-hellman-group1-sha1. Remediation: decommission."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "5c5713fc687ef2ec"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P2",
+            "security-severity": "5.0",
+            "collector": "configs"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/workspace/scratch/b5e81a169f87/qramp/testbed/etc/sshd_config"
+                },
+                "region": {
+                  "startLine": 4
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "dh-broken",
+          "ruleIndex": 16,
+          "level": "error",
+          "message": {
+            "text": "DH-2048 (group14) [key-agreement]: finite-field Diffie-Hellman broken by Shor | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0. Evidence: KexAlgorithms includes diffie-hellman-group14-sha1."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "0bff00b42d217f46"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P2",
+            "security-severity": "5.0",
+            "collector": "configs"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/workspace/scratch/b5e81a169f87/qramp/testbed/etc/sshd_config"
+                },
+                "region": {
+                  "startLine": 4
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "ecdh-broken",
+          "ruleIndex": 14,
+          "level": "error",
+          "message": {
+            "text": "ECDH [key-agreement]: ECDH relies on ECDLP, broken by Shor | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0. Evidence: cipher suite TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "484a5e625de22e5f"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P2",
+            "security-severity": "5.0",
+            "collector": "source-go"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/go/cryptoservice.go"
+                },
+                "region": {
+                  "startLine": 67
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "ecdh-broken",
+          "ruleIndex": 14,
+          "level": "error",
+          "message": {
+            "text": "ECDH [key-agreement]: ECDH relies on ECDLP, broken by Shor | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0. Evidence: component openssl@3.0.13 ships ecdh."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "b9b6d14821b13714"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P2",
+            "security-severity": "5.0",
+            "collector": "sbom"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/sbom.cdx.json%23openssl%403.0.13"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "ecdh-broken",
+          "ruleIndex": 14,
+          "level": "error",
+          "message": {
+            "text": "ECDH [key-agreement]: ECDH relies on ECDLP, broken by Shor | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0. Evidence: cargo manifest declares openssl-sys@0.9.90 which ships ecdh [wrapper openssl-sys@0.9.90; underlying library version unknown, version-gated capabilities withheld]."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "a2208acbf6dad628"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P2",
+            "security-severity": "5.0",
+            "collector": "manifests",
+            "aliasResolution": {
+              "package": "openssl-sys",
+              "ecosystem": "cargo",
+              "component": "openssl",
+              "wrapper": true,
+              "mapped": true
+            },
+            "tags": [
+              "discovery/manifest",
+              "discovery/wrapper"
+            ]
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Cargo.lock%23openssl%400.9.90"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "ecdh-broken",
+          "ruleIndex": 14,
+          "level": "error",
+          "message": {
+            "text": "ECDH [key-agreement]: ECDH relies on ECDLP, broken by Shor | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0. Evidence: pip manifest declares pyOpenSSL@24.0.0 which ships ecdh [wrapper pyOpenSSL@24.0.0; underlying library version unknown, version-gated capabilities withheld]."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "32427b6d57cd8ba8"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P2",
+            "security-severity": "5.0",
+            "collector": "manifests",
+            "aliasResolution": {
+              "package": "pyOpenSSL",
+              "ecosystem": "pip",
+              "component": "openssl",
+              "wrapper": true,
+              "mapped": true
+            },
+            "tags": [
+              "discovery/manifest",
+              "discovery/wrapper"
+            ]
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "requirements.txt%23openssl%4024.0.0"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "ecdh-broken",
+          "ruleIndex": 14,
+          "level": "error",
+          "message": {
+            "text": "ECDH-256 (nistp256) [key-agreement]: ECDH relies on ECDLP, broken by Shor | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0. Evidence: KexAlgorithms includes ecdh-sha2-nistp256."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "2dab695ab9e49096"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P2",
+            "security-severity": "5.0",
+            "collector": "configs"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/workspace/scratch/b5e81a169f87/qramp/testbed/etc/sshd_config"
+                },
+                "region": {
+                  "startLine": 4
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "static-rsa-kx",
+          "ruleIndex": 11,
+          "level": "error",
+          "message": {
+            "text": "RSA [key-agreement]: static-RSA key exchange has no forward secrecy and is Shor-broken; the endpoint must stop offering it | Mosca X=7.0 Y=2.0 Z=12.0 gap=-3.0. Evidence: cipher suite TLS_RSA_WITH_3DES_EDE_CBC_SHA. Remediation: decommission."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "3dcd6fe560c2e05e"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P1",
+            "security-severity": "7.5",
+            "collector": "source-go"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/go/cryptoservice.go"
+                },
+                "region": {
+                  "startLine": 66
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "static-rsa-kx",
+          "ruleIndex": 11,
+          "level": "error",
+          "message": {
+            "text": "RSA [key-agreement]: static-RSA key exchange has no forward secrecy and is Shor-broken; the endpoint must stop offering it | Mosca X=7.0 Y=2.0 Z=12.0 gap=-3.0. Evidence: static-RSA key exchange in ssl_ciphers (no forward secrecy). Remediation: decommission."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "84a452ae884b32b7"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P1",
+            "security-severity": "7.5",
+            "collector": "configs"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/workspace/scratch/b5e81a169f87/qramp/testbed/etc/nginx-gateway.conf"
+                },
+                "region": {
+                  "startLine": 5
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "x25519-broken",
+          "ruleIndex": 18,
+          "level": "error",
+          "message": {
+            "text": "X25519 [key-agreement]: X25519/X448 ECDH broken by Shor | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0. Evidence: component libsodium@1.0.19 ships x25519."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "342eecc06095c696"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P2",
+            "security-severity": "5.0",
+            "collector": "sbom"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/sbom.cdx.json%23libsodium%401.0.19"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "x25519-broken",
+          "ruleIndex": 18,
+          "level": "error",
+          "message": {
+            "text": "X25519 [key-agreement]: X25519/X448 ECDH broken by Shor | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0. Evidence: npm manifest declares libsodium@0.7.11 which ships x25519."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "574f51aea426a49a"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P2",
+            "security-severity": "5.0",
+            "collector": "manifests",
+            "aliasResolution": {
+              "package": "libsodium",
+              "ecosystem": "npm",
+              "component": "libsodium",
+              "wrapper": false,
+              "mapped": true
+            },
+            "tags": [
+              "discovery/manifest"
+            ]
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "package-lock.json%23libsodium%400.7.11"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "x25519-broken",
+          "ruleIndex": 18,
+          "level": "error",
+          "message": {
+            "text": "X25519-256 [key-agreement]: X25519/X448 ECDH broken by Shor | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0. Evidence: KexAlgorithms includes curve25519-sha256."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "3505f57a028a7f4c"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P2",
+            "security-severity": "5.0",
+            "collector": "configs"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/workspace/scratch/b5e81a169f87/qramp/testbed/etc/sshd_config"
+                },
+                "region": {
+                  "startLine": 4
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "md5-dead",
+          "ruleIndex": 20,
+          "level": "error",
+          "message": {
+            "text": "MD5 (hmac) [mac]: MD5 is collision-broken and must be removed regardless of PQC | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0. Evidence: MACs includes hmac-md5."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "679b293dfea20dd6"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P2",
+            "security-severity": "5.0",
+            "collector": "configs"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/workspace/scratch/b5e81a169f87/qramp/testbed/etc/sshd_config"
+                },
+                "region": {
+                  "startLine": 6
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "sha1-dead",
+          "ruleIndex": 21,
+          "level": "error",
+          "message": {
+            "text": "SHA1 (hmac) [mac]: SHA-1 is collision-broken and must be removed | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0. Evidence: MACs includes hmac-sha1."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "aba7bf25770ccb4c"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P2",
+            "security-severity": "5.0",
+            "collector": "configs"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/workspace/scratch/b5e81a169f87/qramp/testbed/etc/sshd_config"
+                },
+                "region": {
+                  "startLine": 6
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "rsa-broken",
+          "ruleIndex": 12,
+          "level": "error",
+          "message": {
+            "text": "RSA [pk-encryption]: RSA is broken by Shor's algorithm | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0. Evidence: RSA keygen, key_size computed at run time."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "66dc1e1daba6e7bb"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P2",
+            "security-severity": "5.0",
+            "collector": "source-py"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/app/storage.py"
+                },
+                "region": {
+                  "startLine": 27
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "rsa-broken",
+          "ruleIndex": 12,
+          "level": "error",
+          "message": {
+            "text": "RSA [pk-encryption]: RSA is broken by Shor's algorithm | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0. Evidence: component cryptography@42.0.5 ships rsa."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "d3765ba50eca57a1"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P2",
+            "security-severity": "5.0",
+            "collector": "sbom"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/sbom.cdx.json%23cryptography%4042.0.5"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "rsa-broken",
+          "ruleIndex": 12,
+          "level": "error",
+          "message": {
+            "text": "RSA [pk-encryption]: RSA is broken by Shor's algorithm | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0. Evidence: component openssl@3.0.13 ships rsa."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "c3d7214167b5d5fd"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P2",
+            "security-severity": "5.0",
+            "collector": "sbom"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/sbom.cdx.json%23openssl%403.0.13"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "rsa-broken",
+          "ruleIndex": 12,
+          "level": "error",
+          "message": {
+            "text": "RSA [pk-encryption]: RSA is broken by Shor's algorithm | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0. Evidence: maven manifest declares bcprov-jdk18on@1.77 which ships rsa."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "3353aaa84984cde2"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P2",
+            "security-severity": "5.0",
+            "collector": "manifests",
+            "aliasResolution": {
+              "package": "bcprov-jdk18on",
+              "ecosystem": "maven",
+              "component": "bouncycastle",
+              "wrapper": false,
+              "mapped": true
+            },
+            "tags": [
+              "discovery/manifest"
+            ]
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "pom.xml%23bouncycastle%401.77"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "rsa-broken",
+          "ruleIndex": 12,
+          "level": "error",
+          "message": {
+            "text": "RSA [pk-encryption]: RSA is broken by Shor's algorithm | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0. Evidence: cargo manifest declares openssl-sys@0.9.90 which ships rsa [wrapper openssl-sys@0.9.90; underlying library version unknown, version-gated capabilities withheld]."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "fddccba7834e80b3"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P2",
+            "security-severity": "5.0",
+            "collector": "manifests",
+            "aliasResolution": {
+              "package": "openssl-sys",
+              "ecosystem": "cargo",
+              "component": "openssl",
+              "wrapper": true,
+              "mapped": true
+            },
+            "tags": [
+              "discovery/manifest",
+              "discovery/wrapper"
+            ]
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Cargo.lock%23openssl%400.9.90"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "rsa-broken",
+          "ruleIndex": 12,
+          "level": "error",
+          "message": {
+            "text": "RSA [pk-encryption]: RSA is broken by Shor's algorithm | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0. Evidence: pip manifest declares cryptography@42.0.5 which ships rsa."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "f01cd1974d9b9747"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P2",
+            "security-severity": "5.0",
+            "collector": "manifests",
+            "aliasResolution": {
+              "package": "cryptography",
+              "ecosystem": "pip",
+              "component": "cryptography",
+              "wrapper": false,
+              "mapped": true
+            },
+            "tags": [
+              "discovery/manifest"
+            ]
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "requirements.txt%23cryptography%4042.0.5"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "rsa-broken",
+          "ruleIndex": 12,
+          "level": "error",
+          "message": {
+            "text": "RSA [pk-encryption]: RSA is broken by Shor's algorithm | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0. Evidence: pip manifest declares pyOpenSSL@24.0.0 which ships rsa [wrapper pyOpenSSL@24.0.0; underlying library version unknown, version-gated capabilities withheld]."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "91ddbe4990fc888e"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P2",
+            "security-severity": "5.0",
+            "collector": "manifests",
+            "aliasResolution": {
+              "package": "pyOpenSSL",
+              "ecosystem": "pip",
+              "component": "openssl",
+              "wrapper": true,
+              "mapped": true
+            },
+            "tags": [
+              "discovery/manifest",
+              "discovery/wrapper"
+            ]
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "requirements.txt%23openssl%4024.0.0"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "rsa-broken",
+          "ruleIndex": 12,
+          "level": "error",
+          "message": {
+            "text": "RSA-2048 [pk-encryption]: RSA is broken by Shor's algorithm | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0. Evidence: RSA keygen key_size=2048."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "bf76481e1c13ca07"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P2",
+            "security-severity": "5.0",
+            "collector": "source-py"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/app/payments.py"
+                },
+                "region": {
+                  "startLine": 26
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "rsa-broken",
+          "ruleIndex": 12,
+          "level": "error",
+          "message": {
+            "text": "RSA-2048 [pk-encryption]: RSA is broken by Shor's algorithm | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0. Evidence: KeyPairGenerator.getInstance(\"RSA\"), key size 2048."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "3deca2b046c8b330"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P2",
+            "security-severity": "5.0",
+            "collector": "source-java"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/java/com/testbed/CryptoService.java"
+                },
+                "region": {
+                  "startLine": 47
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "rsa-broken",
+          "ruleIndex": 12,
+          "level": "error",
+          "message": {
+            "text": "RSA-2048 [pk-encryption]: RSA is broken by Shor's algorithm | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0. Evidence: rsa.GenerateKey(...), key size 2048."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "976c579386d7f3ee"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P2",
+            "security-severity": "5.0",
+            "collector": "source-go"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/go/cryptoservice.go"
+                },
+                "region": {
+                  "startLine": 47
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "rsa-broken",
+          "ruleIndex": 12,
+          "level": "error",
+          "message": {
+            "text": "RSA-2048 [pk-encryption]: RSA is broken by Shor's algorithm | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0. Evidence: RsaPrivateKey::new(...), key size 2048."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "a15c74afa0d235ac"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P2",
+            "security-severity": "5.0",
+            "collector": "source-rust"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/rust/crypto_service.rs"
+                },
+                "region": {
+                  "startLine": 25
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "rsa-broken",
+          "ruleIndex": 12,
+          "level": "error",
+          "message": {
+            "text": "RSA-2048 [pk-encryption]: RSA is broken by Shor's algorithm | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0. Evidence: RSA_generate_key(...), key size 2048."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "c3f611e900dd5f26"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P2",
+            "security-severity": "5.0",
+            "collector": "source-c"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/c/crypto_service.c"
+                },
+                "region": {
+                  "startLine": 21
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "rsa-broken",
+          "ruleIndex": 12,
+          "level": "error",
+          "message": {
+            "text": "RSA-2048 [pk-encryption]: RSA is broken by Shor's algorithm | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0. Evidence: RSA-2048 public key in cert for CN=gateway.testbed.local."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "3ddab32cc58f307e"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P2",
+            "security-severity": "5.0",
+            "collector": "certs"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/workspace/scratch/b5e81a169f87/qramp/testbed/certs/gateway-rsa2048.pem"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "rsa-broken",
+          "ruleIndex": 12,
+          "level": "error",
+          "message": {
+            "text": "RSA-2048 [pk-encryption]: RSA is broken by Shor's algorithm | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0. Evidence: RSA-2048 public key in cert for CN=expiring.testbed.local."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "dc38b4fbc4125142"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P2",
+            "security-severity": "5.0",
+            "collector": "certs"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/workspace/scratch/b5e81a169f87/qramp/testbed/certs/expiring-soon.pem"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "rsa-broken",
+          "ruleIndex": 12,
+          "level": "error",
+          "message": {
+            "text": "RSA-2048 [pk-encryption]: RSA is broken by Shor's algorithm | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0. Evidence: RSA-2048 public key in cert for CN=legacy-sha1.testbed.local."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "8b2cad25f43f09f1"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P2",
+            "security-severity": "5.0",
+            "collector": "certs"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/workspace/scratch/b5e81a169f87/qramp/testbed/certs/legacy-sha1-rsa.pem"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "rsa-broken",
+          "ruleIndex": 12,
+          "level": "error",
+          "message": {
+            "text": "RSA-2048 [pk-encryption]: RSA is broken by Shor's algorithm | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0. Evidence: RSA-2048 public key in cert for CN=secure.example.com."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "00ad7a0032def62f"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P2",
+            "security-severity": "5.0",
+            "collector": "certs"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/workspace/scratch/b5e81a169f87/qramp/testbed/certs/chain/leaf-under-sha1-ca.pem"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "rsa-broken",
+          "ruleIndex": 12,
+          "level": "error",
+          "message": {
+            "text": "RSA-2048 [pk-encryption]: RSA is broken by Shor's algorithm | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0. Evidence: RSA-2048 public key in cert for CN=SHA1 Legacy Root CA."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "518dab7a9943a3f8"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P2",
+            "security-severity": "5.0",
+            "collector": "certs"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/workspace/scratch/b5e81a169f87/qramp/testbed/certs/chain/root-ca-sha1.pem"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "rsa-broken",
+          "ruleIndex": 12,
+          "level": "error",
+          "message": {
+            "text": "RSA-2048 [pk-encryption]: RSA is broken by Shor's algorithm | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0. Evidence: RSA-2048 public key in cert for CN=api.example.com."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "c552b3f0096eaac5"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P2",
+            "security-severity": "5.0",
+            "collector": "certs"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/workspace/scratch/b5e81a169f87/qramp/testbed/certs/chain/leaf-under-strong-ca.pem"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "rsa-broken",
+          "ruleIndex": 12,
+          "level": "error",
+          "message": {
+            "text": "RSA-2048 [pk-encryption]: RSA is broken by Shor's algorithm | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0. Evidence: RSA-2048 public key in cert for CN=Legacy Root CA."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "a089a1d6358cfafd"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P2",
+            "security-severity": "5.0",
+            "collector": "certs"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/workspace/scratch/b5e81a169f87/qramp/testbed/certs/chain/root-ca-strong.pem"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "qramp-unclassified",
+          "ruleIndex": 35,
+          "level": "note",
+          "message": {
+            "text": "SSH [protocol]: no rule matched | Mosca X=3.0 Y=1.0 Z=12.0 gap=-8.0. Evidence: component paramiko@3.4.0 ships ssh."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "a7ef36a2fe1b3f06"
+          },
+          "properties": {
+            "exposureClass": "unknown",
+            "tier": "P2",
+            "security-severity": "5.0",
+            "collector": "sbom"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/sbom.cdx.json%23paramiko%403.4.0"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "qramp-unclassified",
+          "ruleIndex": 35,
+          "level": "note",
+          "message": {
+            "text": "SSH [protocol]: no rule matched | Mosca X=3.0 Y=1.0 Z=12.0 gap=-8.0. Evidence: pip manifest declares paramiko@3.4.0 which ships ssh."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "3041599af52b1bcb"
+          },
+          "properties": {
+            "exposureClass": "unknown",
+            "tier": "P2",
+            "security-severity": "5.0",
+            "collector": "manifests",
+            "aliasResolution": {
+              "package": "paramiko",
+              "ecosystem": "pip",
+              "component": "paramiko",
+              "wrapper": false,
+              "mapped": true
+            },
+            "tags": [
+              "discovery/manifest"
+            ]
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "requirements.txt%23paramiko%403.4.0"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "old-tls",
+          "ruleIndex": 25,
+          "level": "error",
+          "message": {
+            "text": "TLS (1.0) [protocol]: TLS 1.0/1.1 are deprecated and must be disabled | Mosca X=7.0 Y=2.0 Z=12.0 gap=-3.0. Evidence: use of ssl.PROTOCOL_TLSv1."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "c10a16df53f2095f"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P1",
+            "security-severity": "7.5",
+            "collector": "source-py"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/app/payments.py"
+                },
+                "region": {
+                  "startLine": 36
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "old-tls",
+          "ruleIndex": 25,
+          "level": "error",
+          "message": {
+            "text": "TLS (1.0) [protocol]: TLS 1.0/1.1 are deprecated and must be disabled | Mosca X=7.0 Y=2.0 Z=12.0 gap=-3.0. Evidence: SSLContext.getInstance(\"TLSv1\")."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "fa8708233b51766c"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P1",
+            "security-severity": "7.5",
+            "collector": "source-java"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/java/com/testbed/CryptoService.java"
+                },
+                "region": {
+                  "startLine": 59
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "old-tls",
+          "ruleIndex": 25,
+          "level": "error",
+          "message": {
+            "text": "TLS (1.0) [protocol]: TLS 1.0/1.1 are deprecated and must be disabled | Mosca X=7.0 Y=2.0 Z=12.0 gap=-3.0. Evidence: tls.VersionTLS10 configured."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "4330eb5f5b6d7dbb"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P1",
+            "security-severity": "7.5",
+            "collector": "source-go"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/go/cryptoservice.go"
+                },
+                "region": {
+                  "startLine": 64
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "old-tls",
+          "ruleIndex": 25,
+          "level": "error",
+          "message": {
+            "text": "TLS (1.0) [protocol]: TLS 1.0/1.1 are deprecated and must be disabled | Mosca X=7.0 Y=2.0 Z=12.0 gap=-3.0. Evidence: ssl_protocols enables TLSv1."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "61b54ab23c86e922"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P1",
+            "security-severity": "7.5",
+            "collector": "configs"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/workspace/scratch/b5e81a169f87/qramp/testbed/etc/nginx-gateway.conf"
+                },
+                "region": {
+                  "startLine": 4
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "old-tls",
+          "ruleIndex": 25,
+          "level": "error",
+          "message": {
+            "text": "TLS (1.0) [protocol]: TLS 1.0/1.1 are deprecated and must be disabled | Mosca X=7.0 Y=2.0 Z=12.0 gap=-3.0. Evidence: tlsv1 NOT in jdk.tls.disabledAlgorithms."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "c9c580d985bdb182"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P1",
+            "security-severity": "7.5",
+            "collector": "configs"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/workspace/scratch/b5e81a169f87/qramp/testbed/etc/java.security"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "old-tls",
+          "ruleIndex": 25,
+          "level": "error",
+          "message": {
+            "text": "TLS (1.1) [protocol]: TLS 1.0/1.1 are deprecated and must be disabled | Mosca X=7.0 Y=2.0 Z=12.0 gap=-3.0. Evidence: ssl_protocols enables TLSv1.1."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "22204a131d478a06"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P1",
+            "security-severity": "7.5",
+            "collector": "configs"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/workspace/scratch/b5e81a169f87/qramp/testbed/etc/nginx-gateway.conf"
+                },
+                "region": {
+                  "startLine": 4
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "qramp-unclassified",
+          "ruleIndex": 35,
+          "level": "note",
+          "message": {
+            "text": "TLS (1.2) [protocol]: no rule matched | Mosca X=7.0 Y=1.0 Z=12.0 gap=-4.0. Evidence: ssl_protocols enables TLSv1.2."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "e65e6f78c5672118"
+          },
+          "properties": {
+            "exposureClass": "unknown",
+            "tier": "P2",
+            "security-severity": "5.0",
+            "collector": "configs"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/workspace/scratch/b5e81a169f87/qramp/testbed/etc/nginx-gateway.conf"
+                },
+                "region": {
+                  "startLine": 4
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "qramp-unclassified",
+          "ruleIndex": 35,
+          "level": "note",
+          "message": {
+            "text": "TLS (1.3) [protocol]: no rule matched | Mosca X=7.0 Y=1.0 Z=12.0 gap=-4.0. Evidence: SSLContext.getInstance(\"TLSv1.3\")."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "fa49f0e07a152283"
+          },
+          "properties": {
+            "exposureClass": "unknown",
+            "tier": "P2",
+            "security-severity": "5.0",
+            "collector": "source-java"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/java/com/testbed/CryptoService.java"
+                },
+                "region": {
+                  "startLine": 64
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "qramp-unclassified",
+          "ruleIndex": 35,
+          "level": "note",
+          "message": {
+            "text": "TLS (1.3) [protocol]: no rule matched | Mosca X=7.0 Y=1.0 Z=12.0 gap=-4.0. Evidence: tls.VersionTLS13 configured."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "e0d3e22f2cc11338"
+          },
+          "properties": {
+            "exposureClass": "unknown",
+            "tier": "P2",
+            "security-severity": "5.0",
+            "collector": "source-go"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/go/cryptoservice.go"
+                },
+                "region": {
+                  "startLine": 74
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "qramp-unclassified",
+          "ruleIndex": 35,
+          "level": "note",
+          "message": {
+            "text": "TLS (1.3) [protocol]: no rule matched | Mosca X=7.0 Y=1.0 Z=12.0 gap=-4.0. Evidence: ssl_protocols enables TLSv1.3."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "001eee6c1753f1f7"
+          },
+          "properties": {
+            "exposureClass": "unknown",
+            "tier": "P2",
+            "security-severity": "5.0",
+            "collector": "configs"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/workspace/scratch/b5e81a169f87/qramp/testbed/etc/nginx-gateway.conf"
+                },
+                "region": {
+                  "startLine": 4
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "ecdsa-broken",
+          "ruleIndex": 13,
+          "level": "error",
+          "message": {
+            "text": "ECDSA [signature]: ECDSA relies on ECDLP, broken by Shor | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0. Evidence: KeyPairGenerator.getInstance(\"EC\")."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "3a83407fab5224a7"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P2",
+            "security-severity": "5.0",
+            "collector": "source-java"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/java/com/testbed/CryptoService.java"
+                },
+                "region": {
+                  "startLine": 54
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "ecdsa-broken",
+          "ruleIndex": 13,
+          "level": "error",
+          "message": {
+            "text": "ECDSA [signature]: ECDSA relies on ECDLP, broken by Shor | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0. Evidence: component cryptography@42.0.5 ships ecdsa."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "f16745fd156311c2"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P2",
+            "security-severity": "5.0",
+            "collector": "sbom"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/sbom.cdx.json%23cryptography%4042.0.5"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "ecdsa-broken",
+          "ruleIndex": 13,
+          "level": "error",
+          "message": {
+            "text": "ECDSA [signature]: ECDSA relies on ECDLP, broken by Shor | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0. Evidence: maven manifest declares bcprov-jdk18on@1.77 which ships ecdsa."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "26319de03e7c75b1"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P2",
+            "security-severity": "5.0",
+            "collector": "manifests",
+            "aliasResolution": {
+              "package": "bcprov-jdk18on",
+              "ecosystem": "maven",
+              "component": "bouncycastle",
+              "wrapper": false,
+              "mapped": true
+            },
+            "tags": [
+              "discovery/manifest"
+            ]
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "pom.xml%23bouncycastle%401.77"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "ecdsa-broken",
+          "ruleIndex": 13,
+          "level": "error",
+          "message": {
+            "text": "ECDSA [signature]: ECDSA relies on ECDLP, broken by Shor | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0. Evidence: pip manifest declares cryptography@42.0.5 which ships ecdsa."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "b6a7437039d9bdd9"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P2",
+            "security-severity": "5.0",
+            "collector": "manifests",
+            "aliasResolution": {
+              "package": "cryptography",
+              "ecosystem": "pip",
+              "component": "cryptography",
+              "wrapper": false,
+              "mapped": true
+            },
+            "tags": [
+              "discovery/manifest"
+            ]
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "requirements.txt%23cryptography%4042.0.5"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "ecdsa-broken",
+          "ruleIndex": 13,
+          "level": "error",
+          "message": {
+            "text": "ECDSA (cert-sig:sha2-256) [signature]: ECDSA relies on ECDLP, broken by Shor | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0. Evidence: certificate signed with sha2-256-ecdsa by issuer CN=Test CA."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "d9251784c65f5fa5"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P2",
+            "security-severity": "5.0",
+            "collector": "certs"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/workspace/scratch/b5e81a169f87/qramp/testbed/certs/weak-curve-secp192.pem"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "ecdsa-broken",
+          "ruleIndex": 13,
+          "level": "error",
+          "message": {
+            "text": "ECDSA (cert-sig:sha2-256) [signature]: ECDSA relies on ECDLP, broken by Shor | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0. Evidence: certificate signed with sha2-256-ecdsa by issuer CN=api.testbed.local."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "13524d39c01457a1"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P2",
+            "security-severity": "5.0",
+            "collector": "certs"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/workspace/scratch/b5e81a169f87/qramp/testbed/certs/api-ec256.pem"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "ecdsa-broken",
+          "ruleIndex": 13,
+          "level": "error",
+          "message": {
+            "text": "ECDSA-256 (nistp256) [signature]: ECDSA relies on ECDLP, broken by Shor | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0. Evidence: ecdsa.GenerateKey(...), key size 256, curve nistp256."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "78682f7b6c11b068"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P2",
+            "security-severity": "5.0",
+            "collector": "source-go"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/go/cryptoservice.go"
+                },
+                "region": {
+                  "startLine": 52
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "ecdsa-broken",
+          "ruleIndex": 13,
+          "level": "error",
+          "message": {
+            "text": "ECDSA (secp256r1) [signature]: ECDSA relies on ECDLP, broken by Shor | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0. Evidence: EC keygen curve=secp256r1."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "750314377aac76a6"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P2",
+            "security-severity": "5.0",
+            "collector": "source-py"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/app/payments.py"
+                },
+                "region": {
+                  "startLine": 31
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "ecdsa-broken",
+          "ruleIndex": 13,
+          "level": "error",
+          "message": {
+            "text": "ECDSA-256 (secp256r1) [signature]: ECDSA relies on ECDLP, broken by Shor | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0. Evidence: EC public key (secp256r1) for CN=api.testbed.local."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "6787faf675427d4c"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P2",
+            "security-severity": "5.0",
+            "collector": "certs"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/workspace/scratch/b5e81a169f87/qramp/testbed/certs/api-ec256.pem"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "eddsa-broken",
+          "ruleIndex": 19,
+          "level": "error",
+          "message": {
+            "text": "ED25519 [signature]: EdDSA relies on ECDLP, broken by Shor | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0. Evidence: component libsodium@1.0.19 ships ed25519."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "c75c5cefeb5a8059"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P2",
+            "security-severity": "5.0",
+            "collector": "sbom"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/sbom.cdx.json%23libsodium%401.0.19"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "eddsa-broken",
+          "ruleIndex": 19,
+          "level": "error",
+          "message": {
+            "text": "ED25519 [signature]: EdDSA relies on ECDLP, broken by Shor | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0. Evidence: npm manifest declares libsodium@0.7.11 which ships ed25519."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "efbfde392e3e80b4"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P2",
+            "security-severity": "5.0",
+            "collector": "manifests",
+            "aliasResolution": {
+              "package": "libsodium",
+              "ecosystem": "npm",
+              "component": "libsodium",
+              "wrapper": false,
+              "mapped": true
+            },
+            "tags": [
+              "discovery/manifest"
+            ]
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "package-lock.json%23libsodium%400.7.11"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "eddsa-broken",
+          "ruleIndex": 19,
+          "level": "error",
+          "message": {
+            "text": "ED25519-256 [signature]: EdDSA relies on ECDLP, broken by Shor | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0. Evidence: crypto_sign_ed25519() call site."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "df103315d1759eb6"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P2",
+            "security-severity": "5.0",
+            "collector": "source-c"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/c/crypto_service.c"
+                },
+                "region": {
+                  "startLine": 29
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "eddsa-broken",
+          "ruleIndex": 19,
+          "level": "error",
+          "message": {
+            "text": "ED25519-256 [signature]: EdDSA relies on ECDLP, broken by Shor | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0. Evidence: Ed25519 key for CN=mesh.testbed.local."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "245de65a96ccf0ca"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P2",
+            "security-severity": "5.0",
+            "collector": "certs"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/workspace/scratch/b5e81a169f87/qramp/testbed/certs/mesh-ed25519.pem"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "eddsa-broken",
+          "ruleIndex": 19,
+          "level": "error",
+          "message": {
+            "text": "ED25519 (cert-sig) [signature]: EdDSA relies on ECDLP, broken by Shor | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0. Evidence: certificate signed with ed25519 by issuer CN=mesh.testbed.local."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "70c487eba7747cfb"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P2",
+            "security-severity": "5.0",
+            "collector": "certs"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/workspace/scratch/b5e81a169f87/qramp/testbed/certs/mesh-ed25519.pem"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "eddsa-broken",
+          "ruleIndex": 19,
+          "level": "error",
+          "message": {
+            "text": "ED25519-256 (ssh-hostkey) [signature]: EdDSA relies on ECDLP, broken by Shor | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0. Evidence: HostKeyAlgorithms includes ssh-ed25519."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "d4a280997e2d5668"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P2",
+            "security-severity": "5.0",
+            "collector": "configs"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/workspace/scratch/b5e81a169f87/qramp/testbed/etc/sshd_config"
+                },
+                "region": {
+                  "startLine": 3
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "rsa-broken",
+          "ruleIndex": 12,
+          "level": "error",
+          "message": {
+            "text": "RSA [signature]: RSA is broken by Shor's algorithm | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0. Evidence: cipher suite TLS_RSA_WITH_3DES_EDE_CBC_SHA."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "d36e36a05b46f5dd"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P2",
+            "security-severity": "5.0",
+            "collector": "source-go"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/go/cryptoservice.go"
+                },
+                "region": {
+                  "startLine": 66
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "rsa-broken",
+          "ruleIndex": 12,
+          "level": "error",
+          "message": {
+            "text": "RSA [signature]: RSA is broken by Shor's algorithm | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0. Evidence: cipher suite TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "d36e36a05b46f5dd"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P2",
+            "security-severity": "5.0",
+            "collector": "source-go"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/go/cryptoservice.go"
+                },
+                "region": {
+                  "startLine": 67
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "rsa-broken",
+          "ruleIndex": 12,
+          "level": "error",
+          "message": {
+            "text": "RSA [signature]: RSA is broken by Shor's algorithm | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0. Evidence: component paramiko@3.4.0 ships rsa."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "6c56a78bdac2f7e2"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P2",
+            "security-severity": "5.0",
+            "collector": "sbom"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/sbom.cdx.json%23paramiko%403.4.0"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "rsa-broken",
+          "ruleIndex": 12,
+          "level": "error",
+          "message": {
+            "text": "RSA [signature]: RSA is broken by Shor's algorithm | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0. Evidence: pip manifest declares paramiko@3.4.0 which ships rsa."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "df2febb81b3afccc"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P2",
+            "security-severity": "5.0",
+            "collector": "manifests",
+            "aliasResolution": {
+              "package": "paramiko",
+              "ecosystem": "pip",
+              "component": "paramiko",
+              "wrapper": false,
+              "mapped": true
+            },
+            "tags": [
+              "discovery/manifest"
+            ]
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "requirements.txt%23paramiko%403.4.0"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "rsa-broken",
+          "ruleIndex": 12,
+          "level": "error",
+          "message": {
+            "text": "RSA (cert-sig:sha2-256) [signature]: RSA is broken by Shor's algorithm | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0. Evidence: certificate signed with sha2-256-rsa by issuer CN=Test CA."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "e2cfb64bdd007c11"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P2",
+            "security-severity": "5.0",
+            "collector": "certs"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/workspace/scratch/b5e81a169f87/qramp/testbed/certs/weak-rsa1024.pem"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "rsa-broken",
+          "ruleIndex": 12,
+          "level": "error",
+          "message": {
+            "text": "RSA (cert-sig:sha2-256) [signature]: RSA is broken by Shor's algorithm | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0. Evidence: certificate signed with sha2-256-rsa by issuer CN=gateway.testbed.local."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "bdc38f6018998e90"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P2",
+            "security-severity": "5.0",
+            "collector": "certs"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/workspace/scratch/b5e81a169f87/qramp/testbed/certs/gateway-rsa2048.pem"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "rsa-broken",
+          "ruleIndex": 12,
+          "level": "error",
+          "message": {
+            "text": "RSA (cert-sig:sha2-256) [signature]: RSA is broken by Shor's algorithm | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0. Evidence: certificate signed with sha2-256-rsa by issuer CN=Test CA."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "0bd54133c80e09cd"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P2",
+            "security-severity": "5.0",
+            "collector": "certs"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/workspace/scratch/b5e81a169f87/qramp/testbed/certs/expiring-soon.pem"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "rsa-broken",
+          "ruleIndex": 12,
+          "level": "error",
+          "message": {
+            "text": "RSA (cert-sig:sha2-256) [signature]: RSA is broken by Shor's algorithm | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0. Evidence: certificate signed with sha2-256-rsa by issuer CN=SHA1 Legacy Root CA."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "6ed6a770a2fca48e"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P2",
+            "security-severity": "5.0",
+            "collector": "certs"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/workspace/scratch/b5e81a169f87/qramp/testbed/certs/chain/leaf-under-sha1-ca.pem"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "rsa-broken",
+          "ruleIndex": 12,
+          "level": "error",
+          "message": {
+            "text": "RSA (cert-sig:sha2-256) [signature]: RSA is broken by Shor's algorithm | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0. Evidence: certificate signed with sha2-256-rsa by issuer CN=Legacy Root CA."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "f96efdf9cb0cac19"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P2",
+            "security-severity": "5.0",
+            "collector": "certs"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/workspace/scratch/b5e81a169f87/qramp/testbed/certs/chain/leaf-under-strong-ca.pem"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "rsa-broken",
+          "ruleIndex": 12,
+          "level": "error",
+          "message": {
+            "text": "RSA (cert-sig:sha2-256) [signature]: RSA is broken by Shor's algorithm | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0. Evidence: certificate signed with sha2-256-rsa by issuer CN=Legacy Root CA."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "c4794c66b7f53e01"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P2",
+            "security-severity": "5.0",
+            "collector": "certs"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/workspace/scratch/b5e81a169f87/qramp/testbed/certs/chain/root-ca-strong.pem"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "rsa-broken",
+          "ruleIndex": 12,
+          "level": "error",
+          "message": {
+            "text": "RSA-2048 (ssh-hostkey) [signature]: RSA is broken by Shor's algorithm | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0. Evidence: HostKeyAlgorithms includes ssh-rsa."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "643cb1ad842db3e1"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P2",
+            "security-severity": "5.0",
+            "collector": "configs"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/workspace/scratch/b5e81a169f87/qramp/testbed/etc/sshd_config"
+                },
+                "region": {
+                  "startLine": 3
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "des-dead",
+          "ruleIndex": 23,
+          "level": "error",
+          "message": {
+            "text": "3DES [symmetric-cipher]: DES/3DES insufficient key strength; remove | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0. Evidence: 3des NOT in jdk.tls.disabledAlgorithms."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "3b9230e7576254e2"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P2",
+            "security-severity": "5.0",
+            "collector": "configs"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/workspace/scratch/b5e81a169f87/qramp/testbed/etc/java.security"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "des-dead",
+          "ruleIndex": 23,
+          "level": "error",
+          "message": {
+            "text": "3DES-112/cbc [symmetric-cipher]: DES/3DES insufficient key strength; remove | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0. Evidence: cipher suite TLS_RSA_WITH_3DES_EDE_CBC_SHA."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "4fefaba108c39782"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P2",
+            "security-severity": "5.0",
+            "collector": "source-go"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/go/cryptoservice.go"
+                },
+                "region": {
+                  "startLine": 66
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "des-dead",
+          "ruleIndex": 23,
+          "level": "error",
+          "message": {
+            "text": "3DES-112/cbc [symmetric-cipher]: DES/3DES insufficient key strength; remove | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0. Evidence: Ciphers includes 3des-cbc."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "a38639ab2494f771"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P2",
+            "security-severity": "5.0",
+            "collector": "configs"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/workspace/scratch/b5e81a169f87/qramp/testbed/etc/sshd_config"
+                },
+                "region": {
+                  "startLine": 5
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "qramp-unclassified",
+          "ruleIndex": 35,
+          "level": "note",
+          "message": {
+            "text": "AES [symmetric-cipher]: no rule matched | Mosca X=3.0 Y=1.0 Z=12.0 gap=-8.0. Evidence: aes.NewCipher(...)."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "901b68d0d2a71a2e"
+          },
+          "properties": {
+            "exposureClass": "unknown",
+            "tier": "P2",
+            "security-severity": "5.0",
+            "collector": "source-go"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/go/cryptoservice.go"
+                },
+                "region": {
+                  "startLine": 41
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "qramp-unclassified",
+          "ruleIndex": 35,
+          "level": "note",
+          "message": {
+            "text": "AES/cbc [symmetric-cipher]: no rule matched | Mosca X=3.0 Y=1.0 Z=12.0 gap=-8.0. Evidence: AES.new() call site."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "173a122972addb48"
+          },
+          "properties": {
+            "exposureClass": "unknown",
+            "tier": "P2",
+            "security-severity": "5.0",
+            "collector": "source-py"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/app/storage.py"
+                },
+                "region": {
+                  "startLine": 33
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "qramp-unclassified",
+          "ruleIndex": 35,
+          "level": "note",
+          "message": {
+            "text": "AES/cbc [symmetric-cipher]: no rule matched | Mosca X=3.0 Y=1.0 Z=12.0 gap=-8.0. Evidence: Cipher.getInstance(\"AES/CBC/PKCS5Padding\")."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "3fe237c25ed73a0f"
+          },
+          "properties": {
+            "exposureClass": "unknown",
+            "tier": "P2",
+            "security-severity": "5.0",
+            "collector": "source-java"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/java/com/testbed/CryptoService.java"
+                },
+                "region": {
+                  "startLine": 35
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "qramp-unclassified",
+          "ruleIndex": 35,
+          "level": "note",
+          "message": {
+            "text": "AES/gcm [symmetric-cipher]: no rule matched | Mosca X=3.0 Y=1.0 Z=12.0 gap=-8.0. Evidence: AES.new() call site."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "5d6b51d6d8141501"
+          },
+          "properties": {
+            "exposureClass": "unknown",
+            "tier": "P2",
+            "security-severity": "5.0",
+            "collector": "source-py"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/app/storage.py"
+                },
+                "region": {
+                  "startLine": 20
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "des-dead",
+          "ruleIndex": 23,
+          "level": "error",
+          "message": {
+            "text": "DES-56 [symmetric-cipher]: DES/3DES insufficient key strength; remove | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0. Evidence: des.NewCipher(...), key size 56."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "8ff5eeb84bf81705"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P2",
+            "security-severity": "5.0",
+            "collector": "source-go"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/go/cryptoservice.go"
+                },
+                "region": {
+                  "startLine": 35
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "des-dead",
+          "ruleIndex": 23,
+          "level": "error",
+          "message": {
+            "text": "DES-56 [symmetric-cipher]: DES/3DES insufficient key strength; remove | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0. Evidence: Des::new_from_slice(...), key size 56."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "cf049a19e16b3e81"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P2",
+            "security-severity": "5.0",
+            "collector": "source-rust"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/rust/crypto_service.rs"
+                },
+                "region": {
+                  "startLine": 29
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "des-dead",
+          "ruleIndex": 23,
+          "level": "error",
+          "message": {
+            "text": "DES-56/cbc [symmetric-cipher]: DES/3DES insufficient key strength; remove | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0. Evidence: EVP_get_cipherbyname(\"des-cbc\")."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "51738d3984ca3765"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P2",
+            "security-severity": "5.0",
+            "collector": "source-c"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/c/crypto_service.c"
+                },
+                "region": {
+                  "startLine": 17
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "des-dead",
+          "ruleIndex": 23,
+          "level": "error",
+          "message": {
+            "text": "DES-56/ecb [symmetric-cipher]: DES/3DES insufficient key strength; remove | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0. Evidence: DES.new() call site."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "03ccb0f22fb4ecb9"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P2",
+            "security-severity": "5.0",
+            "collector": "source-py"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/app/payments.py"
+                },
+                "region": {
+                  "startLine": 20
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "des-dead",
+          "ruleIndex": 23,
+          "level": "error",
+          "message": {
+            "text": "DES-56/ecb [symmetric-cipher]: DES/3DES insufficient key strength; remove | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0. Evidence: Cipher.getInstance(\"DES/ECB/PKCS5Padding\"), key size 56."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "fa459452af85963c"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P2",
+            "security-severity": "5.0",
+            "collector": "source-java"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/java/com/testbed/CryptoService.java"
+                },
+                "region": {
+                  "startLine": 30
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "des-dead",
+          "ruleIndex": 23,
+          "level": "error",
+          "message": {
+            "text": "DES-56/ecb [symmetric-cipher]: DES/3DES insufficient key strength; remove | Mosca X=3.0 Y=2.0 Z=12.0 gap=-7.0. Evidence: EVP_des_ecb() call site."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "3d7dbfc7da944b7f"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P2",
+            "security-severity": "5.0",
+            "collector": "source-c"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/c/crypto_service.c"
+                },
+                "region": {
+                  "startLine": 15
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "rc4-dead",
+          "ruleIndex": 22,
+          "level": "error",
+          "message": {
+            "text": "RC4 [symmetric-cipher]: RC4 is insecure and must be removed | Mosca X=7.0 Y=2.0 Z=12.0 gap=-3.0. Evidence: legacy cipher in ssl_ciphers."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "afdaf06f9706dff8"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P1",
+            "security-severity": "7.5",
+            "collector": "configs"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/workspace/scratch/b5e81a169f87/qramp/testbed/etc/nginx-gateway.conf"
+                },
+                "region": {
+                  "startLine": 5
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "rc4-dead",
+          "ruleIndex": 22,
+          "level": "error",
+          "message": {
+            "text": "RC4 [symmetric-cipher]: RC4 is insecure and must be removed | Mosca X=7.0 Y=2.0 Z=12.0 gap=-3.0. Evidence: rc4 NOT in jdk.tls.disabledAlgorithms."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "2bd389ba37a831a1"
+          },
+          "properties": {
+            "exposureClass": "quantum_broken",
+            "tier": "P1",
+            "security-severity": "7.5",
+            "collector": "configs"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/workspace/scratch/b5e81a169f87/qramp/testbed/etc/java.security"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "qramp-unclassified",
+          "ruleIndex": 35,
+          "level": "note",
+          "message": {
+            "text": "XSALSA20-256/poly1305 [symmetric-cipher]: no rule matched | Mosca X=3.0 Y=1.0 Z=12.0 gap=-8.0. Evidence: crypto_secretbox_easy() call site."
+          },
+          "partialFingerprints": {
+            "qrampAssetLocation": "d94b04ec06e7f757"
+          },
+          "properties": {
+            "exposureClass": "unknown",
+            "tier": "P2",
+            "security-severity": "5.0",
+            "collector": "source-c"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/workspace/scratch/b5e81a169f87/qramp/testbed/sample-app/c/crypto_service.c"
+                },
+                "region": {
+                  "startLine": 28
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "columnKind": "unicodeCodePoints"
+    }
+  ]
+}

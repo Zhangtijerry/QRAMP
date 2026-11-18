@@ -1,0 +1,534 @@
+[
+  {
+    "configuration": "baseline",
+    "tasks": 179,
+    "list_E": 2264880,
+    "cpsat_E_median": 2211900,
+    "reduction_pct": 2.339196778637279,
+    "runs": [
+      {
+        "configuration": "baseline",
+        "requested_solver": "list",
+        "repetition": 1,
+        "tasks": 179,
+        "E": 2264880,
+        "meta": {
+          "solver": "list-scheduling",
+          "makespan_months": 45,
+          "over_horizon_tasks": 19,
+          "feasible_within_horizon": false
+        }
+      },
+      {
+        "configuration": "baseline",
+        "requested_solver": "cpsat",
+        "repetition": 1,
+        "tasks": 179,
+        "E": 2211900,
+        "meta": {
+          "solver": "cp-sat",
+          "status": "FEASIBLE",
+          "objective": 73775.0,
+          "best_bound": 2765.0,
+          "wall_time_s": 10.002,
+          "proven_optimal": false,
+          "makespan_months": 45,
+          "over_horizon_tasks": 26,
+          "feasible_within_horizon": false
+        }
+      },
+      {
+        "configuration": "baseline",
+        "requested_solver": "cpsat",
+        "repetition": 2,
+        "tasks": 179,
+        "E": 2211900,
+        "meta": {
+          "solver": "cp-sat",
+          "status": "FEASIBLE",
+          "objective": 73775.0,
+          "best_bound": 2765.0,
+          "wall_time_s": 10.003,
+          "proven_optimal": false,
+          "makespan_months": 45,
+          "over_horizon_tasks": 26,
+          "feasible_within_horizon": false
+        }
+      },
+      {
+        "configuration": "baseline",
+        "requested_solver": "cpsat",
+        "repetition": 3,
+        "tasks": 179,
+        "E": 2211900,
+        "meta": {
+          "solver": "cp-sat",
+          "status": "FEASIBLE",
+          "objective": 73775.0,
+          "best_bound": 2765.0,
+          "wall_time_s": 10.002,
+          "proven_optimal": false,
+          "makespan_months": 45,
+          "over_horizon_tasks": 26,
+          "feasible_within_horizon": false
+        }
+      }
+    ]
+  },
+  {
+    "configuration": "capacity-one",
+    "tasks": 179,
+    "list_E": 6385950,
+    "cpsat_E_median": 4194000,
+    "reduction_pct": 34.32457191177507,
+    "runs": [
+      {
+        "configuration": "capacity-one",
+        "requested_solver": "list",
+        "repetition": 1,
+        "tasks": 179,
+        "E": 6385950,
+        "meta": {
+          "solver": "list-scheduling",
+          "makespan_months": 134,
+          "over_horizon_tasks": 77,
+          "feasible_within_horizon": false
+        }
+      },
+      {
+        "configuration": "capacity-one",
+        "requested_solver": "cpsat",
+        "repetition": 1,
+        "tasks": 179,
+        "E": 4194000,
+        "meta": {
+          "solver": "cp-sat",
+          "status": "FEASIBLE",
+          "objective": 139934.0,
+          "best_bound": 2872.0,
+          "wall_time_s": 10.001,
+          "proven_optimal": false,
+          "makespan_months": 134,
+          "over_horizon_tasks": 81,
+          "feasible_within_horizon": false
+        }
+      },
+      {
+        "configuration": "capacity-one",
+        "requested_solver": "cpsat",
+        "repetition": 2,
+        "tasks": 179,
+        "E": 4194000,
+        "meta": {
+          "solver": "cp-sat",
+          "status": "FEASIBLE",
+          "objective": 139934.0,
+          "best_bound": 2872.0,
+          "wall_time_s": 10.001,
+          "proven_optimal": false,
+          "makespan_months": 134,
+          "over_horizon_tasks": 81,
+          "feasible_within_horizon": false
+        }
+      },
+      {
+        "configuration": "capacity-one",
+        "requested_solver": "cpsat",
+        "repetition": 3,
+        "tasks": 179,
+        "E": 4194000,
+        "meta": {
+          "solver": "cp-sat",
+          "status": "FEASIBLE",
+          "objective": 139934.0,
+          "best_bound": 2872.0,
+          "wall_time_s": 10.001,
+          "proven_optimal": false,
+          "makespan_months": 134,
+          "over_horizon_tasks": 81,
+          "feasible_within_horizon": false
+        }
+      }
+    ]
+  },
+  {
+    "configuration": "double-capacity",
+    "tasks": 179,
+    "list_E": 1086270,
+    "cpsat_E_median": 774480,
+    "reduction_pct": 28.70280869397111,
+    "runs": [
+      {
+        "configuration": "double-capacity",
+        "requested_solver": "list",
+        "repetition": 1,
+        "tasks": 179,
+        "E": 1086270,
+        "meta": {
+          "solver": "list-scheduling",
+          "makespan_months": 23,
+          "over_horizon_tasks": 0,
+          "feasible_within_horizon": true
+        }
+      },
+      {
+        "configuration": "double-capacity",
+        "requested_solver": "cpsat",
+        "repetition": 1,
+        "tasks": 179,
+        "E": 774480,
+        "meta": {
+          "solver": "cp-sat",
+          "status": "FEASIBLE",
+          "objective": 25839.0,
+          "best_bound": 2745.0,
+          "wall_time_s": 10.002,
+          "proven_optimal": false,
+          "makespan_months": 23,
+          "over_horizon_tasks": 0,
+          "feasible_within_horizon": true
+        }
+      },
+      {
+        "configuration": "double-capacity",
+        "requested_solver": "cpsat",
+        "repetition": 2,
+        "tasks": 179,
+        "E": 774480,
+        "meta": {
+          "solver": "cp-sat",
+          "status": "FEASIBLE",
+          "objective": 25839.0,
+          "best_bound": 2745.0,
+          "wall_time_s": 10.003,
+          "proven_optimal": false,
+          "makespan_months": 23,
+          "over_horizon_tasks": 0,
+          "feasible_within_horizon": true
+        }
+      },
+      {
+        "configuration": "double-capacity",
+        "requested_solver": "cpsat",
+        "repetition": 3,
+        "tasks": 179,
+        "E": 774480,
+        "meta": {
+          "solver": "cp-sat",
+          "status": "FEASIBLE",
+          "objective": 25839.0,
+          "best_bound": 2745.0,
+          "wall_time_s": 10.003,
+          "proven_optimal": false,
+          "makespan_months": 23,
+          "over_horizon_tasks": 0,
+          "feasible_within_horizon": true
+        }
+      }
+    ]
+  },
+  {
+    "configuration": "half-duration",
+    "tasks": 179,
+    "list_E": 1623510,
+    "cpsat_E_median": 1211760,
+    "reduction_pct": 25.361716281390322,
+    "runs": [
+      {
+        "configuration": "half-duration",
+        "requested_solver": "list",
+        "repetition": 1,
+        "tasks": 179,
+        "E": 1623510,
+        "meta": {
+          "solver": "list-scheduling",
+          "makespan_months": 30,
+          "over_horizon_tasks": 0,
+          "feasible_within_horizon": true
+        }
+      },
+      {
+        "configuration": "half-duration",
+        "requested_solver": "cpsat",
+        "repetition": 1,
+        "tasks": 179,
+        "E": 1211760,
+        "meta": {
+          "solver": "cp-sat",
+          "status": "FEASIBLE",
+          "objective": 40422.0,
+          "best_bound": 1532.0,
+          "wall_time_s": 10.001,
+          "proven_optimal": false,
+          "makespan_months": 30,
+          "over_horizon_tasks": 0,
+          "feasible_within_horizon": true
+        }
+      },
+      {
+        "configuration": "half-duration",
+        "requested_solver": "cpsat",
+        "repetition": 2,
+        "tasks": 179,
+        "E": 1211760,
+        "meta": {
+          "solver": "cp-sat",
+          "status": "FEASIBLE",
+          "objective": 40422.0,
+          "best_bound": 1532.0,
+          "wall_time_s": 10.001,
+          "proven_optimal": false,
+          "makespan_months": 30,
+          "over_horizon_tasks": 0,
+          "feasible_within_horizon": true
+        }
+      },
+      {
+        "configuration": "half-duration",
+        "requested_solver": "cpsat",
+        "repetition": 3,
+        "tasks": 179,
+        "E": 1211760,
+        "meta": {
+          "solver": "cp-sat",
+          "status": "FEASIBLE",
+          "objective": 40422.0,
+          "best_bound": 1532.0,
+          "wall_time_s": 10.002,
+          "proven_optimal": false,
+          "makespan_months": 30,
+          "over_horizon_tasks": 0,
+          "feasible_within_horizon": true
+        }
+      }
+    ]
+  },
+  {
+    "configuration": "double-duration",
+    "tasks": 179,
+    "list_E": 4529760,
+    "cpsat_E_median": 3497940,
+    "reduction_pct": 22.778690261735722,
+    "runs": [
+      {
+        "configuration": "double-duration",
+        "requested_solver": "list",
+        "repetition": 1,
+        "tasks": 179,
+        "E": 4529760,
+        "meta": {
+          "solver": "list-scheduling",
+          "makespan_months": 90,
+          "over_horizon_tasks": 75,
+          "feasible_within_horizon": false
+        }
+      },
+      {
+        "configuration": "double-duration",
+        "requested_solver": "cpsat",
+        "repetition": 1,
+        "tasks": 179,
+        "E": 3497940,
+        "meta": {
+          "solver": "cp-sat",
+          "status": "FEASIBLE",
+          "objective": 116688.0,
+          "best_bound": 5566.0,
+          "wall_time_s": 10.002,
+          "proven_optimal": false,
+          "makespan_months": 90,
+          "over_horizon_tasks": 71,
+          "feasible_within_horizon": false
+        }
+      },
+      {
+        "configuration": "double-duration",
+        "requested_solver": "cpsat",
+        "repetition": 2,
+        "tasks": 179,
+        "E": 3497940,
+        "meta": {
+          "solver": "cp-sat",
+          "status": "FEASIBLE",
+          "objective": 116688.0,
+          "best_bound": 5566.0,
+          "wall_time_s": 10.002,
+          "proven_optimal": false,
+          "makespan_months": 90,
+          "over_horizon_tasks": 71,
+          "feasible_within_horizon": false
+        }
+      },
+      {
+        "configuration": "double-duration",
+        "requested_solver": "cpsat",
+        "repetition": 3,
+        "tasks": 179,
+        "E": 3497940,
+        "meta": {
+          "solver": "cp-sat",
+          "status": "FEASIBLE",
+          "objective": 116688.0,
+          "best_bound": 5566.0,
+          "wall_time_s": 10.002,
+          "proven_optimal": false,
+          "makespan_months": 90,
+          "over_horizon_tasks": 71,
+          "feasible_within_horizon": false
+        }
+      }
+    ]
+  },
+  {
+    "configuration": "complete-asset-subset",
+    "tasks": 109,
+    "list_E": 900930,
+    "cpsat_E_median": 854970,
+    "reduction_pct": 5.101395224934235,
+    "runs": [
+      {
+        "configuration": "complete-asset-subset",
+        "requested_solver": "list",
+        "repetition": 1,
+        "tasks": 109,
+        "E": 900930,
+        "meta": {
+          "solver": "list-scheduling",
+          "makespan_months": 26,
+          "over_horizon_tasks": 0,
+          "feasible_within_horizon": true
+        }
+      },
+      {
+        "configuration": "complete-asset-subset",
+        "requested_solver": "cpsat",
+        "repetition": 1,
+        "tasks": 109,
+        "E": 854970,
+        "meta": {
+          "solver": "cp-sat",
+          "status": "FEASIBLE",
+          "objective": 28525.0,
+          "best_bound": 1861.0,
+          "wall_time_s": 10.002,
+          "proven_optimal": false,
+          "makespan_months": 26,
+          "over_horizon_tasks": 0,
+          "feasible_within_horizon": true
+        }
+      },
+      {
+        "configuration": "complete-asset-subset",
+        "requested_solver": "cpsat",
+        "repetition": 2,
+        "tasks": 109,
+        "E": 854970,
+        "meta": {
+          "solver": "cp-sat",
+          "status": "FEASIBLE",
+          "objective": 28525.0,
+          "best_bound": 1861.0,
+          "wall_time_s": 10.015,
+          "proven_optimal": false,
+          "makespan_months": 26,
+          "over_horizon_tasks": 0,
+          "feasible_within_horizon": true
+        }
+      },
+      {
+        "configuration": "complete-asset-subset",
+        "requested_solver": "cpsat",
+        "repetition": 3,
+        "tasks": 109,
+        "E": 854970,
+        "meta": {
+          "solver": "cp-sat",
+          "status": "FEASIBLE",
+          "objective": 28525.0,
+          "best_bound": 1861.0,
+          "wall_time_s": 10.002,
+          "proven_optimal": false,
+          "makespan_months": 26,
+          "over_horizon_tasks": 0,
+          "feasible_within_horizon": true
+        }
+      }
+    ]
+  },
+  {
+    "configuration": "duplicated-graph",
+    "tasks": 358,
+    "list_E": 9244230,
+    "cpsat_E_median": 8974350,
+    "reduction_pct": 2.919442722649696,
+    "runs": [
+      {
+        "configuration": "duplicated-graph",
+        "requested_solver": "list",
+        "repetition": 1,
+        "tasks": 358,
+        "E": 9244230,
+        "meta": {
+          "solver": "list-scheduling",
+          "makespan_months": 90,
+          "over_horizon_tasks": 150,
+          "feasible_within_horizon": false
+        }
+      },
+      {
+        "configuration": "duplicated-graph",
+        "requested_solver": "cpsat",
+        "repetition": 1,
+        "tasks": 358,
+        "E": 8974350,
+        "meta": {
+          "solver": "cp-sat",
+          "status": "FEASIBLE",
+          "objective": 299235.0,
+          "best_bound": 5530.0,
+          "wall_time_s": 10.001,
+          "proven_optimal": false,
+          "makespan_months": 90,
+          "over_horizon_tasks": 168,
+          "feasible_within_horizon": false
+        }
+      },
+      {
+        "configuration": "duplicated-graph",
+        "requested_solver": "cpsat",
+        "repetition": 2,
+        "tasks": 358,
+        "E": 8974350,
+        "meta": {
+          "solver": "cp-sat",
+          "status": "FEASIBLE",
+          "objective": 299235.0,
+          "best_bound": 5530.0,
+          "wall_time_s": 10.001,
+          "proven_optimal": false,
+          "makespan_months": 90,
+          "over_horizon_tasks": 168,
+          "feasible_within_horizon": false
+        }
+      },
+      {
+        "configuration": "duplicated-graph",
+        "requested_solver": "cpsat",
+        "repetition": 3,
+        "tasks": 358,
+        "E": 8974350,
+        "meta": {
+          "solver": "cp-sat",
+          "status": "FEASIBLE",
+          "objective": 299235.0,
+          "best_bound": 5530.0,
+          "wall_time_s": 10.001,
+          "proven_optimal": false,
+          "makespan_months": 90,
+          "over_horizon_tasks": 168,
+          "feasible_within_horizon": false
+        }
+      }
+    ]
+  }
+]
