@@ -1,0 +1,3312 @@
+{
+  "reference_tool": "OpenSSL 3.5.7 9 Jun 2026 (Library: OpenSSL 3.5.7 9 Jun 2026)",
+  "unit": "certificate public-key algorithm, size, curve, signature algorithm/digest and serial; no path-validation or deployment claim",
+  "reference_certificates": 143,
+  "collected_certificates": 143,
+  "all_fields_equal": 143,
+  "weak_digest_TP": 18,
+  "weak_digest_FP": 0,
+  "weak_digest_FN": 0,
+  "collector_stats": {
+    "files": 1,
+    "certificates": 143,
+    "weak_findings": 18,
+    "chain_links": 0,
+    "root": "/workspace/scratch/b5e81a169f87/qramp/testbed/external-validation/certs",
+    "scanned_paths": [
+      "/workspace/scratch/b5e81a169f87/qramp/testbed/external-validation/certs/cacert.pem"
+    ],
+    "errors": []
+  },
+  "rows": [
+    {
+      "block": 1,
+      "sha256": "68cafe3e9acdf8982ba1062977959b4d394669207d08831f39a08cf54294b9da",
+      "reference": {
+        "serial": "456b5054",
+        "key_algorithm": "rsa",
+        "key_bits": 2048,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha1"
+      },
+      "observed": {
+        "serial": "456b5054",
+        "key_algorithm": "rsa",
+        "key_bits": 2048,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha1"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": true,
+      "weak_digest_observed": true
+    },
+    {
+      "block": 2,
+      "sha256": "f9d2e55418fa1d3fce5ff58caf68848c6e317cecd1c7d9ae60dfce3ecd7f1f22",
+      "reference": {
+        "serial": "509",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha1"
+      },
+      "observed": {
+        "serial": "509",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha1"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": true,
+      "weak_digest_observed": true
+    },
+    {
+      "block": 3,
+      "sha256": "ff401398f084764f6f94bc8bbf072542e027e91d4f85adf00d5fb56fe72bcd29",
+      "reference": {
+        "serial": "5c6",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha1"
+      },
+      "observed": {
+        "serial": "5c6",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha1"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": true,
+      "weak_digest_observed": true
+    },
+    {
+      "block": 4,
+      "sha256": "5d0da6866a53144bee854c02aeccc42e2248d524f6bc69a316d7b4c382d133bc",
+      "reference": {
+        "serial": "ce7e0e517d846fe8fe560fc1bf03039",
+        "key_algorithm": "rsa",
+        "key_bits": 2048,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha1"
+      },
+      "observed": {
+        "serial": "ce7e0e517d846fe8fe560fc1bf03039",
+        "key_algorithm": "rsa",
+        "key_bits": 2048,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha1"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": true,
+      "weak_digest_observed": true
+    },
+    {
+      "block": 5,
+      "sha256": "cbeea2a34b6c7b2c7df9ae0f99d7b5cf580f50bb49352614a46fd816461a30a5",
+      "reference": {
+        "serial": "83be056904246b1a1756ac95991c74a",
+        "key_algorithm": "rsa",
+        "key_bits": 2048,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha1"
+      },
+      "observed": {
+        "serial": "83be056904246b1a1756ac95991c74a",
+        "key_algorithm": "rsa",
+        "key_bits": 2048,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha1"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": true,
+      "weak_digest_observed": true
+    },
+    {
+      "block": 6,
+      "sha256": "7eb3b80076f06857a43d1065bc448ad5c3d81d34cb021327f7ab8563cade5693",
+      "reference": {
+        "serial": "2ac5c266a0b409b8f0b79f2ae462577",
+        "key_algorithm": "rsa",
+        "key_bits": 2048,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha1"
+      },
+      "observed": {
+        "serial": "2ac5c266a0b409b8f0b79f2ae462577",
+        "key_algorithm": "rsa",
+        "key_bits": 2048,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha1"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": true,
+      "weak_digest_observed": true
+    },
+    {
+      "block": 7,
+      "sha256": "ffc64e51ccc4a472ffa76f426bdaf6cb8b143ec2434ccc9b15ab8f38c8b17e29",
+      "reference": {
+        "serial": "bb401c43f55e4fb0",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha1"
+      },
+      "observed": {
+        "serial": "bb401c43f55e4fb0",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha1"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": true,
+      "weak_digest_observed": true
+    },
+    {
+      "block": 8,
+      "sha256": "9703cf6e6bc76458f1f47712c2b52dbe2e4da01e9f231a07a3402732b4ed730a",
+      "reference": {
+        "serial": "cf08e5c0816a5ad427ff0eb271859d0",
+        "key_algorithm": "rsa",
+        "key_bits": 2048,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha1"
+      },
+      "observed": {
+        "serial": "cf08e5c0816a5ad427ff0eb271859d0",
+        "key_algorithm": "rsa",
+        "key_bits": 2048,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha1"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": true,
+      "weak_digest_observed": true
+    },
+    {
+      "block": 9,
+      "sha256": "f2f55ced9de5fdcf8281a77e3d8bef99af8d4e9c3c326726edfb0cf9b765d9d0",
+      "reference": {
+        "serial": "75622a4e8d48a894df413c8f0f8eaa5",
+        "key_algorithm": "rsa",
+        "key_bits": 2048,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha1"
+      },
+      "observed": {
+        "serial": "75622a4e8d48a894df413c8f0f8eaa5",
+        "key_algorithm": "rsa",
+        "key_bits": 2048,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha1"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": true,
+      "weak_digest_observed": true
+    },
+    {
+      "block": 10,
+      "sha256": "a7e4e9cba8470c8d2af7ae2255cb9bf633c3a176c12ac003f8f917b74e7f8157",
+      "reference": {
+        "serial": "4e812d8a8265e00b02ee3e350246e53d",
+        "key_algorithm": "rsa",
+        "key_bits": 2048,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha1"
+      },
+      "observed": {
+        "serial": "4e812d8a8265e00b02ee3e350246e53d",
+        "key_algorithm": "rsa",
+        "key_bits": 2048,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha1"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": true,
+      "weak_digest_observed": true
+    },
+    {
+      "block": 11,
+      "sha256": "9affccefd9e5c26229163344cea34c0ad8a38a8436fac5d2e7f315c0b6e77124",
+      "reference": {
+        "serial": "1f47afaa62007050544c019e9b63992a",
+        "key_algorithm": "ecdsa",
+        "key_bits": 384,
+        "curve": "secp384r1",
+        "signature_algorithm": "ecdsa",
+        "signature_digest": "sha2-384"
+      },
+      "observed": {
+        "serial": "1f47afaa62007050544c019e9b63992a",
+        "key_algorithm": "ecdsa",
+        "key_bits": 384,
+        "curve": "secp384r1",
+        "signature_algorithm": "ecdsa",
+        "signature_digest": "sha2-384"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 12,
+      "sha256": "23987cdf24da4f48cf6b08d10949668a11410417df7ad2390fc39ff4c7d31f08",
+      "reference": {
+        "serial": "fedce3010fc948ff",
+        "key_algorithm": "rsa",
+        "key_bits": 2048,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha1"
+      },
+      "observed": {
+        "serial": "fedce3010fc948ff",
+        "key_algorithm": "rsa",
+        "key_bits": 2048,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha1"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": true,
+      "weak_digest_observed": true
+    },
+    {
+      "block": 13,
+      "sha256": "28657907d5b343b5013978e3af60002b90fe2fdb93a5afb93d90ace94f2e1f14",
+      "reference": {
+        "serial": "15c8bd65475cafb897005ee406d2bc9d",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha1"
+      },
+      "observed": {
+        "serial": "15c8bd65475cafb897005ee406d2bc9d",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha1"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": true,
+      "weak_digest_observed": true
+    },
+    {
+      "block": 14,
+      "sha256": "97dde5da83db86f2f244e4a796921cb4de4d732a174c97e81ca076e1ecf50ba9",
+      "reference": {
+        "serial": "200605167002",
+        "key_algorithm": "rsa",
+        "key_bits": 2048,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha1"
+      },
+      "observed": {
+        "serial": "200605167002",
+        "key_algorithm": "rsa",
+        "key_bits": 2048,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha1"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": true,
+      "weak_digest_observed": true
+    },
+    {
+      "block": 15,
+      "sha256": "0b0396f27267c0b3608770837cae08f2170a0032717dcba31f952989c49f514d",
+      "reference": {
+        "serial": "49412ce40010",
+        "key_algorithm": "rsa",
+        "key_bits": 2048,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "observed": {
+        "serial": "49412ce40010",
+        "key_algorithm": "rsa",
+        "key_bits": 2048,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 16,
+      "sha256": "f320dc7f3a89a775d26381cd257393b61f3d9d4a8621d6ceb479acf384ddcc9b",
+      "reference": {
+        "serial": "c27e43044e473f19",
+        "key_algorithm": "rsa",
+        "key_bits": 2048,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "observed": {
+        "serial": "c27e43044e473f19",
+        "key_algorithm": "rsa",
+        "key_bits": 2048,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 17,
+      "sha256": "3d0440e1a3e0ad841f123246ce52640602282ce227e09fc69d8494aa63050848",
+      "reference": {
+        "serial": "4000000000121585308a2",
+        "key_algorithm": "rsa",
+        "key_bits": 2048,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "observed": {
+        "serial": "4000000000121585308a2",
+        "key_algorithm": "rsa",
+        "key_bits": 2048,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 18,
+      "sha256": "c95177c1f4e314b73e3fea00b53ca30e8d8855166c6624be9dd2b772ca662150",
+      "reference": {
+        "serial": "b0b75a16485fbfe1cbf58bd719e67d",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "observed": {
+        "serial": "b0b75a16485fbfe1cbf58bd719e67d",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 19,
+      "sha256": "7921df4724e6a7aec194f4318c3848c0e06d295742a936fa97de916ade660c56",
+      "reference": {
+        "serial": "0",
+        "key_algorithm": "rsa",
+        "key_bits": 2048,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "observed": {
+        "serial": "0",
+        "key_algorithm": "rsa",
+        "key_bits": 2048,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 20,
+      "sha256": "17f310fb0b1390305c72ea9a51e5ad42bb339043cb335d6c13cac06c1f1bafb5",
+      "reference": {
+        "serial": "0",
+        "key_algorithm": "rsa",
+        "key_bits": 2048,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "observed": {
+        "serial": "0",
+        "key_algorithm": "rsa",
+        "key_bits": 2048,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 21,
+      "sha256": "502890578700f945ad4283a84f0dc5cf1e559781b8d313373cded56f9d982e05",
+      "reference": {
+        "serial": "0",
+        "key_algorithm": "rsa",
+        "key_bits": 2048,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "observed": {
+        "serial": "0",
+        "key_algorithm": "rsa",
+        "key_bits": 2048,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 22,
+      "sha256": "c12435804f8324d549e0f7521f4f1610a8aac8031eed1cf38f083066df9e9999",
+      "reference": {
+        "serial": "7777062726a9b17c",
+        "key_algorithm": "rsa",
+        "key_bits": 2048,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "observed": {
+        "serial": "7777062726a9b17c",
+        "key_algorithm": "rsa",
+        "key_bits": 2048,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 23,
+      "sha256": "901041049068ef0dea172d9a86fb6e25cdadd121890d8cbd5aea21d93608dd67",
+      "reference": {
+        "serial": "7c4f04391cd4992d",
+        "key_algorithm": "rsa",
+        "key_bits": 2048,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha1"
+      },
+      "observed": {
+        "serial": "7c4f04391cd4992d",
+        "key_algorithm": "rsa",
+        "key_bits": 2048,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha1"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": true,
+      "weak_digest_observed": true
+    },
+    {
+      "block": 24,
+      "sha256": "d88ed05201a476c4d8c67cbc1467924e12db46433c545376a8dda040dcb0c717",
+      "reference": {
+        "serial": "6d8c1446b1a60aee",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-384"
+      },
+      "observed": {
+        "serial": "6d8c1446b1a60aee",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-384"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 25,
+      "sha256": "8aa6b3cc37a990517d34ebf67d14740068cdd72deff69e56f05a427126f472ab",
+      "reference": {
+        "serial": "7497258ac73f7a54",
+        "key_algorithm": "ecdsa",
+        "key_bits": 384,
+        "curve": "secp384r1",
+        "signature_algorithm": "ecdsa",
+        "signature_digest": "sha2-384"
+      },
+      "observed": {
+        "serial": "7497258ac73f7a54",
+        "key_algorithm": "ecdsa",
+        "key_bits": 384,
+        "curve": "secp384r1",
+        "signature_algorithm": "ecdsa",
+        "signature_digest": "sha2-384"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 26,
+      "sha256": "304b582c9a770c141262eed22ff64146c9f3faef8d572b76cf887c8447462cdf",
+      "reference": {
+        "serial": "444c0",
+        "key_algorithm": "rsa",
+        "key_bits": 2048,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha1"
+      },
+      "observed": {
+        "serial": "444c0",
+        "key_algorithm": "rsa",
+        "key_bits": 2048,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha1"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": true,
+      "weak_digest_observed": true
+    },
+    {
+      "block": 27,
+      "sha256": "96520a8a6aa2e1f46172d19d61c6273468f813784efdde58d7d477d716d4844b",
+      "reference": {
+        "serial": "1",
+        "key_algorithm": "rsa",
+        "key_bits": 2048,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha1"
+      },
+      "observed": {
+        "serial": "1",
+        "key_algorithm": "rsa",
+        "key_bits": 2048,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha1"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": true,
+      "weak_digest_observed": true
+    },
+    {
+      "block": 28,
+      "sha256": "3dfed25f9f5be57d85989bd8c0179601e7b317eb6d613a11132f953d96e440ad",
+      "reference": {
+        "serial": "0",
+        "key_algorithm": "rsa",
+        "key_bits": 2048,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "observed": {
+        "serial": "0",
+        "key_algorithm": "rsa",
+        "key_bits": 2048,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 29,
+      "sha256": "8a1a073186992e3da3f9656ec6ce6a15b931fba4feb7431699e347ef41fd5d4d",
+      "reference": {
+        "serial": "570a119742c4e3cc",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "observed": {
+        "serial": "570a119742c4e3cc",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 30,
+      "sha256": "9ec54089f5006f28cc7bb0ac17a2bf8d400b15c07c549470c88d9cc2eb35f9fa",
+      "reference": {
+        "serial": "2",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "observed": {
+        "serial": "2",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 31,
+      "sha256": "07356c663b464428012d2f4ef6a8d3b2ca3fbdf5a2f3e0f5ebd728105c6d0058",
+      "reference": {
+        "serial": "2",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "observed": {
+        "serial": "2",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 32,
+      "sha256": "7024e2cd8bc504319cf07fdb8286fddb1993d0c040488c6435c29a1088f465e7",
+      "reference": {
+        "serial": "1",
+        "key_algorithm": "rsa",
+        "key_bits": 2048,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "observed": {
+        "serial": "1",
+        "key_algorithm": "rsa",
+        "key_bits": 2048,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 33,
+      "sha256": "70409b613b5d0e719886403049b9a9e4cd2fb2f0c5c8ded4469dcb3a9cd697b1",
+      "reference": {
+        "serial": "983f3",
+        "key_algorithm": "rsa",
+        "key_bits": 2048,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "observed": {
+        "serial": "983f3",
+        "key_algorithm": "rsa",
+        "key_bits": 2048,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 34,
+      "sha256": "9af4a510ccf2364e31a446592bf09b59e9bb9bdba136a5618cde86966dbcaec4",
+      "reference": {
+        "serial": "983f4",
+        "key_algorithm": "rsa",
+        "key_bits": 2048,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "observed": {
+        "serial": "983f4",
+        "key_algorithm": "rsa",
+        "key_bits": 2048,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 35,
+      "sha256": "4557c4c2950fb807b0a334d540331e036a85b0a7b897277b176417348f971905",
+      "reference": {
+        "serial": "92b888dbb08ac163",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "observed": {
+        "serial": "92b888dbb08ac163",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 36,
+      "sha256": "fc97005329e69a87f73aed79e6338611c9357684eac141e1977eecc4b1e753fd",
+      "reference": {
+        "serial": "5ec3b7a6437fa4e0",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha1"
+      },
+      "observed": {
+        "serial": "5ec3b7a6437fa4e0",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha1"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": true,
+      "weak_digest_observed": true
+    },
+    {
+      "block": 37,
+      "sha256": "6e411b0b103b1d305e9f36173c766d0a5b965f5684b517a8de11c3e5a92944b6",
+      "reference": {
+        "serial": "cbe",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "observed": {
+        "serial": "cbe",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 38,
+      "sha256": "14e33b4d168080ee08e6c129310d3a053212286daf86d0db27e154ca6b6cfc58",
+      "reference": {
+        "serial": "95be16a0f72e46f17b398272fa8bcd96",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha1"
+      },
+      "observed": {
+        "serial": "95be16a0f72e46f17b398272fa8bcd96",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha1"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": true,
+      "weak_digest_observed": true
+    },
+    {
+      "block": 39,
+      "sha256": "cfa0d01aadbc6973f9ec1ce060e8241c347f75ddbe00a109cbec554c85ed6d84",
+      "reference": {
+        "serial": "1",
+        "key_algorithm": "rsa",
+        "key_bits": 2048,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "observed": {
+        "serial": "1",
+        "key_algorithm": "rsa",
+        "key_bits": 2048,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 40,
+      "sha256": "f456bf2f1ab2b8729e61f4086066d734d5036e3b56b87ba1003e7192b47c3cff",
+      "reference": {
+        "serial": "5c33cb622c5fb332",
+        "key_algorithm": "rsa",
+        "key_bits": 2048,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "observed": {
+        "serial": "5c33cb622c5fb332",
+        "key_algorithm": "rsa",
+        "key_bits": 2048,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 41,
+      "sha256": "a6b77eaae8a1a3e3d2b731f6b8879b09c2761ce4f0bb7041b3aacc6498d965da",
+      "reference": {
+        "serial": "78585f2ead2c194be3370735341328b596d46593",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "observed": {
+        "serial": "78585f2ead2c194be3370735341328b596d46593",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 42,
+      "sha256": "215badd0d8363fff997f0db700058ba3d760de8d9c9591536ddfc3a1084c3867",
+      "reference": {
+        "serial": "445734245b81899b35f2ceb82b3b5ba726f07528",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "observed": {
+        "serial": "445734245b81899b35f2ceb82b3b5ba726f07528",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 43,
+      "sha256": "3c45b25cd8893005849b1921315ad6adee49f5f9d258a875de2ccb94fa88d932",
+      "reference": {
+        "serial": "2ef59b0228a7db7affd5a3a9eebd03a0cf126a1d",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "observed": {
+        "serial": "2ef59b0228a7db7affd5a3a9eebd03a0cf126a1d",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 44,
+      "sha256": "ecd67d862dd83cac3385f2e7ae5573204d27db6dbecc6e7b362cfbf21ca46e1e",
+      "reference": {
+        "serial": "b931c3ad63967ea6723bfc3af9af44b",
+        "key_algorithm": "rsa",
+        "key_bits": 2048,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "observed": {
+        "serial": "b931c3ad63967ea6723bfc3af9af44b",
+        "key_algorithm": "rsa",
+        "key_bits": 2048,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 45,
+      "sha256": "ab3084dad9ecc91940b2afdc5480e99b7843318a516bc0581c60e1bbe124ef8f",
+      "reference": {
+        "serial": "ba15afa1ddfa0b54944afcd24a06cec",
+        "key_algorithm": "ecdsa",
+        "key_bits": 384,
+        "curve": "secp384r1",
+        "signature_algorithm": "ecdsa",
+        "signature_digest": "sha2-384"
+      },
+      "observed": {
+        "serial": "ba15afa1ddfa0b54944afcd24a06cec",
+        "key_algorithm": "ecdsa",
+        "key_bits": 384,
+        "curve": "secp384r1",
+        "signature_algorithm": "ecdsa",
+        "signature_digest": "sha2-384"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 46,
+      "sha256": "0e0a61e2e78d28eea66b15a9b10c1f4e5e8ad379fea9131d02ec4a2473f9ab9c",
+      "reference": {
+        "serial": "33af1e6a711a9a0bb2864b11d09fae5",
+        "key_algorithm": "rsa",
+        "key_bits": 2048,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "observed": {
+        "serial": "33af1e6a711a9a0bb2864b11d09fae5",
+        "key_algorithm": "rsa",
+        "key_bits": 2048,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 47,
+      "sha256": "cbfe90f66f6a51bcd08d92a8d2b11d6e16174c86ca69911436858fd4f38f00c0",
+      "reference": {
+        "serial": "55556bcf25ea43535c3a40fd5ab4572",
+        "key_algorithm": "ecdsa",
+        "key_bits": 384,
+        "curve": "secp384r1",
+        "signature_algorithm": "ecdsa",
+        "signature_digest": "sha2-384"
+      },
+      "observed": {
+        "serial": "55556bcf25ea43535c3a40fd5ab4572",
+        "key_algorithm": "ecdsa",
+        "key_bits": 384,
+        "curve": "secp384r1",
+        "signature_algorithm": "ecdsa",
+        "signature_digest": "sha2-384"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 48,
+      "sha256": "4a9088bc9241da00e8e1bee57680905a35bf31ac247a6bafcd6e8073071ee4ae",
+      "reference": {
+        "serial": "59b1b579e8e2132e23907bda777755c",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-384"
+      },
+      "observed": {
+        "serial": "59b1b579e8e2132e23907bda777755c",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-384"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 49,
+      "sha256": "fa45b88ceead60037909aa6cc10667de2d45de5c39f90f51b4f1d9748602b1b2",
+      "reference": {
+        "serial": "4caaf9cadb636fe01ff74ed85b03869d",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-384"
+      },
+      "observed": {
+        "serial": "4caaf9cadb636fe01ff74ed85b03869d",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-384"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 50,
+      "sha256": "09341a353317495832479bc1c6ac32a534e9abaaab625e56f9a98de7c1ea9d8a",
+      "reference": {
+        "serial": "1fd6d30fca3ca51a81bbc640e35032d",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-384"
+      },
+      "observed": {
+        "serial": "1fd6d30fca3ca51a81bbc640e35032d",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-384"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 51,
+      "sha256": "43cd381380bea6d0305440e92cfb95eabd4b9cdde29b3d965a9ccdd8437e80c2",
+      "reference": {
+        "serial": "5c8b99c55a94c5d27156decd8980cc26",
+        "key_algorithm": "ecdsa",
+        "key_bits": 384,
+        "curve": "secp384r1",
+        "signature_algorithm": "ecdsa",
+        "signature_digest": "sha2-384"
+      },
+      "observed": {
+        "serial": "5c8b99c55a94c5d27156decd8980cc26",
+        "key_algorithm": "ecdsa",
+        "key_bits": 384,
+        "curve": "secp384r1",
+        "signature_algorithm": "ecdsa",
+        "signature_digest": "sha2-384"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 52,
+      "sha256": "e343f890df5670f872aeb2e8f6cccaaf4f5a979b069bc5f314d3f96d6d96a1b3",
+      "reference": {
+        "serial": "605949e0262ebb55f90a778a71f94ad86c",
+        "key_algorithm": "ecdsa",
+        "key_bits": 384,
+        "curve": "secp384r1",
+        "signature_algorithm": "ecdsa",
+        "signature_digest": "sha2-384"
+      },
+      "observed": {
+        "serial": "605949e0262ebb55f90a778a71f94ad86c",
+        "key_algorithm": "ecdsa",
+        "key_bits": 384,
+        "curve": "secp384r1",
+        "signature_algorithm": "ecdsa",
+        "signature_digest": "sha2-384"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 53,
+      "sha256": "939be4301fd3bc41e02a2a5f4d6ca2845dc618481154143923e53410b0881b02",
+      "reference": {
+        "serial": "a0142800000014523c844b500000002",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "observed": {
+        "serial": "a0142800000014523c844b500000002",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 54,
+      "sha256": "dbb64d1e2b9832c46761623e585cdeae76a0cf30ee32a21cddc44fdaa2b4a2d2",
+      "reference": {
+        "serial": "a0142800000014523cf467c00000002",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "observed": {
+        "serial": "a0142800000014523cf467c00000002",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 55,
+      "sha256": "20014d9ff38478338ce1dba12b7a077abbc3589a40d3de9a1d8b5873bd04b0a4",
+      "reference": {
+        "serial": "4a538c28",
+        "key_algorithm": "rsa",
+        "key_bits": 2048,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "observed": {
+        "serial": "4a538c28",
+        "key_algorithm": "rsa",
+        "key_bits": 2048,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 56,
+      "sha256": "ff4d3f0e42b156db9f3e9c4c3618325303da49ee5a1b4fb76d1804179ba5fc0a",
+      "reference": {
+        "serial": "a68b79290000000050d091f9",
+        "key_algorithm": "ecdsa",
+        "key_bits": 384,
+        "curve": "secp384r1",
+        "signature_algorithm": "ecdsa",
+        "signature_digest": "sha2-384"
+      },
+      "observed": {
+        "serial": "a68b79290000000050d091f9",
+        "key_algorithm": "ecdsa",
+        "key_bits": 384,
+        "curve": "secp384r1",
+        "signature_algorithm": "ecdsa",
+        "signature_digest": "sha2-384"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 57,
+      "sha256": "a99bc1d53331f9c466a636caa556fa96f14ec82080ebd87e90e41f5eddeba8d1",
+      "reference": {
+        "serial": "184accd6",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "observed": {
+        "serial": "184accd6",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 58,
+      "sha256": "cb807caabc220c301e3d8405f0252da4c76d6fff1a7b2725999d4523c3940ae8",
+      "reference": {
+        "serial": "76b1205274f0858746b3f8231af6c2c0",
+        "key_algorithm": "rsa",
+        "key_bits": 2048,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "observed": {
+        "serial": "76b1205274f0858746b3f8231af6c2c0",
+        "key_algorithm": "rsa",
+        "key_bits": 2048,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 59,
+      "sha256": "e8095ba6455e3442d93afc0ebb548ed42102f7f7402dfd193f64ccb2b63eb41f",
+      "reference": {
+        "serial": "3e8a5d07ec55d232d5b7e3b65f01eb2ddce4d6e4",
+        "key_algorithm": "rsa",
+        "key_bits": 2048,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "observed": {
+        "serial": "3e8a5d07ec55d232d5b7e3b65f01eb2ddce4d6e4",
+        "key_algorithm": "rsa",
+        "key_bits": 2048,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 60,
+      "sha256": "0242d5c2c941229367ed4283e89d07a7aa41ab9d88fd3eef7dc2d170965b7456",
+      "reference": {
+        "serial": "21d6d04a4f250fc93237fcaa5e128de9",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-512"
+      },
+      "observed": {
+        "serial": "21d6d04a4f250fc93237fcaa5e128de9",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-512"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 61,
+      "sha256": "00ee3d4ae38a4badb5fab80dbf59180adfc0dab9234b47dda99aa4d968da3691",
+      "reference": {
+        "serial": "0",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "observed": {
+        "serial": "0",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 62,
+      "sha256": "68247409e722cb630f0449b14b3db230f4582f5b0b6b21e2acf7724783a35df9",
+      "reference": {
+        "serial": "0",
+        "key_algorithm": "ecdsa",
+        "key_bits": 384,
+        "curve": "secp384r1",
+        "signature_algorithm": "ecdsa",
+        "signature_digest": "sha2-256"
+      },
+      "observed": {
+        "serial": "0",
+        "key_algorithm": "ecdsa",
+        "key_bits": 384,
+        "curve": "secp384r1",
+        "signature_algorithm": "ecdsa",
+        "signature_digest": "sha2-256"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 63,
+      "sha256": "bd6681410fb05ecd2b414afa3b02e285132cd289f9cad10e5c850fc9888e576e",
+      "reference": {
+        "serial": "8210cfb0d240e3594463e0bb63828b00",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "observed": {
+        "serial": "8210cfb0d240e3594463e0bb63828b00",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 64,
+      "sha256": "8560520c266db3b0b8c6f0d3216207cd7a751c42c32bed0843df1d51b6bf7763",
+      "reference": {
+        "serial": "5d938d306736c8061d1ac754846907",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "observed": {
+        "serial": "5d938d306736c8061d1ac754846907",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 65,
+      "sha256": "ad6fb002e6b34c0559fa8f93a3794ff12c4e3f119bd77290c52525123fb9ea74",
+      "reference": {
+        "serial": "66c9fcf99bf8c0a39e2f0788a43e696365bca",
+        "key_algorithm": "rsa",
+        "key_bits": 2048,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "observed": {
+        "serial": "66c9fcf99bf8c0a39e2f0788a43e696365bca",
+        "key_algorithm": "rsa",
+        "key_bits": 2048,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 66,
+      "sha256": "1d449d9ddb5787836dfd314f3cbf01db4d03d4ba042fcc5f517d7eff6800c035",
+      "reference": {
+        "serial": "66c9fd29635869f0a0fe58678f85b26bb8a37",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-384"
+      },
+      "observed": {
+        "serial": "66c9fd29635869f0a0fe58678f85b26bb8a37",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-384"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 67,
+      "sha256": "67aa1646ad1f2233fc9b4b6cdd6c6ba94dc66de765b7be96b6a873f7c83e6f2f",
+      "reference": {
+        "serial": "66c9fd5749736663f3b0b9ad9e89e7603f24a",
+        "key_algorithm": "ecdsa",
+        "key_bits": 256,
+        "curve": "secp256r1",
+        "signature_algorithm": "ecdsa",
+        "signature_digest": "sha2-256"
+      },
+      "observed": {
+        "serial": "66c9fd5749736663f3b0b9ad9e89e7603f24a",
+        "key_algorithm": "ecdsa",
+        "key_bits": 256,
+        "curve": "secp256r1",
+        "signature_algorithm": "ecdsa",
+        "signature_digest": "sha2-256"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 68,
+      "sha256": "37e2a47da812dd09f8f44ad4002087866378fdf834eb28c441f4e3edc605b639",
+      "reference": {
+        "serial": "66c9fd7c1bb104c2943e5717b7b2cc81ac10e",
+        "key_algorithm": "ecdsa",
+        "key_bits": 384,
+        "curve": "secp384r1",
+        "signature_algorithm": "ecdsa",
+        "signature_digest": "sha2-384"
+      },
+      "observed": {
+        "serial": "66c9fd7c1bb104c2943e5717b7b2cc81ac10e",
+        "key_algorithm": "ecdsa",
+        "key_bits": 384,
+        "curve": "secp384r1",
+        "signature_algorithm": "ecdsa",
+        "signature_digest": "sha2-384"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 69,
+      "sha256": "20e9ca825d1d99bbc730ee6453d30b4624c7652ef6aa3dc05f5898d0b49038b0",
+      "reference": {
+        "serial": "1",
+        "key_algorithm": "rsa",
+        "key_bits": 2048,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "observed": {
+        "serial": "1",
+        "key_algorithm": "rsa",
+        "key_bits": 2048,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 70,
+      "sha256": "6441e53a45bcb8e4734a82fd4e38f4f7cef301c01424f179feaf476a45cbc04b",
+      "reference": {
+        "serial": "7d0997fef047ea7a",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "observed": {
+        "serial": "7d0997fef047ea7a",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 71,
+      "sha256": "8c659adf90c5813953694ea8310821d20eaa09bd2ede2aa2e1931bd5ff270ebc",
+      "reference": {
+        "serial": "7b2c9bd316803299",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "observed": {
+        "serial": "7b2c9bd316803299",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 72,
+      "sha256": "5c5bd550a0ec51f3e55921bb96399bb46347ea206bf7aa82559381c32f3859a3",
+      "reference": {
+        "serial": "75e6dfcbc1685ba8",
+        "key_algorithm": "ecdsa",
+        "key_bits": 384,
+        "curve": "secp384r1",
+        "signature_algorithm": "ecdsa",
+        "signature_digest": "sha2-256"
+      },
+      "observed": {
+        "serial": "75e6dfcbc1685ba8",
+        "key_algorithm": "ecdsa",
+        "key_bits": 384,
+        "curve": "secp384r1",
+        "signature_algorithm": "ecdsa",
+        "signature_digest": "sha2-256"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 73,
+      "sha256": "602e35def1a67f67434518622d22e969c1b19ac0f2468b86b37816e6e3a2117b",
+      "reference": {
+        "serial": "56b629cd34bc78f6",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "observed": {
+        "serial": "56b629cd34bc78f6",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 74,
+      "sha256": "29b0aec9e4324984c2f298876e556574b17791d1986a84a1937cd6adf18bf59d",
+      "reference": {
+        "serial": "2c299c5b16ed0595",
+        "key_algorithm": "ecdsa",
+        "key_bits": 384,
+        "curve": "secp384r1",
+        "signature_algorithm": "ecdsa",
+        "signature_digest": "sha2-256"
+      },
+      "observed": {
+        "serial": "2c299c5b16ed0595",
+        "key_algorithm": "ecdsa",
+        "key_bits": 384,
+        "curve": "secp384r1",
+        "signature_algorithm": "ecdsa",
+        "signature_digest": "sha2-256"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 75,
+      "sha256": "b9fdb7e7047369f9ba72064e3dba99cc2f2488e5808bcee501a8ed751549d94a",
+      "reference": {
+        "serial": "45e6bb038333c3856548e6ff4551",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-384"
+      },
+      "observed": {
+        "serial": "45e6bb038333c3856548e6ff4551",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-384"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 76,
+      "sha256": "44660c7aa76eb52de893323efea78a2b74d4dc811a939a6b3c0e1075940d686c",
+      "reference": {
+        "serial": "212a560caeda0cab4045bf2ba22d3aea",
+        "key_algorithm": "ecdsa",
+        "key_bits": 384,
+        "curve": "secp384r1",
+        "signature_algorithm": "ecdsa",
+        "signature_digest": "sha2-384"
+      },
+      "observed": {
+        "serial": "212a560caeda0cab4045bf2ba22d3aea",
+        "key_algorithm": "ecdsa",
+        "key_bits": 384,
+        "curve": "secp384r1",
+        "signature_algorithm": "ecdsa",
+        "signature_digest": "sha2-384"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 77,
+      "sha256": "ba32330a90682bf50edeb00166a68bd6474280fdf13f1a150f533e232375d473",
+      "reference": {
+        "serial": "5ddfb1da5aa3ed5dbe5a6520650390ef",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "observed": {
+        "serial": "5ddfb1da5aa3ed5dbe5a6520650390ef",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 78,
+      "sha256": "509d3c39df035dfe2e3a2fbe359702115b3800d1cf873b48cbdaa7e394f7bf0e",
+      "reference": {
+        "serial": "4fd22b8ff564c8339e4f345866237060",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "observed": {
+        "serial": "4fd22b8ff564c8339e4f345866237060",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 79,
+      "sha256": "9fc031dbba739db378e3aa74ed52dc1aa75f3c39a4aa54417461be9b3b456bd0",
+      "reference": {
+        "serial": "cae91b89f155030da3e6416dc4e3a6e1",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "observed": {
+        "serial": "cae91b89f155030da3e6416dc4e3a6e1",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 80,
+      "sha256": "7a2dde939ea7dee6826942665345e082f2a699ce4b465c8d829290e2ea78bc7f",
+      "reference": {
+        "serial": "31f5e4620c6c58edd6d8",
+        "key_algorithm": "rsa",
+        "key_bits": 2048,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "observed": {
+        "serial": "31f5e4620c6c58edd6d8",
+        "key_algorithm": "rsa",
+        "key_bits": 2048,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 81,
+      "sha256": "6ec5f9223d14cf158280993df354563a22756c68c5e9aa3a60501b9527ed5427",
+      "reference": {
+        "serial": "3cf607a968700eda8b84",
+        "key_algorithm": "ecdsa",
+        "key_bits": 384,
+        "curve": "secp384r1",
+        "signature_algorithm": "ecdsa",
+        "signature_digest": "sha2-384"
+      },
+      "observed": {
+        "serial": "3cf607a968700eda8b84",
+        "key_algorithm": "ecdsa",
+        "key_bits": 384,
+        "curve": "secp384r1",
+        "signature_algorithm": "ecdsa",
+        "signature_digest": "sha2-384"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 82,
+      "sha256": "3bd2f6b5ad2b2280ee6537ce7b2c8d1d686e3843a08720a5b9cfd888569f8366",
+      "reference": {
+        "serial": "aecf00bac4cf32f843b2",
+        "key_algorithm": "rsa",
+        "key_bits": 2048,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "observed": {
+        "serial": "aecf00bac4cf32f843b2",
+        "key_algorithm": "rsa",
+        "key_bits": 2048,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 83,
+      "sha256": "141f8154b00b244e43905e1b06bbc4efcb30de20a3fea6cdfc6a940b12ae8d26",
+      "reference": {
+        "serial": "7b71b68256b8127c9ca8",
+        "key_algorithm": "ecdsa",
+        "key_bits": 384,
+        "curve": "secp384r1",
+        "signature_algorithm": "ecdsa",
+        "signature_digest": "sha2-384"
+      },
+      "observed": {
+        "serial": "7b71b68256b8127c9ca8",
+        "key_algorithm": "ecdsa",
+        "key_bits": 384,
+        "curve": "secp384r1",
+        "signature_algorithm": "ecdsa",
+        "signature_digest": "sha2-384"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 84,
+      "sha256": "d73b741bcfc71a34ec9f058f60879ad7a263e7b091efcfabf18298faadfbdd80",
+      "reference": {
+        "serial": "8165f8a4ca5ec00c99340dfc4c6ae23b81c5aa4",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "observed": {
+        "serial": "8165f8a4ca5ec00c99340dfc4c6ae23b81c5aa4",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 85,
+      "sha256": "877cbfad0949244997390fb6874a10eeed7171f6755ecdaca1b24a93d4268a4b",
+      "reference": {
+        "serial": "66f23daf87de8bb14aea0c573101c2ec",
+        "key_algorithm": "ecdsa",
+        "key_bits": 384,
+        "curve": "secp384r1",
+        "signature_algorithm": "ecdsa",
+        "signature_digest": "sha2-384"
+      },
+      "observed": {
+        "serial": "66f23daf87de8bb14aea0c573101c2ec",
+        "key_algorithm": "ecdsa",
+        "key_bits": 384,
+        "curve": "secp384r1",
+        "signature_algorithm": "ecdsa",
+        "signature_digest": "sha2-384"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 86,
+      "sha256": "626cf977bc458be560ccf14bf0cb3711506b37898f824283c43ead9b4079d298",
+      "reference": {
+        "serial": "1ed397095fd8b4b347701eaabe7f45b3",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-384"
+      },
+      "observed": {
+        "serial": "1ed397095fd8b4b347701eaabe7f45b3",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-384"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 87,
+      "sha256": "c078211433783d798a5884d09990383ad4728bcf38c9494560675c23767abb76",
+      "reference": {
+        "serial": "15448ef21fd97590df5040a",
+        "key_algorithm": "ecdsa",
+        "key_bits": 256,
+        "curve": "secp256r1",
+        "signature_algorithm": "ecdsa",
+        "signature_digest": "sha2-256"
+      },
+      "observed": {
+        "serial": "15448ef21fd97590df5040a",
+        "key_algorithm": "ecdsa",
+        "key_bits": 256,
+        "curve": "secp256r1",
+        "signature_algorithm": "ecdsa",
+        "signature_digest": "sha2-256"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 88,
+      "sha256": "dbe97f8508f2d3b24b3bd009b594805a20982082b36ef5b5034606a7029802ee",
+      "reference": {
+        "serial": "110034b64ec6362d36",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "observed": {
+        "serial": "110034b64ec6362d36",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 89,
+      "sha256": "7bdb01cb32347340491cc2ad12c2f19d2a02b5a67a9d410f0dd57cb389e98711",
+      "reference": {
+        "serial": "5f70e86da49f346352ebab2",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "observed": {
+        "serial": "5f70e86da49f346352ebab2",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 90,
+      "sha256": "9078df3067a54aabebf97238b3d2bdf397b7c5058288eacdf607a4a25361eb0e",
+      "reference": {
+        "serial": "d6a5f083f285c3e5195df5d",
+        "key_algorithm": "ecdsa",
+        "key_bits": 256,
+        "curve": "secp256r1",
+        "signature_algorithm": "ecdsa",
+        "signature_digest": "sha2-256"
+      },
+      "observed": {
+        "serial": "d6a5f083f285c3e5195df5d",
+        "key_algorithm": "ecdsa",
+        "key_bits": 256,
+        "curve": "secp256r1",
+        "signature_algorithm": "ecdsa",
+        "signature_digest": "sha2-256"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 91,
+      "sha256": "416b958c80e3eab282951dc3ba8be07d5afa70e52a72692157729dec3dd99e9c",
+      "reference": {
+        "serial": "8bd85976c9927a48068473b",
+        "key_algorithm": "ecdsa",
+        "key_bits": 384,
+        "curve": "secp384r1",
+        "signature_algorithm": "ecdsa",
+        "signature_digest": "sha2-384"
+      },
+      "observed": {
+        "serial": "8bd85976c9927a48068473b",
+        "key_algorithm": "ecdsa",
+        "key_bits": 384,
+        "curve": "secp384r1",
+        "signature_algorithm": "ecdsa",
+        "signature_digest": "sha2-384"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 92,
+      "sha256": "e19f030e62f64487fdaf3300073cfb146469fdc2eb3321d1e47648a2b26e8726",
+      "reference": {
+        "serial": "194301ea20bddf5c5332ab1434471f8d6504d0d",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-384"
+      },
+      "observed": {
+        "serial": "194301ea20bddf5c5332ab1434471f8d6504d0d",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-384"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 93,
+      "sha256": "fcb304f33103ab70c3e8da70b94cef1b80766ab0ade9379aac1e1e519da3e464",
+      "reference": {
+        "serial": "62f6326ce5c4e3685c1b62dd9c2e9d95",
+        "key_algorithm": "ecdsa",
+        "key_bits": 384,
+        "curve": "secp384r1",
+        "signature_algorithm": "ecdsa",
+        "signature_digest": "sha2-384"
+      },
+      "observed": {
+        "serial": "62f6326ce5c4e3685c1b62dd9c2e9d95",
+        "key_algorithm": "ecdsa",
+        "key_bits": 384,
+        "curve": "secp384r1",
+        "signature_algorithm": "ecdsa",
+        "signature_digest": "sha2-384"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 94,
+      "sha256": "d99f4af6fd0fc2c57ed000ca33aeb7558a0e841fecb57517031f469df25fec10",
+      "reference": {
+        "serial": "11d2bbb9d723189e405f0a9d2dd0df2567d1",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-384"
+      },
+      "observed": {
+        "serial": "11d2bbb9d723189e405f0a9d2dd0df2567d1",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-384"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 95,
+      "sha256": "7ca426173c4deaf7bf0b218d65b3487c998637cf9e06bec6f0ac7716310f01a1",
+      "reference": {
+        "serial": "11d2bbba336ed4bce62468c50d841d98e843",
+        "key_algorithm": "ecdsa",
+        "key_bits": 384,
+        "curve": "secp384r1",
+        "signature_algorithm": "ecdsa",
+        "signature_digest": "sha2-384"
+      },
+      "observed": {
+        "serial": "11d2bbba336ed4bce62468c50d841d98e843",
+        "key_algorithm": "ecdsa",
+        "key_bits": 384,
+        "curve": "secp384r1",
+        "signature_algorithm": "ecdsa",
+        "signature_digest": "sha2-384"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 96,
+      "sha256": "8ef4302831300459dedde53572b61c45af2ccca645546c667535787596dfde18",
+      "reference": {
+        "serial": "dd3e3bc6cf96bb1",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "observed": {
+        "serial": "dd3e3bc6cf96bb1",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 97,
+      "sha256": "f1a3fde6d5a6e481f8d306630a0f6953a7564663b5c3bd55fb997e8c6c671f61",
+      "reference": {
+        "serial": "788f275c81125220a504d02dddba73f4",
+        "key_algorithm": "ecdsa",
+        "key_bits": 384,
+        "curve": "secp384r1",
+        "signature_algorithm": "ecdsa",
+        "signature_digest": "sha2-384"
+      },
+      "observed": {
+        "serial": "788f275c81125220a504d02dddba73f4",
+        "key_algorithm": "ecdsa",
+        "key_bits": 384,
+        "curve": "secp384r1",
+        "signature_algorithm": "ecdsa",
+        "signature_digest": "sha2-384"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 98,
+      "sha256": "122cd1cd357683d69f91b7f44ef9258db4f895f6db7f4ba7283f36dbea95b73a",
+      "reference": {
+        "serial": "1ebf5950b8c980374c06f7eb554fb5ed",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-512"
+      },
+      "observed": {
+        "serial": "1ebf5950b8c980374c06f7eb554fb5ed",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-512"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 99,
+      "sha256": "0533220a8e81e326d6e407506bfde741b37f6709ce65d993af5edb74c19cc5b4",
+      "reference": {
+        "serial": "1302d5e2404c92468616675db4bbbbb26b3efc13",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "observed": {
+        "serial": "1302d5e2404c92468616675db4bbbbb26b3efc13",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 100,
+      "sha256": "fbdbefbfde94b9310e4a8bad3bad446a2547928183fdf716186362f142ce9704",
+      "reference": {
+        "serial": "39ca931cef43f3c68e93c7f46489387e",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "observed": {
+        "serial": "39ca931cef43f3c68e93c7f46489387e",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 101,
+      "sha256": "235b638756083e646b528a763c6abd209e2d3dccc721d14ffe5a70a6891e6480",
+      "reference": {
+        "serial": "67749d8d77d83b6adb22f4ff59e2bfce",
+        "key_algorithm": "ecdsa",
+        "key_bits": 384,
+        "curve": "secp384r1",
+        "signature_algorithm": "ecdsa",
+        "signature_digest": "sha2-384"
+      },
+      "observed": {
+        "serial": "67749d8d77d83b6adb22f4ff59e2bfce",
+        "key_algorithm": "ecdsa",
+        "key_bits": 384,
+        "curve": "secp384r1",
+        "signature_algorithm": "ecdsa",
+        "signature_digest": "sha2-384"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 102,
+      "sha256": "6d84cf680e962beda938e61164d5227272b5f42dc698ba20d2daf9fa5b01e5a4",
+      "reference": {
+        "serial": "1b70e9d2ffae6c71",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "observed": {
+        "serial": "1b70e9d2ffae6c71",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 103,
+      "sha256": "63e1ff8119df06df1dc98657326a6ae45d70739ad08549afcea2f62c918b48a7",
+      "reference": {
+        "serial": "6e6abc59aa53be983967a2d26ba43be66d1cd6da",
+        "key_algorithm": "ecdsa",
+        "key_bits": 384,
+        "curve": "secp384r1",
+        "signature_algorithm": "ecdsa",
+        "signature_digest": "sha2-384"
+      },
+      "observed": {
+        "serial": "6e6abc59aa53be983967a2d26ba43be66d1cd6da",
+        "key_algorithm": "ecdsa",
+        "key_bits": 384,
+        "curve": "secp384r1",
+        "signature_algorithm": "ecdsa",
+        "signature_digest": "sha2-384"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 104,
+      "sha256": "faa6c36c3a532b50e609bf18cb3df1533a4bfad717fa74015f3194b57392d059",
+      "reference": {
+        "serial": "43e37113d8b359145db7ce8cfd35fd6fbc058d45",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "observed": {
+        "serial": "43e37113d8b359145db7ce8cfd35fd6fbc058d45",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 105,
+      "sha256": "df3c4c472795ccd5ca93453fa1024c35f64466f19536a34fb21d39c840e2e27b",
+      "reference": {
+        "serial": "41d29dd172eaeea780c12c6ce92f8752",
+        "key_algorithm": "ecdsa",
+        "key_bits": 384,
+        "curve": "secp384r1",
+        "signature_algorithm": "ecdsa",
+        "signature_digest": "sha2-384"
+      },
+      "observed": {
+        "serial": "41d29dd172eaeea780c12c6ce92f8752",
+        "key_algorithm": "ecdsa",
+        "key_bits": 384,
+        "curve": "secp384r1",
+        "signature_algorithm": "ecdsa",
+        "signature_digest": "sha2-384"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 106,
+      "sha256": "c77d730549d2f00343bb545e1500fa05077f63d822163eb984cb0a147d4391a1",
+      "reference": {
+        "serial": "2dddacce629794a143e8b0cd766a5e60",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "observed": {
+        "serial": "2dddacce629794a143e8b0cd766a5e60",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 107,
+      "sha256": "babd66311bcbddf05b57e8c3547a7daa9175826a9288b0eddc4bce49d951e547",
+      "reference": {
+        "serial": "203e57ef53f93fda50921b2a6",
+        "key_algorithm": "ecdsa",
+        "key_bits": 256,
+        "curve": "secp256r1",
+        "signature_algorithm": "ecdsa",
+        "signature_digest": "sha2-256"
+      },
+      "observed": {
+        "serial": "203e57ef53f93fda50921b2a6",
+        "key_algorithm": "ecdsa",
+        "key_bits": 256,
+        "curve": "secp256r1",
+        "signature_algorithm": "ecdsa",
+        "signature_digest": "sha2-256"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 108,
+      "sha256": "56cc033ba7b1b7f111791affa1f1df410009c08c0b9a625d2bbe0a30aca502bb",
+      "reference": {
+        "serial": "203e5936f31b01349886ba217",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-384"
+      },
+      "observed": {
+        "serial": "203e5936f31b01349886ba217",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-384"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 109,
+      "sha256": "4d0fda0d78fd282ab5f1cf69e3b3e458120a33cf3e5fdeb14796f324a389d74e",
+      "reference": {
+        "serial": "203e5aec58d04251aab1125aa",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-384"
+      },
+      "observed": {
+        "serial": "203e5aec58d04251aab1125aa",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-384"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 110,
+      "sha256": "3febe52108c8006fec57c9deeef32126e877134377f5fed563452d77eb20ce23",
+      "reference": {
+        "serial": "203e5b882eb20f825276d3d66",
+        "key_algorithm": "ecdsa",
+        "key_bits": 384,
+        "curve": "secp384r1",
+        "signature_algorithm": "ecdsa",
+        "signature_digest": "sha2-384"
+      },
+      "observed": {
+        "serial": "203e5b882eb20f825276d3d66",
+        "key_algorithm": "ecdsa",
+        "key_bits": 384,
+        "curve": "secp384r1",
+        "signature_algorithm": "ecdsa",
+        "signature_digest": "sha2-384"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 111,
+      "sha256": "5f621c613a2dfb4502a29efcba11f0a010ef7954ea3464006115a9c300bdcdc1",
+      "reference": {
+        "serial": "203e5c068ef631a9c72905052",
+        "key_algorithm": "ecdsa",
+        "key_bits": 384,
+        "curve": "secp384r1",
+        "signature_algorithm": "ecdsa",
+        "signature_digest": "sha2-384"
+      },
+      "observed": {
+        "serial": "203e5c068ef631a9c72905052",
+        "key_algorithm": "ecdsa",
+        "key_bits": 384,
+        "curve": "secp384r1",
+        "signature_algorithm": "ecdsa",
+        "signature_digest": "sha2-384"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 112,
+      "sha256": "6f399d9adcd59cadec87760241621f46a9daf25db3c442d61999a94042f01988",
+      "reference": {
+        "serial": "1675f27d6fe7ae3e4acbe095b059e",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "observed": {
+        "serial": "1675f27d6fe7ae3e4acbe095b059e",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 113,
+      "sha256": "3bfd0d42325fadbd5edde72b0ab24749f9a1f94fc2cc76f59251e4822319cc14",
+      "reference": {
+        "serial": "7cc98f2b84d7dfea0fc9659ad34b4d96",
+        "key_algorithm": "ecdsa",
+        "key_bits": 384,
+        "curve": "secp384r1",
+        "signature_algorithm": "ecdsa",
+        "signature_digest": "sha2-384"
+      },
+      "observed": {
+        "serial": "7cc98f2b84d7dfea0fc9659ad34b4d96",
+        "key_algorithm": "ecdsa",
+        "key_bits": 384,
+        "curve": "secp384r1",
+        "signature_algorithm": "ecdsa",
+        "signature_digest": "sha2-384"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 114,
+      "sha256": "65ebfa0cd8189f5d0d812544624fbbecbf98e4ea9a7658c70e14b25f7161a024",
+      "reference": {
+        "serial": "5f0241d77a877c4c03a3ac968dfbffd0",
+        "key_algorithm": "ecdsa",
+        "key_bits": 384,
+        "curve": "secp384r1",
+        "signature_algorithm": "ecdsa",
+        "signature_digest": "sha2-384"
+      },
+      "observed": {
+        "serial": "5f0241d77a877c4c03a3ac968dfbffd0",
+        "key_algorithm": "ecdsa",
+        "key_bits": 384,
+        "curve": "secp384r1",
+        "signature_algorithm": "ecdsa",
+        "signature_digest": "sha2-384"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 115,
+      "sha256": "011fc5fe8a4a321d5d3e869c574bcd2f9954a42f3734e2729c1b85090ae20add",
+      "reference": {
+        "serial": "9e09365acf7d9c8b93e1c0b042a2ef3",
+        "key_algorithm": "ecdsa",
+        "key_bits": 384,
+        "curve": "secp384r1",
+        "signature_algorithm": "ecdsa",
+        "signature_digest": "sha2-384"
+      },
+      "observed": {
+        "serial": "9e09365acf7d9c8b93e1c0b042a2ef3",
+        "key_algorithm": "ecdsa",
+        "key_bits": 384,
+        "curve": "secp384r1",
+        "signature_algorithm": "ecdsa",
+        "signature_digest": "sha2-384"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 116,
+      "sha256": "684f88390eaadae5b0d05b0f0d454df8b02621f69909eae7c34ba111912b0920",
+      "reference": {
+        "serial": "8f9b478a8fa7eda6a333789de7ccf8a",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-384"
+      },
+      "observed": {
+        "serial": "8f9b478a8fa7eda6a333789de7ccf8a",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-384"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 117,
+      "sha256": "4024dbbbac65785b28f8d3d41fd5310737ca8dcfcc2990fd7e1f3c15ae43fa97",
+      "reference": {
+        "serial": "8e0ff94b907168653354f4d44439b7e0",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "observed": {
+        "serial": "8e0ff94b907168653354f4d44439b7e0",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 118,
+      "sha256": "5c7c835722d3d87eee388b5ed78053edf765d9636e3f8c94c5bf42da89c5b1aa",
+      "reference": {
+        "serial": "62533b1470333275cf98d9ab9bfccf8",
+        "key_algorithm": "ecdsa",
+        "key_bits": 384,
+        "curve": "secp384r1",
+        "signature_algorithm": "ecdsa",
+        "signature_digest": "sha2-384"
+      },
+      "observed": {
+        "serial": "62533b1470333275cf98d9ab9bfccf8",
+        "key_algorithm": "ecdsa",
+        "key_bits": 384,
+        "curve": "secp384r1",
+        "signature_algorithm": "ecdsa",
+        "signature_digest": "sha2-384"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 119,
+      "sha256": "a9d60d36fafa12f1efe24917a0c982e3ad11acb1f6af31f6aa00b000d3ca4a6a",
+      "reference": {
+        "serial": "d65d9bb378812eeb",
+        "key_algorithm": "ecdsa",
+        "key_bits": 384,
+        "curve": "secp384r1",
+        "signature_algorithm": "ecdsa",
+        "signature_digest": "sha2-384"
+      },
+      "observed": {
+        "serial": "d65d9bb378812eeb",
+        "key_algorithm": "ecdsa",
+        "key_bits": 384,
+        "curve": "secp384r1",
+        "signature_algorithm": "ecdsa",
+        "signature_digest": "sha2-384"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 120,
+      "sha256": "c3b0988585c5df1ebfaa99dcdc30aca2b561e7f5b1ee0232aad5074d1c53ae98",
+      "reference": {
+        "serial": "556f65e3b4d9906a1b09d16c3ec06c20",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "observed": {
+        "serial": "556f65e3b4d9906a1b09d16c3ec06c20",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 121,
+      "sha256": "98770614e76861206d9f6d7a5f4e1714b1726968d919ec68df423967cb9d4656",
+      "reference": {
+        "serial": "2c17087d642ac0fe85185906cfb44aeb",
+        "key_algorithm": "ecdsa",
+        "key_bits": 384,
+        "curve": "secp384r1",
+        "signature_algorithm": "ecdsa",
+        "signature_digest": "sha2-384"
+      },
+      "observed": {
+        "serial": "2c17087d642ac0fe85185906cfb44aeb",
+        "key_algorithm": "ecdsa",
+        "key_bits": 384,
+        "curve": "secp384r1",
+        "signature_algorithm": "ecdsa",
+        "signature_digest": "sha2-384"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 122,
+      "sha256": "00bc2ad486e31df9c28dabad7188c0d2d3a67b9f957ae0ce5aa9769b43d72f25",
+      "reference": {
+        "serial": "42f2ccda1b6937445f15fe752810b8f4",
+        "key_algorithm": "ecdsa",
+        "key_bits": 384,
+        "curve": "secp384r1",
+        "signature_algorithm": "ecdsa",
+        "signature_digest": "sha2-384"
+      },
+      "observed": {
+        "serial": "42f2ccda1b6937445f15fe752810b8f4",
+        "key_algorithm": "ecdsa",
+        "key_bits": 384,
+        "curve": "secp384r1",
+        "signature_algorithm": "ecdsa",
+        "signature_digest": "sha2-384"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 123,
+      "sha256": "34fa654050071c10104584261608699b99d3fd89d4acc430a431a42ad202e8c3",
+      "reference": {
+        "serial": "758dfd8bae7c0700faa925a7e1c7ad14",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-384"
+      },
+      "observed": {
+        "serial": "758dfd8bae7c0700faa925a7e1c7ad14",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-384"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 124,
+      "sha256": "31cc7bbfbdc941ac0b5c1e7f004de4b7d51d89972d787be6c974e8304bc7bb86",
+      "reference": {
+        "serial": "6fbedaad73bd0840e28b4dbed4f75b91",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "observed": {
+        "serial": "6fbedaad73bd0840e28b4dbed4f75b91",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 125,
+      "sha256": "2ea1f68ad5e4f2100c2793528f8018ab68e48108f43fcab9fd5b1abf173ca4ad",
+      "reference": {
+        "serial": "1403f5abfb378b17405be243b2a5d1c4",
+        "key_algorithm": "ecdsa",
+        "key_bits": 384,
+        "curve": "secp384r1",
+        "signature_algorithm": "ecdsa",
+        "signature_digest": "sha2-384"
+      },
+      "observed": {
+        "serial": "1403f5abfb378b17405be243b2a5d1c4",
+        "key_algorithm": "ecdsa",
+        "key_bits": 384,
+        "curve": "secp384r1",
+        "signature_algorithm": "ecdsa",
+        "signature_digest": "sha2-384"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 126,
+      "sha256": "d88edb47fef5fba91ccb92de1404f0da110730fe8f4a66ebad28d42a6ac5e706",
+      "reference": {
+        "serial": "3d983ba6663d9063f77e26573804ef00",
+        "key_algorithm": "ecdsa",
+        "key_bits": 384,
+        "curve": "secp384r1",
+        "signature_algorithm": "ecdsa",
+        "signature_digest": "sha2-384"
+      },
+      "observed": {
+        "serial": "3d983ba6663d9063f77e26573804ef00",
+        "key_algorithm": "ecdsa",
+        "key_bits": 384,
+        "curve": "secp384r1",
+        "signature_algorithm": "ecdsa",
+        "signature_digest": "sha2-384"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 127,
+      "sha256": "d1c6b9b6a6b21ab48085c008ca3fa0b2545992f97e4c4682d5b12bca26ee7cac",
+      "reference": {
+        "serial": "53d5cfe619930bfb2b0512d8c22aa2a4",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-384"
+      },
+      "observed": {
+        "serial": "53d5cfe619930bfb2b0512d8c22aa2a4",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-384"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 128,
+      "sha256": "b1af05f117a55073d37e95568a4028e67908816f5287cb4ea7817fdd503c7212",
+      "reference": {
+        "serial": "64f60e6577616aab3bb4ea8584bbb189b871930f",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-384"
+      },
+      "observed": {
+        "serial": "64f60e6577616aab3bb4ea8584bbb189b871930f",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-384"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 129,
+      "sha256": "0ace7166fb523f829e23761ac074f9a45687528760601d41d3ff90c7dff5952e",
+      "reference": {
+        "serial": "4f2364b88e97639ec65381c1764ecb2a7415d6d7",
+        "key_algorithm": "ecdsa",
+        "key_bits": 384,
+        "curve": "secp384r1",
+        "signature_algorithm": "ecdsa",
+        "signature_digest": "sha2-384"
+      },
+      "observed": {
+        "serial": "4f2364b88e97639ec65381c1764ecb2a7415d6d7",
+        "key_algorithm": "ecdsa",
+        "key_bits": 384,
+        "curve": "secp384r1",
+        "signature_algorithm": "ecdsa",
+        "signature_digest": "sha2-384"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 130,
+      "sha256": "e1805369ebeaeab7bd1a7e874d079abdba766b8db362fdc2e6cf53b38f8c58c7",
+      "reference": {
+        "serial": "363a968cc95cb258cdd0015dc5e55700",
+        "key_algorithm": "ecdsa",
+        "key_bits": 384,
+        "curve": "secp384r1",
+        "signature_algorithm": "ecdsa",
+        "signature_digest": "sha2-384"
+      },
+      "observed": {
+        "serial": "363a968cc95cb258cdd0015dc5e55700",
+        "key_algorithm": "ecdsa",
+        "key_bits": 384,
+        "curve": "secp384r1",
+        "signature_algorithm": "ecdsa",
+        "signature_digest": "sha2-384"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 131,
+      "sha256": "71ada18b7b9161b17d881a8bc5b2416f21f5127c30551e2721cc6576e2a62414",
+      "reference": {
+        "serial": "219c542de8f6ec7177fa4ee8c3705797",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-384"
+      },
+      "observed": {
+        "serial": "219c542de8f6ec7177fa4ee8c3705797",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-384"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 132,
+      "sha256": "89e46513ce6f89db89228f4103fb4f2eccc1b608578cb2b4eb5a1adf8b95e48a",
+      "reference": {
+        "serial": "319721edaf89427f354187a167564c6d",
+        "key_algorithm": "ecdsa",
+        "key_bits": 384,
+        "curve": "secp384r1",
+        "signature_algorithm": "ecdsa",
+        "signature_digest": "sha2-384"
+      },
+      "observed": {
+        "serial": "319721edaf89427f354187a167564c6d",
+        "key_algorithm": "ecdsa",
+        "key_bits": 384,
+        "curve": "secp384r1",
+        "signature_algorithm": "ecdsa",
+        "signature_digest": "sha2-384"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 133,
+      "sha256": "e12cc8da4e2b1e876ff80d334e535c5affca4ef8e4c06e8733f9560091799a22",
+      "reference": {
+        "serial": "4001348cc200000000000000013cf2c6",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-384"
+      },
+      "observed": {
+        "serial": "4001348cc200000000000000013cf2c6",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-384"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 134,
+      "sha256": "f9c34e8b6d4ac4d3e513595b3b5f62a8ac76763b6a84712d483f39ef55be10c0",
+      "reference": {
+        "serial": "66f9c7c1afecc251b4ed5397e6e682c32b1c9016",
+        "key_algorithm": "rsa",
+        "key_bits": 2048,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "observed": {
+        "serial": "66f9c7c1afecc251b4ed5397e6e682c32b1c9016",
+        "key_algorithm": "rsa",
+        "key_bits": 2048,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 135,
+      "sha256": "7f5a9e9c4b634f861d69f752113029632cbfbe2be765ef0ce9f756d7ed1d8857",
+      "reference": {
+        "serial": "64db5a0c204ee8d72977c85027a25a27dd2df2cb",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-384"
+      },
+      "observed": {
+        "serial": "64db5a0c204ee8d72977c85027a25a27dd2df2cb",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-384"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 136,
+      "sha256": "bbce3c55f1fa0851ef0686eb0e7c0fdfbbdf3af40d4d7204f2a83be98186c2ae",
+      "reference": {
+        "serial": "1615c7c3d849a7be690c8a88edf070f9ddb73e87",
+        "key_algorithm": "ecdsa",
+        "key_bits": 384,
+        "curve": "secp384r1",
+        "signature_algorithm": "ecdsa",
+        "signature_digest": "sha2-384"
+      },
+      "observed": {
+        "serial": "1615c7c3d849a7be690c8a88edf070f9ddb73e87",
+        "key_algorithm": "ecdsa",
+        "key_bits": 384,
+        "curve": "secp384r1",
+        "signature_algorithm": "ecdsa",
+        "signature_digest": "sha2-384"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 137,
+      "sha256": "d255bb63071fd50e2f72f49c292d7d3216bb4133a687a603a80083be7f68d039",
+      "reference": {
+        "serial": "733b3004485bd94d782e734bc9a1dc66",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-512"
+      },
+      "observed": {
+        "serial": "733b3004485bd94d782e734bc9a1dc66",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-512"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 138,
+      "sha256": "78933986d48df0678822de24df7bad85d8788bc0ac2d2c3e71f71c96845c9d04",
+      "reference": {
+        "serial": "3674e14d7c6513c9ac835525a03e527e2f5068c7",
+        "key_algorithm": "ecdsa",
+        "key_bits": 384,
+        "curve": "secp384r1",
+        "signature_algorithm": "ecdsa",
+        "signature_digest": "sha2-384"
+      },
+      "observed": {
+        "serial": "3674e14d7c6513c9ac835525a03e527e2f5068c7",
+        "key_algorithm": "ecdsa",
+        "key_bits": 384,
+        "curve": "secp384r1",
+        "signature_algorithm": "ecdsa",
+        "signature_digest": "sha2-384"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 139,
+      "sha256": "7ad12ca7745682e0fbc4b9330c2fcd077d8288e44c06d43368328a8e7476db01",
+      "reference": {
+        "serial": "1c18d8cfe5533f2235465354243c6c47d15c4a9c",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-384"
+      },
+      "observed": {
+        "serial": "1c18d8cfe5533f2235465354243c6c47d15c4a9c",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-384"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 140,
+      "sha256": "adc2441359f1c4345e3b9f44d59d1e83e1c9ee06d4ca75c37ff1c648e403ba74",
+      "reference": {
+        "serial": "6926097e804b4ca0a78c7862535f5a6f",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-512"
+      },
+      "observed": {
+        "serial": "6926097e804b4ca0a78c7862535f5a6f",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-512"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 141,
+      "sha256": "6ede8f075d26a4efe3aaa11acec3ac0aa5fb6a50fe08fb36ec7d919a8ad0be8e",
+      "reference": {
+        "serial": "43fa0c5f4e1b801844efd1b44f351f44f480edcb",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "observed": {
+        "serial": "43fa0c5f4e1b801844efd1b44f351f44f480edcb",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-256"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 142,
+      "sha256": "53caa58555e70e31d66027c967b787248481191c163b764d0effb8c8e89a7873",
+      "reference": {
+        "serial": "23f9c3d635af8f284b1ff054ea7e979d",
+        "key_algorithm": "ecdsa",
+        "key_bits": 384,
+        "curve": "secp384r1",
+        "signature_algorithm": "ecdsa",
+        "signature_digest": "sha2-384"
+      },
+      "observed": {
+        "serial": "23f9c3d635af8f284b1ff054ea7e979d",
+        "key_algorithm": "ecdsa",
+        "key_bits": 384,
+        "curve": "secp384r1",
+        "signature_algorithm": "ecdsa",
+        "signature_digest": "sha2-384"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    },
+    {
+      "block": 143,
+      "sha256": "f5afc7374a660530ad4ef650121765c28b79743d2ac0fea4a44c59e895701636",
+      "reference": {
+        "serial": "55a5d9679428c6ed0cfa27dd5b014d18",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-384"
+      },
+      "observed": {
+        "serial": "55a5d9679428c6ed0cfa27dd5b014d18",
+        "key_algorithm": "rsa",
+        "key_bits": 4096,
+        "curve": "",
+        "signature_algorithm": "rsa",
+        "signature_digest": "sha2-384"
+      },
+      "fields_equal": true,
+      "weak_digest_reference": false,
+      "weak_digest_observed": false
+    }
+  ]
+}

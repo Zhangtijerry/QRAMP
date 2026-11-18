@@ -1,0 +1,83 @@
+[
+  {
+    "scenario": "retained",
+    "source": "import hashlib\nhashlib.md5(b\"x\")\n",
+    "status_counts": {
+      "pass": 0,
+      "fail": 2,
+      "deferred": 0,
+      "manual": 0
+    },
+    "accepted": false,
+    "migration_status": "not_established",
+    "reassessment_required": false,
+    "observed_algorithms": [
+      "md5"
+    ]
+  },
+  {
+    "scenario": "sha256",
+    "source": "import hashlib\nhashlib.sha256(b\"x\")\n",
+    "status_counts": {
+      "pass": 2,
+      "fail": 0,
+      "deferred": 0,
+      "manual": 0
+    },
+    "accepted": true,
+    "migration_status": "not_established",
+    "reassessment_required": true,
+    "observed_algorithms": [
+      "sha2-256"
+    ]
+  },
+  {
+    "scenario": "alias-md5-plus-sha256",
+    "source": "from hashlib import md5 as hidden\nimport hashlib\nhidden(b\"x\")\nhashlib.sha256(b\"x\")\n",
+    "status_counts": {
+      "pass": 2,
+      "fail": 0,
+      "deferred": 0,
+      "manual": 0
+    },
+    "accepted": true,
+    "migration_status": "not_established",
+    "reassessment_required": true,
+    "observed_algorithms": [
+      "sha2-256"
+    ]
+  },
+  {
+    "scenario": "sha1-plus-sha256",
+    "source": "import hashlib\nhashlib.sha1(b\"x\")\nhashlib.sha256(b\"x\")\n",
+    "status_counts": {
+      "pass": 2,
+      "fail": 0,
+      "deferred": 0,
+      "manual": 0
+    },
+    "accepted": true,
+    "migration_status": "not_established",
+    "reassessment_required": true,
+    "observed_algorithms": [
+      "sha1",
+      "sha2-256"
+    ]
+  },
+  {
+    "scenario": "sha1-only",
+    "source": "import hashlib\nhashlib.sha1(b\"x\")\n",
+    "status_counts": {
+      "pass": 1,
+      "fail": 1,
+      "deferred": 0,
+      "manual": 0
+    },
+    "accepted": false,
+    "migration_status": "not_established",
+    "reassessment_required": true,
+    "observed_algorithms": [
+      "sha1"
+    ]
+  }
+]

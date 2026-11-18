@@ -1,0 +1,11 @@
+local validation
+Connecting to 127.0.0.1
+Can't use SSL_get_servername
+depth=0 CN=localhost
+verify error:num=18:self-signed certificate
+CONNECTION ESTABLISHED
+Protocol version: TLSv1.2
+Ciphersuite: AES256-GCM-SHA384
+Peer certificate: CN=localhost
+Verification error: self-signed certificate
+4037814A2B7F0000:error:0A000126:SSL routines::unexpected eof while reading:../ssl/record/rec_layer_s3.c:698:

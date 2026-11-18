@@ -1,0 +1,162 @@
+{
+  "unit": "hash/MAC construction call site in the complete selected files, including file-local selectable digest calls; not runtime execution or whole-project completeness",
+  "TP": 7,
+  "FP": 0,
+  "FN": 8,
+  "precision": 1.0,
+  "recall": 0.4666666666666667,
+  "files": 3,
+  "reference_sites": 15,
+  "rows": [
+    {
+      "file": "requests/auth.py",
+      "line": 148,
+      "primitive": "hash",
+      "algorithm": "md5",
+      "kind": "direct",
+      "source": "return hashlib.md5(x).hexdigest()",
+      "observed": "md5",
+      "verdict": "TP"
+    },
+    {
+      "file": "requests/auth.py",
+      "line": 156,
+      "primitive": "hash",
+      "algorithm": "sha1",
+      "kind": "direct",
+      "source": "return hashlib.sha1(x).hexdigest()",
+      "observed": "sha1",
+      "verdict": "TP"
+    },
+    {
+      "file": "requests/auth.py",
+      "line": 164,
+      "primitive": "hash",
+      "algorithm": "sha2-256",
+      "kind": "direct",
+      "source": "return hashlib.sha256(x).hexdigest()",
+      "observed": "sha2-256",
+      "verdict": "TP"
+    },
+    {
+      "file": "requests/auth.py",
+      "line": 172,
+      "primitive": "hash",
+      "algorithm": "sha2-512",
+      "kind": "direct",
+      "source": "return hashlib.sha512(x).hexdigest()",
+      "observed": "sha2-512",
+      "verdict": "TP"
+    },
+    {
+      "file": "requests/auth.py",
+      "line": 176,
+      "primitive": "hash",
+      "algorithm": "selectable",
+      "kind": "indirect",
+      "source": "KD = lambda s, d: hash_utf8(f\"{s}:{d}\")  # noqa:E731",
+      "observed": null,
+      "verdict": "FN"
+    },
+    {
+      "file": "requests/auth.py",
+      "line": 192,
+      "primitive": "hash",
+      "algorithm": "selectable",
+      "kind": "indirect",
+      "source": "HA1 = hash_utf8(A1)",
+      "observed": null,
+      "verdict": "FN"
+    },
+    {
+      "file": "requests/auth.py",
+      "line": 193,
+      "primitive": "hash",
+      "algorithm": "selectable",
+      "kind": "indirect",
+      "source": "HA2 = hash_utf8(A2)",
+      "observed": null,
+      "verdict": "FN"
+    },
+    {
+      "file": "requests/auth.py",
+      "line": 205,
+      "primitive": "hash",
+      "algorithm": "sha1",
+      "kind": "direct",
+      "source": "cnonce = hashlib.sha1(s).hexdigest()[:16]",
+      "observed": "sha1",
+      "verdict": "TP"
+    },
+    {
+      "file": "requests/auth.py",
+      "line": 207,
+      "primitive": "hash",
+      "algorithm": "selectable",
+      "kind": "indirect",
+      "source": "HA1 = hash_utf8(f\"{HA1}:{nonce}:{cnonce}\")",
+      "observed": null,
+      "verdict": "FN"
+    },
+    {
+      "file": "itsdangerous/signer.py",
+      "line": 45,
+      "primitive": "hash",
+      "algorithm": "sha1",
+      "kind": "direct",
+      "source": "return hashlib.sha1(string)",
+      "observed": "sha1",
+      "verdict": "TP"
+    },
+    {
+      "file": "itsdangerous/signer.py",
+      "line": 63,
+      "primitive": "mac",
+      "algorithm": "hmac",
+      "kind": "mac",
+      "source": "mac = hmac.new(key, msg=value, digestmod=self.digest_method)",
+      "observed": null,
+      "verdict": "FN"
+    },
+    {
+      "file": "itsdangerous/signer.py",
+      "line": 201,
+      "primitive": "hash",
+      "algorithm": "selectable",
+      "kind": "indirect",
+      "source": "return t.cast(bytes, self.digest_method(self.salt + secret_key).digest())",
+      "observed": null,
+      "verdict": "FN"
+    },
+    {
+      "file": "itsdangerous/signer.py",
+      "line": 204,
+      "primitive": "hash",
+      "algorithm": "selectable",
+      "kind": "indirect",
+      "source": "bytes, self.digest_method(self.salt + b\"signer\" + secret_key).digest()",
+      "observed": null,
+      "verdict": "FN"
+    },
+    {
+      "file": "itsdangerous/signer.py",
+      "line": 207,
+      "primitive": "mac",
+      "algorithm": "hmac",
+      "kind": "mac",
+      "source": "mac = hmac.new(secret_key, digestmod=self.digest_method)",
+      "observed": null,
+      "verdict": "FN"
+    },
+    {
+      "file": "flask/sessions.py",
+      "line": 295,
+      "primitive": "hash",
+      "algorithm": "sha1",
+      "kind": "direct",
+      "source": "return hashlib.sha1(string)",
+      "observed": "sha1",
+      "verdict": "TP"
+    }
+  ]
+}

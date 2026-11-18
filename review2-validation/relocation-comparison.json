@@ -1,0 +1,82 @@
+{
+  "locations": 3,
+  "identical_ids_and_prerequisites": true,
+  "identical_list_schedule": true,
+  "identical_cpsat_model": true,
+  "identical_cpsat_schedule_at_fixed_work": true,
+  "cpsat_budget": "max_deterministic_time=0.5, wall cap=60 s; diagnostic only, separate from 10 s sensitivity runs",
+  "rows": [
+    {
+      "location": "a",
+      "tasks": 179,
+      "list_E": 2264880,
+      "list_meta": {
+        "solver": "list-scheduling",
+        "makespan_months": 45,
+        "over_horizon_tasks": 19,
+        "feasible_within_horizon": false
+      },
+      "cpsat_E": 2211900,
+      "cpsat_meta": {
+        "solver": "cp-sat",
+        "status": "FEASIBLE",
+        "objective": 73775.0,
+        "best_bound": 2765.0,
+        "wall_time_s": 1.412,
+        "proven_optimal": false,
+        "makespan_months": 45,
+        "over_horizon_tasks": 26,
+        "feasible_within_horizon": false
+      },
+      "model_sha256": "41cb09611b74b5e99c71bca8dd14a7116e792b6c27a2ee02c9e7c5897b0bbb9f"
+    },
+    {
+      "location": "long checkout name/nested/b",
+      "tasks": 179,
+      "list_E": 2264880,
+      "list_meta": {
+        "solver": "list-scheduling",
+        "makespan_months": 45,
+        "over_horizon_tasks": 19,
+        "feasible_within_horizon": false
+      },
+      "cpsat_E": 2211900,
+      "cpsat_meta": {
+        "solver": "cp-sat",
+        "status": "FEASIBLE",
+        "objective": 73775.0,
+        "best_bound": 2765.0,
+        "wall_time_s": 1.416,
+        "proven_optimal": false,
+        "makespan_months": 45,
+        "over_horizon_tasks": 26,
+        "feasible_within_horizon": false
+      },
+      "model_sha256": "41cb09611b74b5e99c71bca8dd14a7116e792b6c27a2ee02c9e7c5897b0bbb9f"
+    },
+    {
+      "location": "third/c",
+      "tasks": 179,
+      "list_E": 2264880,
+      "list_meta": {
+        "solver": "list-scheduling",
+        "makespan_months": 45,
+        "over_horizon_tasks": 19,
+        "feasible_within_horizon": false
+      },
+      "cpsat_E": 2211900,
+      "cpsat_meta": {
+        "solver": "cp-sat",
+        "status": "FEASIBLE",
+        "objective": 73775.0,
+        "best_bound": 2765.0,
+        "wall_time_s": 1.391,
+        "proven_optimal": false,
+        "makespan_months": 45,
+        "over_horizon_tasks": 26,
+        "feasible_within_horizon": false
+      },
+      "model_sha256": "41cb09611b74b5e99c71bca8dd14a7116e792b6c27a2ee02c9e7c5897b0bbb9f"
+    }
+  ]
+}

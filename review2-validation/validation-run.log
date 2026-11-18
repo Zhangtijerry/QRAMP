@@ -1,0 +1,240 @@
+{
+  "source": {
+    "unit": "hash/MAC construction call site in the complete selected files, including file-local selectable digest calls; not runtime execution or whole-project completeness",
+    "TP": 7,
+    "FP": 0,
+    "FN": 8,
+    "precision": 1.0,
+    "recall": 0.4666666666666667,
+    "files": 3,
+    "reference_sites": 15
+  },
+  "certificates": {
+    "reference_tool": "OpenSSL 3.5.7 9 Jun 2026 (Library: OpenSSL 3.5.7 9 Jun 2026)",
+    "unit": "certificate public-key algorithm, size, curve, signature algorithm/digest and serial; no path-validation or deployment claim",
+    "reference_certificates": 143,
+    "collected_certificates": 143,
+    "all_fields_equal": 143,
+    "weak_digest_TP": 18,
+    "weak_digest_FP": 0,
+    "weak_digest_FN": 0
+  },
+  "dependencies": {
+    "reference_parser": "packaging.requirements.Requirement 26.3",
+    "scope": "declared cryptography component recovery only; generated SBOMs are derived from the same two manifests, not independent deployments; capability-edge correctness and runtime use not measured",
+    "manifest_totals": {
+      "TP": 1,
+      "FP": 0,
+      "FN": 1
+    },
+    "sbom_totals": {
+      "TP": 2,
+      "FP": 0,
+      "FN": 0
+    }
+  },
+  "configs": {
+    "unit": "five JDK weak-category policy entries; two service-template files with no active supported crypto directives are negative controls; no daemon defaults/inheritance evaluated",
+    "jdk_reference_property": "SSLv3, TLSv1, TLSv1.1, DTLSv1.0, RC4, DES, MD5withRSA, DH keySize < 1024, EC keySize < 224, 3DES_EDE_CBC, anon, NULL, ECDH",
+    "disabled_categories": {
+      "sslv3": true,
+      "tlsv1": true,
+      "rc4": true,
+      "md5withrsa": true,
+      "3des": true
+    },
+    "TP": 0,
+    "FP": 3,
+    "FN": 0,
+    "TN": 2,
+    "service_file_negative_controls": 2
+  },
+  "counterexamples": [
+    {
+      "scenario": "retained",
+      "source": "import hashlib\nhashlib.md5(b\"x\")\n",
+      "status_counts": {
+        "pass": 0,
+        "fail": 2,
+        "deferred": 0,
+        "manual": 0
+      },
+      "accepted": false,
+      "migration_status": "not_established",
+      "reassessment_required": false,
+      "observed_algorithms": [
+        "md5"
+      ]
+    },
+    {
+      "scenario": "sha256",
+      "source": "import hashlib\nhashlib.sha256(b\"x\")\n",
+      "status_counts": {
+        "pass": 2,
+        "fail": 0,
+        "deferred": 0,
+        "manual": 0
+      },
+      "accepted": true,
+      "migration_status": "not_established",
+      "reassessment_required": true,
+      "observed_algorithms": [
+        "sha2-256"
+      ]
+    },
+    {
+      "scenario": "alias-md5-plus-sha256",
+      "source": "from hashlib import md5 as hidden\nimport hashlib\nhidden(b\"x\")\nhashlib.sha256(b\"x\")\n",
+      "status_counts": {
+        "pass": 2,
+        "fail": 0,
+        "deferred": 0,
+        "manual": 0
+      },
+      "accepted": true,
+      "migration_status": "not_established",
+      "reassessment_required": true,
+      "observed_algorithms": [
+        "sha2-256"
+      ]
+    },
+    {
+      "scenario": "sha1-plus-sha256",
+      "source": "import hashlib\nhashlib.sha1(b\"x\")\nhashlib.sha256(b\"x\")\n",
+      "status_counts": {
+        "pass": 2,
+        "fail": 0,
+        "deferred": 0,
+        "manual": 0
+      },
+      "accepted": true,
+      "migration_status": "not_established",
+      "reassessment_required": true,
+      "observed_algorithms": [
+        "sha1",
+        "sha2-256"
+      ]
+    },
+    {
+      "scenario": "sha1-only",
+      "source": "import hashlib\nhashlib.sha1(b\"x\")\n",
+      "status_counts": {
+        "pass": 1,
+        "fail": 1,
+        "deferred": 0,
+        "manual": 0
+      },
+      "accepted": false,
+      "migration_status": "not_established",
+      "reassessment_required": true,
+      "observed_algorithms": [
+        "sha1"
+      ]
+    }
+  ],
+  "relocation": {
+    "locations": 3,
+    "identical_ids_and_prerequisites": true,
+    "identical_list_schedule": true,
+    "identical_cpsat_model": true,
+    "identical_cpsat_schedule_at_fixed_work": true,
+    "cpsat_budget": "max_deterministic_time=0.5, wall cap=60 s; diagnostic only, separate from 10 s sensitivity runs"
+  },
+  "tls": {
+    "scope": "two signed loopback suite profiles, four forced protocol versions each; profiles share a local service design and are not independent deployments",
+    "profiles": [
+      {
+        "tls12_cipher_profile": "AES256-GCM-SHA384",
+        "scope": "four forced protocol versions against one signed loopback service; not internet deployment, exact group detection, PQ handshake or decommission validation",
+        "python_ssl": "OpenSSL 3.5.8 25 Aug 2026",
+        "reference_openssl": "OpenSSL 3.5.7 9 Jun 2026 (Library: OpenSSL 3.5.7 9 Jun 2026)",
+        "rows": [
+          {
+            "version": "1.0",
+            "openssl_negotiated": false,
+            "qramp_observed": false,
+            "equal": true,
+            "returncode": 1
+          },
+          {
+            "version": "1.1",
+            "openssl_negotiated": false,
+            "qramp_observed": false,
+            "equal": true,
+            "returncode": 1
+          },
+          {
+            "version": "1.2",
+            "openssl_negotiated": true,
+            "qramp_observed": false,
+            "equal": false,
+            "returncode": 1
+          },
+          {
+            "version": "1.3",
+            "openssl_negotiated": true,
+            "qramp_observed": true,
+            "equal": true,
+            "returncode": 0
+          }
+        ],
+        "TP": 1,
+        "FP": 0,
+        "FN": 1,
+        "TN": 2,
+        "collector_stats": {
+          "targets": 1,
+          "observations": 1
+        }
+      },
+      {
+        "tls12_cipher_profile": "ECDHE-RSA-AES256-GCM-SHA384",
+        "scope": "four forced protocol versions against one signed loopback service; not internet deployment, exact group detection, PQ handshake or decommission validation",
+        "python_ssl": "OpenSSL 3.5.8 25 Aug 2026",
+        "reference_openssl": "OpenSSL 3.5.7 9 Jun 2026 (Library: OpenSSL 3.5.7 9 Jun 2026)",
+        "rows": [
+          {
+            "version": "1.0",
+            "openssl_negotiated": false,
+            "qramp_observed": false,
+            "equal": true,
+            "returncode": 1
+          },
+          {
+            "version": "1.1",
+            "openssl_negotiated": false,
+            "qramp_observed": false,
+            "equal": true,
+            "returncode": 1
+          },
+          {
+            "version": "1.2",
+            "openssl_negotiated": true,
+            "qramp_observed": true,
+            "equal": true,
+            "returncode": 1
+          },
+          {
+            "version": "1.3",
+            "openssl_negotiated": true,
+            "qramp_observed": true,
+            "equal": true,
+            "returncode": 0
+          }
+        ],
+        "TP": 2,
+        "FP": 0,
+        "FN": 0,
+        "TN": 2,
+        "collector_stats": {
+          "targets": 1,
+          "observations": 2
+        }
+      }
+    ],
+    "TP": 3,
+    "FP": 0,
+    "FN": 1,
+    "TN": 4
+  }
+}

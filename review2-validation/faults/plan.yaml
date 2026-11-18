@@ -1,0 +1,73 @@
+task_identity_scheme: collector-relative-v1
+baseline_asset_ids:
+- A-441acf289995
+solver: list-scheduling
+solver_meta:
+  makespan_months: 3
+  over_horizon_tasks: 0
+  feasible_within_horizon: true
+horizon_months: 36
+task_count: 2
+weighted_exposure_days: 300
+phases:
+- 1
+- 2
+tasks:
+- id: T-9335cb1e33b6-externalise-algorithm
+  type: externalise-algorithm
+  phase: 1
+  target_asset: A-441acf289995
+  target_display: MD5 [hash]
+  owner: unassigned
+  duration_months: 1
+  target_algorithm: md5
+  prerequisites: []
+  window: Sat 02:00-05:00, outside quarter-end freeze
+  action: externalise-algorithm for MD5 [hash] at /workspace/scratch/b5e81a169f87/qramp/review2-validation/faults/app/x.py
+  rollback: revert config to pinned baseline snapshot and reload service
+  acceptance: source_scan finds no hard-coded algorithm literal for MD5 [hash]
+  requirement: null
+  weight: 10
+  start_month: 0
+  target_primitive: hash
+  target_params: ''
+  target_locations:
+  - collector: source-py
+    path: /workspace/scratch/b5e81a169f87/qramp/review2-validation/faults/app/x.py
+  evidence_scope:
+    source-py:
+      root: /workspace/scratch/b5e81a169f87/qramp/review2-validation/faults/app
+      query_hash: 548044d33fcdc82a
+- id: T-9335cb1e33b6-replace-algorithm
+  type: replace-algorithm
+  phase: 2
+  target_asset: A-441acf289995
+  target_display: MD5 [hash]
+  owner: unassigned
+  duration_months: 2
+  target_algorithm: md5
+  prerequisites:
+  - T-9335cb1e33b6-externalise-algorithm
+  window: Sat 02:00-05:00, outside quarter-end freeze
+  action: replace-algorithm for MD5 [hash] at /workspace/scratch/b5e81a169f87/qramp/review2-validation/faults/app/x.py
+  rollback: restore the previous implementation and configuration snapshot
+  acceptance: MD5 [hash] is absent and an approved replacement is observed in the
+    target file
+  requirement:
+    require_algorithm:
+    - sha2-256
+    - sha2-384
+    - sha2-512
+    - sha3-256
+    - sha3-512
+  weight: 10
+  start_month: 1
+  target_primitive: hash
+  target_params: ''
+  target_locations:
+  - collector: source-py
+    path: /workspace/scratch/b5e81a169f87/qramp/review2-validation/faults/app/x.py
+  evidence_scope:
+    source-py:
+      root: /workspace/scratch/b5e81a169f87/qramp/review2-validation/faults/app
+      query_hash: 548044d33fcdc82a

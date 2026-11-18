@@ -1,0 +1,319 @@
+{
+  "reference_parser": "packaging.requirements.Requirement 26.3",
+  "scope": "declared cryptography component recovery only; generated SBOMs are derived from the same two manifests, not independent deployments; capability-edge correctness and runtime use not measured",
+  "manifest_rows": [
+    {
+      "project": "httpx",
+      "declarations": [
+        {
+          "name": "chardet",
+          "constraint": "==5.2.0"
+        },
+        {
+          "name": "mkdocs",
+          "constraint": "==1.5.3"
+        },
+        {
+          "name": "mkautodoc",
+          "constraint": "==0.2.0"
+        },
+        {
+          "name": "mkdocs-material",
+          "constraint": "==9.5.6"
+        },
+        {
+          "name": "build",
+          "constraint": "==1.0.3"
+        },
+        {
+          "name": "twine",
+          "constraint": "==4.0.2"
+        },
+        {
+          "name": "coverage",
+          "constraint": "==7.4.1"
+        },
+        {
+          "name": "cryptography",
+          "constraint": "==42.0.2"
+        },
+        {
+          "name": "mypy",
+          "constraint": "==1.8.0"
+        },
+        {
+          "name": "pytest",
+          "constraint": "==8.0.0"
+        },
+        {
+          "name": "ruff",
+          "constraint": "==0.1.15"
+        },
+        {
+          "name": "trio",
+          "constraint": "==0.24.0"
+        },
+        {
+          "name": "trio-typing",
+          "constraint": "==0.10.0"
+        },
+        {
+          "name": "trustme",
+          "constraint": "==1.1.0"
+        },
+        {
+          "name": "uvicorn",
+          "constraint": "==0.27.0.post1"
+        }
+      ],
+      "expected_crypto_components": [
+        "cryptography"
+      ],
+      "observed_crypto_components": [
+        "cryptography"
+      ],
+      "TP": 1,
+      "FP": 0,
+      "FN": 0,
+      "stats": {
+        "manifests_found": 1,
+        "root": "/workspace/scratch/b5e81a169f87/qramp/testbed/external-validation/manifests/httpx",
+        "dependencies_seen": 14,
+        "components_mapped": 1,
+        "wrapper_components": 0,
+        "provides_edges": 2,
+        "version_gated_edges": 0,
+        "by_ecosystem": {
+          "pip": 14
+        },
+        "alias_resolutions": [
+          {
+            "package": "chardet",
+            "version": "5.2.0",
+            "ecosystem": "pip",
+            "component": "chardet",
+            "wrapper": false,
+            "mapped": false,
+            "manifest": "requirements.txt"
+          },
+          {
+            "package": "mkdocs",
+            "version": "1.5.3",
+            "ecosystem": "pip",
+            "component": "mkdocs",
+            "wrapper": false,
+            "mapped": false,
+            "manifest": "requirements.txt"
+          },
+          {
+            "package": "mkautodoc",
+            "version": "0.2.0",
+            "ecosystem": "pip",
+            "component": "mkautodoc",
+            "wrapper": false,
+            "mapped": false,
+            "manifest": "requirements.txt"
+          },
+          {
+            "package": "mkdocs-material",
+            "version": "9.5.6",
+            "ecosystem": "pip",
+            "component": "mkdocs-material",
+            "wrapper": false,
+            "mapped": false,
+            "manifest": "requirements.txt"
+          },
+          {
+            "package": "build",
+            "version": "1.0.3",
+            "ecosystem": "pip",
+            "component": "build",
+            "wrapper": false,
+            "mapped": false,
+            "manifest": "requirements.txt"
+          },
+          {
+            "package": "twine",
+            "version": "4.0.2",
+            "ecosystem": "pip",
+            "component": "twine",
+            "wrapper": false,
+            "mapped": false,
+            "manifest": "requirements.txt"
+          },
+          {
+            "package": "cryptography",
+            "version": "42.0.2",
+            "ecosystem": "pip",
+            "component": "cryptography",
+            "wrapper": false,
+            "mapped": true,
+            "manifest": "requirements.txt"
+          },
+          {
+            "package": "mypy",
+            "version": "1.8.0",
+            "ecosystem": "pip",
+            "component": "mypy",
+            "wrapper": false,
+            "mapped": false,
+            "manifest": "requirements.txt"
+          },
+          {
+            "package": "pytest",
+            "version": "8.0.0",
+            "ecosystem": "pip",
+            "component": "pytest",
+            "wrapper": false,
+            "mapped": false,
+            "manifest": "requirements.txt"
+          },
+          {
+            "package": "ruff",
+            "version": "0.1.15",
+            "ecosystem": "pip",
+            "component": "ruff",
+            "wrapper": false,
+            "mapped": false,
+            "manifest": "requirements.txt"
+          },
+          {
+            "package": "trio",
+            "version": "0.24.0",
+            "ecosystem": "pip",
+            "component": "trio",
+            "wrapper": false,
+            "mapped": false,
+            "manifest": "requirements.txt"
+          },
+          {
+            "package": "trio-typing",
+            "version": "0.10.0",
+            "ecosystem": "pip",
+            "component": "trio-typing",
+            "wrapper": false,
+            "mapped": false,
+            "manifest": "requirements.txt"
+          },
+          {
+            "package": "trustme",
+            "version": "1.1.0",
+            "ecosystem": "pip",
+            "component": "trustme",
+            "wrapper": false,
+            "mapped": false,
+            "manifest": "requirements.txt"
+          },
+          {
+            "package": "uvicorn",
+            "version": "0.27.0.post1",
+            "ecosystem": "pip",
+            "component": "uvicorn",
+            "wrapper": false,
+            "mapped": false,
+            "manifest": "requirements.txt"
+          }
+        ],
+        "map_version": "provider-map-0.2"
+      }
+    },
+    {
+      "project": "ansible",
+      "declarations": [
+        {
+          "name": "jinja2",
+          "constraint": ">=3.0.0"
+        },
+        {
+          "name": "pyyaml",
+          "constraint": ">=5.1"
+        },
+        {
+          "name": "cryptography",
+          "constraint": ""
+        },
+        {
+          "name": "packaging",
+          "constraint": ""
+        },
+        {
+          "name": "resolvelib",
+          "constraint": "<1.1.0,>=0.5.3"
+        }
+      ],
+      "expected_crypto_components": [
+        "cryptography"
+      ],
+      "observed_crypto_components": [],
+      "TP": 0,
+      "FP": 0,
+      "FN": 1,
+      "stats": {
+        "manifests_found": 0,
+        "root": "/workspace/scratch/b5e81a169f87/qramp/testbed/external-validation/manifests/ansible",
+        "dependencies_seen": 0,
+        "components_mapped": 0,
+        "wrapper_components": 0,
+        "provides_edges": 0,
+        "version_gated_edges": 0,
+        "by_ecosystem": {},
+        "alias_resolutions": [],
+        "map_version": "provider-map-0.2"
+      }
+    }
+  ],
+  "sbom_rows": [
+    {
+      "project": "httpx",
+      "components_in_document": 16,
+      "reference_crypto": [
+        "cryptography"
+      ],
+      "observed_crypto": [
+        "cryptography"
+      ],
+      "TP": 1,
+      "FP": 0,
+      "FN": 0,
+      "stats": {
+        "components_mapped": 1,
+        "components_unmapped": 15,
+        "root": "/workspace/scratch/b5e81a169f87/qramp/testbed/external-validation/sbom",
+        "provides_edges": 2,
+        "version_gated_edges": 0,
+        "map_version": "provider-map-0.2"
+      }
+    },
+    {
+      "project": "ansible",
+      "components_in_document": 5,
+      "reference_crypto": [
+        "cryptography"
+      ],
+      "observed_crypto": [
+        "cryptography"
+      ],
+      "TP": 1,
+      "FP": 0,
+      "FN": 0,
+      "stats": {
+        "components_mapped": 1,
+        "components_unmapped": 4,
+        "root": "/workspace/scratch/b5e81a169f87/qramp/testbed/external-validation/sbom",
+        "provides_edges": 2,
+        "version_gated_edges": 0,
+        "map_version": "provider-map-0.2"
+      }
+    }
+  ],
+  "manifest_totals": {
+    "TP": 1,
+    "FP": 0,
+    "FN": 1
+  },
+  "sbom_totals": {
+    "TP": 2,
+    "FP": 0,
+    "FN": 0
+  }
+}

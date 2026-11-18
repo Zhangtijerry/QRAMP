@@ -1,0 +1,21 @@
+scheduling baseline: 179 tasks, list=2264880, CP-SAT median=2211900
+scheduling capacity-one: 179 tasks, list=6385950, CP-SAT median=4194000
+scheduling double-capacity: 179 tasks, list=1086270, CP-SAT median=774480
+scheduling half-duration: 179 tasks, list=1623510, CP-SAT median=1211760
+scheduling double-duration: 179 tasks, list=4529760, CP-SAT median=3497940
+scheduling complete-asset-subset: 109 tasks, list=900930, CP-SAT median=854970
+scheduling duplicated-graph: 358 tasks, list=9244230, CP-SAT median=8974350
+{
+  "software_version": "0.1.1",
+  "scan_assets": 52,
+  "loaded_assets": 52,
+  "occurrences": 125,
+  "tasks": 179,
+  "verification_status_counts": {
+    "pass": 0,
+    "fail": 92,
+    "deferred": 14,
+    "manual": 73
+  }
+}
+Results: /workspace/scratch/b5e81a169f87/qramp/revision2-results

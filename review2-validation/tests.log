@@ -1,0 +1,21 @@
+........................................................................ [ 17%]
+........................................................................ [ 34%]
+.................s..............................s.....s................. [ 51%]
+........................................................................ [ 68%]
+........................................................................ [ 85%]
+.............................................................            [100%]
+=============================== warnings summary ===============================
+tests/test_qramp.py::test_config_reads_dhparam_bits
+  /workspace/scratch/b5e81a169f87/qramp/tests/test_qramp.py:1114: CryptographyDeprecationWarning: Diffie-Hellman over finite fields (FFDH) is deprecated and support will be removed in a future release. Use a more modern key exchange algorithm.
+    params = _dh.generate_parameters(generator=2, key_size=512)
+
+tests/test_qramp.py::test_config_reads_dhparam_bits
+  /workspace/scratch/b5e81a169f87/qramp/src/qramp/collectors/configs.py:184: CryptographyDeprecationWarning: Diffie-Hellman over finite fields (FFDH) is deprecated and support will be removed in a future release. Use a more modern key exchange algorithm.
+    from cryptography.hazmat.primitives.serialization import load_pem_parameters
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+SKIPPED [1] qramp/tests/test_qramp.py:2390: playwright not installed
+SKIPPED [1] qramp/tests/test_qramp.py:2952: playwright not installed
+SKIPPED [1] qramp/tests/test_qramp.py:3075: playwright not installed
+418 passed, 3 skipped, 2 warnings in 12.01s

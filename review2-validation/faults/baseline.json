@@ -1,0 +1,133 @@
+{
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.6",
+  "serialNumber": "urn:uuid:338ffbb1-16a4-49ec-833c-e11555a49db2",
+  "metadata": {
+    "timestamp": "2026-11-18T12:13:32+00:00",
+    "tools": [
+      {
+        "vendor": "qramp",
+        "name": "qramp",
+        "version": "0.1.1"
+      }
+    ],
+    "qrampCollectors": [
+      {
+        "name": "source-py",
+        "files": 1,
+        "call_sites": 1,
+        "root": "/workspace/scratch/b5e81a169f87/qramp/review2-validation/faults/app",
+        "scanned_paths": [
+          "/workspace/scratch/b5e81a169f87/qramp/review2-validation/faults/app/x.py"
+        ],
+        "errors": [],
+        "query_hash": "548044d33fcdc82a",
+        "query_sources": [
+          {
+            "role": "builtin",
+            "path": "/workspace/scratch/b5e81a169f87/qramp/src/qramp/collectors/queries/python.scm"
+          }
+        ]
+      },
+      {
+        "name": "source-java",
+        "files": 0,
+        "call_sites": 0,
+        "root": "/workspace/scratch/b5e81a169f87/qramp/review2-validation/faults/app",
+        "scanned_paths": [],
+        "errors": [],
+        "query_hash": "639bd07879e59b0d",
+        "query_sources": [
+          {
+            "role": "builtin",
+            "path": "/workspace/scratch/b5e81a169f87/qramp/src/qramp/collectors/queries/java.scm"
+          }
+        ]
+      },
+      {
+        "name": "source-go",
+        "files": 0,
+        "call_sites": 0,
+        "root": "/workspace/scratch/b5e81a169f87/qramp/review2-validation/faults/app",
+        "scanned_paths": [],
+        "errors": [],
+        "query_hash": "c2edf5029ba06bda",
+        "query_sources": [
+          {
+            "role": "builtin",
+            "path": "/workspace/scratch/b5e81a169f87/qramp/src/qramp/collectors/queries/go.scm"
+          }
+        ]
+      },
+      {
+        "name": "source-rust",
+        "files": 0,
+        "call_sites": 0,
+        "root": "/workspace/scratch/b5e81a169f87/qramp/review2-validation/faults/app",
+        "scanned_paths": [],
+        "errors": [],
+        "query_hash": "9594de84414a536e",
+        "query_sources": [
+          {
+            "role": "builtin",
+            "path": "/workspace/scratch/b5e81a169f87/qramp/src/qramp/collectors/queries/rust.scm"
+          }
+        ]
+      },
+      {
+        "name": "source-c",
+        "files": 0,
+        "call_sites": 0,
+        "root": "/workspace/scratch/b5e81a169f87/qramp/review2-validation/faults/app",
+        "scanned_paths": [],
+        "errors": [],
+        "query_hash": "a0905a159d855447",
+        "query_sources": [
+          {
+            "role": "builtin",
+            "path": "/workspace/scratch/b5e81a169f87/qramp/src/qramp/collectors/queries/c.scm"
+          }
+        ]
+      }
+    ]
+  },
+  "components": [
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "A-441acf289995",
+      "name": "MD5 [hash]",
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "hash",
+          "parameterSetIdentifier": null,
+          "keyLength": null,
+          "mode": null
+        }
+      },
+      "evidence": {
+        "occurrences": [
+          {
+            "collector": "source-py",
+            "locator": "/workspace/scratch/b5e81a169f87/qramp/review2-validation/faults/app/x.py:2",
+            "evidence": "call to hashlib.md5()",
+            "confidence": 1.0,
+            "owner": null,
+            "tags": []
+          }
+        ]
+      },
+      "qramp": {
+        "algorithm": "md5",
+        "exposureClass": null,
+        "tier": null,
+        "rationale": null,
+        "ruleId": null,
+        "remediate": null,
+        "references": null,
+        "owners": [],
+        "tags": []
+      }
+    }
+  ]
+}

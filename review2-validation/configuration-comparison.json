@@ -1,0 +1,46 @@
+{
+  "unit": "five JDK weak-category policy entries; two service-template files with no active supported crypto directives are negative controls; no daemon defaults/inheritance evaluated",
+  "jdk_reference_property": "SSLv3, TLSv1, TLSv1.1, DTLSv1.0, RC4, DES, MD5withRSA, DH keySize < 1024, EC keySize < 224, 3DES_EDE_CBC, anon, NULL, ECDH",
+  "disabled_categories": {
+    "sslv3": true,
+    "tlsv1": true,
+    "rc4": true,
+    "md5withrsa": true,
+    "3des": true
+  },
+  "TP": 0,
+  "FP": 3,
+  "FN": 0,
+  "TN": 2,
+  "service_file_negative_controls": 2,
+  "findings": [
+    {
+      "algorithm": "tls",
+      "params": "1.0",
+      "evidence": "tlsv1 NOT in jdk.tls.disabledAlgorithms",
+      "file": "java.security"
+    },
+    {
+      "algorithm": "3des",
+      "params": "",
+      "evidence": "3des NOT in jdk.tls.disabledAlgorithms",
+      "file": "java.security"
+    },
+    {
+      "algorithm": "rc4",
+      "params": "",
+      "evidence": "rc4 NOT in jdk.tls.disabledAlgorithms",
+      "file": "java.security"
+    }
+  ],
+  "stats": {
+    "findings": 3,
+    "root": "/workspace/scratch/b5e81a169f87/qramp/testbed/external-validation/configs",
+    "scanned_paths": [
+      "/workspace/scratch/b5e81a169f87/qramp/testbed/external-validation/configs/java.security",
+      "/workspace/scratch/b5e81a169f87/qramp/testbed/external-validation/configs/nginx.conf",
+      "/workspace/scratch/b5e81a169f87/qramp/testbed/external-validation/configs/sshd_config"
+    ],
+    "errors": []
+  }
+}

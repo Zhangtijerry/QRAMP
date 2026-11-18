@@ -1,0 +1,97 @@
+{
+  "scope": "two signed loopback suite profiles, four forced protocol versions each; profiles share a local service design and are not independent deployments",
+  "profiles": [
+    {
+      "tls12_cipher_profile": "AES256-GCM-SHA384",
+      "scope": "four forced protocol versions against one signed loopback service; not internet deployment, exact group detection, PQ handshake or decommission validation",
+      "python_ssl": "OpenSSL 3.5.8 25 Aug 2026",
+      "reference_openssl": "OpenSSL 3.5.7 9 Jun 2026 (Library: OpenSSL 3.5.7 9 Jun 2026)",
+      "rows": [
+        {
+          "version": "1.0",
+          "openssl_negotiated": false,
+          "qramp_observed": false,
+          "equal": true,
+          "returncode": 1
+        },
+        {
+          "version": "1.1",
+          "openssl_negotiated": false,
+          "qramp_observed": false,
+          "equal": true,
+          "returncode": 1
+        },
+        {
+          "version": "1.2",
+          "openssl_negotiated": true,
+          "qramp_observed": false,
+          "equal": false,
+          "returncode": 1
+        },
+        {
+          "version": "1.3",
+          "openssl_negotiated": true,
+          "qramp_observed": true,
+          "equal": true,
+          "returncode": 0
+        }
+      ],
+      "TP": 1,
+      "FP": 0,
+      "FN": 1,
+      "TN": 2,
+      "collector_stats": {
+        "targets": 1,
+        "observations": 1
+      }
+    },
+    {
+      "tls12_cipher_profile": "ECDHE-RSA-AES256-GCM-SHA384",
+      "scope": "four forced protocol versions against one signed loopback service; not internet deployment, exact group detection, PQ handshake or decommission validation",
+      "python_ssl": "OpenSSL 3.5.8 25 Aug 2026",
+      "reference_openssl": "OpenSSL 3.5.7 9 Jun 2026 (Library: OpenSSL 3.5.7 9 Jun 2026)",
+      "rows": [
+        {
+          "version": "1.0",
+          "openssl_negotiated": false,
+          "qramp_observed": false,
+          "equal": true,
+          "returncode": 1
+        },
+        {
+          "version": "1.1",
+          "openssl_negotiated": false,
+          "qramp_observed": false,
+          "equal": true,
+          "returncode": 1
+        },
+        {
+          "version": "1.2",
+          "openssl_negotiated": true,
+          "qramp_observed": true,
+          "equal": true,
+          "returncode": 1
+        },
+        {
+          "version": "1.3",
+          "openssl_negotiated": true,
+          "qramp_observed": true,
+          "equal": true,
+          "returncode": 0
+        }
+      ],
+      "TP": 2,
+      "FP": 0,
+      "FN": 0,
+      "TN": 2,
+      "collector_stats": {
+        "targets": 1,
+        "observations": 2
+      }
+    }
+  ],
+  "TP": 3,
+  "FP": 0,
+  "FN": 1,
+  "TN": 4
+}

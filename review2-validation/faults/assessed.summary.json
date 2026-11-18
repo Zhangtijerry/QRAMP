@@ -1,0 +1,12 @@
+{
+  "rule_pack": {
+    "version": "transition-2024.3",
+    "hash": "5613092fb16894de"
+  },
+  "classes": {
+    "quantum_broken": 1
+  },
+  "tiers": {
+    "P2": 1
+  }
+}

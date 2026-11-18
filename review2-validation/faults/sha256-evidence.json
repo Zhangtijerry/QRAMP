@@ -1,0 +1,65 @@
+{
+  "generated": "2026-11-18T12:13:32+00:00",
+  "plan_hash": "3d426c3c270994e4",
+  "cbom_hash": "ed89d29af4a9f310",
+  "phase": null,
+  "checked": 2,
+  "passed": 2,
+  "accepted": true,
+  "acceptance_scope": "selected task predicates and detected drift of planned identities only",
+  "migration_status": "not_established",
+  "acceptance_limitations": [
+    "undetected aliases and indirect calls can conceal retained algorithms",
+    "new algorithm identities are not policy-assessed by verify",
+    "file-level replacement does not prove equivalent data flow or deployment"
+  ],
+  "observed_added_asset_identities": [
+    {
+      "asset_id": "A-ff3fa9fd1f8d",
+      "algorithm": "sha2-256",
+      "display": "SHA2-256 [hash]"
+    }
+  ],
+  "reassessment_required": true,
+  "selection_note": null,
+  "unplanned_target_occurrences": [],
+  "failed": 0,
+  "status_counts": {
+    "pass": 2,
+    "fail": 0,
+    "deferred": 0,
+    "manual": 0
+  },
+  "active_probe": false,
+  "probe_capability": null,
+  "results": [
+    {
+      "id": "T-9335cb1e33b6-externalise-algorithm",
+      "type": "externalise-algorithm",
+      "acceptance": "source_scan finds no hard-coded algorithm literal for MD5 [hash]",
+      "passed": true,
+      "status": "pass",
+      "detail": "literal removed within the task scope",
+      "target_locations": [
+        {
+          "collector": "source-py",
+          "path": "/workspace/scratch/b5e81a169f87/qramp/review2-validation/faults/app/x.py"
+        }
+      ]
+    },
+    {
+      "id": "T-9335cb1e33b6-replace-algorithm",
+      "type": "replace-algorithm",
+      "acceptance": "MD5 [hash] is absent and an approved replacement is observed in the target file",
+      "passed": true,
+      "status": "pass",
+      "detail": "MD5 replaced; found allowed alternative: sha2-256",
+      "target_locations": [
+        {
+          "collector": "source-py",
+          "path": "/workspace/scratch/b5e81a169f87/qramp/review2-validation/faults/app/x.py"
+        }
+      ]
+    }
+  ]
+}
