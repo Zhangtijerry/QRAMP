@@ -1,6 +1,19 @@
 # QRAMP User Manual
 
-**Version 0.1.1** · Cryptographic asset inventory and quantum-resistant migration planning
+## Version 0.1.2
+
+See REVIEW2_NOTES.md for the
+measured source/non-source comparisons, raw results, reproduction commands and
+remaining limitations. Task identity uses collector-relative paths; absolute
+paths remain evidence provenance. `accepted` and CLI exit 0 cover selected
+observed task predicates only. The evidence explicitly reports
+`migration_status: not_established`. Import aliases can hide MD5, and adding
+SHA-1 beside SHA-256 can leave the original tasks accepted; run a fresh
+assessment and review the reported added identities. Independent human source
+annotation and full production validation have not been established.
+
+
+**Version 0.1.2** · Cryptographic asset inventory and quantum-resistant migration planning
 
 ---
 

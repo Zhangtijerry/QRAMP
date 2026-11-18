@@ -5,6 +5,22 @@ All notable changes to QRAMP will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.2]
+
+- Derive task identities from collector-relative file paths or unchanged TLS
+  endpoints; sort task/model input order by stable ID. Keep absolute evidence
+  locations for conservative verification. Rescan legacy absolute locators that
+  lack root metadata. Add SBOM/manifest root provenance.
+- Explicitly report `migration_status: not_established`, acceptance scope,
+  observed added asset identities and reassessment requirements. Existing
+  predicate/CLI gate semantics are retained, including the documented alias and
+  SHA-1 plus SHA-256 counterexamples; no complete alias/dataflow fix is claimed.
+- Add pinned external-project inputs, a separately constructed reference
+  inventory, OpenSSL/packaging comparisons, signed loopback TLS profiles,
+  relocation/model equivalence checks and repeatable acceptance counterexamples.
+- Rerun all seven scheduling configurations after the ID/order change.
+- The v0.1.1 DOI remains a baseline archive and does not contain the 0.1.2 changes.
+
 ## [0.1.1] - 2026-10-20
 
 Archived software: [10.5281/zenodo.23487117](https://doi.org/10.5281/zenodo.23487117).

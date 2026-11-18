@@ -1,6 +1,6 @@
 # QRAMP
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23487117.svg)](https://doi.org/10.5281/zenodo.23487117)
+[![v0.1.1 archive DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23487117.svg)](https://doi.org/10.5281/zenodo.23487117)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![CI](https://github.com/Zhangtijerry/QRAMP/actions/workflows/ci.yml/badge.svg)](https://github.com/Zhangtijerry/QRAMP/actions/workflows/ci.yml)
 [Revision demo notebook](examples/QRAMP_demo.ipynb)
@@ -17,6 +17,35 @@ and acceptance requirements. Operators re-scan after changes and supply the new
 inventory to `verify`; checks report pass, fail, deferred, or manual outcomes.
 
 License: MIT · Python ≥ 3.10. Version 0.1.1 was released on 2026-10-20 and is archived at [Zenodo](https://doi.org/10.5281/zenodo.23487117). The [GitHub release](https://github.com/Zhangtijerry/QRAMP/releases/tag/v0.1.1) and DOI identify the released software snapshot; subsequent documentation updates on `main` do not change that archive.
+
+## Version 0.1.2
+
+This checkout includes the second-review changes. The v0.1.1 release and DOI
+above identify the baseline used for comparison. See `REVIEW2_NOTES.md` for the measured
+results and limits. Source queries are unchanged. Import aliases can hide MD5,
+and a new SHA-1 identity beside SHA-256 can leave both original MD5 tasks passed.
+The evidence bundle always reports `migration_status: not_established` and
+lists detected new identities for reassessment. `accepted` and exit 0 still
+mean the selected observed predicates passed, not successful migration.
+
+Task identifiers use collector-relative paths (with a separate TLS endpoint
+namespace); absolute evidence locations remain in the plan. Task/model ordering
+is canonical. Same-named files in different relative directories stay distinct.
+Rootless absolute legacy inputs must be rescanned. List schedules are invariant
+to checkout relocation; wall-clock-limited CP-SAT incumbents may still vary.
+
+```bash
+python -m pip install -e ".[source,solver,validate,versions,dev]"
+python scripts/reproduce_revision.py --out revision2-results --sensitivity --repeats 3 --time-limit 10
+python scripts/validate_review2.py --out review2-validation
+python -m pytest -q -rs
+```
+
+The offline reference validation also requires OpenSSL CLI and packaging.
+External input copies and their hashes are shipped in
+`testbed/external-validation`; no project downloads are performed by validation.
+The two derived SBOMs were generated with cyclonedx-bom 8.0.1 and are not
+independent deployment samples. See the provenance file for regeneration.
 
 ## Version 0.1.1 review fixes
 
