@@ -26,6 +26,7 @@ def run(inv: Inventory, sbom_path: str, provider_map: str | None = None, **_) ->
     mapping = yaml.safe_load(open(provider_map or DEFAULT_MAP, encoding="utf-8"))
     entries = {e["component"].lower(): e for e in mapping.get("components", [])}
 
+    sbom_path = os.path.abspath(sbom_path)
     doc = json.load(open(sbom_path, encoding="utf-8"))
     mapped = unmapped = edges = version_gated = 0
     for comp in doc.get("components", []):
@@ -55,7 +56,7 @@ def run(inv: Inventory, sbom_path: str, provider_map: str | None = None, **_) ->
             inv.provide(component, asset)          # record the provides edge
             edges += 1
     stats = {"components_mapped": mapped, "components_unmapped": unmapped,
-             "root": os.path.dirname(os.path.abspath(sbom_path)),
+             "root": os.path.dirname(sbom_path),
              "provides_edges": edges, "version_gated_edges": version_gated,
              "map_version": mapping.get("version", "?")}
     inv.record_collector("sbom", stats)

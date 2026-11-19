@@ -49,6 +49,7 @@ NGINX_PROTO = {
 @register("configs")
 def run(inv: Inventory, config_dir: str, owner_map: dict | None = None, **_) -> dict:
     owner_map = owner_map or {}
+    config_dir = os.path.abspath(config_dir)
     if not os.path.isdir(config_dir):
         raise ValueError(f"configuration directory does not exist: {config_dir}")
     scanned_paths, errors = [], []
@@ -65,14 +66,14 @@ def run(inv: Inventory, config_dir: str, owner_map: dict | None = None, **_) -> 
             except (OSError, UnicodeError) as exc:
                 errors.append(str(exc))
                 continue
-            scanned_paths.append(os.path.abspath(path))
+            scanned_paths.append(path)
             if "sshd_config" in low:
                 n += _parse_sshd(inv, path, text, owner)
             elif low.endswith((".conf",)) and ("ssl_" in text or "server {" in text):
                 n += _parse_nginx(inv, path, text, owner)
             elif "java.security" in low:
                 n += _parse_java_security(inv, path, text, owner)
-    stats = {"findings": n, "root": os.path.abspath(config_dir),
+    stats = {"findings": n, "root": config_dir,
              "scanned_paths": sorted(scanned_paths), "errors": errors}
     inv.record_collector("configs", stats)
     return stats

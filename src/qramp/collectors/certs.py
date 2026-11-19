@@ -72,6 +72,7 @@ def _load(path: str) -> list[x509.Certificate]:
 
 @register("certs")
 def run(inv: Inventory, cert_dir: str, owner_map: dict | None = None, **_) -> dict:
+    cert_dir = os.path.abspath(cert_dir)
     if not os.path.isdir(cert_dir):
         raise ValueError(f"certificate directory does not exist: {cert_dir}")
     scanned_paths, errors = [], []
@@ -85,15 +86,15 @@ def run(inv: Inventory, cert_dir: str, owner_map: dict | None = None, **_) -> di
             n_files += 1
             certs = _load(path)
             if not certs:
-                errors.append(f"unparseable certificate: {os.path.abspath(path)}")
+                errors.append(f"unparseable certificate: {path}")
                 continue
-            scanned_paths.append(os.path.abspath(path))
+            scanned_paths.append(path)
             for cert in certs:
                 n_certs += 1
                 n_weak += _observe_cert(inv, cert, path, owner_map.get(fn))
     links = inv.link_chain()
     stats = {"files": n_files, "certificates": n_certs, "weak_findings": n_weak,
-             "chain_links": links, "root": os.path.abspath(cert_dir),
+             "chain_links": links, "root": cert_dir,
              "scanned_paths": sorted(scanned_paths), "errors": errors}
     inv.record_collector("certs", stats)
     return stats

@@ -17,6 +17,8 @@ annotation and full production validation have not been established.
 
 ---
 
+On the development branch, file collectors record absolute evidence paths when scanning. The planner uses paths relative to the collector root for task IDs. Regenerate inventories and plans produced by older versions with relative scan arguments before comparing task IDs. Source collectors skip named dependency and build directories beneath the selected scan root.
+
 ## Changes in 0.1.1
 
 See [revision notes](REVISION_NOTES_zh.md) for fixes and
@@ -164,7 +166,7 @@ python -c "import qramp; print(qramp.__version__)"
 ```
 
 ```
-0.1.0
+0.1.2
 ```
 
 Run the test suite:
@@ -700,7 +702,7 @@ certificates, so candidate-file and certificate totals need not be equal.
 
 | Component | Version |
 |---|---|
-| Package | 0.1.1 |
+| Package | 0.1.2 |
 | Rule pack | transition-2024.3 |
 | Provider map | provider-map-0.2 |
 | CycloneDX target | 1.6 |
@@ -726,11 +728,12 @@ MIT. Copyright (c) 2026 Ti Zhang.
 ```bibtex
 @software{zhang_qramp_2026,
   author  = {Zhang, Ti},
-  title   = {{QRAMP}: cryptographic asset inventory and quantum-resistant migration planning},
+  title   = "{QRAMP}: cryptographic asset inventory and quantum-resistant migration planning",
   year    = {2026},
-  version = {0.1.1},
+  version = {0.1.2},
+  doi     = {10.5281/zenodo.24345237},
   license = {MIT},
-  url     = {https://github.com/Zhangtijerry/QRAMP}
+  url     = {https://doi.org/10.5281/zenodo.24345237}
 }
 ```
 

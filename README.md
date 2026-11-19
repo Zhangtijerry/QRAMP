@@ -18,6 +18,53 @@ inventory to `verify`; checks report pass, fail, deferred, or manual outcomes.
 
 MIT license · Python ≥ 3.10
 
+## Install
+
+Clone the repository and run the following commands in a Python 3.10+ environment. The `source` extra installs the grammars used to scan Python, Java, Go, Rust and C/C++.
+
+```bash
+git clone https://github.com/Zhangtijerry/QRAMP.git
+cd QRAMP
+python -m pip install -e ".[source]"
+```
+
+For CP-SAT scheduling, install `".[source,solver]"`. Without OR-Tools, QRAMP uses the deterministic list scheduler. A core-only installation (`python -m pip install -e .`) records which source collectors were skipped if their grammars are unavailable.
+
+## Quickstart (against the shipped testbed)
+
+Run these commands from the repository root. The example uses local files. Open `dashboard.html` to inspect the inventory, or read `evidence.json` for the individual verification outcomes.
+
+```bash
+# 1. Build the inventory from the bundled files
+qramp scan --source testbed/sample-app \
+           --sbom   testbed/sample-app/sbom.cdx.json \
+           --certs  testbed/certs \
+           --config testbed/etc \
+           --owners testbed/policy/owners.yaml \
+           -o cbom.json
+
+# 2. Classify and prioritise
+qramp assess cbom.json \
+      --rules src/qramp/rules/transition-2024.yaml \
+      --lifetimes testbed/policy/data-lifetimes.yaml \
+      -o assessment.json
+
+# 3. Generate the migration plan
+qramp plan assessment.json --capacity testbed/policy/teams.yaml \
+      --horizon 24m -o plan.yaml
+
+# 4. Verify the supplied inventory (exit code 2 is expected on this testbed)
+qramp verify plan.yaml --against cbom.json --phase 1 --evidence-out evidence.json
+
+# artefacts
+qramp report assessment.json -o dashboard.html
+qramp export plan.yaml --format issues -o issues.json
+qramp export assessment.json --format cyclonedx -o cbom.cdx.json   # standards-compliant CBOM
+qramp export assessment.json --format sarif --rules src/qramp/rules/transition-2024.yaml -o qramp.sarif   # GitHub code scanning
+```
+
+For the paper’s scheduling results, see [revision2-results/](revision2-results/). For collector comparisons and verification counterexamples, see [review2-validation/](review2-validation/).
+
 ## Citing QRAMP
 
 Zhang, T. (2026). *QRAMP: cryptographic asset inventory and quantum-resistant migration planning* (Version 0.1.2) [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.24345237
@@ -87,20 +134,6 @@ beat the heuristic. See [revision notes](REVISION_NOTES_zh.md) and
 [experiment instructions](examples/REVISION_EXPERIMENTS.md). The challenge set is
 new author-constructed evidence, not independent real-project annotation.
 
-## Install
-
-```bash
-pip install -e .              # core (Python source, SBOM, certs, configs, TLS)
-pip install -e ".[java]"      # + tree-sitter Java source collector
-pip install -e ".[source]"    # + tree-sitter Python, Java, Go, Rust, C/C++ source collectors
-pip install -e ".[solver]"    # + OR-Tools exact scheduler (optional)
-pip install -e ".[java,go,solver]"
-```
-
-The tool runs fully without OR-Tools (deterministic list-scheduling fallback)
-and without tree-sitter (source collectors with unavailable grammars yield nothing and
-record why, so Python-only scanning is unaffected).
-
 ## Five-layer architecture
 
 ```
@@ -120,41 +153,6 @@ PLAN      task DAG under prereq/interop/window/capacity  →  schedule
    │       (simulate: diff the inventory before/after a proposed library upgrade)
    │
 REPORT    CBOM · plan · Gantt · interactive HTML dashboard · issues · SARIF · VEX · timeline · DOT/Mermaid · report bundle · PR comment · org dashboard   ↺ verify
-```
-
-## Quickstart (against the shipped testbed)
-
-```bash
-# 1. authorise the only host the TLS collector may touch
-qramp sign-scope testbed/testbed.scope.yaml --key testbed/scope.key
-
-# 2. build the inventory
-qramp scan --source testbed/sample-app \
-           --sbom   testbed/sample-app/sbom.cdx.json \
-           --certs  testbed/certs \
-           --config testbed/etc \
-           --owners testbed/policy/owners.yaml \
-           -o cbom.json
-
-# 3. classify + prioritise
-qramp assess cbom.json \
-      --rules src/qramp/rules/transition-2024.yaml \
-      --lifetimes testbed/policy/data-lifetimes.yaml \
-      -o assessment.json
-
-# 4. plan
-qramp plan assessment.json --capacity testbed/policy/teams.yaml \
-      --horizon 24m -o plan.yaml
-
-# 5. evaluate this supplied scan (unremediated testbed: nonzero exit expected)
-qramp verify plan.yaml --against cbom.json --phase 1 --evidence-out evidence.json
-
-# artefacts
-qramp report assessment.json -o dashboard.html
-qramp export plan.yaml --format issues -o issues.json
-qramp export assessment.json --format cyclonedx -o cbom.cdx.json   # standards-compliant CBOM
-qramp export assessment.json --format sarif --rules src/qramp/rules/transition-2024.yaml -o qramp.sarif   # GitHub code scanning
-qramp diff cbom_before.json cbom_after.json
 ```
 
 ## Task acceptance against refreshed evidence
